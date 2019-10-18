@@ -7,8 +7,8 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_TITLE,
-	OBJ_MAIN,
-	OBJ_CHAR,
+	//OBJ_MAIN,
+	//OBJ_CHAR,
 };
 //------------------------------------------------
 
@@ -44,6 +44,7 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 enum CHARACTER_BLOCK_ID
 {
+	/*
 	CHAR_BLOCK_ONLY = 99, //障害物
     CHAR_BLOCK_FREE = 0,  //ブロック無し
 	CHAR_MONK,            //キャラクターブロック　僧侶
@@ -52,6 +53,7 @@ enum CHARACTER_BLOCK_ID
 	CHAR_DRAGONQUEEN,     //キャラクターブロック　ドラゴンクイーン
 	CHAR_SOLDIER,         //キャラクターブロック　ソルジャー
 	CHAR_GENERAL,         //キャラクターブロック　将軍
+	*/
 };
 
 
@@ -63,14 +65,14 @@ enum CHARACTER_BLOCK_ID
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjTitle.h"
-#include "ObjMain.h"
-#include "ObjChar.h"
+//#include "ObjMain.h"
+//#include "ObjChar.h"
 
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
-#include "SceneMain.h"
+//#include "SceneMain.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\タイトル画面">
+      <UniqueIdentifier>{744f6f60-f40c-4ca2-9ca9-9b2eca12f044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -57,8 +60,11 @@
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="GameTitle.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソース ファイル\タイトル画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\タイトル画面</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,8 +107,11 @@
     <ClInclude Include="main.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameTitle.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソース ファイル\タイトル画面</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\タイトル画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
