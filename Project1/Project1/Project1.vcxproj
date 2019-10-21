@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjClickTitle.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -130,11 +131,14 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjHero.cpp" />
+    <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjClickTitle.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -148,7 +152,9 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="ObjHero.h" />
+    <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

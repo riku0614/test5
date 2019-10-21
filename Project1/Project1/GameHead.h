@@ -7,6 +7,7 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_TITLE,
+	OBJ_CLICK_TITLE,
 	OBJ_HERO,
 	//OBJ_MAIN,
 	//OBJ_CHAR,
@@ -67,6 +68,7 @@ enum CHARACTER_BLOCK_ID
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjTitle.h"
 #include "ObjHero.h"
+#include "ObjClickTitle.h"
 //#include "ObjMain.h"
 //#include "ObjChar.h"
 
