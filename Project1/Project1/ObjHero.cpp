@@ -17,24 +17,53 @@ void CObjHero::Init()
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 1.0f; //右向き0.0ｆ　左向き1.0ｆ
+	m_stamina_limid = 600.0f;
 }
 
 //アクション
 void CObjHero::Action()
 {
-	//移動ベクトルの破棄
-	m_vy = 0.0f;
+	
 
+	//Zキー入力で速度アップ
+	if (m_stamina_limid>=0&&Input::GetVKey(VK_LSHIFT) == true&& 
+		Input::GetVKey('A') == true||Input::GetVKey('D') == true)
+	{
+		
+		//ダッシュ時の速度
+		m_speed_power = 2.0f;
+		m_stamina_limid -= 1.0f;
+	}
+	else
+	{
+		//通常速度
+		m_speed_power = 1.0f;
+
+		if (m_stamina_limid < 600.0f)
+		{
+			m_stamina_limid += 1.0f;
+		}
+
+	}
 	//キーの入力方向
 	if (Input::GetVKey('A') == true)
 	{
 		m_vx += 1.0f;
 		m_posture = 1.0f;
 	}
-	else if (Input::GetVKey('A') == true)
+	else if (Input::GetVKey('D') == true)
 	{
 		m_vx -= 1.0f;
 		m_posture = 0.0f;
+	}
+	else if (Input::GetVKey('W') == true)
+	{
+		m_vy -= 1.0f;
+		
+	}
+	else if (Input::GetVKey('S') == true)
+	{
+		m_vy += 1.0f;
 	}
 
 	//位置の更新
