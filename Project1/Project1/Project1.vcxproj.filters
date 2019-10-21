@@ -22,6 +22,9 @@
     <Filter Include="ソース ファイル\ゲームメイン">
       <UniqueIdentifier>{4dc81af4-1e78-4f52-898f-c82f64ab39e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\関数ソースファイル">
+      <UniqueIdentifier>{f58a9167-0315-418d-8b01-ec8d592417cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -84,6 +87,9 @@
     <ClCompile Include="Source.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ソース ファイル\関数ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -142,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="ObjMain.h">
       <Filter>ソース ファイル\ゲームメイン</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソース ファイル\関数ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
