@@ -5,6 +5,7 @@
 
 #include "GameHead.h"
 #include "ObjHero.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -65,6 +66,9 @@ void CObjHero::Action()
 	{
 		m_vy += 1.0f;
 	}
+
+	//移動ベクトルの正規化
+	UnitVec(&m_vy, &m_vx);
 
 	//位置の更新
 	m_px += m_vx;
