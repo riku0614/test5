@@ -5,31 +5,26 @@
 #include "GameL/SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjClickTitle.h"
+#include "ObjGameOver.h"
 
 
 //使用するネームスペース
 using namespace GameL;
 
 //イニシャライズ
-void CObjClickTitle::Init()
+void CObjGameOver::Init()
 {
 
 }
 
 //アクション
-void CObjClickTitle::Action()
+void CObjGameOver::Action()
 {
 
 }
 
 //ドロー
-void CObjClickTitle::Draw()
+void CObjGameOver::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	
-	//クリックする場所
-	//ゲームを始める場所
-	Font::StrDraw(L"最初から", 320,350,30,c);
-
 }

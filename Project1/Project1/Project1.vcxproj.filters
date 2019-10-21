@@ -25,6 +25,9 @@
     <Filter Include="ソース ファイル\関数ソースファイル">
       <UniqueIdentifier>{f58a9167-0315-418d-8b01-ec8d592417cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ゲームオーバー">
+      <UniqueIdentifier>{41677a6e-d4a5-421c-8d2a-65dd761636b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -90,6 +93,12 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>ソース ファイル\関数ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -151,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル\関数ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameOver.h">
+      <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

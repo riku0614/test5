@@ -11,8 +11,8 @@ class CObjMain : public CObj
 	public:
 		CObjMain() {};
 		~CObjMain() {};
-		void Init();
-		void Action();
-		void Draw();
+		void Init();	//イニシャライズ
+		void Action();	//アクション
+		void Draw();	//ドロー
 	private:
 };

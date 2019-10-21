@@ -12,6 +12,7 @@ using namespace GameL;
 
 //使用ヘッダー
 #include "SceneMain.h"
+#include "ObjClickTitle.h"
 #include "GameHead.h"
 
 //コンストラクタ
@@ -32,10 +33,15 @@ void CSceneTitle::InitScene()
 	//出力させる文字のグラフィック作成
 	Font::SetStrTex(L"怪穢");
 	Font::SetStrTex(L"～カイエ～");
+	Font::SetStrTex(L"最初から");
 
 	//タイトルオブジェクト作成
 	CObjTitle* obj = new CObjTitle();		//タイトルオブジェクト作成
 	Objs::InsertObj(obj, OBJ_TITLE, 10);	//タイトルオブジェクト登録
+
+	//クリックタイトルオブジェクト作成
+	CObjClickTitle* objb = new CObjClickTitle();	//クリックタイトルオブジェクト作成
+	Objs::InsertObj(objb, OBJ_CLICK_TITLE, 11);		//タイトルオブジェクト登録
 
 
 }
