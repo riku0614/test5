@@ -9,7 +9,7 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_CLICK_TITLE,
 	OBJ_HERO,
-	//OBJ_MAIN,
+	OBJ_MAIN,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -69,14 +69,14 @@ enum CHARACTER_BLOCK_ID
 #include "ObjTitle.h"
 #include "ObjHero.h"
 #include "ObjClickTitle.h"
-//#include "ObjMain.h"
+#include "ObjMain.h"
 //#include "ObjChar.h"
 
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
-//#include "SceneMain.h"
+#include "SceneMain.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

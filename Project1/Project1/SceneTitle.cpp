@@ -11,7 +11,7 @@
 using namespace GameL;
 
 //使用ヘッダー
-//#include "SceneMain.h"←メイン作ったらチェックを外す
+#include "SceneMain.h"
 #include "GameHead.h"
 
 //コンストラクタ

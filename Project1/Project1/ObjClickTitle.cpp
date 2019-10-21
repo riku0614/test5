@@ -26,5 +26,10 @@ void CObjClickTitle::Action()
 //ドロー
 void CObjClickTitle::Draw()
 {
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	
+	//クリックする場所
+	//ゲームを始める場所
+	Font::StrDraw(L"最初から", );
 
 }
