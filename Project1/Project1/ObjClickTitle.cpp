@@ -30,6 +30,6 @@ void CObjClickTitle::Draw()
 	
 	//クリックする場所
 	//ゲームを始める場所
-	Font::StrDraw(L"最初から", );
+	//Font::StrDraw(L"最初から", );
 
 }
