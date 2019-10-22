@@ -50,8 +50,8 @@ void CSceneMain::InitScene()
 		}
 	}
 
-	CObjMain* p = new CObjMain(map);
-	Objs::InsertObj(p, OBJ_MAIN, 1);
+	//CObjMain* p = new CObjMain(map);
+	//Objs::InsertObj(p, OBJ_MAIN, 1);
 
 
 }
