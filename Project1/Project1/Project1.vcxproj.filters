@@ -102,6 +102,12 @@
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -169,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
