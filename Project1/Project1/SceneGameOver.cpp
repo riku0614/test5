@@ -16,22 +16,23 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneGameover::CSceneGameover()
+CSceneMain::CSceneMain()
 {
 
 }
 
 //デストラクタ
-CSceneGameover::~CSceneGameover()
+CSceneMain::~CSceneMain()
 {
 
 }
 
 //ゲームメイン初期化メソッド
-void CSceneGameover::InitScene()
+void CSceneMain::InitScene()
 {
-	//出力させる文字のグラフィック作成
-	Font::SetStrTex(L"GAMEOVER");
+	//オブジェクトを登録
+	//CObjMain* p = new CObjMain();
+	//Objs::InsertObj(p, OBJ_MAIN, 1);
 
 	//タイトルオブジェクト作成
 	CObjGameOver* objg = new CObjGameOver();		//タイトルオブジェクト作成
@@ -40,7 +41,7 @@ void CSceneGameover::InitScene()
 }
 
 //ゲームメイン実行中メソッド
-void CSceneGameover::Scene()
+void CSceneMain::Scene()
 {
 
 }
