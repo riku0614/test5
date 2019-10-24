@@ -30,8 +30,8 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//オブジェクトを登録
-	CObjMain* p = new CObjMain();
-	Objs::InsertObj(p, OBJ_MAIN, 1);
+	//CObjMain* p = new CObjMain();
+	//Objs::InsertObj(p, OBJ_MAIN, 1);
 
 
 }
