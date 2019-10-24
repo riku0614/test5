@@ -2,6 +2,7 @@
 //使用するヘッダー
 #include "GameL/SceneObjManager.h"
 
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -13,9 +14,8 @@ class CObjMain : public CObj
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション
-		void Draw();	//ドロー
+		void Draw();	//ド
 	private:
 		int m_map[10][10];   //マップ情報
-		//void BlockDraw(float x, float y, RECT_F* dst, float c[]);
-		
+		float m_scroll;   //左右スクロール用
 };
