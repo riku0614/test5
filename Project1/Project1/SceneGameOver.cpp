@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 }
 
 //ゲームメイン実行中メソッド
-void CSceneMain::Scene()
+void CSceneGameOver::Scene()
 {
 
 }
