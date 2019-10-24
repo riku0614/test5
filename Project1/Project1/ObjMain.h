@@ -9,10 +9,13 @@ using namespace GameL;
 class CObjMain : public CObj
 {
 	public:
-		CObjMain() {};
+		CObjMain(int map[10][10]);
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション
 		void Draw();	//ドロー
 	private:
+		int m_map[10][10];   //マップ情報
+		void BlockDraw(float x, float y, RECT_F* dst, float c[]);
+		
 };
