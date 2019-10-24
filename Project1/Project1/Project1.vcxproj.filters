@@ -31,6 +31,9 @@
     <Filter Include="ソース ファイル\ゲームクリア">
       <UniqueIdentifier>{241e7593-3183-42ed-add4-19640a610ffc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ゲームUI">
+      <UniqueIdentifier>{de6518a5-3f1b-4b20-ae70-b16d89e481e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -108,6 +111,9 @@
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -181,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
