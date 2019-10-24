@@ -19,6 +19,12 @@ class CObjMain : public CObj
 		float GetScrollX() { return m_scroll_x; }
 		void SetScrollY(float r) { m_scroll_y = r; }
 		float GetScrollY() { return m_scroll_y; }
+		
+		void BlockHit(
+			float *x, float *y, bool scroll_on_x,
+			bool *up, bool *down, bool *left, bool *right,
+			float *vx, float *vy, int *bt
+		);
 	private:
 		int m_map[100][100];   //マップ情報
 		float m_scroll_x;   //左右スクロール用

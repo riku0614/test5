@@ -11,6 +11,7 @@
 //使用ヘッダー
 #include "SceneMain.h"
 #include "GameHead.h"
+#include "ObjMain.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -53,6 +54,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Char2.png", 0, TEX_SIZE_1024);
 
 	Draw::LoadImageW(L"床.png", 1, TEX_SIZE_512);
+	
+	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
 
 	
 	//主人公オブジェクト作成
