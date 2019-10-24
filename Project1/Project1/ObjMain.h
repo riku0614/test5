@@ -16,6 +16,6 @@ class CObjMain : public CObj
 		void Draw();	//ドロー
 	private:
 		int m_map[10][10];   //マップ情報
-		void BlockDraw(float x, float y, RECT_F* dst, float c[]);
+		//void BlockDraw(float x, float y, RECT_F* dst, float c[]);
 		
 };

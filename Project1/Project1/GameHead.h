@@ -10,6 +10,7 @@ enum OBJ_NAME
 	OBJ_CLICK_TITLE,
 	OBJ_HERO,
 	OBJ_MAIN,
+	OBJ_GAMEOVER,
 	//OBJ_CHAR,
 };
 //------------------------------------------------

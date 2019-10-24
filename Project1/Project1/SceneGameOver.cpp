@@ -11,33 +11,36 @@
 using namespace GameL;
 
 //使用ヘッダー
+#include "ObjGameOver.h"
 #include "SceneGameOver.h"
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneMain::CSceneMain()
+CSceneGameover::CSceneGameover()
 {
 
 }
 
 //デストラクタ
-CSceneMain::~CSceneMain()
+CSceneGameover::~CSceneGameover()
 {
 
 }
 
 //ゲームメイン初期化メソッド
-void CSceneMain::InitScene()
+void CSceneGameover::InitScene()
 {
-	//オブジェクトを登録
-	//CObjMain* p = new CObjMain();
-	//Objs::InsertObj(p, OBJ_MAIN, 1);
+	//出力させる文字のグラフィック作成
+	Font::SetStrTex(L"GAMEOVER");
 
+	//タイトルオブジェクト作成
+	CObjGameOver* objg = new CObjGameOver();		//タイトルオブジェクト作成
+	Objs::InsertObj(objg, OBJ_GAMEOVER, 10);	//タイトルオブジェクト登録
 
 }
 
 //ゲームメイン実行中メソッド
-void CSceneMain::Scene()
+void CSceneGameover::Scene()
 {
 
 }

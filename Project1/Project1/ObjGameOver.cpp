@@ -26,5 +26,6 @@ void CObjGameOver::Action()
 //ÉhÉçÅ[
 void CObjGameOver::Draw()
 {
-	
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	Font::StrDraw(L"GAMEOVER", 320, 200, 60, c);
 }
