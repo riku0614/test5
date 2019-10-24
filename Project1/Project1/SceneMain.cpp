@@ -35,11 +35,11 @@ void CSceneMain::InitScene()
 	int size;
 	p = Save::ExternalDataOpen(L"map.csv", &size);
 
-	int map[10][10];
+	int map[100][100];
 	int count = 1;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -50,8 +50,16 @@ void CSceneMain::InitScene()
 		}
 	}
 
-	Draw::LoadImageW(L"床.png", 0, TEX_SIZE_512);
+	Draw::LoadImageW(L"Char2.png", 0, TEX_SIZE_1024);
 
+	Draw::LoadImageW(L"床.png", 1, TEX_SIZE_512);
+
+	
+	//主人公オブジェクト作成
+	CObjHero* obj = new CObjHero();
+	Objs::InsertObj(obj, OBJ_HERO, 10);
+	
+	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 9);

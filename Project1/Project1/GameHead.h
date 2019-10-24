@@ -11,7 +11,7 @@ enum OBJ_NAME
 	OBJ_HERO,
 	OBJ_MAIN,
 	OBJ_GAMEOVER,
-	OBJ_ENEMY,
+	OBJ_GAMECLEAR,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -72,7 +72,6 @@ enum CHARACTER_BLOCK_ID
 #include "ObjHero.h"
 #include "ObjClickTitle.h"
 #include "ObjMain.h"
-#include "ObjEnemy.h"
 //#include "ObjChar.h"
 
 //------------------------------------------------
@@ -80,9 +79,11 @@ enum CHARACTER_BLOCK_ID
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
 #include "SceneMain.h"
+#include "SceneGameClear.h"
+#include "SceneGameOver.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneMain
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------

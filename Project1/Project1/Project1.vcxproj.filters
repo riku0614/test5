@@ -31,8 +31,8 @@
     <Filter Include="ソース ファイル\ゲームクリア">
       <UniqueIdentifier>{241e7593-3183-42ed-add4-19640a610ffc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\敵キャラ">
-      <UniqueIdentifier>{84faaa97-98ea-4fb6-84db-8240c3632f22}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ゲームUI">
+      <UniqueIdentifier>{de6518a5-3f1b-4b20-ae70-b16d89e481e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +105,6 @@
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル\敵キャラ</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -175,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
