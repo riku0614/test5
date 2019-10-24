@@ -53,7 +53,7 @@ void CObjTitle::Draw()
 	//仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"X=%f,Y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, c);
+	Font::StrDraw(str, 20, 20, 20, c);
 
 	//文字の表示
 	Font::StrDraw(L"怪穢", 320, 200, 60, c);
