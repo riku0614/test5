@@ -15,29 +15,27 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneMain::CSceneMain()
+CSceneGameOver::CSceneGameOver()
 {
 
 }
 
 //デストラクタ
-CSceneMain::~CSceneMain()
+CSceneGameOver::~CSceneGameOver()
 {
 
 }
 
 //ゲームメイン初期化メソッド
-void CSceneMain::InitScene()
+void CSceneGameOver::InitScene()
 {
-	//オブジェクトを登録
-	//CObjMain* p = new CObjMain();
-	//Objs::InsertObj(p, OBJ_MAIN, 1);
+	
 
 
 }
 
 //ゲームメイン実行中メソッド
-void CSceneMain::Scene()
+void CSceneGameOver::Scene()
 {
 
 }
