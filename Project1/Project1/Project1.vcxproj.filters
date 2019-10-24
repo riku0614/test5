@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\ゲームオーバー">
       <UniqueIdentifier>{41677a6e-d4a5-421c-8d2a-65dd761636b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ゲームクリア">
+      <UniqueIdentifier>{241e7593-3183-42ed-add4-19640a610ffc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
