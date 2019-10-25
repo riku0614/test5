@@ -6,6 +6,7 @@
 #include "GameL/SceneObjManager.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
+#include "GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,6 +35,9 @@ void CSceneTitle::InitScene()
 	Font::SetStrTex(L"怪穢");
 	Font::SetStrTex(L"～カイエ～");
 	Font::SetStrTex(L"最初から");
+
+	//矢印追加
+	Draw::LoadImage(L"カーソル.png", 0, TEX_SIZE_512);
 
 	//タイトルオブジェクト作成
 	CObjTitle* obj = new CObjTitle();		//タイトルオブジェクト作成
