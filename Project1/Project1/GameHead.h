@@ -72,8 +72,6 @@ enum CHARACTER_BLOCK_ID
 #include "ObjHero.h"
 #include "ObjClickTitle.h"
 #include "ObjMain.h"
-#include "ObjGameOver.h"
-#include "ObjGameClear.h"
 //#include "ObjChar.h"
 
 //------------------------------------------------
