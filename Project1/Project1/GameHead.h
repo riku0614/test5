@@ -12,6 +12,7 @@ enum OBJ_NAME
 	OBJ_MAIN,
 	OBJ_GAMEOVER,
 	OBJ_GAMECLEAR,
+	OBJ_ITEM,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -73,6 +74,7 @@ enum CHARACTER_BLOCK_ID
 #include "ObjClickTitle.h"
 #include "ObjMain.h"
 //#include "ObjChar.h"
+#include "ObjItem.h"
 
 //------------------------------------------------
 
