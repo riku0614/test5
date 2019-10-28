@@ -2,29 +2,27 @@
 #include "GameL/DrawTexture.h"
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
-#include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
-#include "ObjEnemy.h"
-#include "UtilityModule.h"
+#include "ObjGameUI.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 //イニシャライズ
-void CObjEnemy::Init()
+void CObjGameUI::Init()
 {
-	
+
 }
 
 //アクション
-void CObjEnemy::Action()
+void CObjGameUI::Action()
 {
-	
+
 }
 
 //ドロー
-void CObjEnemy::Draw()
+void CObjGameUI::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -32,17 +30,17 @@ void CObjEnemy::Draw()
 	RECT_F dst;	//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 0.0f;
+	src.m_top = 19.0f;
 	src.m_left = 0.0f;
 	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_bottom = 38.0f;
 
 	//表示位置設定
-	dst.m_top = 400.0f;
-	dst.m_right = 50.0f;
-	dst.m_left = dst.m_right + 64.0f;
-	dst.m_bottom = dst.m_top + 64.0f;
+	dst.m_top = 559.0f;
+	dst.m_left = 686.0f;
+	dst.m_right = dst.m_left + 64.0f + 50.0f;
+	dst.m_bottom = dst.m_top + 21.0f + 20.0f;
 
 	//描画設定
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(6, &src, &dst, c, 0.0f);
 }

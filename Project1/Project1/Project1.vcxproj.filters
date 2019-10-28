@@ -34,6 +34,9 @@
     <Filter Include="ソース ファイル\ゲームUI">
       <UniqueIdentifier>{de6518a5-3f1b-4b20-ae70-b16d89e481e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\敵">
+      <UniqueIdentifier>{08a723d9-c5df-451e-8598-e39f80cbf884}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -105,14 +108,17 @@
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +187,18 @@
     </ClInclude>
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソース ファイル\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
