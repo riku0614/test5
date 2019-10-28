@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\アイテム">
       <UniqueIdentifier>{55e0f158-2a97-4c76-a10f-af87fbc759ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\敵キャラ">
+      <UniqueIdentifier>{65b6cc38-5cd5-4c79-8e81-ad1236e461a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -123,6 +126,18 @@
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソース ファイル\アイテム</Filter>
     </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\敵キャラ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -202,6 +217,18 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ソース ファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

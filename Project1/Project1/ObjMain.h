@@ -21,7 +21,7 @@ class CObjMain : public CObj
 		float GetScrollY() { return m_scroll_y; }
 		
 		void BlockHit(
-			float *x, float *y, bool scroll_on_x,
+			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
 			bool *up, bool *down, bool *left, bool *right,
 			float *vx, float *vy, int *bt
 		);

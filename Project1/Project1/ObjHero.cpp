@@ -14,8 +14,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 70.0f; //位置
-	m_py = 64.0f;
+	m_px = 0.0f; //位置
+	m_py = 0.0f;
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 
@@ -118,7 +118,7 @@ void CObjHero::Action()
 
 	//ブロックの当たり判定実行
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	pb->BlockHit(&m_px, &m_py, true,
+	pb->BlockHit(&m_px, &m_py, true,true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
