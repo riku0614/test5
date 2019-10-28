@@ -34,8 +34,17 @@
     <Filter Include="ソース ファイル\ゲームUI">
       <UniqueIdentifier>{de6518a5-3f1b-4b20-ae70-b16d89e481e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\NewFilter1">
+      <UniqueIdentifier>{69545b2f-89fc-4db1-8ab6-5269a202dbb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\アイテム">
+      <UniqueIdentifier>{55e0f158-2a97-4c76-a10f-af87fbc759ee}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ソース ファイル\敵キャラ">
       <UniqueIdentifier>{65b6cc38-5cd5-4c79-8e81-ad1236e461a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\敵">
+      <UniqueIdentifier>{08a723d9-c5df-451e-8598-e39f80cbf884}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,15 @@
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
     <ClCompile Include="GameUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>ソース ファイル\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
@@ -116,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,18 +202,6 @@
     </ClInclude>
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
-    </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>ソース ファイル\ゲームUI</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameClear.h">
-      <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGameClear.h">
-      <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

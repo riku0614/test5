@@ -6,7 +6,6 @@
 
 #include "GameHead.h"
 #include "ObjEnemy.h"
-#include "ObjMain.h"
 #include "UtilityModule.h"
 
 //使用するネームスペース

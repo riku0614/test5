@@ -66,9 +66,20 @@ void CSceneMain::InitScene()
 	CObjEnemy* obje = new CObjEnemy();
 	Objs::InsertObj(obje, OBJ_ENEMY, 9);
 
+	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
+
+	
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
+	//敵オブジェクト作成
+	CObjEnemy* objem = new CObjEnemy();
+	Objs::InsertObj(objem, OBJ_ENEMY, 11);
+
+	//敵オブジェクト作成
+	CObjGameUI* objui = new CObjGameUI();
+	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
 	
 	
 	//ブロックオブジェクト作成
