@@ -14,6 +14,7 @@ enum OBJ_NAME
 	OBJ_GAMEOVER,
 	OBJ_GAMECLEAR,
 	OBJ_GAME_UI,
+	OBJ_ITEM,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
