@@ -57,7 +57,15 @@ void CSceneMain::InitScene()
 	
 	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
 
-	
+	Draw::LoadImageW(L"敵(仮).png", 3, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"敵(仮1).png", 4, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
+
+	CObjEnemy* obje = new CObjEnemy();
+	Objs::InsertObj(obje, OBJ_ENEMY, 9);
+
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -65,9 +73,9 @@ void CSceneMain::InitScene()
 	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
-	Objs::InsertObj(objm, OBJ_MAIN, 9);
+	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-
+	
 }
 
 //ゲームメイン実行中メソッド

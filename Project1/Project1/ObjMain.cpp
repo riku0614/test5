@@ -23,7 +23,7 @@ CObjMain::CObjMain(int map[100][100])
 void CObjMain::Init()
 {
 	m_scroll_x = -2850.0f;
-	m_scroll_y = -2850.0f;
+	m_scroll_y = -64.0f;
 }
 
 //アクション
@@ -34,6 +34,8 @@ void CObjMain::Action()
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
 	float hy = hero->GetY();
+
+
 
 	//後方スクロールライン
 	if (hx < 300)
@@ -60,10 +62,9 @@ void CObjMain::Action()
 	{
 		hero->SetY(300);
 		m_scroll_y -= hero->GetVY();
+
+
 	}
-
-
-
 }
 
 /*BlockHit関数

@@ -29,4 +29,6 @@ class CObjMain : public CObj
 		int m_map[100][100];   //マップ情報
 		float m_scroll_x;   //左右スクロール用
 		float m_scroll_y;   //上下スクロール用
+		float m_scroll_ex;   //左右スクロール用
+		float m_scroll_ey;   //上下スクロール用
 };

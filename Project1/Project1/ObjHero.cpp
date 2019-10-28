@@ -11,6 +11,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+
 //イニシャライズ
 void CObjHero::Init()
 {
@@ -18,6 +19,9 @@ void CObjHero::Init()
 	m_py = 0.0f;
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
+
+	m_hero_life = 3;
+
 
 	//blockとの衝突確認用
 
@@ -37,6 +41,7 @@ void CObjHero::Init()
 
 	m_posture = 1.0f; //右向き0.0ｆ　左向き1.0ｆ
 	m_stamina_limid = 90.0f;
+
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -133,6 +138,23 @@ void CObjHero::Action()
 
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
+
+	//主人公機オブジェクトと接触したら敵削除
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		if (m_hero_life == 0)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			Scene::SetScene(new CSceneGameOver);
+		}
+		else
+		{
+			m_hero_life -= 1;
+		}
+	}
+	
 }
 
 void CObjHero::Draw()
