@@ -77,6 +77,7 @@ enum CHARACTER_BLOCK_ID
 #include "ObjEnemy.h"
 #include "ObjGameUI.h"
 //#include "ObjChar.h"
+#include "ObjItem.h"
 
 //------------------------------------------------
 

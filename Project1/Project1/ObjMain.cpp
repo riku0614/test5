@@ -69,14 +69,14 @@ void CObjMain::Action()
 /*BlockHit関数
   引数１　　float* x             :判定を行うobjectのX位置
   引数２　　float* y             :判定を行うobjectのY位置
-  引数３　　bool  scroll_on      :判定を行うobjectはスクロールに影響を与えるかどうか（true=与える　false=与えない）
-  引数４　　bool* up             :上下左右判定の上部分にあたっているかどうかを返す
-  引数５　　bool* down           :上下左右判定の下部分にあたっているかどうかを返す
-  引数６　　bool* left           :上下左右判定の左部分にあたっているかどうかを返す
-  引数７　　bool* right          :上下左右判定の右部分にあたっているかどうかを返す
-  引数８　　float* vx            :左右判定時の反発による移動方向・力の値を変えて返す
-  引数９　　float* vy            :上下判定時による自由落下運動の移動方向・力の値を変えて返す
-  引数１０　int* bt            　:下部分判定時、特殊なブロックのタイプを返す
+  引数３　　bool  scroll_on_x    :判定を行うobjectはスクロールに影響を与えるかどうか（true=与える　false=与えない）
+  引数５　　bool* up             :上下左右判定の上部分にあたっているかどうかを返す
+  引数６　　bool* down           :上下左右判定の下部分にあたっているかどうかを返す
+  引数７　　bool* left           :上下左右判定の左部分にあたっているかどうかを返す
+  引数８　　bool* right          :上下左右判定の右部分にあたっているかどうかを返す
+  引数９　　float* vx            :左右判定時の反発による移動方向・力の値を変えて返す
+  引数１０　　float* vy            :上下判定時による自由落下運動の移動方向・力の値を変えて返す
+  引数１１　int* bt            　:下部分判定時、特殊なブロックのタイプを返す
   判定を行うobjectとブロック64*64限定で、当たり判定と上下左右判定を行う
   その結果は引数４～１０に返す*/
 
@@ -100,7 +100,7 @@ void CObjMain::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 2)
+			if (m_map[i][j] == 2||m_map[i][j]==3)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -139,7 +139,9 @@ void CObjMain::BlockHit(
 						{
 							//右
 							*right = true;//主人公から見て、左の部分が衝突している
-							*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+							*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
+							if (m_map[i][j] == 3)
+								Scene::SetScene(new CSceneGameClear);
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 45 && r < 135)
@@ -149,6 +151,8 @@ void CObjMain::BlockHit(
 							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 							if (m_map[i][j] == 2)
 								*bt = m_map[i][j];
+							else if(m_map[i][j]==3)
+								Scene::SetScene(new CSceneGameClear);
 							*vy = 0.0f;
 						}
 						if (r > 135 && r < 225)
@@ -156,6 +160,8 @@ void CObjMain::BlockHit(
 							//左
 							*left = true;//主人公から見て、右の部分が衝突している
 							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+							if (m_map[i][j] == 3)
+								Scene::SetScene(new CSceneGameClear);
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 225 && r < 315)
@@ -177,6 +183,7 @@ void CObjMain::BlockHit(
 
 
 			}
+			
 		}
 	}
 
