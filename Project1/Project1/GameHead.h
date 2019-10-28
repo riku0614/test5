@@ -7,8 +7,11 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_TITLE,
+	OBJ_CLICK_TITLE,
 	OBJ_HERO,
-	//OBJ_MAIN,
+	OBJ_MAIN,
+	OBJ_GAMEOVER,
+	OBJ_GAMECLEAR,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -67,14 +70,17 @@ enum CHARACTER_BLOCK_ID
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjTitle.h"
 #include "ObjHero.h"
-//#include "ObjMain.h"
+#include "ObjClickTitle.h"
+#include "ObjMain.h"
 //#include "ObjChar.h"
 
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
-//#include "SceneMain.h"
+#include "SceneMain.h"
+#include "SceneGameClear.h"
+#include "SceneGameOver.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
