@@ -6,6 +6,7 @@
 
 #include "GameHead.h"
 #include "ObjItem.h"
+#include "GameL/HitBoxManager.h"
 
 
 //使用するネームスペース
@@ -22,11 +23,31 @@ void CObjItem::Init()
 	//変数初期化
 	//ix = 0;
 	//iy = 0;
+
+	//メインの位置を取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	for (int i = 0; i < 100; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (m_map[i][j] == 4)
+			{
+
+				//当たり判定用hitboxを作成
+				Hits::SetHitBox(this, j-main->GetScrollY(), i-main->GetScrollX(), 64, 64, ELEMENT_ITEM, OBJ_ITEM, 1);
+			}
+		}
+	}
+
 }
 
 //アクション
 void CObjItem::Action()
 {
+	
+
+
 	
 }
 
@@ -44,19 +65,24 @@ void CObjItem::Draw()
 	src.m_right = src.m_left + 25.0f;
 	src.m_bottom = src.m_top + 30.0f;
 
+	//メインの位置を取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	float hx = main->GetScrollX();
+	float hy = main->GetScrollY();
+
 	for (int i = 0; i < 100; i++)
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 3)
+			if (m_map[i][j] == 4)
 			{
-				//描画設定位置
-				dst.m_top = 64.0f;
-				dst.m_left = 64.0f;
-				dst.m_right = dst.m_left + 10.0f;
-				dst.m_bottom = dst.m_top + 10.0f;
+				//表示位置の設定
+				dst.m_top = i * 64.0f + hy;
+				dst.m_left = j * 64.0f + hx;
+				dst.m_right = dst.m_left + 20.0;
+				dst.m_bottom = dst.m_top + 20.0;
 
-				Draw::Draw(7, &src, &dst, c, 0.0f);
+				Draw::Draw(8, &src, &dst, c, 0.0f);
 			}
 		}
 	}

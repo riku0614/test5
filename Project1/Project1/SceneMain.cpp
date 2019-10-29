@@ -12,7 +12,7 @@
 #include "SceneMain.h"
 #include "GameHead.h"
 #include "ObjMain.h"
-//#include "ObjItem.h"
+#include "ObjItem.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -66,7 +66,7 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
 
-	//Draw::LoadImageW(L"アイテム(仮).png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 
 	
 	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
@@ -84,11 +84,9 @@ void CSceneMain::InitScene()
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-	/*
 	//アイテムオブジェクト作成
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
-	*/
 	
 }
 
