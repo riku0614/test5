@@ -117,9 +117,6 @@
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
@@ -134,6 +131,12 @@
     </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +205,21 @@
     </ClInclude>
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソース ファイル\敵キャラ</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ソース ファイル\アイテム</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
