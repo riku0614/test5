@@ -5,27 +5,37 @@
 #include "GameL/SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjGameOver.h"
+#include "ObjMenu.h"
 
 
 //使用するネームスペース
 using namespace GameL;
 
 //イニシャライズ
-void CObjGameOver::Init()
+void CObjMenu::Init()
 {
 
 }
 
 //アクション
-void CObjGameOver::Action()
+void CObjMenu::Action()
 {
+	if (Input::GetVKey(VK_RETURN) == true)
+	{
+		Scene::SetScene(new CSceneTitle);
+	}
+
+	if (Input::GetVKey('E') == true)
+	{
+		Scene::SetScene(new CSceneMain);
+	}
+
 
 }
 
 //ドロー
-void CObjGameOver::Draw()
+void CObjMenu::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	Font::StrDraw(L"GAME OVER", 260, 250, 60, c);
+	Font::StrDraw(L"Enterキーでタイトルへ戻る", 200, 250, 32, c);
 }

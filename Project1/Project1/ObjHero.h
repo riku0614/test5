@@ -20,6 +20,8 @@ public:
 	float GetVX() { return m_vx; }
 	int GetBT() { return m_block_type; }
 
+	float m_hero_life;
+
 	void SetUp(bool b) { m_hit_up = b; }
 	void SetDown(bool b) { m_hit_down = b; }
 	void SetLeft(bool b) { m_hit_left = b; }
@@ -30,6 +32,7 @@ public:
 	void SetY(float y) { m_py = y; }
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
+
 private:
 	float m_px; //ˆÊ’u
 	float m_py;

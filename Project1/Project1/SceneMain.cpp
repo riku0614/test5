@@ -12,6 +12,7 @@
 #include "SceneMain.h"
 #include "GameHead.h"
 #include "ObjMain.h"
+//#include "ObjItem.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -57,27 +58,38 @@ void CSceneMain::InitScene()
 	
 	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
 
+	Draw::LoadImageW(L"敵(仮).png", 3, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"敵(仮1).png", 4, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
 
+	//Draw::LoadImageW(L"アイテム(仮).png", 7, TEX_SIZE_512);
+
 	
+	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//敵オブジェクト作成
-	CObjEnemy* objem = new CObjEnemy();
-	Objs::InsertObj(objem, OBJ_ENEMY, 11);
 
-	//敵オブジェクト作成
+	//UIオブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
 	
 	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
-	Objs::InsertObj(objm, OBJ_MAIN, 9);
+	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-
+	/*
+	//アイテムオブジェクト作成
+	CObjItem* obji = new CObjItem(map);
+	Objs::InsertObj(obji, OBJ_ITEM, 13);
+	*/
+	
 }
 
 //ゲームメイン実行中メソッド

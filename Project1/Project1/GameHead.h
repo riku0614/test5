@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_GAMECLEAR,
 	OBJ_GAME_UI,
 	OBJ_ITEM,
+	OBJ_MENU,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -79,6 +80,7 @@ enum CHARACTER_BLOCK_ID
 #include "ObjGameUI.h"
 //#include "ObjChar.h"
 #include "ObjItem.h"
+#include "ObjMenu.h"
 
 //------------------------------------------------
 
@@ -87,6 +89,7 @@ enum CHARACTER_BLOCK_ID
 #include "SceneMain.h"
 #include "SceneGameClear.h"
 #include "SceneGameOver.h"
+#include "SceneMenu.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
