@@ -43,4 +43,6 @@ void CObjGameUI::Draw()
 
 	//•`‰æİ’è
 	Draw::Draw(6, &src, &dst, c, 0.0f);
+
+
 }
