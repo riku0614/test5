@@ -137,7 +137,9 @@
     <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjHero.cpp" />
-    <ClCompile Include="ObjItem.cpp" />
+    <ClCompile Include="ObjItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjMain.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
@@ -168,7 +170,9 @@
     <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjHero.h" />
-    <ClInclude Include="ObjItem.h" />
+    <ClInclude Include="ObjItem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjMain.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />

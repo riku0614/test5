@@ -67,24 +67,24 @@ void CObjEnemy::Action()
 	{
 		m_flg = false;
 		m_px;
-		m_py += m_vy + 5.0f - obj->GetVY();
+		m_py += m_vy + 1.0f - obj->GetVY();
 	}
 	else if (Input::GetVKey('W') == true && m_flg == true)
 	{
 		m_flg = false;
 		m_px;
-		m_py += m_vy - 5.0f + (-obj->GetVY());
+		m_py += m_vy - 1.0f + (-obj->GetVY());
 	}
 	else if (Input::GetVKey('A') == true && m_flg == true)
 	{
 		m_flg = false;
-		m_px += m_vx - 5.0f + (-obj->GetVX());
+		m_px += m_vx - 1.0f + (-obj->GetVX());
 		m_py;
 	}
 	else if (Input::GetVKey('D') == true && m_flg == true)
 	{
 		m_flg = false;
-		m_px += m_vx + 5.0f - obj->GetVX();
+		m_px += m_vx + 1.0f - obj->GetVX();
 		m_py;
 	}
 	else

@@ -13,9 +13,8 @@ enum OBJ_NAME
 	OBJ_MAIN,
 	OBJ_GAMEOVER,
 	OBJ_GAMECLEAR,
-	OBJ_ENEMY,
 	OBJ_GAME_UI,
-	OBJ_ITEM,
+	//OBJ_ITEM,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -79,7 +78,7 @@ enum CHARACTER_BLOCK_ID
 #include "ObjEnemy.h"
 #include "ObjGameUI.h"
 //#include "ObjChar.h"
-#include "ObjItem.h"
+//#include "ObjItem.h"
 
 //------------------------------------------------
 
