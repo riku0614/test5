@@ -15,4 +15,5 @@ public:
 	void Action();	//アクション
 	void Draw();	//ドロー
 private:
+	bool m_enter_flag;//メニューのフラグ用
 };

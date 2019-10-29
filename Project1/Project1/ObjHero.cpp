@@ -50,6 +50,7 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	//メニューキー
 	if (Input::GetVKey('M') == true)
 	{
 		Scene::SetScene(new CSceneMenu);

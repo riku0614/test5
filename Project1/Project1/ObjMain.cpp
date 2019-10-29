@@ -243,7 +243,7 @@ void CObjMain::Draw()
 
 				
 				//床テクスチャ
-				if (m_map[i][j] == 1||m_map[i][j]==5)
+				if (m_map[i][j] == 1 || m_map[i][j] >= 4)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;

@@ -14,15 +14,24 @@ using namespace GameL;
 //イニシャライズ
 void CObjMenu::Init()
 {
-
+	m_enter_flag = false;
 }
 
 //アクション
 void CObjMenu::Action()
 {
-	if (Input::GetVKey(VK_RETURN) == true)
+	if (Input::GetVKey(VK_SPACE) == true)
 	{
-		Scene::SetScene(new CSceneTitle);
+		if (m_enter_flag == false)
+		{
+			Scene::SetScene(new CSceneTitle);
+		}
+		m_enter_flag = true;
+	}
+
+	else
+	{
+		m_enter_flag == false;
 	}
 
 	if (Input::GetVKey('E') == true)
@@ -31,11 +40,12 @@ void CObjMenu::Action()
 	}
 
 
+
 }
 
 //ドロー
 void CObjMenu::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	Font::StrDraw(L"Enterキーでタイトルへ戻る", 200, 250, 32, c);
+	Font::StrDraw(L"spaceキーでタイトルへ戻る", 200, 250, 32, c);
 }
