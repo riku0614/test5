@@ -126,17 +126,11 @@
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル\敵キャラ</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMenu.cpp">
-      <Filter>ソース ファイル\メニュー画面</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMenu.cpp">
-      <Filter>ソース ファイル\メニュー画面</Filter>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,10 +203,10 @@
     <ClInclude Include="ObjEnemy.h">
       <Filter>ソース ファイル\敵キャラ</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGameClear.h">
+    <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGameClear.h">
+    <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClInclude>
     <ClInclude Include="ObjGameUI.h">
@@ -220,12 +214,6 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ソース ファイル\アイテム</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMenu.h">
-      <Filter>ソース ファイル\メニュー画面</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMenu.h">
-      <Filter>ソース ファイル\メニュー画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
