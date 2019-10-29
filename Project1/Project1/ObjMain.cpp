@@ -65,7 +65,29 @@ void CObjMain::Action()
 
 
 	}
+
+
+	//敵出現ラインの列を検索
+	for (int i = 0; i < 100; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			//マップの中から5を探す
+			if (m_map[i][j] == 5)
+			{
+				//5があれば、敵を出現
+				CObjEnemy* obje = new CObjEnemy(j*64.0f,i*64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY, 10);
+
+				//敵の出現場所の値を1にする
+				m_map[i][j] = 1;
+
+			}
+		}
+	}
+
 }
+
 
 /*BlockHit関数
   引数１　　float* x             :判定を行うobjectのX位置
@@ -220,8 +242,8 @@ void CObjMain::Draw()
 				dst.m_bottom = dst.m_top + 64.0;
 
 				
-
-				if (m_map[i][j] == 1|| m_map[i][j] == 3)
+				//床テクスチャ
+				if (m_map[i][j] == 1||m_map[i][j]==5)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;
@@ -229,6 +251,16 @@ void CObjMain::Draw()
 					src.m_bottom = src.m_top + 64.0f;
 
 					Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				//階段テクスチャ
+				if (m_map[i][j] == 3)
+				{
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = src.m_left + 64.0f;
+					src.m_bottom = src.m_top + 64.0f;
+
+					Draw::Draw(7, &src, &dst, c, 0.0f);
 				}
 				
 				
