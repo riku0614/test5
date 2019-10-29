@@ -221,7 +221,7 @@ void CObjMain::Draw()
 
 				
 
-				if (m_map[i][j] == 1|| m_map[i][j] == 3)
+				if (m_map[i][j] == 1)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;
@@ -229,6 +229,15 @@ void CObjMain::Draw()
 					src.m_bottom = src.m_top + 64.0f;
 
 					Draw::Draw(1, &src, &dst, c, 0.0f);
+				}
+				if (m_map[i][j] == 3)
+				{
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = src.m_left + 64.0f;
+					src.m_bottom = src.m_top + 64.0f;
+
+					Draw::Draw(7, &src, &dst, c, 0.0f);
 				}
 				
 				

@@ -63,12 +63,9 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
 
-	CObjEnemy* obje = new CObjEnemy();
-	Objs::InsertObj(obje, OBJ_ENEMY, 9);
-
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
 
-	
+	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -85,7 +82,6 @@ void CSceneMain::InitScene()
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
-
 	
 }
 
