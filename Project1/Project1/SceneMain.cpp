@@ -70,9 +70,6 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//敵オブジェクト作成
-	CObjEnemy* objem = new CObjEnemy();
-	Objs::InsertObj(objem, OBJ_ENEMY, 11);
 
 	//敵オブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();

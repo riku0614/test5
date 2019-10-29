@@ -11,6 +11,13 @@
 //使用するネームスペース
 using namespace GameL;
 
+
+CObjEnemy::CObjEnemy(float x, float y)
+{
+	m_px = x;
+	m_py = y;
+}
+
 //イニシャライズ
 void CObjEnemy::Init()
 {
@@ -31,10 +38,10 @@ void CObjEnemy::Init()
 //アクション
 void CObjEnemy::Action()
 {
-	//主人公機と誘導弾丸の角度を取る
+	//主人公と誘導の角度を取る
 	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	//主人公機が存在する場合、誘導角度を計算する
+	//主人公が存在する場合、誘導角度を計算する
 	if (obj != nullptr)
 	{
 		float x = obj->GetX()-m_px;
@@ -62,7 +69,7 @@ void CObjEnemy::Action()
 		
 
 	}
-	//追従移動
+	//主人公への追従移動
 	if (Input::GetVKey('S') == true &&m_flg == true)
 	{
 		m_flg = false;
@@ -120,6 +127,6 @@ void CObjEnemy::Draw()
 	dst.m_right = (64 - 64.0f) + m_px ;
 	dst.m_bottom = 64.0f + m_py;
 
-	//1番目に登録したグラフィックをsrc.dst.cの情報を元に描画
+	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 }

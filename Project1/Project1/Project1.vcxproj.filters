@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\敵キャラ">
       <UniqueIdentifier>{65b6cc38-5cd5-4c79-8e81-ad1236e461a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\メニュー画面">
+      <UniqueIdentifier>{a9eeec36-efa7-4eb2-a9bf-c8feb2b1839b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -132,6 +135,12 @@
     <ClCompile Include="ObjGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
+    <ClCompile Include="ObjMenu.cpp">
+      <Filter>ソース ファイル\メニュー画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>ソース ファイル\メニュー画面</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -214,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ソース ファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMenu.h">
+      <Filter>ソース ファイル\メニュー画面</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>ソース ファイル\メニュー画面</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

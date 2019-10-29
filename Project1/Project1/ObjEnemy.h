@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjEnemy : public CObj
 {
 public:
-	CObjEnemy() {};
+	CObjEnemy(float x, float y);;
 	~CObjEnemy() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
@@ -21,7 +21,7 @@ private:
 	float m_vx; //オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
 	float m_posture; //姿勢
-	bool m_flg;
+	bool m_flg;//追従移動の管理用フラグ
 
 		//blockとの衝突状態確認用
 	bool m_hit_up;

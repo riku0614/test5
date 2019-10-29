@@ -20,7 +20,7 @@ void CObjHero::Init()
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 
-	m_hero_life = 3;
+	m_hero_life = 3;//主人公の体力用変数
 
 
 	//blockとの衝突確認用
@@ -50,7 +50,11 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	
+	if (Input::GetVKey('M') == true)
+	{
+		Scene::SetScene(new CSceneMenu);
+	}
+
 
 	//Zキー入力で速度アップ
 	if (m_stamina_limid>=0&&Input::GetVKey(VK_LSHIFT) == true&& Input::GetVKey('A') == true||
@@ -104,12 +108,14 @@ void CObjHero::Action()
 		m_ani_time += 1;
 	}
 
+	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
 		m_ani_time = 0;
 	}
 
+	//アニメーションフレームのリセット
 	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
@@ -142,6 +148,7 @@ void CObjHero::Action()
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
+		//主人公のライフによる当たり判定の変化
 		if (m_hero_life == 0)
 		{
 			this->SetStatus(false);
@@ -152,8 +159,12 @@ void CObjHero::Action()
 		else
 		{
 			m_hero_life -= 1;
+			
 		}
 	}
+
+	
+
 	
 }
 
@@ -171,6 +182,8 @@ void CObjHero::Draw()
 
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
+
+	//スタミナバーの描画
 	if (m_stamina_limid > 0 && m_stamina_limid < 90.0)
 	{
 		src.m_top = 0.0f;
@@ -187,7 +200,7 @@ void CObjHero::Draw()
 		Draw::Draw(2, &src, &dst, c, 0.0f);
 	}
 	
-
+	//主人公のダッシュ時と通常時と静止時の描画
 	if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true &&m_stamina_limid>0|| 
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('A') == true&&m_stamina_limid > 0 ||
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
