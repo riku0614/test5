@@ -2,6 +2,7 @@
 #include "GameL/DrawTexture.h"
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
+#include "GameL/DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjGameUI.h"
@@ -44,5 +45,6 @@ void CObjGameUI::Draw()
 	//•`‰æİ’è
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 
-
+	//ŠK‚Ì•\¦
+	Font::StrDraw(L"8ŠK", 730, 10, 30, c);
 }

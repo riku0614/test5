@@ -50,8 +50,9 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-enum CHARACTER_BLOCK_ID
+enum ITEM_ID
 {
+	ITEM_KEY,
 	/*
 	CHAR_BLOCK_ONLY = 99, //障害物
     CHAR_BLOCK_FREE = 0,  //ブロック無し
