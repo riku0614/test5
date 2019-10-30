@@ -58,10 +58,10 @@ void CObjHero::Action()
 
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid>=0&&Input::GetVKey(VK_LSHIFT) == true&& Input::GetVKey('A') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true)
+	if (m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true||
+		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true||
+		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true||
+		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true)
 	{
 		
 		//ダッシュ時の速度
@@ -121,8 +121,6 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 0;
 	}
-	//移動ベクトルの正規化
-	//UnitVec(&m_vy, &m_vx);
 
 	//摩擦
 	m_vx += -(m_vx*0.09);

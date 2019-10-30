@@ -27,9 +27,17 @@ void CObjEnemy::Init()
 	m_py = 0.0f;
 
 	m_flg = true;
+	
 	//移動ベクトルの正規化
 	UnitVec(&m_vy, &m_vx);
+	
+	//blockとの衝突確認用
 
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
@@ -100,6 +108,17 @@ void CObjEnemy::Action()
 		m_px += m_vx;
 		m_py += m_vy;
 	}
+
+	//ブロックタイプ検知用の変数がないためのダミー
+	int d;
+
+	//ブロックの当たり判定実行
+	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	pb->BlockHit(&m_px, &m_py, true, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&d
+	);
+
 	//hitboxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
