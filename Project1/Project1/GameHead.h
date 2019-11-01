@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_GAMECLEAR,
 	OBJ_GAME_UI,
 	OBJ_ITEM,
+	OBJ_MENU,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -49,8 +50,9 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-enum CHARACTER_BLOCK_ID
+enum ITEM_ID
 {
+	ITEM_KEY,
 	/*
 	CHAR_BLOCK_ONLY = 99, //障害物
     CHAR_BLOCK_FREE = 0,  //ブロック無し
@@ -79,6 +81,7 @@ enum CHARACTER_BLOCK_ID
 #include "ObjGameUI.h"
 //#include "ObjChar.h"
 #include "ObjItem.h"
+#include "ObjMenu.h"
 
 //------------------------------------------------
 
@@ -87,6 +90,7 @@ enum CHARACTER_BLOCK_ID
 #include "SceneMain.h"
 #include "SceneGameClear.h"
 #include "SceneGameOver.h"
+#include "SceneMenu.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
