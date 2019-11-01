@@ -87,6 +87,10 @@ void CSceneMain::InitScene()
 	//アイテムオブジェクト作成
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
+
+	//5があれば、敵を出現
+	CObjEnemy* obje = new CObjEnemy(map);
+	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 	
 }
 

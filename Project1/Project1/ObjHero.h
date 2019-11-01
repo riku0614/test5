@@ -34,6 +34,7 @@ public:
 	void SetVX(float vx) { m_vx = vx; }
 
 private:
+	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
 	float m_vx; //移動ベクトル

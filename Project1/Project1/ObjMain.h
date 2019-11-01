@@ -6,6 +6,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+
+
 //オブジェクト：メイン
 class CObjMain : public CObj
 {
@@ -20,6 +22,7 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		
+		int m_map[100][100];//マップ情報ブロック数（X=１２個、Y=１０個）
 
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
@@ -27,7 +30,10 @@ class CObjMain : public CObj
 			float *vx, float *vy, int *bt
 		);
 	private:
-		int m_map[100][100];   //マップ情報
+		
+
+		
+
 		float m_scroll_x;   //左右スクロール用
 		float m_scroll_y;   //上下スクロール用
 		float m_scroll_ex;   //左右スクロール用

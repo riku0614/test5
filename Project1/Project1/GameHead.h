@@ -53,16 +53,8 @@ struct UserData
 enum ITEM_ID
 {
 	ITEM_KEY,
-	/*
-	CHAR_BLOCK_ONLY = 99, //障害物
-    CHAR_BLOCK_FREE = 0,  //ブロック無し
-	CHAR_MONK,            //キャラクターブロック　僧侶
-	CHAR_DRAGON,          //キャラクターブロック　ドラゴン
-	CHAR_VALKYRIE,        //キャラクターブロック　ヴァルキリー
-	CHAR_DRAGONQUEEN,     //キャラクターブロック　ドラゴンクイーン
-	CHAR_SOLDIER,         //キャラクターブロック　ソルジャー
-	CHAR_GENERAL,         //キャラクターブロック　将軍
-	*/
+	CHAR_HERO,
+
 };
 
 

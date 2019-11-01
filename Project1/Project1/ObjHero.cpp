@@ -42,9 +42,10 @@ void CObjHero::Init()
 	m_posture = 1.0f; //右向き0.0ｆ　左向き1.0ｆ
 	m_stamina_limid = 90.0f;
 
+	m_id = CHAR_HERO;
 
 	//当たり判定用hitboxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
 }
 
 //アクション
@@ -58,10 +59,10 @@ void CObjHero::Action()
 
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true)
+	if (m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true )
 	{
 		
 		//ダッシュ時の速度

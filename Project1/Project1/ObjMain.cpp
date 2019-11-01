@@ -68,7 +68,7 @@ void CObjMain::Action()
 
 
 	//敵出現ラインの列を検索
-	for (int i = 0; i < 100; i++)
+	/*/for (int i = 0; i < 100; i++)
 	{
 		for (int j = 0; j < 100; j++)
 		{
@@ -76,7 +76,7 @@ void CObjMain::Action()
 			if (m_map[i][j] == 5)
 			{
 				//5があれば、敵を出現
-				CObjEnemy* obje = new CObjEnemy(j*64.0f,i*64.0f);
+				CObjEnemy* obje = new CObjEnemy(j,i);
 				Objs::InsertObj(obje, OBJ_ENEMY, 10);
 
 				//敵の出現場所の値を1にする
@@ -84,7 +84,7 @@ void CObjMain::Action()
 
 			}
 		}
-	}
+	}*/
 
 }
 
@@ -123,7 +123,7 @@ void CObjMain::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 2||m_map[i][j]==3)
+			if (m_map[i][j] == 9||m_map[i][j]==3)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -243,7 +243,7 @@ void CObjMain::Draw()
 
 				
 				//床テクスチャ
-				if (m_map[i][j] == 1 || m_map[i][j] >= 4)
+				if (m_map[i][j] == 1 || m_map[i][j] >= 4&&m_map[i][j]<9)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;

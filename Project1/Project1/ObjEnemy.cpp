@@ -6,30 +6,30 @@
 
 #include "GameHead.h"
 #include "ObjEnemy.h"
+#include "SceneMain.h"
 #include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 
-CObjEnemy::CObjEnemy(float x, float y)
-{
-	m_px = x;
-	m_py = y;
-}
 
+
+CObjEnemy::CObjEnemy(int map[100][100])
+{
+	memcpy(m_map, map, sizeof(int)*(100 * 100));
+}
 //イニシャライズ
 void CObjEnemy::Init()
 {
+
 	m_vx = 1.0f;
 	m_vy = 1.0f;
-	m_px = 0.0f; //位置
-	m_py = 0.0f;
+	m_px = 64.0f; //位置
+	m_py = 64.0f;
 
 	m_flg = true;
 	
-	//移動ベクトルの正規化
-	UnitVec(&m_vy, &m_vx);
 	
 	//blockとの衝突確認用
 
@@ -38,75 +38,58 @@ void CObjEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	
+	//主人公の位置を取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	
+
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+
 
 }
 
 //アクション
 void CObjEnemy::Action()
 {
-	//主人公と誘導の角度を取る
-	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	
+	int km_map[100][100];
 
-	//主人公が存在する場合、誘導角度を計算する
-	if (obj != nullptr)
+	
+
+
+	for (int y = 0; y < 100; y++)
 	{
-		float x = obj->GetX()-m_px;
-		float y = obj->GetY()-m_py;
-		float ar = GetAtan2Angle(x, -y);
-
-		//弾丸の現在の向いてる角度を取る
-		float br = GetAtan2Angle(m_vx, -m_vy);
-
-		float r = 3.14 / 180.0f; //角度１°
-		if (ar < br)
+		for (int x = 0; x < 100; x++)
 		{
-			//移動方向に+１°加える
-			m_vx = m_vx * cos(r) - m_vy * sin(r);
-			m_vy = m_vy * cos(r) + m_vx * sin(r);
-		}
-		else
-		{
-			//移動方向に-１°加える
-			m_vx = m_vx * cos(-r) - m_vy * sin(-r);
-			m_vy = m_vy * cos(-r) + m_vx * sin(-r);
-		}
-		UnitVec(&m_vx, &m_vy);
-		
-		
+			//距離を入れるマップを最大値で初期化
+			for (int i = 0; i < 100; i++)
+			{
+				for (int j = 0; j < 100; j++)
+				{
+					km_map[i][j] = KM_MAP_MAX;
+				}
+			}
+			//ダイクストラによるブロックがつながってるかのチェック
+			int p = Dijkstras(m_map, km_map, x, y);
 
-	}
-	//主人公への追従移動
-	if (Input::GetVKey('S') == true &&m_flg == true)
-	{
-		m_flg = false;
-		m_px;
-		m_py += m_vy + 5.0f - obj->GetVY();
-	}
-	else if (Input::GetVKey('W') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px;
-		m_py += m_vy - 5.0f + (-obj->GetVY());
-	}
-	else if (Input::GetVKey('A') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px += m_vx - 5.0f + (-obj->GetVX());
-		m_py;
-	}
-	else if (Input::GetVKey('D') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px += m_vx + 5.0f - obj->GetVX();
-		m_py;
-	}
-	else
-	{
-		m_flg = true;
-		m_px += m_vx;
-		m_py += m_vy;
+			//探索数が所定数を超えるとブロックを消す
+			if (p >= CONNECTION_DELETE)
+			{
+				for (int i = 0; i < 100; i++)
+				{
+					for (int j = 0; j < 100; j++)
+					{
+						if (km_map[i][j] != KM_MAP_MAX)
+						{
+							m_map[i][j] = 0;
+						}
+					}
+				}
+			}
+
+
+
+		}
 	}
 
 	//ブロックタイプ検知用の変数がないためのダミー
@@ -148,4 +131,167 @@ void CObjEnemy::Draw()
 
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(3, &src, &dst, c, 0.0f);
+}
+/*マップ情報の取得メゾット
+引数１　：要素番号X
+引数２　：要素番号Y
+戻り値　：要素を返す。要素番号が配列外の場合-1を返す
+指定した要素番号のm_mapを返す*/
+int CObjEnemy::GetMap(int x, int y)
+{
+
+	//x.yが例外的な値の場合、失敗(－1)を返す
+	if (x < MAP_MIN)return -1;
+	if (y < MAP_MIN)return -1;
+	if (x >= 100)return 1;
+	if (y >= 100)return 1;
+
+	//要素を返す
+	return m_map[y][x];
+}
+
+/*マップにBlockのIDを入れるメゾット
+引数１　int  x ： 要素番号X
+引数２　int  y ： 要素番号Y
+引数３　int id ： 要素に入れるID
+指定した要素番号のmapにIDを入れる*/
+void CObjEnemy::SetMap(int x, int y, int id)
+{
+	//オーバーフローによる例外処理
+	if (x < MAP_MIN)   return;
+	if (y < MAP_MIN)   return;
+	if (x >= 100) return;
+	if (y >= 100) return;
+
+	//IDをMapに入れる
+	m_map[y][x] = id;
+
+	return;
+
+}
+
+/*マップオーバーフローチェックメゾット
+引数１　int x :マップ要素番号x
+引数２　int y :マップ要素番号y
+戻り値　bool 領域外＝false　領域内＝true
+要素番号のオーバーフローチェックをします。*/
+bool CObjEnemy::OverFlowCheck(int x, int y)
+{
+	if (x < MAP_MIN)         return false;
+	if (y < MAP_MIN)         return false;
+	if (x >= 100)         return false;
+	if (y >= 100)         return false;
+
+	return true;
+
+}
+
+/*探索バッファチェック用メゾット
+引数１　int x :マップ要素番号x
+戻り値　データがある場所*/
+int CObjEnemy::BufferCheck(XY b[])
+{
+	for (int i = 0; i < BUFFER_MAX; i++)
+	{
+		if (b[i].x != BUFFER_NO_DATA && b[i].x != BUFFER_DELETE_DATA)
+			return i;
+	}
+	return -1;
+
+
+}
+
+/*4方向サーチ＆登録メゾット
+引数１　int  set_x 　　　　　：検索出発のX位置
+引数２　int  set_y 　　　　　：検索出発のY位置
+引数３　int[][] c_map  　　　：キャラクターブロックマップ
+引数４  int[][] km_map 　　　：距離を入れるマップ
+引数５　XY[] buffer    　　　：バッファ
+引数６　int* buffer_count    ：バッファカウント
+戻り値　　：なし
+検索出発位置から４方向の要素を調べて距離を登録する*/
+void CObjEnemy::EveryDirectionSearchSet
+(int set_x, int set_y,
+	int c_map[100][100], int km_map[100][100],
+	XY buffer[], int *buffer_count
+)
+{
+	//検索方向用配列（上下左右）
+	const XY search[SEARCH_MAX] = { { 1,0 },{ -1,0 },{ 0,-1 },{ 0,1 } };
+
+	//キャラクターID取得　このIDのみ検索する
+	int c_id = 2;
+
+	//ゴールの上下左右の配列を検索して同じIDがあるかどうか調べる
+	int count = BufferCheck(buffer);
+	for (int i = 0; i < SEARCH_MAX; i++)
+	{
+		//バッファもつ位置から検索方向の要素番号を出す
+		int x = search[i].x + buffer[count].x;
+		int y = search[i].y + buffer[count].y;
+
+		//オーバーフローチェック
+		if (OverFlowCheck(x, y) == false)
+			continue;
+
+		//隣接ノードがあったらバッファ・距離地の更新
+		if (c_map[y][x] == c_id)
+		{
+			if (km_map[y][x] > km_map[set_y][set_x] + SEARCH_MAP_NEXT)
+			{
+				km_map[y][x] = km_map[set_y][set_x] + SEARCH_MAP_NEXT;
+				(*buffer_count)++;
+				buffer[*buffer_count].x = x;
+				buffer[*buffer_count].y = y;
+
+
+			}
+		}
+
+	}
+
+	//検索したのでデータを破棄で上書き
+	buffer[count].x = BUFFER_DELETE_DATA;
+	buffer[count].y = BUFFER_DELETE_DATA;
+	return;
+}
+
+/*ダイクストラ法メゾット
+引数１　int[][] c_map  　　　：キャラクターブロック用マップ配列
+引数２  int[][] km_map 　　　：距離を入れるマップ配列
+引数３　int    goal_x　　　　：ゴールノードの要素番号X
+引数４　int    goal_y    　　：ゴールノードの要素番号Y
+戻り値　int    :探索数*/
+int CObjEnemy::Dijkstras(int c_map[100][100], int km_map[100][100],
+	int goal_x, int goal_y)
+{
+	//バッファカウント用
+	int buffer_count = 0;
+	int point = 0;
+
+	//探索バッファ
+	XY buffer[BUFFER_MAX];
+	memset(buffer, 0xFF, sizeof(XY) * BUFFER_MAX);
+
+	//オーバーフローとゴールブロックにならないID例外処理
+	if (OverFlowCheck(goal_x, goal_y) == false) return 0;
+	if (c_map[goal_y][goal_x] == 9) return 0;
+	if (c_map[goal_y][goal_x] == 3) return 0;
+
+	//ゴールの設置
+	int c_id = c_map[goal_y][goal_x];//キャラクターID取得　このIDのみ検索する
+	km_map[goal_y][goal_x] = 0;
+	buffer[buffer_count].x = goal_x;//ゴールノード位置をバッファ登録
+	buffer[buffer_count].y = goal_y;
+
+	//検索する位置の上下左右の配列を検索して同じIDがあるかどうか調べる
+	int search_count = 0;//検索したノード数
+	do
+	{
+		EveryDirectionSearchSet(buffer[point].x, buffer[point].y, c_map, km_map, buffer, &buffer_count);
+		point = BufferCheck(buffer);
+		search_count++;
+	} while (point != BUFFER_NO_DATA);
+
+	return search_count;
 }
