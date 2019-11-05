@@ -25,10 +25,10 @@ void CObjEnemy::Init()
 
 	m_vx = 1.0f;
 	m_vy = 1.0f;
-	m_px = 64.0f; //位置
-	m_py = 64.0f;
+	m_ex = 64.0f; //位置
+	m_ey = 64*2.0f;
 
-	m_flg = true;
+	m_flg = 0;
 	
 	
 	//blockとの衝突確認用
@@ -43,7 +43,7 @@ void CObjEnemy::Init()
 	
 
 	//当たり判定用HitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
 
 }
@@ -55,56 +55,63 @@ void CObjEnemy::Action()
 	int km_map[100][100];
 
 	
-
-
-	for (int y = 0; y < 100; y++)
+	if (m_hit_left == true)
 	{
-		for (int x = 0; x < 100; x++)
-		{
-			//距離を入れるマップを最大値で初期化
-			for (int i = 0; i < 100; i++)
-			{
-				for (int j = 0; j < 100; j++)
-				{
-					km_map[i][j] = KM_MAP_MAX;
-				}
-			}
-			//ダイクストラによるブロックがつながってるかのチェック
-			int p = Dijkstras(m_map, km_map, x, y);
-
-			//探索数が所定数を超えるとブロックを消す
-			if (p >= CONNECTION_DELETE)
-			{
-				for (int i = 0; i < 100; i++)
-				{
-					for (int j = 0; j < 100; j++)
-					{
-						if (km_map[i][j] != KM_MAP_MAX)
-						{
-							m_map[i][j] = 0;
-						}
-					}
-				}
-			}
-
-
-
-		}
+		m_flg = 1;
 	}
+	if (m_hit_up == true)
+	{
+		m_flg = 2;
+	}
+	if (m_hit_right == true)
+	{
+		m_flg = 3;
+	}
+	if (m_hit_down == true)
+	{
+		m_flg = 0;
+	}
+
+	if (m_flg == 0)
+	{
+		m_ex += 3.0f;
+		m_posture = 1.0f;
+		
+	}
+	else if (m_flg == 1)
+	{
+		m_ey += 3.0f;
+		m_posture = 0.0f;
+	}
+	else if (m_flg == 2)
+	{
+		m_ex -= 3.0f;
+		m_posture = 0.0f;
+	}
+	else if (m_flg == 3)
+	{
+		m_ey -= 3.0f;
+		m_posture = 0.0f;
+	}
+	//主人公の位置を取得
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
-
 	//ブロックの当たり判定実行
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	pb->BlockHit(&m_px, &m_py, true, true,
+	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
+		&d);
+
+	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+    //自身のhitboxを持ってくる
+	CHitBox* hit = Hits::GetHitBox(this);
 
 	//hitboxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
 
 	
 }
@@ -123,11 +130,12 @@ void CObjEnemy::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
+	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	//表示位置の設定
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0) + m_px;
-	dst.m_right = (64 - 64.0f) + m_px ;
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_top = 0.0f + m_ey+scroll->GetScrollY();
+	dst.m_left = (64.0) + m_ex+scroll->GetScrollX();
+	dst.m_right = (64 - 64.0f)+m_ex+scroll->GetScrollX();
+	dst.m_bottom = 64.0f + m_ey+scroll->GetScrollY();
 
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(3, &src, &dst, c, 0.0f);
@@ -295,3 +303,4 @@ int CObjEnemy::Dijkstras(int c_map[100][100], int km_map[100][100],
 
 	return search_count;
 }
+

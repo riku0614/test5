@@ -8,15 +8,12 @@ using namespace GameL;
 #define MAP_ERROR (-1)
 #define MAP_DRAW_SIZE (64.0f)
 
-#define RESOURCE_TOP  (111.0f)
-#define RESOURCE_LEFT (256.0f)
-
 #define BUFFER_MAX         (8)
 #define BUFFER_DELETE_DATA (999)
 #define BUFFER_NO_DATA     (-1)
 
 #define SEARCH_MAX         (4)
-#define SEARCH_MAP_NEXT        (1)
+#define SEARCH_MAP_NEXT    (1)
 
 #define KM_MAP_MAX         (9)
 #define CONNECTION_DELETE  (1)
@@ -35,17 +32,17 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	float GetVY() { return m_vy; }
-	float GetVX() { return m_vx; }
 	int m_map[100][100];
 	int GetMap(int x, int y); //map情報の取得
 	void SetMap(int x, int y, int id);//マップにblockのID情報を入れる
 private:
-	float m_px;  //オブジェクトの位置X
-	float m_py;  //オブジェクトの位置Y
+	float m_ex;  //オブジェクトの位置X
+	float m_ey;  //オブジェクトの位置Y
 	float m_vx; //オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
 	float m_posture; //姿勢
+	
+	
 
 	//探索バッファ用構造体
 	struct XY
@@ -67,7 +64,7 @@ private:
 	int Dijkstras(int c_map[100][100], int km_map[100][100],
 		int goal_x, int goal_y);
 
-	bool m_flg;//追従移動の管理用フラグ
+	int m_flg;//追従移動の管理用フラグ
 
 		//blockとの衝突状態確認用
 	bool m_hit_up;

@@ -4,6 +4,7 @@
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
 #include "GameL/SceneObjManager.h"
+#include "GameL/HitBoxManager.h"
 
 #include "GameHead.h"
 #include "ObjMain.h"
@@ -24,6 +25,8 @@ void CObjMain::Init()
 {
 	m_scroll_x = -2850.0f;
 	m_scroll_y = -64.0f;
+
+	
 }
 
 //アクション
@@ -68,24 +71,20 @@ void CObjMain::Action()
 
 
 	//敵出現ラインの列を検索
-	/*/for (int i = 0; i < 100; i++)
+	/*for (int i = 0; i < 100; i++)
 	{
 		for (int j = 0; j < 100; j++)
 		{
 			//マップの中から5を探す
-			if (m_map[i][j] == 5)
+			if (m_map[i][j] == 8)
 			{
-				//5があれば、敵を出現
-				CObjEnemy* obje = new CObjEnemy(j,i);
-				Objs::InsertObj(obje, OBJ_ENEMY, 10);
-
-				//敵の出現場所の値を1にする
-				m_map[i][j] = 1;
+				
 
 			}
 		}
 	}*/
 
+	
 }
 
 
@@ -123,6 +122,7 @@ void CObjMain::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
+		
 			if (m_map[i][j] == 9||m_map[i][j]==3)
 			{
 				//要素番号を座標に変更
