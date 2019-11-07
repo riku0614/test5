@@ -66,10 +66,10 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 1.0f;
+		m_speed_power = 2.0f;
 		m_ani_max_time = 4;
 
-		m_stamina_limid -= 0.3f;
+		m_stamina_limid -= 0.0f;
 	}
 	else
 	{
@@ -126,6 +126,57 @@ void CObjHero::Action()
 	//摩擦
 	m_vx += -(m_vx*0.09);
 	m_vy += -(m_vy*0.09);
+
+	//高速移動によるblock判定
+	bool b;
+	float pxx, pyy, r;
+	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	if (pbb->GetScrollX() > 0)
+		pbb->SetScrollX(0);
+	if (pbb->GetScrollY() > 0)
+		pbb->SetScrollY(0);
+	//移動方向にrayを飛ばす
+	float vx;
+	float vy;
+
+	if (m_vx > 0)
+		vx = 500-pbb->GetScrollX();
+	else
+		vx = 0 - pbb->GetScrollX();
+
+
+	//ray判定
+	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
+
+	if (b == true)
+	{
+		//交点取得
+		px = pxx + pbb->GetScrollX();
+		py = pyy-pbb->GetScrollY();
+
+		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
+		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+									  //主人公の幅分オフセット
+		if (vx > 0)
+			px += -64;
+		else
+			px += 2;
+
+		//AとBが逆を向いている（主人公が移動先の壁を越えている）
+		if (aa*bb < 0)
+		{
+			//移動ベクトルを（交点→主人公の位置）ベクトルにする
+			m_vx = px - m_px;
+		}
+	}
+	else
+	{
+		px = 0.0f;
+		py = 0.0f;
+	}
+
 
 	//ブロックの当たり判定実行
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);

@@ -26,7 +26,7 @@ void CObjEnemy::Init()
 	m_vx = 1.0f;
 	m_vy = 1.0f;
 	m_ex = 64.0f; //位置
-	m_ey = 64*2.0f;
+	m_ey = 64*3.0f;
 
 	m_flg = 0;
 	
@@ -53,50 +53,91 @@ void CObjEnemy::Action()
 {
 	
 	int km_map[100][100];
-
 	
-	if (m_hit_left == true)
+	if(m_hit_left==true)
 	{
-		m_flg = 1;
+		m_flg=1;
 	}
-	if (m_hit_up == true)
+	else if (m_hit_down == true)
 	{
-		m_flg = 2;
+		m_flg=2;
 	}
-	if (m_hit_right == true)
+	else if (m_hit_right == true)
 	{
-		m_flg = 3;
+		m_flg=3;
 	}
-	if (m_hit_down == true)
+	else if (m_hit_up == true)
 	{
 		m_flg = 0;
 	}
+	
 
 	if (m_flg == 0)
 	{
-		m_ex += 3.0f;
-		m_posture = 1.0f;
+		m_ex += 5.0f*2;
+		
 		
 	}
-	else if (m_flg == 1)
+    else if (m_flg == 1)
 	{
-		m_ey += 3.0f;
-		m_posture = 0.0f;
+		m_ey += 5.0f*2;
 	}
 	else if (m_flg == 2)
 	{
-		m_ex -= 3.0f;
-		m_posture = 0.0f;
+		m_ex -= 5.0f*2;
 	}
 	else if (m_flg == 3)
 	{
-		m_ey -= 3.0f;
-		m_posture = 0.0f;
+		m_ey -= 5.0f*2;
 	}
-	//主人公の位置を取得
-	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	float hx = hero->GetX();
-	float hy = hero->GetY();
+	
+	//高速移動によるblock判定
+	bool b;
+	float pxx, pyy, r;
+	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	if (pbb->GetScrollX() > 0)
+		pbb->SetScrollX(0);
+	if (pbb->GetScrollY() > 0)
+		pbb->SetScrollY(0);
+	//移動方向にrayを飛ばす
+	float vx;
+	
+	if (m_vx > 0)
+		vx = 500 - pbb->GetScrollX();
+	else
+		vx = 0 - pbb->GetScrollX();
+
+	//ray判定
+	b = pbb->HeroBlockCrossPoint(m_ex - pbb->GetScrollX() + 64, m_ey - pbb->GetScrollY() + 64, vx, 0.0f, &pxx, &pyy, &r);
+
+	if (b == true)
+	{
+		//交点取得
+		px = pxx + pbb->GetScrollX();
+		py = pyy - pbb->GetScrollY();
+
+		float aa = (m_ex)-px;//A（交点→主人公の位置）ベクトル
+		float bb = (m_ex + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+									  //主人公の幅分オフセット
+		if (vx > 0)
+			px += -64;
+		else
+			px += 2;
+
+		//AとBが逆を向いている（主人公が移動先の壁を越えている）
+		if (aa*bb < 0)
+		{
+			//移動ベクトルを（交点→主人公の位置）ベクトルにする
+			m_vx = px - m_ex;
+		}
+	}
+	else
+	{
+		px = 0.0f;
+		py = 0.0f;
+	}
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;

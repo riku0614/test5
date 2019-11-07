@@ -16,7 +16,6 @@ enum OBJ_NAME
 	OBJ_GAME_UI,
 	OBJ_ITEM,
 	OBJ_MENU,
-	OBJ_JUNCTION,
 	//OBJ_CHAR,
 };
 //------------------------------------------------

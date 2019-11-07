@@ -60,4 +60,6 @@ private:
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
 
+	float px, py;//交点
+
 };
