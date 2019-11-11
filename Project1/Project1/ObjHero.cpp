@@ -32,7 +32,11 @@ void CObjHero::Init()
 
 	m_block_type = 0;
 
-	m_ani_time = 0;
+
+
+	m_ani_time = 30;
+	m_flg == false;
+
 	m_ani_frame = 1;//静止フレームを初期にする
 
 	m_speed_power = 1.0f;
@@ -51,6 +55,7 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	
 	//メニューキー
 	if (Input::GetVKey('M') == true)
 	{
@@ -122,10 +127,10 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 0;
 	}
-
+	
 	//摩擦
-	m_vx += -(m_vx*0.09);
-	m_vy += -(m_vy*0.09);
+	m_vx += -(m_vx*0.098);
+	m_vy += -(m_vy*0.098);
 
 	//高速移動によるblock判定
 	bool b;
@@ -196,6 +201,8 @@ void CObjHero::Action()
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	
+	
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -209,13 +216,11 @@ void CObjHero::Action()
 		}
 		else
 		{
-			m_hero_life -= 1;
-			
+			m_hero_life--;
 		}
 	}
-
 	
-
+	
 	
 }
 

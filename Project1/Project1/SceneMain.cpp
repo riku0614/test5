@@ -35,6 +35,8 @@ void CSceneMain::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
+
+
 	p = Save::ExternalDataOpen(L"map.csv", &size);
 
 	int map[100][100];

@@ -57,6 +57,9 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	int m_time;//無敵時間
+	bool m_flg;//無敵フラグ
+
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
 

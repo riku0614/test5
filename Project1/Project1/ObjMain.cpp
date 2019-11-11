@@ -69,7 +69,11 @@ void CObjMain::Action()
 
 	}
 
+	
 
+	
+
+	
 	
 	
 }
@@ -270,6 +274,11 @@ void CObjMain::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
+			if (m_map[i][j] == 8)
+			{
+				//当たり判定用hitboxを作成
+				Hits::SetHitBox(this, i*64.0f, j*64.0f, 64, 64, ELEMENT_BLUE, OBJ_JUNCTION, 2);
+			}
 		
 			if (m_map[i][j] == 9||m_map[i][j]==3)
 			{
@@ -306,7 +315,7 @@ void CObjMain::BlockHit(
 					if (len < 88.0f)
 					{
 						//角度で左右を判定
-						if ((r < 45 && r>0) || r > 315)
+						if ((r < 45 && r>=0) || r > 315)
 						{
 							//右
 							*right = true;//主人公から見て、左の部分が衝突している
