@@ -4,6 +4,7 @@
 
 //GameLで使用するヘッダー
 #include "GameL/SceneObjManager.h"
+#include "GameL/DrawTexture.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
 #include "GameL/DrawTexture.h"
