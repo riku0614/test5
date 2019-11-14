@@ -30,7 +30,7 @@ void CObjItem::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
-	hit_flg = true;
+	//hit_flg = true;
 
 	//m_scroll_x = -2850.0f;
 	//m_scroll_y = -64.0f;
@@ -39,7 +39,7 @@ void CObjItem::Init()
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 4)
+			if (m_map[i][j] == 5)
 			{
 
 				

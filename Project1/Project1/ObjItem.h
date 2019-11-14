@@ -15,11 +15,7 @@ public:
 	void Action();	//アクション
 	void Draw();	//ドロー
 
-	void ItemHit(
-		float *x, float *y, bool scroll_on_x, bool scroll_on_y,
-		bool *up, bool *down, bool *left, bool *right,
-		float *vx, float *vy, int *bt
-	);
+	
 private:
 	int m_map[100][100];//マップ情報
 	int ix;	//アイテムのX位置保管用
@@ -38,6 +34,6 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
-	bool hit_flg;
+	//bool hit_flg;
 
 };

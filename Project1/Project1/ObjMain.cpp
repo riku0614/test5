@@ -457,7 +457,7 @@ void CObjMain::BlockHit(
   引数１１　int* bt            　:下部分判定時、特殊なブロックのタイプを返す
   判定を行うobjectとブロック64*64限定で、当たり判定と上下左右判定を行う
   その結果は引数４～１０に返す*/
-  
+
 void CObjMain::ItemHit(
 	float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 	bool *up, bool *down, bool *left, bool *right,
@@ -478,7 +478,7 @@ void CObjMain::ItemHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 4)
+			if (m_map[i][j] == 5)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -590,7 +590,7 @@ void CObjMain::Draw()
 
 				
 				//床テクスチャ
-				if (m_map[i][j] == 1)
+				if (m_map[i][j] == 1||m_map[i][j]==5)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;
