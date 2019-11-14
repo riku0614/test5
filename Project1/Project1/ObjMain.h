@@ -29,6 +29,12 @@ class CObjMain : public CObj
 			bool *up, bool *down, bool *left, bool *right,
 			float *vx, float *vy, int *bt
 		);
+		
+		void ItemHit(
+			float *x, float *y, bool scroll_on_x, bool scroll_on_y,
+			bool *up, bool *down, bool *left, bool *right,
+			float *vx, float *vy, int *bt
+		);
 		//ålŒö‚Æ•Ç‚ÌŒğ·”»’è
 		bool HeroBlockCrossPoint(
 			float x, float y, float vx, float vy,

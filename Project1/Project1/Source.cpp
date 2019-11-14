@@ -1,4 +1,5 @@
 //viebgoiujrgophds
 ///ihuhguadshgusa;d
 //ewidhfvrg
-//ぺぺろんちーの！
+//ぺぺろんちー(の)！
+//ノー(ト)

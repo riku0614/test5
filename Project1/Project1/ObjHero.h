@@ -33,6 +33,9 @@ public:
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
 
+	bool Getflag() { return peperon_flag;}
+
+
 private:
 	int m_id;//キャラクターID
 	float m_px; //位置
@@ -57,6 +60,12 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	//アイテムとの衝突確認用
+	bool mi_hit_up;
+	bool mi_hit_down;
+	bool mi_hit_left;
+	bool mi_hit_right;
+
 	int m_time;//無敵時間
 	bool m_flg;//無敵フラグ
 
@@ -65,4 +74,5 @@ private:
 
 	float px, py;//交点
 
+	bool peperon_flag; //アイテム消去フラグ用
 };

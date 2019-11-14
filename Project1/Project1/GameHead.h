@@ -72,6 +72,9 @@ enum ITEM_ID
 #include "ObjMain.h"
 #include "ObjEnemy.h"
 #include "ObjGameUI.h"
+#include "ObjGameOver.h"
+#include "ObjGameClear.h"
+#include "ObjGameUI.h"
 //#include "ObjChar.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
@@ -83,6 +86,7 @@ enum ITEM_ID
 #include "SceneMain.h"
 #include "SceneGameClear.h"
 #include "SceneGameOver.h"
+#include "SceneGameUI.h"
 #include "SceneMenu.h"
 //-----------------------------------------------
 
