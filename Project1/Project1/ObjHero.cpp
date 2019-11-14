@@ -22,6 +22,8 @@ void CObjHero::Init()
 
 	m_hero_life = 3;//主人公の体力用変数
 
+	peperon_flag = false;
+
 
 	//blockとの衝突確認用
 
@@ -30,9 +32,18 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	mi_hit_up = false;
+	mi_hit_down = false;
+	mi_hit_left = false;
+	mi_hit_right = false;
+
 	m_block_type = 0;
 
-	m_ani_time = 0;
+
+
+	m_ani_time = 30;
+	m_flg == false;
+
 	m_ani_frame = 1;//静止フレームを初期にする
 
 	m_speed_power = 1.0f;
@@ -51,6 +62,7 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	
 	//メニューキー
 	if (Input::GetVKey('M') == true)
 	{
@@ -109,6 +121,12 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
+	//アイテムをとる処理
+	else if (Input::GetVKey('E') == true && mi_hit_left == true || Input::GetVKey('E') == true &&  mi_hit_right == true
+		|| Input::GetVKey('E') == true && mi_hit_down == true || Input::GetVKey('E') == true && mi_hit_up == true)
+	{
+		peperon_flag = true;
+	}
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
@@ -122,10 +140,10 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 0;
 	}
-
+	
 	//摩擦
-	m_vx += -(m_vx*0.09);
-	m_vy += -(m_vy*0.09);
+	m_vx += -(m_vx*0.098);
+	m_vy += -(m_vy*0.098);
 
 	//高速移動によるblock判定
 	bool b;
@@ -184,18 +202,28 @@ void CObjHero::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
+
+	//自身のhitboxを持ってくる
+	CHitBox* hit = Hits::GetHitBox(this);
+
+	//アイテムの当たり判定実行
+	pb->ItemHit(&m_px, &m_py, true, true,
+		&mi_hit_up, &mi_hit_down, &mi_hit_left, &mi_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
 
-	//自身のhitboxを持ってくる
-	CHitBox* hit = Hits::GetHitBox(this);
+
 
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	
+	
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -209,13 +237,11 @@ void CObjHero::Action()
 		}
 		else
 		{
-			m_hero_life -= 1;
-			
+			m_hero_life--;
 		}
 	}
-
 	
-
+	
 	
 }
 

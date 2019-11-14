@@ -177,6 +177,9 @@
     <ClCompile Include="ObjGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソース ファイル\敵キャラ</Filter>
     </ClCompile>
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="GameL\SceneManager.h">
       <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
     </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ソースファイル\アイテム</Filter>

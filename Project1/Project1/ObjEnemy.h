@@ -4,6 +4,11 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define WINDOW_MAX_X (800.0f)
+#define WINDOW_MIN_X (-32.0f)
+#define WINDOW_MAX_Y (600.0f)
+#define WINDOW_MIN_Y (-32.0f)
+
 #define MAP_MIN   (0)
 #define MAP_ERROR (-1)
 #define MAP_DRAW_SIZE (64.0f)
