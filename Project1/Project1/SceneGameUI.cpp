@@ -6,6 +6,7 @@
 #include "GameL/SceneObjManager.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
+#include "GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -32,7 +33,7 @@ void CSceneGameUI::InitScene()
 	Draw::LoadImage(L"アイテム欄.png",0,TEX_SIZE_512);
 
 	CObjGameUI*obj = new CObjGameUI();
-	Objs::InsertObj(obj, OBJ_GAMEUI, 1);
+	Objs::InsertObj(obj, OBJ_GAME_UI, 1);
 
 
 
