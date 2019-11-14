@@ -31,6 +31,7 @@ CSceneGameUI::~CSceneGameUI()
 //ゲームUI初期化メゾット
 void CSceneGameUI::InitScene()
 {
+
 	Draw::LoadImage(L"アイテム欄.png",0,TEX_SIZE_512);
 
 	CObjGameUI*obj = new CObjGameUI();
