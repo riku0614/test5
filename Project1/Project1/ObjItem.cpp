@@ -74,7 +74,7 @@ void CObjItem::Draw()
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 4)
+			if (m_map[i][j] == 5)
 			{
 				//•\Ž¦ˆÊ’u‚ÌÝ’è
 				dst.m_top = i * 64.0f + hy;

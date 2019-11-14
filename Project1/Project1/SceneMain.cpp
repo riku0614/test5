@@ -60,9 +60,9 @@ void CSceneMain::InitScene()
 	
 	Draw::LoadImageW(L"ÉXÉ^É~ÉiÉQÅ[ÉW.png", 2, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"ìG(âº).png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"ï«.png", 3, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"ìG(âº1).png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"ëã.png", 4, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"ìG(âº2).png", 5, TEX_SIZE_512);
 
