@@ -39,7 +39,6 @@ void CObjEnemy::Init()
 	m_hit_right = false;
 	
 	
-
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 
@@ -194,6 +193,6 @@ void CObjEnemy::Draw()
 	dst.m_bottom = 64.0f + m_ey+scroll->GetScrollY();
 
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
