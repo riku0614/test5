@@ -72,7 +72,7 @@ private:
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
 
+	bool peperon_flag; //アイテム消去フラグ用
 	float px, py;//交点
 
-	bool peperon_flag; //アイテム消去フラグ用
 };
