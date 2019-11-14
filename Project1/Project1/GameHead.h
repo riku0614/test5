@@ -88,6 +88,7 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
+#include"SceneMain3.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

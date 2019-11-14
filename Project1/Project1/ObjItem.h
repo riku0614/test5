@@ -10,6 +10,7 @@ class CObjItem : public CObj
 {
 public:
 	CObjItem(int map[100][100]);
+	CObjItem(int map[75][75]);
 	~CObjItem() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション

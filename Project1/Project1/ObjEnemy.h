@@ -33,6 +33,7 @@ class CObjEnemy : public CObj
 {
 public:
 	CObjEnemy(int map[100][100]);
+	CObjEnemy(int map[75][75]);
 	~CObjEnemy() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション

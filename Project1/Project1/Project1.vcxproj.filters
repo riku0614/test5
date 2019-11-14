@@ -91,6 +91,12 @@
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGameUI.cpp">
+      <Filter>ソースファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain3.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -175,9 +181,6 @@
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjGameUI.cpp">
-      <Filter>ソース ファイル\ゲームUI</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
@@ -269,11 +272,14 @@
     <ClInclude Include="GameL\SceneManager.h">
       <Filter>リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGameUI.h">
-      <Filter>ソース ファイル\ゲームUI</Filter>
-    </ClInclude>
     <ClInclude Include="ObjItem.h">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameUI.h">
+      <Filter>ソースファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain3.h">
+      <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

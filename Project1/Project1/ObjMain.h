@@ -13,6 +13,7 @@ class CObjMain : public CObj
 {
 	public:
 		CObjMain(int map[100][100]);
+		CObjMain(int map[75][75]);
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション

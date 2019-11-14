@@ -18,6 +18,11 @@ CObjMain::CObjMain(int map[100][100])
 	memcpy(m_map, map, sizeof(int)*(100 * 100));
 }
 
+CObjMain::CObjMain(int map[75][75])
+{
+	memcpy(m_map, map, sizeof(int)*(75 * 75));
+}
+
 
 
 //イニシャライズ
