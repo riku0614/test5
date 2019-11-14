@@ -7,12 +7,17 @@
 using namespace GameL;
 
 
+//マクロ
+#define MAP_X (75)
+#define MAP_Y (75)
+
+#define MAP_CHANGE (0)
 
 //オブジェクト：メイン
 class CObjMain : public CObj
 {
 	public:
-		CObjMain(int map[100][100]);
+		CObjMain(int map[MAP_X][MAP_Y]);
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション
@@ -22,7 +27,8 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		
-		int m_map[100][100];//マップ情報ブロック数（X=１２個、Y=１０個）
+		
+		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X=１２個、Y=１０個）
 
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
@@ -42,7 +48,8 @@ class CObjMain : public CObj
 		);
 	private:
 		
-
+		int jx;
+		int jy;
 		
 
 		float m_scroll_x;   //左右スクロール用
