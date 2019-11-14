@@ -26,6 +26,12 @@ class CObjMain : public CObj
 			bool *up, bool *down, bool *left, bool *right,
 			float *vx, float *vy, int *bt
 		);
+		
+		void ItemHit(
+			float *x, float *y, bool scroll_on_x, bool scroll_on_y,
+			bool *up, bool *down, bool *left, bool *right,
+			float *vx, float *vy, int *bt
+		);
 	private:
 		int m_map[100][100];   //マップ情報
 		float m_scroll_x;   //左右スクロール用

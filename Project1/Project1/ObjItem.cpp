@@ -7,6 +7,7 @@
 #include "GameHead.h"
 #include "ObjItem.h"
 #include "GameL/HitBoxManager.h"
+#include "UtilityModule.h"
 
 
 //使用するネームスペース
@@ -21,11 +22,18 @@ CObjItem::CObjItem(int map[100][100])
 void CObjItem::Init()
 {
 	//変数初期化
-	//ix = 0;
-	//iy = 0;
+	ix = 0;
+	iy = 0;
 
-	//メインの位置を取得
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	//m_px = 0.0f;
+	//m_py = 0.0f;
+	m_vx = 0.0f;
+	m_vy = 0.0f;
+
+	hit_flg = true;
+
+	//m_scroll_x = -2850.0f;
+	//m_scroll_y = -64.0f;
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -34,19 +42,48 @@ void CObjItem::Init()
 			if (m_map[i][j] == 4)
 			{
 
+				
+				//メインの位置を取得
+				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+				float hx = main->GetScrollX();
+				float hy = main->GetScrollY();
+
+				ix = j * 64.0f;//アイテムの位置Xをとる
+				iy = i * 64.0f;//アイテムの位置Yをとる
+
 				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, j-main->GetScrollY(), i-main->GetScrollX(), 64, 64, ELEMENT_ITEM, OBJ_ITEM, 1);
+				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
+
+				
 			}
 		}
 	}
+	
 
 }
 
 //アクション
 void CObjItem::Action()
 {
+
 	
 
+	//メインの位置を取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+
+	//主人公のアイテムと当たったフラグを持ってくる
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
+	if (hero->Getflag() == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	
 }
@@ -79,8 +116,8 @@ void CObjItem::Draw()
 				//表示位置の設定
 				dst.m_top = i * 64.0f + hy;
 				dst.m_left = j * 64.0f + hx;
-				dst.m_right = dst.m_left + 20.0;
-				dst.m_bottom = dst.m_top + 20.0;
+				dst.m_right = dst.m_left + 32.0f;
+				dst.m_bottom = dst.m_top + 32.0f;
 
 				Draw::Draw(8, &src, &dst, c, 0.0f);
 			}

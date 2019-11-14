@@ -33,6 +33,9 @@ public:
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
 
+	bool Getflag() { return peperon_flag;}
+
+
 private:
 	float m_px; //位置
 	float m_py;
@@ -56,7 +59,14 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	//アイテムとの衝突確認用
+	bool mi_hit_up;
+	bool mi_hit_down;
+	bool mi_hit_left;
+	bool mi_hit_right;
+
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
 
+	bool peperon_flag; //アイテム消去フラグ用
 };
