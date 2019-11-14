@@ -11,15 +11,32 @@
 //使用するネームスペース
 using namespace GameL;
 
+
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 70.0f; //位置
-	m_py = 64.0f;
+	m_px = 0.0f; //位置
+	m_py = 0.0f;
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 
-	m_ani_time = 0;
+	m_hero_life = 3;//主人公の体力用変数
+
+
+	//blockとの衝突確認用
+
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
+
+	m_block_type = 0;
+
+
+
+	m_ani_time = 30;
+	m_flg == false;
+
 	m_ani_frame = 1;//静止フレームを初期にする
 
 	m_speed_power = 1.0f;
@@ -27,29 +44,37 @@ void CObjHero::Init()
 	m_ani_move = 0;
 
 	m_posture = 1.0f; //右向き0.0ｆ　左向き1.0ｆ
-	m_stamina_limid = 600.0f;
+	m_stamina_limid = 90.0f;
+
+	m_id = CHAR_HERO;
 
 	//当たり判定用hitboxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
 }
 
 //アクション
 void CObjHero::Action()
 {
 	
+	//メニューキー
+	if (Input::GetVKey('M') == true)
+	{
+		Scene::SetScene(new CSceneMenu);
+	}
+
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid>=0&&Input::GetVKey(VK_LSHIFT) == true&& Input::GetVKey('A') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true)
+	if (m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true )
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 1.0f;
+		m_speed_power = 2.0f;
 		m_ani_max_time = 4;
 
-		m_stamina_limid -= 2.0f;
+		m_stamina_limid -= 0.0f;
 	}
 	else
 	{
@@ -57,9 +82,9 @@ void CObjHero::Action()
 		m_speed_power = 0.5f;
 		m_ani_max_time = 4;
 
-		if (m_stamina_limid < 600.0f)
+		if (m_stamina_limid < 90.0f)
 		{
-			m_stamina_limid += 2.0f;
+			m_stamina_limid += 0.3f;
 		}
 
 	}
@@ -90,22 +115,80 @@ void CObjHero::Action()
 		m_ani_time += 1;
 	}
 
+	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
 	{
 		m_ani_frame += 1;
 		m_ani_time = 0;
 	}
 
+	//アニメーションフレームのリセット
 	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
 	}
-	//移動ベクトルの正規化
-	//UnitVec(&m_vy, &m_vx);
-
+	
 	//摩擦
-	m_vx += -(m_vx*0.09);
-	m_vy += -(m_vy*0.09);
+	m_vx += -(m_vx*0.098);
+	m_vy += -(m_vy*0.098);
+
+	//高速移動によるblock判定
+	bool b;
+	float pxx, pyy, r;
+	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	if (pbb->GetScrollX() > 0)
+		pbb->SetScrollX(0);
+	if (pbb->GetScrollY() > 0)
+		pbb->SetScrollY(0);
+	//移動方向にrayを飛ばす
+	float vx;
+	float vy;
+
+	if (m_vx > 0)
+		vx = 500-pbb->GetScrollX();
+	else
+		vx = 0 - pbb->GetScrollX();
+
+
+	//ray判定
+	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
+
+	if (b == true)
+	{
+		//交点取得
+		px = pxx + pbb->GetScrollX();
+		py = pyy-pbb->GetScrollY();
+
+		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
+		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+									  //主人公の幅分オフセット
+		if (vx > 0)
+			px += -64;
+		else
+			px += 2;
+
+		//AとBが逆を向いている（主人公が移動先の壁を越えている）
+		if (aa*bb < 0)
+		{
+			//移動ベクトルを（交点→主人公の位置）ベクトルにする
+			m_vx = px - m_px;
+		}
+	}
+	else
+	{
+		px = 0.0f;
+		py = 0.0f;
+	}
+
+
+	//ブロックの当たり判定実行
+	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	pb->BlockHit(&m_px, &m_py, true,true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 	
 	//位置の更新
 	m_px += m_vx;
@@ -117,6 +200,28 @@ void CObjHero::Action()
 
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
+
+	
+	
+	//主人公機オブジェクトと接触したら敵削除
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	{
+		//主人公のライフによる当たり判定の変化
+		if (m_hero_life == 0)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			Scene::SetScene(new CSceneGameOver);
+		}
+		else
+		{
+			m_hero_life--;
+		}
+	}
+	
+	
+	
 }
 
 void CObjHero::Draw()
@@ -134,6 +239,24 @@ void CObjHero::Draw()
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
 
+	//スタミナバーの描画
+	if (m_stamina_limid > 0 && m_stamina_limid < 90.0)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 0.0f + m_py+64.0f;
+		dst.m_left = 0.0f+ m_px;
+		dst.m_right = m_stamina_limid + m_px;
+		dst.m_bottom = 64.0f + m_py+64.0f;
+
+		//1番目に登録したグラフィックをsrc.dst.cの情報を元に描画
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+	}
+	
+	//主人公のダッシュ時と通常時と静止時の描画
 	if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true &&m_stamina_limid>0|| 
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('A') == true&&m_stamina_limid > 0 ||
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||

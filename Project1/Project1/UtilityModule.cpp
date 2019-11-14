@@ -30,3 +30,23 @@ bool UnitVec(float* vx, float* vy)
 
 	return true;
 }
+
+//GetAtan2Angle関数
+/*引数１　float w   :幅
+　引数２　float h   :高さ
+  戻り値　float     :角度（０°～360°）
+  内容
+  高さと幅から直角三角形があると仮定しその角度を求める*/
+float GetAtan2Angle(float w, float h)
+{
+	//atan2で角度を求める
+	float r = atan2(h, w)*180.0f / 3.14f;
+
+	//-180°～0°を180°～360°に変換
+	if (r < 0)
+	{
+		r = 360 - abs(r);
+	}
+
+	return r;
+}

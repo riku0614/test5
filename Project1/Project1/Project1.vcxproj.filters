@@ -1,39 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\タイトル画面">
-      <UniqueIdentifier>{744f6f60-f40c-4ca2-9ca9-9b2eca12f044}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\主人公キャラ">
-      <UniqueIdentifier>{f068dd14-03cb-4146-9394-f7d543e1df3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ゲームメイン">
-      <UniqueIdentifier>{4dc81af4-1e78-4f52-898f-c82f64ab39e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\関数ソースファイル">
-      <UniqueIdentifier>{f58a9167-0315-418d-8b01-ec8d592417cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ゲームオーバー">
-      <UniqueIdentifier>{41677a6e-d4a5-421c-8d2a-65dd761636b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ゲームクリア">
-      <UniqueIdentifier>{241e7593-3183-42ed-add4-19640a610ffc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ゲームUI">
-      <UniqueIdentifier>{de6518a5-3f1b-4b20-ae70-b16d89e481e2}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="ObjGameUI.cpp" />
+    <ClCompile Include="ObjClickTitle.cpp" />
+    <ClCompile Include="GameL\Audio.cpp" />
+    <ClCompile Include="GameL\DirectXDevice.cpp" />
+    <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
+    <ClCompile Include="GameL\DrawFont.cpp" />
+    <ClCompile Include="GameL\DrawTexture.cpp" />
+    <ClCompile Include="GameL\GameL_Main.cpp" />
+    <ClCompile Include="GameL\HitBoxManager.cpp" />
+    <ClCompile Include="GameL\MultiThread.cpp" />
+    <ClCompile Include="GameL\SceneManager.cpp" />
+    <ClCompile Include="GameL\SceneObjManager.cpp" />
+    <ClCompile Include="GameL\SetWindow.cpp" />
+    <ClCompile Include="GameL\UserData.cpp" />
+    <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="ObjEnemy.cpp" />
+    <ClCompile Include="ObjGameClear.cpp" />
+    <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="ObjHero.cpp" />
+    <ClCompile Include="ObjItem.cpp" />
+    <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjMenu.cpp" />
+    <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
+    <ClCompile Include="SceneGameOver.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -105,6 +102,12 @@
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\ゲームクリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>ソース ファイル\アイテム</Filter>
+    </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
@@ -116,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソース ファイル\敵キャラ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +191,9 @@
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソース ファイル\ゲームオーバー</Filter>
     </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソース ファイル\敵キャラ</Filter>
+    </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClInclude>
@@ -196,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="SceneGameUI.h">
       <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ソース ファイル\アイテム</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

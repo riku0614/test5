@@ -18,6 +18,15 @@ public:
 	float GetY() { return m_py; }
 	float GetVY() { return m_vy; }
 	float GetVX() { return m_vx; }
+	int GetBT() { return m_block_type; }
+
+	float m_hero_life;
+
+	void SetUp(bool b) { m_hit_up = b; }
+	void SetDown(bool b) { m_hit_down = b; }
+	void SetLeft(bool b) { m_hit_left = b; }
+	void SetRight(bool b) { m_hit_right = b; }
+	void SetBT(int t) { m_block_type = t; }
 
 	void SetX(float x) { m_px = x; }
 	void SetY(float y) { m_py = y; }
@@ -25,12 +34,14 @@ public:
 	void SetVX(float vx) { m_vx = vx; }
 
 private:
+	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
 	float m_vx; //移動ベクトル
 	float m_vy;
 	float m_posture; //姿勢
 	float m_stamina_limid;//スタミナの限界値
+
 
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
@@ -39,4 +50,19 @@ private:
 	float m_ani_max_time;   //アニメーション動作間隔最大値
 
 	int m_ani_move;//キャラクターの動き
+	
+    //blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+	int m_time;//無敵時間
+	bool m_flg;//無敵フラグ
+
+	//踏んでいるブロックの種類確認用
+	int m_block_type;
+
+	float px, py;//交点
+
 };

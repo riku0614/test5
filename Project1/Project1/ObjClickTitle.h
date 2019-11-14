@@ -14,5 +14,6 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-
+	float m_yj;	//矢印移動変数
+	bool m_f;	//矢印制御用
 };
