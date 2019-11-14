@@ -35,25 +35,24 @@ void CSceneMain::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
+	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 
-
-	p = Save::ExternalDataOpen(L"map.csv", &size);
-
-
-	int map[100][100];
+	
+	int map[MAP_X][MAP_Y];
 	int count = 1;
-	for (int i = 0; i < 100; i++)
-	{
-		for (int j = 0; j < 100; j++)
+	
+		for (int i = 0; i < MAP_X; i++)
 		{
-			int w = 0;
-			swscanf_s(&p.get()[count], L"%d", &w);
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				int w = 0;
+				swscanf_s(&p.get()[count], L"%d", &w);
 
-			map[i][j] = w;
-			count += 2;
+				map[i][j] = w;
+				count += 2;
 
+			}
 		}
-	}
 
 	Draw::LoadImageW(L"Char2.png", 0, TEX_SIZE_1024);
 
@@ -91,7 +90,7 @@ void CSceneMain::InitScene()
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
 
-	//5があれば、敵を出現
+	//敵を出現
 	CObjEnemy* obje = new CObjEnemy(map);
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 	

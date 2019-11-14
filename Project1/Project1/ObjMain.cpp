@@ -13,9 +13,9 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjMain::CObjMain(int map[100][100])
+CObjMain::CObjMain(int map[MAP_X][MAP_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(100 * 100));
+	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 }
 
 CObjMain::CObjMain(int map[75][75])
@@ -28,8 +28,8 @@ CObjMain::CObjMain(int map[75][75])
 //イニシャライズ
 void CObjMain::Init()
 {
-	m_scroll_x = -2850.0f;
-	m_scroll_y = -64.0f;
+	m_scroll_x = 64.0f;
+	m_scroll_y = 64.0f;
 
 	
 }
@@ -37,6 +37,7 @@ void CObjMain::Init()
 //アクション
 void CObjMain::Action()
 {
+
 
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -74,9 +75,7 @@ void CObjMain::Action()
 
 	}
 
-	
 
-	
 
 	
 	
@@ -202,44 +201,46 @@ bool CObjMain::HeroBlockCrossPoint(
 	};
 
 	//m_mapの全要素にアクセス
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 100; j++)
+
+		for (int i = 0; i < MAP_X; i++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			for (int j = 0; j < MAP_Y; j++)
 			{
-				//ブロックの４辺から交点を探す
-				for (int k = 0; k < 4; k++)
+				if (m_map[i][j] > 0 && m_map[i][j] != 5)
 				{
-					//交点を探す
-					float px, py;
-					bool b;
-					float l = 0.0f;
-					b = LineCrossPoint
-					(x, y, x + vx, y + vy,
-						j * 64 + edge[k][0], i * 64 + edge[k][1], j * 64 + edge[k][2], i * 64 + edge[k][3],
-						&px, &py);
-
-					//交点チェック
-					if (b == true)
+					//ブロックの４辺から交点を探す
+					for (int k = 0; k < 4; k++)
 					{
-						//交点との距離を求める
-						l = sqrt((px - x)*(px - x) + (py - y)*(py - y));
+						//交点を探す
+						float px, py;
+						bool b;
+						float l = 0.0f;
+						b = LineCrossPoint
+						(x, y, x + vx, y + vy,
+							j * 64 + edge[k][0], i * 64 + edge[k][1], j * 64 + edge[k][2], i * 64 + edge[k][3],
+							&px, &py);
 
-						//見つけた交点の中で最も距離が短いものを探す
-						if (len > l)
+						//交点チェック
+						if (b == true)
 						{
-							len = l;
-							*out_px = px;
-							*out_py = py;
-							pb = true;
-						}
-					}
+							//交点との距離を求める
+							l = sqrt((px - x)*(px - x) + (py - y)*(py - y));
 
+							//見つけた交点の中で最も距離が短いものを探す
+							if (len > l)
+							{
+								len = l;
+								*out_px = px;
+								*out_py = py;
+								pb = true;
+							}
+						}
+
+					}
 				}
 			}
 		}
-	}
+	
 	*out_len = len;
 	return pb;
 
@@ -275,17 +276,14 @@ void CObjMain::BlockHit(
 	*bt = 0;
 
 	//m=mapの全要素にアクセス
-	for (int i = 0; i < 100; i++)
+	
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
-			if (m_map[i][j] == 8)
-			{
-				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, i*64.0f, j*64.0f, 64, 64, ELEMENT_BLUE, OBJ_JUNCTION, 2);
-			}
-		
-			if (m_map[i][j] == 9||m_map[i][j]==3)
+
+
+			if (m_map[i][j] <= 9 && m_map[i][j] >= 3)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -320,13 +318,13 @@ void CObjMain::BlockHit(
 					if (len < 88.0f)
 					{
 						//角度で左右を判定
-						if ((r < 45 && r>=0) || r > 315)
+						if ((r < 45 && r >= 0) || r > 315)
 						{
 							//右
 							*right = true;//主人公から見て、左の部分が衝突している
 							*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
 							if (m_map[i][j] == 3)
-								Scene::SetScene(new CSceneGameClear);
+								MAP_CHANGE + 1;
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 45 && r < 135)
@@ -336,8 +334,8 @@ void CObjMain::BlockHit(
 							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 							if (m_map[i][j] == 2)
 								*bt = m_map[i][j];
-							if(m_map[i][j]==3)
-								Scene::SetScene(new CSceneGameClear);
+							if (m_map[i][j] == 3)
+								MAP_CHANGE + 1;
 							*vy = 0.0f;
 						}
 						if (r > 135 && r < 225)
@@ -346,7 +344,7 @@ void CObjMain::BlockHit(
 							*left = true;//主人公から見て、右の部分が衝突している
 							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
 							if (m_map[i][j] == 3)
-								Scene::SetScene(new CSceneGameClear);
+								MAP_CHANGE + 1;
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 225 && r < 315)
@@ -365,89 +363,12 @@ void CObjMain::BlockHit(
 
 
 				}
-				
 
 			}
-			/*
-			else if (m_map[i][j] == 4)
-			{
-				//要素番号を座標に変更
-				float bx = j * 64.0f;
-				float by = i * 64.0f;
-
-				//スクロールの影響
-				float scroll_x = scroll_on_x ? m_scroll_x : 0;
-				float scroll_y = scroll_on_y ? m_scroll_y : 0;
-				//主人公とブロックの当たり判定
-				if ((*x + (-scroll_x) + 64.0f > bx) && (*x + (-scroll_x) < bx + 64.0f) && (*y + (-scroll_y) + 64.0f > by) && (*y + (-scroll_y) < by + 64.0f))
-				{
-					//上下左右判定
-
-					//vectorの作成
-					float rvx = (*x + (-scroll_x)) - bx;
-					float rvy = (*y + (-scroll_y)) - by;
-
-					//長さを求める
-					float len = sqrt(rvx*rvx + rvy * rvy);
-
-
-					//角度を求める
-					float r = atan2(rvy, rvx);
-					r = r * 180.0f / 3.14f;
-
-					if (r <= 0.0f)
-						r = abs(r);
-					else
-						r = 360.0f - abs(r);
-
-					//lenがある一定の長さのより短い場合判定に入る
-					if (len < 88.0f)
-					{
-						//角度で左右を判定
-						if ((r < 45 && r>0) || r > 315)
-						{
-							//右
-							*right = true;//主人公から見て、左の部分が衝突している
-							*x = bx + 32.0f + (scroll_x);//ブロックの位置-主人公の幅]
-							*vx = -(*vx)*0.1f;//-VX*反発係数
-						}
-						if (r > 45 && r < 135)
-						{
-							//上
-							*down = true;//主人公から見て、下の部分が衝突している
-							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
-							if (m_map[i][j] == 4)
-								*bt = m_map[i][j];
-							*vy = 0.0f;
-						}
-						if (r > 135 && r < 225)
-						{
-							//左
-							*left = true;//主人公から見て、右の部分が衝突している
-							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-							*vx = -(*vx)*0.1f;//-VX*反発係数
-						}
-						if (r > 225 && r < 315)
-						{
-							//下
-							*up = true;//主人公から見て、上の部分が衝突している
-							*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
-							if (*vy < 0)
-							{
-								*vy = 0.0f;
-							}
-
-
-						}
-					}
-
-
-				}
-			}*/
-			
 		}
-	}
 
+
+	}
 }
 /*ItemHit関数
   引数１　　float* x             :判定を行うobjectのX位置
@@ -477,91 +398,92 @@ void CObjMain::ItemHit(
 
 	//踏んでいるブロックの種類の初期化
 	*bt = 0;
-
+	
 	//m=mapの全要素にアクセス
-	for (int i = 0; i < 100; i++)
-	{
-		for (int j = 0; j < 100; j++)
+		for (int i = 0; i < MAP_X; i++)
 		{
-			if (m_map[i][j] == 5)
+			for (int j = 0; j < MAP_Y; j++)
 			{
-				//要素番号を座標に変更
-				float bx = j * 64.0f;
-				float by = i * 64.0f;
-
-				//スクロールの影響
-				float scroll_x = scroll_on_x ? m_scroll_x : 0;
-				float scroll_y = scroll_on_y ? m_scroll_y : 0;
-				//主人公とブロックの当たり判定
-				if ((*x + (-scroll_x) + 64.0f > bx) && (*x + (-scroll_x) < bx + 32.0f) && (*y + (-scroll_y) + 64.0f > by) && (*y + (-scroll_y) < by + 32.0f))
+				if (m_map[i][j] == 5)
 				{
-					//上下左右判定
+					//要素番号を座標に変更
+					float bx = j * 64.0f;
+					float by = i * 64.0f;
 
-					//vectorの作成
-					float rvx = (*x + (-scroll_x)) - bx;
-					float rvy = (*y + (-scroll_y)) - by;
-
-					//長さを求める
-					float len = sqrt(rvx*rvx + rvy * rvy);
-
-
-					//角度を求める
-					float r = atan2(rvy, rvx);
-					r = r * 180.0f / 3.14f;
-
-					if (r <= 0.0f)
-						r = abs(r);
-					else
-						r = 360.0f - abs(r);
-
-					//lenがある一定の長さのより短い場合判定に入る
-					if (len < 88.0f)
+					//スクロールの影響
+					float scroll_x = scroll_on_x ? m_scroll_x : 0;
+					float scroll_y = scroll_on_y ? m_scroll_y : 0;
+					//主人公とブロックの当たり判定
+					if ((*x + (-scroll_x) + 64.0f > bx) && (*x + (-scroll_x) < bx + 32.0f) && (*y + (-scroll_y) + 64.0f > by) && (*y + (-scroll_y) < by + 32.0f))
 					{
-						//角度で左右を判定
-						if ((r < 45 && r>0) || r > 315)
+						//上下左右判定
+
+						//vectorの作成
+						float rvx = (*x + (-scroll_x)) - bx;
+						float rvy = (*y + (-scroll_y)) - by;
+
+						//長さを求める
+						float len = sqrt(rvx*rvx + rvy * rvy);
+
+
+						//角度を求める
+						float r = atan2(rvy, rvx);
+						r = r * 180.0f / 3.14f;
+
+						if (r <= 0.0f)
+							r = abs(r);
+						else
+							r = 360.0f - abs(r);
+
+						//lenがある一定の長さのより短い場合判定に入る
+						if (len < 88.0f)
 						{
-							//右
-							*right = true;//主人公から見て、左の部分が衝突している
-							*x = bx + 32.0f + (scroll_x);//ブロックの位置-主人公の幅
-							*vx = -(*vx)*0.25f;//-VX*反発係数
-						}
-						if (r > 45 && r < 135)
-						{
-							//上
-							*down = true;//主人公から見て、下の部分が衝突している
-							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
-							*vy = 0.0f;
-						}
-						if (r > 135 && r < 225)
-						{
-							//左
-							*left = true;//主人公から見て、右の部分が衝突している
-							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-							*vx = -(*vx)*0.1f;//-VX*反発係数
-						}
-						if (r > 225 && r < 315)
-						{
-							//下
-							*up = true;//主人公から見て、上の部分が衝突している
-							*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
-							if (*vy < 0)
+							//角度で左右を判定
+							if ((r < 45 && r>0) || r > 315)
 							{
+								//右
+								*right = true;//主人公から見て、左の部分が衝突している
+								*x = bx + 32.0f + (scroll_x);//ブロックの位置-主人公の幅
+								*vx = -(*vx)*0.25f;//-VX*反発係数
+							}
+							if (r > 45 && r < 135)
+							{
+								//上
+								*down = true;//主人公から見て、下の部分が衝突している
+								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 								*vy = 0.0f;
 							}
+							if (r > 135 && r < 225)
+							{
+								//左
+								*left = true;//主人公から見て、右の部分が衝突している
+								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+								*vx = -(*vx)*0.1f;//-VX*反発係数
+							}
+							if (r > 225 && r < 315)
+							{
+								//下
+								*up = true;//主人公から見て、上の部分が衝突している
+								*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
+								if (*vy < 0)
+								{
+									*vy = 0.0f;
+								}
 
 
+							}
 						}
+
+
 					}
 
 
 				}
 
-
 			}
 
 		}
-
-	}
+	
 }
 
 
@@ -579,52 +501,53 @@ void CObjMain::Draw()
 	
 	
 
-	for (int i = 0; i < 100; i++)
-	{
-		for (int j = 0; j < 100; j++)
+		for (int i = 0; i < MAP_X; i++)
 		{
-			if (m_map[i][j] > 0)
+			for (int j = 0; j < MAP_Y; j++)
 			{
-				
-
-				//表示位置の設定
-				dst.m_top = i * 64.0f+m_scroll_y;
-				dst.m_left = j * 64.0f+m_scroll_x;
-				dst.m_right = dst.m_left + 64.0;
-				dst.m_bottom = dst.m_top + 64.0;
-
-				
-				//床テクスチャ
-				if (m_map[i][j] == 1||m_map[i][j]==5)
+				if (m_map[i][j] > 0)
 				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = src.m_left + 64.0f;
-					src.m_bottom = src.m_top + 64.0f;
 
-					Draw::Draw(1, &src, &dst, c, 0.0f);
-				}
-				//階段テクスチャ
-				if (m_map[i][j] == 3)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = src.m_left + 64.0f;
-					src.m_bottom = src.m_top + 64.0f;
 
-					Draw::Draw(7, &src, &dst, c, 0.0f);
-				}
-				if (m_map[i][j] == 4)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = src.m_left + 64.0f;
-					src.m_bottom = src.m_top + 64.0f;
+					//表示位置の設定
+					dst.m_top = i * 64.0f + m_scroll_y;
+					dst.m_left = j * 64.0f + m_scroll_x;
+					dst.m_right = dst.m_left + 64.0;
+					dst.m_bottom = dst.m_top + 64.0;
 
-					Draw::Draw(3, &src, &dst, c, 0.0f);
+
+					//床テクスチャ
+					if (m_map[i][j] == 1 || m_map[i][j] == 5)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(1, &src, &dst, c, 0.0f);
+					}
+					//階段テクスチャ
+					if (m_map[i][j] == 3)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(7, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 4)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(3, &src, &dst, c, 0.0f);
+					}
 				}
 			}
-		}
 
-	}
+		}
+	
 }

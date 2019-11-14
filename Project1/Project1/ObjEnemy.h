@@ -32,43 +32,18 @@ using namespace GameL;
 class CObjEnemy : public CObj
 {
 public:
-	CObjEnemy(int map[100][100]);
-	CObjEnemy(int map[75][75]);
+	CObjEnemy(int map[MAP_X][MAP_Y]);
 	~CObjEnemy() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	int m_map[100][100];
-	int GetMap(int x, int y); //map情報の取得
-	void SetMap(int x, int y, int id);//マップにblockのID情報を入れる
+	int m_map[MAP_X][MAP_Y];
 private:
 	float m_ex;  //オブジェクトの位置X
 	float m_ey;  //オブジェクトの位置Y
 	float m_vx; //オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
 	float m_posture; //姿勢
-	
-	
-
-	//探索バッファ用構造体
-	struct XY
-	{
-		int x;
-		int y;
-	};
-
-	bool OverFlowCheck(int x, int y); //オーバーフローチェック
-	int BufferCheck(XY b[]);          //バッファチェック
-
-	//4方向サーチ＆登録
-	void EveryDirectionSearchSet
-	(int set_x, int set_y,
-		int c_map[100][100], int km_map[100][100],
-		XY buffer[], int* buffer_count);
-
-	//ダイクストラ法
-	int Dijkstras(int c_map[100][100], int km_map[100][100],
-		int goal_x, int goal_y);
 
 	int m_flg;//追従移動の管理用フラグ
 
@@ -77,6 +52,8 @@ private:
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;
+
+	
 
 	float px, py;//交点
 };
