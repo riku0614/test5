@@ -34,6 +34,6 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
-	bool hit_flg;
+	//bool hit_flg;
 
 };
