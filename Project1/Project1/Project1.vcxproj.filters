@@ -111,7 +111,10 @@
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
+    <ClCompile Include="ObjGameUI.cpp">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -188,7 +191,10 @@
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\ゲームクリア</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
+    <ClInclude Include="ObjGameUI.h">
+      <Filter>ソース ファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameUI.h">
       <Filter>ソース ファイル\ゲームUI</Filter>
     </ClInclude>
   </ItemGroup>
