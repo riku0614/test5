@@ -39,7 +39,7 @@ void CObjItem::Init()
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 4)
+			if (m_map[i][j] == 5)
 			{
 
 				
