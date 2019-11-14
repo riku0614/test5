@@ -127,13 +127,6 @@ void CObjHero::Action()
 	{
 		peperon_flag = true;
 	}
-	/*
-	CHitBox* hit = Hits::GetHitBox(this);
-	if (hit->CheckObjNameHit(OBJ_ITEM) != nullptr)
-	{
-		m_px += -5*m_vx;
-		m_py += -5*m_vy;
-	}*/
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
