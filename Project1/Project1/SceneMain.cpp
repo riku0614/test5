@@ -35,6 +35,8 @@ void CSceneMain::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
+
+
 	p = Save::ExternalDataOpen(L"map.csv", &size);
 
 	int map[100][100];
@@ -87,6 +89,10 @@ void CSceneMain::InitScene()
 	//アイテムオブジェクト作成
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
+
+	//5があれば、敵を出現
+	CObjEnemy* obje = new CObjEnemy(map);
+	Objs::InsertObj(obje, OBJ_ENEMY, 10);
 	
 }
 

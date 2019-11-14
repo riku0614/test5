@@ -39,7 +39,11 @@ void CObjHero::Init()
 
 	m_block_type = 0;
 
-	m_ani_time = 0;
+
+
+	m_ani_time = 30;
+	m_flg == false;
+
 	m_ani_frame = 1;//静止フレームを初期にする
 
 	m_speed_power = 1.0f;
@@ -49,9 +53,10 @@ void CObjHero::Init()
 	m_posture = 1.0f; //右向き0.0ｆ　左向き1.0ｆ
 	m_stamina_limid = 90.0f;
 
+	m_id = CHAR_HERO;
 
 	//当たり判定用hitboxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
 }
 
 //アクション
@@ -66,17 +71,17 @@ void CObjHero::Action()
 
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true||
-		m_stamina_limid >= 0 && Input::GetVKey(VK_LSHIFT) == true || Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true)
+	if (m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
+		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true )
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 1.0f;
+		m_speed_power = 2.0f;
 		m_ani_max_time = 4;
 
-		m_stamina_limid -= 0.3f;
+		m_stamina_limid -= 0.0f;
 	}
 	else
 	{
@@ -142,10 +147,61 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 0;
 	}
-
+	
 	//摩擦
-	m_vx += -(m_vx*0.09);
-	m_vy += -(m_vy*0.09);
+	m_vx += -(m_vx*0.098);
+	m_vy += -(m_vy*0.098);
+
+	//高速移動によるblock判定
+	bool b;
+	float pxx, pyy, r;
+	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	if (pbb->GetScrollX() > 0)
+		pbb->SetScrollX(0);
+	if (pbb->GetScrollY() > 0)
+		pbb->SetScrollY(0);
+	//移動方向にrayを飛ばす
+	float vx;
+	float vy;
+
+	if (m_vx > 0)
+		vx = 500-pbb->GetScrollX();
+	else
+		vx = 0 - pbb->GetScrollX();
+
+
+	//ray判定
+	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
+
+	if (b == true)
+	{
+		//交点取得
+		px = pxx + pbb->GetScrollX();
+		py = pyy-pbb->GetScrollY();
+
+		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
+		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+									  //主人公の幅分オフセット
+		if (vx > 0)
+			px += -64;
+		else
+			px += 2;
+
+		//AとBが逆を向いている（主人公が移動先の壁を越えている）
+		if (aa*bb < 0)
+		{
+			//移動ベクトルを（交点→主人公の位置）ベクトルにする
+			m_vx = px - m_px;
+		}
+	}
+	else
+	{
+		px = 0.0f;
+		py = 0.0f;
+	}
+
 
 	//ブロックの当たり判定実行
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -173,6 +229,8 @@ void CObjHero::Action()
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	
+	
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
 	{
@@ -186,13 +244,11 @@ void CObjHero::Action()
 		}
 		else
 		{
-			m_hero_life -= 1;
-			
+			m_hero_life--;
 		}
 	}
-
 	
-
+	
 	
 }
 

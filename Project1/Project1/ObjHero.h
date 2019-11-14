@@ -37,6 +37,7 @@ public:
 
 
 private:
+	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
 	float m_vx; //移動ベクトル
@@ -65,8 +66,13 @@ private:
 	bool mi_hit_left;
 	bool mi_hit_right;
 
+	int m_time;//無敵時間
+	bool m_flg;//無敵フラグ
+
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
+
+	float px, py;//交点
 
 	bool peperon_flag; //アイテム消去フラグ用
 };

@@ -6,30 +6,30 @@
 
 #include "GameHead.h"
 #include "ObjEnemy.h"
+#include "SceneMain.h"
 #include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 
-CObjEnemy::CObjEnemy(float x, float y)
-{
-	m_px = x;
-	m_py = y;
-}
 
+
+CObjEnemy::CObjEnemy(int map[100][100])
+{
+	memcpy(m_map, map, sizeof(int)*(100 * 100));
+}
 //イニシャライズ
 void CObjEnemy::Init()
 {
-	m_vx = 1.0f;
-	m_vy = 1.0f;
-	m_px = 0.0f; //位置
-	m_py = 0.0f;
 
-	m_flg = true;
+	m_vx = 0.0f;
+	m_vy = 0.0f;
+	m_ex = 64.0f; //位置
+	m_ey = 64*3.0f;
+
+	m_flg = 0;
 	
-	//移動ベクトルの正規化
-	UnitVec(&m_vy, &m_vx);
 	
 	//blockとの衝突確認用
 
@@ -38,90 +38,136 @@ void CObjEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	
+	
+
 	//当たり判定用HitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+
 
 }
 
 //アクション
 void CObjEnemy::Action()
 {
-	//主人公と誘導の角度を取る
-	CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
 
-	//主人公が存在する場合、誘導角度を計算する
-	if (obj != nullptr)
+	//マップ情報の取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	float scrollx = main->GetScrollX();
+	float scrolly = main->GetScrollY();
+
+	if (m_ex<(WINDOW_MAX_X - scrollx) && m_ex>(WINDOW_MIN_X - scrollx) &&
+		m_ey<(WINDOW_MAX_Y - scrolly) && m_ey>(WINDOW_MIN_Y - scrolly))
 	{
-		float x = obj->GetX()-m_px;
-		float y = obj->GetY()-m_py;
-		float ar = GetAtan2Angle(x, -y);
+		m_vx = (hx + (-scrollx) - m_ex) ;
+		m_vy = (hy + (-scrolly) - m_ey) ;
+	}
+	//衝突判定による移動フラグの切り替え
+	else if (m_hit_left==true)
+	{
+		m_flg++;
+	}
+	 else if (m_hit_down == true)
+	{
+		m_flg++;
+	}
+	else if (m_hit_right == true)
+	{
+		m_flg++;
+	}
+	else if (m_hit_up == true)
+	{
+		m_flg==0;
+	}
+	//移動
+	else if (m_flg == 0)
+	{
+		m_ex += 3.0f;
+		
+	}
+    else if (m_flg == 1)
+	{
+		m_ey += 3.0f;
+	}
+	else if (m_flg == 2)
+	{
+		m_ex -= 3.0f;
+	}
+	else if (m_flg == 3)
+	{
+		m_ey -= 3.0f;
+	}
 
-		//弾丸の現在の向いてる角度を取る
-		float br = GetAtan2Angle(m_vx, -m_vy);
+	//移動ベクトルの正規化
+	UnitVec(&m_vy, &m_vx);
 
-		float r = 3.14 / 180.0f; //角度１°
-		if (ar < br)
-		{
-			//移動方向に+１°加える
-			m_vx = m_vx * cos(r) - m_vy * sin(r);
-			m_vy = m_vy * cos(r) + m_vx * sin(r);
-		}
+	m_ex += m_vx*3.0f;
+	m_ey += m_vy*3.0f;
+
+	//高速移動によるblock判定
+	bool b;
+	float pxx, pyy, r;
+	
+	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (pbb->GetScrollX() > 0)
+		pbb->SetScrollX(0);
+	if (pbb->GetScrollY() > 0)
+		pbb->SetScrollY(0);
+	//移動方向にrayを飛ばす
+	float vx;
+	
+	if (m_vx > 0)
+		vx = 500 - pbb->GetScrollX();
+	else
+		vx = 0 - pbb->GetScrollX();
+
+	//ray判定
+	b = pbb->HeroBlockCrossPoint(m_ex - pbb->GetScrollX() + 64, m_ey - pbb->GetScrollY() + 64, vx, 0.0f, &pxx, &pyy, &r);
+
+	if (b == true)
+	{
+		//交点取得
+		px = pxx + pbb->GetScrollX();
+		py = pyy - pbb->GetScrollY();
+
+		float aa = (m_ex)-px;//A（交点→主人公の位置）ベクトル
+		float bb = (m_ex + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+									  //主人公の幅分オフセット
+		if (vx > 0)
+			px += -64;
 		else
-		{
-			//移動方向に-１°加える
-			m_vx = m_vx * cos(-r) - m_vy * sin(-r);
-			m_vy = m_vy * cos(-r) + m_vx * sin(-r);
-		}
-		UnitVec(&m_vx, &m_vy);
-		
-		
+			px += 2;
 
-	}
-	//主人公への追従移動
-	if (Input::GetVKey('S') == true &&m_flg == true)
-	{
-		m_flg = false;
-		m_px;
-		m_py += m_vy + 5.0f - obj->GetVY();
-	}
-	else if (Input::GetVKey('W') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px;
-		m_py += m_vy - 5.0f + (-obj->GetVY());
-	}
-	else if (Input::GetVKey('A') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px += m_vx - 5.0f + (-obj->GetVX());
-		m_py;
-	}
-	else if (Input::GetVKey('D') == true && m_flg == true)
-	{
-		m_flg = false;
-		m_px += m_vx + 5.0f - obj->GetVX();
-		m_py;
+		//AとBが逆を向いている（主人公が移動先の壁を越えている）
+		if (aa*bb < 0)
+		{
+			//移動ベクトルを（交点→主人公の位置）ベクトルにする
+			m_vx = px - m_ex;
+		}
 	}
 	else
 	{
-		m_flg = true;
-		m_px += m_vx;
-		m_py += m_vy;
+		px = 0.0f;
+		py = 0.0f;
 	}
 
 	//ブロックタイプ検知用の変数がないためのダミー
 	int d;
-
 	//ブロックの当たり判定実行
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	pb->BlockHit(&m_px, &m_py, true, true,
+	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d
-	);
+		&d);
+
+	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+    //自身のhitboxを持ってくる
+	CHitBox* hit = Hits::GetHitBox(this);
 
 	//hitboxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
 
 	
 }
@@ -140,12 +186,14 @@ void CObjEnemy::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
+	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	//表示位置の設定
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0) + m_px;
-	dst.m_right = (64 - 64.0f) + m_px ;
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_top = 0.0f + m_ey+scroll->GetScrollY();
+	dst.m_left = (64.0) + m_ex+scroll->GetScrollX();
+	dst.m_right = (64 - 64.0f)+m_ex+scroll->GetScrollX();
+	dst.m_bottom = 64.0f + m_ey+scroll->GetScrollY();
 
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 }
+
