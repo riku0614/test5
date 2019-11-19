@@ -11,7 +11,6 @@ using namespace GameL;
 #define MAP_X (75)
 #define MAP_Y (75)
 
-#define MAP_CHANGE (0)
 
 //オブジェクト：メイン
 class CObjMain : public CObj
@@ -48,6 +47,10 @@ class CObjMain : public CObj
 		);
 	private:
 		
+		bool stop_flg;
+
+		int map_chg;
+
 		int jx;
 		int jy;
 		

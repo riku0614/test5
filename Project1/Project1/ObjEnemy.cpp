@@ -12,13 +12,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjEnemy::CObjEnemy(int map[100][100])
+
+CObjEnemy::CObjEnemy(int map[MAP_X][MAP_Y])
 {
 	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
-}
-CObjEnemy::CObjEnemy(int map[75][75])
-{
-	memcpy(m_map, map, sizeof(int)*(75 * 75));
 }
 //イニシャライズ
 void CObjEnemy::Init()
@@ -204,8 +201,5 @@ void CObjEnemy::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
-bool CObjEnemy::OverFlowCheck(int x, int y)
-{
-	return false;
-}
+
 

@@ -5,6 +5,7 @@
 #include "GameL/SceneManager.h"
 #include "GameL/SceneObjManager.h"
 #include "GameL/HitBoxManager.h"
+#include "GameL/UserData.h"
 
 #include "GameHead.h"
 #include "ObjMain.h"
@@ -18,10 +19,7 @@ CObjMain::CObjMain(int map[MAP_X][MAP_Y])
 	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 }
 
-CObjMain::CObjMain(int map[75][75])
-{
-	memcpy(m_map, map, sizeof(int)*(75 * 75));
-}
+
 
 
 
@@ -31,13 +29,42 @@ void CObjMain::Init()
 	m_scroll_x = 64.0f;
 	m_scroll_y = 64.0f;
 
-	
+	map_chg = 0;
+	stop_flg = false;
 }
 
 //アクション
 void CObjMain::Action()
 {
+	if (map_chg == 0)
+	{
+		;
+	}
+	else if (map_chg >= 1 && stop_flg == true)
+	{
+		unique_ptr<wchar_t> p[7];
+		int size;
+		p[0] = Save::ExternalDataOpen(L"マップ2.csv", &size);
 
+
+		int map[MAP_X][MAP_Y];
+		int count = 1;
+
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				int w = 0;
+				swscanf_s(&p[map_chg-1].get()[count], L"%d", &w);
+
+				map[i][j] = w;
+				count += 2;
+
+			}
+		}
+		memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
+		stop_flg = false;
+	}
 
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -324,7 +351,10 @@ void CObjMain::BlockHit(
 							*right = true;//主人公から見て、左の部分が衝突している
 							*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
 							if (m_map[i][j] == 3)
-								MAP_CHANGE + 1;
+							{
+								stop_flg = true;
+								map_chg++;
+							}
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 45 && r < 135)
@@ -335,7 +365,10 @@ void CObjMain::BlockHit(
 							if (m_map[i][j] == 2)
 								*bt = m_map[i][j];
 							if (m_map[i][j] == 3)
-								MAP_CHANGE + 1;
+							{
+								stop_flg = true;
+								map_chg++;
+							}
 							*vy = 0.0f;
 						}
 						if (r > 135 && r < 225)
@@ -344,7 +377,10 @@ void CObjMain::BlockHit(
 							*left = true;//主人公から見て、右の部分が衝突している
 							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
 							if (m_map[i][j] == 3)
-								MAP_CHANGE + 1;
+							{
+								stop_flg = true;
+								map_chg++;
+							}
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
 						if (r > 225 && r < 315)
