@@ -200,8 +200,5 @@ void CObjEnemy::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
 
-bool CObjEnemy::OverFlowCheck(int x, int y)
-{
-	return false;
-}
+
 
