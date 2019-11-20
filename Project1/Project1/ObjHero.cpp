@@ -43,7 +43,7 @@ void CObjHero::Init()
 
 	m_ani_time = 6;
 	m_time = 30;
-	m_flg == false;
+	m_flg =false;
 
 	m_ani_frame = 1;//静止フレームを初期にする
 
@@ -77,7 +77,7 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 2.0f;
+		m_speed_power =1.0f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.0f;
@@ -85,7 +85,7 @@ void CObjHero::Action()
 	else
 	{
 		//通常速度
-		m_speed_power = 0.5f;
+		m_speed_power = 1.0f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
@@ -141,8 +141,8 @@ void CObjHero::Action()
 	}
 	
 	//摩擦
-	m_vx += -(m_vx*0.098);
-	m_vy += -(m_vy*0.098);
+	m_vx += -(m_vx*0.098f);
+	m_vy += -(m_vy*0.098f);
 
 	//高速移動によるblock判定
 	bool b;

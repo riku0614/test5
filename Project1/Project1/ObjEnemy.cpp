@@ -12,7 +12,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-
 CObjEnemy::CObjEnemy(int map[MAP_X][MAP_Y])
 {
 	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));

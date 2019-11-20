@@ -35,29 +35,29 @@ void CSceneMain::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
+	
 	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 
-	
 	int map[MAP_X][MAP_Y];
 	int count = 1;
-	
-		for (int i = 0; i < MAP_X; i++)
+
+	for (int i = 0; i < MAP_X; i++)
+	{
+		for (int j = 0; j < MAP_Y; j++)
 		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				int w = 0;
-				swscanf_s(&p.get()[count], L"%d", &w);
+			int w = 0;
+			swscanf_s(&p.get()[count], L"%d", &w);
 
-				map[i][j] = w;
-				count += 2;
+			map[i][j] = w;
+			count += 2;
 
-			}
 		}
+	}
 
 	Draw::LoadImageW(L"Char2.png", 0, TEX_SIZE_1024);
 
 	Draw::LoadImageW(L"床.png", 1, TEX_SIZE_512);
-	
+
 	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"壁.png", 3, TEX_SIZE_512);
@@ -81,8 +81,8 @@ void CSceneMain::InitScene()
 	//UIオブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
-	
-	
+
+
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);

@@ -36,15 +36,15 @@ void CSceneMain3::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
+	p = Save::ExternalDataOpen(L"map2.csv", &size);
 
 
-	p = Save::ExternalDataOpen(L"map[2].csv", &size);
-
-	int map[75][75];
+	int map[MAP_X][MAP_Y];
 	int count = 1;
-	for (int i = 0; i < 75; i++)
+
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
