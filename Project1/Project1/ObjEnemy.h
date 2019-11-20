@@ -53,6 +53,7 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	int m_id;
 	
 
 	float px, py;//Œð“_

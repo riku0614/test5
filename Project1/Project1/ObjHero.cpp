@@ -199,7 +199,7 @@ void CObjHero::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_px, &m_py, true,true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
+		&m_block_type,&m_id
 	);
 
 	//©g‚Ìhitbox‚ğ‚Á‚Ä‚­‚é
