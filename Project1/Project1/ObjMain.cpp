@@ -18,10 +18,6 @@ CObjMain::CObjMain(int map[MAP_X][MAP_Y])
 	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 }
 
-CObjMain::CObjMain(int map[75][75])
-{
-	memcpy(m_map, map, sizeof(int)*(75 * 75));
-}
 
 
 
