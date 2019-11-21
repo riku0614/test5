@@ -23,7 +23,7 @@ void CObjHero::Init()
 	m_hero_life = 3;//主人公の体力用変数
 
 	peperon_flag = false;
-
+	use_Item_flag = false;
 
 	//blockとの衝突確認用
 
@@ -54,6 +54,7 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
+	k_id = 0;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -121,11 +122,59 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
-	//アイテムをとる処理
-	else if (Input::GetVKey('E') == true && mi_hit_left == true || Input::GetVKey('E') == true &&  mi_hit_right == true
-		|| Input::GetVKey('E') == true && mi_hit_down == true || Input::GetVKey('E') == true && mi_hit_up == true)
+
+	//主人公のアイテムと当たったフラグを持ってくる
+	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
+
+	//1番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false)
 	{
 		peperon_flag = true;
+		k_id = ITEM_KEY;
+	}
+
+	//2番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true)
+	{
+		peperon_flag_2 = true;
+		k_id = ITEM_KEY;
+	}
+
+	//3番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true)
+	{
+		peperon_flag_3 = true;
+		k_id = ITEM_KEY;
+	}
+
+	//1番目のアイテムを使う処理
+	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
+	{
+		use_Item_flag = true;
+		UI->Settakeflag(false);
+	}
+
+	//2番目のアイテムを使う処理
+	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
+	{
+		use_Item_flag_2 = true;
+		UI->Settakeflag_2(false);
+	}
+
+	//3番目のアイテムを使う処理
+	else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
+	{
+		use_Item_flag_3 = true;
+		UI->Settakeflag_3(false);
 	}
 
 	//アニメーションのリセット
