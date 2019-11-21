@@ -70,8 +70,12 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 
+	Draw::LoadImageW(L"扉.png", 9, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
+
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);

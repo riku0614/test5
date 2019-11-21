@@ -55,7 +55,7 @@ enum ITEM_ID
 {
 	ITEM_KEY,
 	CHAR_HERO,
-
+	CHAR_ENEMY,
 };
 
 

@@ -26,6 +26,8 @@ void CObjEnemy::Init()
 	m_ey = 64*3.0f;
 
 	m_flg = 0;
+
+	m_id = CHAR_ENEMY;
 	
 	
 	//block‚Æ‚ÌÕ“ËŠm”F—p
@@ -161,7 +163,7 @@ void CObjEnemy::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d);
+		&d,&m_id);
 
 	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	

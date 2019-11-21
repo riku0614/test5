@@ -43,7 +43,12 @@ void CObjItem::Init()
 			if (m_map[i][j] == 5)
 			{
 
-			
+				
+				//メインの位置を取得
+				/*
+				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+				float hx = main->GetScrollX();
+				float hy = main->GetScrollY();*/
 
 				ix = j * 64.0f;//アイテムの位置Xをとる
 				iy = i * 64.0f;//アイテムの位置Yをとる
@@ -118,5 +123,4 @@ void CObjItem::Draw()
 			}
 		}
 	}
-	
 }
