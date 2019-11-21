@@ -13,10 +13,11 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[100][100])
+CObjItem::CObjItem(int map[MAP_X][MAP_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(100 * 100));
+	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y ));
 }
+
 
 //イニシャライズ
 void CObjItem::Init()
@@ -35,9 +36,9 @@ void CObjItem::Init()
 	//m_scroll_x = -2850.0f;
 	//m_scroll_y = -64.0f;
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
 			if (m_map[i][j] == 5)
 			{
@@ -72,10 +73,6 @@ void CObjItem::Action()
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
-	//HitBoxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
-
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
@@ -86,7 +83,9 @@ void CObjItem::Action()
 		Hits::DeleteHitBox(this);
 	}
 
-	
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
 }
 
 //ドロー
@@ -108,9 +107,9 @@ void CObjItem::Draw()
 	float hx = main->GetScrollX();
 	float hy = main->GetScrollY();
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
 			if (m_map[i][j] == 5)
 			{

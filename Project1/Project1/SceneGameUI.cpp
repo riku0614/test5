@@ -30,6 +30,7 @@ CSceneGameUI::~CSceneGameUI()
 //ゲームUI初期化メソッド
 void CSceneGameUI::InitScene()
 {
+
 	Draw::LoadImage(L"アイテム欄.png",0,TEX_SIZE_512);
 
 	//Draw::LoadImageW(L"薬.png", 9, TEX_SIZE_512);

@@ -15,12 +15,12 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 0.0f; //位置
-	m_py = 0.0f;
+	m_px = 64.0f; //位置
+	m_py = 64.0f;
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 
-	m_hero_life = 3;//主人公の体力用変数
+	m_hero_life = 30;//主人公の体力用変数
 
 	peperon_flag = false;
 	use_Item_flag = false;
@@ -41,8 +41,9 @@ void CObjHero::Init()
 
 
 
-	m_ani_time = 30;
-	m_flg == false;
+	m_ani_time = 6;
+	m_time = 30;
+	m_flg =false;
 
 	m_ani_frame = 1;//静止フレームを初期にする
 
@@ -72,14 +73,12 @@ void CObjHero::Action()
 
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true )
+	if (m_stamina_limid >= 10 && Input::GetVKey(VK_LSHIFT) == true || 
+		m_stamina_limid >= 10 && Input::GetVKey(VK_RSHIFT) == true)
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 2.0f;
+		m_speed_power =1.0f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.0f;
@@ -87,7 +86,7 @@ void CObjHero::Action()
 	else
 	{
 		//通常速度
-		m_speed_power = 0.5f;
+		m_speed_power = 1.0f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
@@ -191,8 +190,8 @@ void CObjHero::Action()
 	}
 	
 	//摩擦
-	m_vx += -(m_vx*0.098);
-	m_vy += -(m_vy*0.098);
+	m_vx += -(m_vx*0.098f);
+	m_vy += -(m_vy*0.098f);
 
 	//高速移動によるblock判定
 	bool b;
@@ -249,7 +248,7 @@ void CObjHero::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_px, &m_py, true,true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
+		&m_block_type,&m_id
 	);
 
 	//自身のhitboxを持ってくる
@@ -274,23 +273,28 @@ void CObjHero::Action()
 	
 	
 	//主人公機オブジェクトと接触したら敵削除
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
 	{
-		//主人公のライフによる当たり判定の変化
+		m_hero_life-=1;
+
+		m_flg = true;
+
 		if (m_hero_life == 0)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
 
 			Scene::SetScene(new CSceneGameOver);
 		}
-		else
-		{
-			m_hero_life--;
-		}
+
 	}
 	
-	
+	if (m_flg == true && m_time > 0)
+	{
+		m_time--;
+	}
+	else
+	{
+		m_flg = false;
+	}
 	
 }
 
@@ -330,7 +334,11 @@ void CObjHero::Draw()
 	if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true &&m_stamina_limid>0|| 
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('A') == true&&m_stamina_limid > 0 ||
 		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
-		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0)
+		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
 		src.m_top = 90.0f * 5;

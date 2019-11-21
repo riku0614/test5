@@ -13,30 +13,31 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
+#include "SceneMain3.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 
 //コンストラクタ
-CSceneMain::CSceneMain()
+CSceneMain3::CSceneMain3()
 {
 
 }
 
 //デストラクタ
-CSceneMain::~CSceneMain()
+CSceneMain3::~CSceneMain3()
 {
 
 }
 
 //ゲームメイン初期化メソッド
-void CSceneMain::InitScene()
+void CSceneMain3::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
-	
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"map2.csv", &size);
+
 
 	int map[MAP_X][MAP_Y];
 	int count = 1;
@@ -58,9 +59,9 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"床.png", 1, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁.png", 2, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"壁.png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"スタミナゲージ.png", 3, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"窓.png", 4, TEX_SIZE_512);
 
@@ -70,12 +71,8 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 
-	Draw::LoadImageW(L"扉.png", 9, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
-
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -94,14 +91,15 @@ void CSceneMain::InitScene()
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
 
-	//敵を出現
+	//5があれば、敵を出現
 	CObjEnemy* obje = new CObjEnemy(map);
 	Objs::InsertObj(obje, OBJ_ENEMY, 10);
-	
+
 }
 
 //ゲームメイン実行中メソッド
-void CSceneMain::Scene()
+void CSceneMain3::Scene()
 {
 
 }
+

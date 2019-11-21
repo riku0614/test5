@@ -55,7 +55,7 @@ enum ITEM_ID
 {
 	ITEM_KEY,
 	CHAR_HERO,
-
+	CHAR_ENEMY,
 };
 
 
@@ -88,6 +88,7 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
+#include"SceneMain3.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
