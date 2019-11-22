@@ -64,6 +64,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"”à.png", 10, TEX_SIZE_512);
 	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
 
+	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"Œ®.png", 9, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"char3.png", 13, TEX_SIZE_512);

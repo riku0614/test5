@@ -7,7 +7,6 @@
 #include "GameL/DrawTexture.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
-#include "GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -28,11 +27,13 @@ CSceneGameUI::~CSceneGameUI()
 {
 
 }
-//ゲームUI初期化メゾット
+//ゲームUI初期化メソッド
 void CSceneGameUI::InitScene()
 {
 
 	Draw::LoadImage(L"アイテム欄.png",0,TEX_SIZE_512);
+
+	//Draw::LoadImageW(L"薬.png", 9, TEX_SIZE_512);
 
 	CObjGameUI*obj = new CObjGameUI();
 	Objs::InsertObj(obj, OBJ_GAME_UI, 1);
@@ -40,8 +41,8 @@ void CSceneGameUI::InitScene()
 
 
 }
-//ゲームUI実行メゾット
+//ゲームUI実行メソッド
 void CSceneGameUI::Scene()
 {
-
+	
 }
