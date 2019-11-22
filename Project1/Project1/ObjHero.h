@@ -75,4 +75,7 @@ private:
 	bool peperon_flag; //アイテム消去フラグ用
 	float px, py;//交点
 
+	bool stey_flg1;
+	bool stey_flg2;
+	bool stey_flg3;
 };
