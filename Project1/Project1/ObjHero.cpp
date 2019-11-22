@@ -134,7 +134,7 @@ void CObjHero::Action()
 		peperon_flag = true;
 		k_id = ITEM_KEY;
 	}
-
+	/*
 	//2番目のアイテムをとる処理
 	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true ||
 		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true ||
@@ -153,7 +153,7 @@ void CObjHero::Action()
 	{
 		peperon_flag_3 = true;
 		k_id = ITEM_KEY;
-	}
+	}*/
 
 	//1番目のアイテムを使う処理
 	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
@@ -161,7 +161,7 @@ void CObjHero::Action()
 		use_Item_flag = true;
 		UI->Settakeflag(false);
 	}
-
+	/*
 	//2番目のアイテムを使う処理
 	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
 	{
@@ -174,7 +174,7 @@ void CObjHero::Action()
 	{
 		use_Item_flag_3 = true;
 		UI->Settakeflag_3(false);
-	}
+	}*/
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)

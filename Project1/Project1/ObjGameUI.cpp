@@ -42,7 +42,7 @@ void CObjGameUI::Action()
 		hero->SetFlug(false);
 		m_id = 0;
 	}
-
+	/*
 	if (hero->SetItemflag_2() == true) //アイテム欄の2番目
 	{
 		hero->SetFlug_2(false);
@@ -53,7 +53,7 @@ void CObjGameUI::Action()
 	{
 		hero->SetFlug_3(false);
 		m_id = 0;
-	}
+	}*/
 }
 
 //ドロー
@@ -110,6 +110,7 @@ void CObjGameUI::Draw()
 	}
 
 	//2番のアイテム表示
+	/*
 	if (hero->Getflag_2() == true && take_flag == true)
 	{
 		RECT_F src3;	//描画元切り取り位置
@@ -155,7 +156,7 @@ void CObjGameUI::Draw()
 		Draw::Draw(9, &src4, &dst4, c, 0.0f);
 
 		take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
-	}
+	}*/
 
 	//階の表示
 	Font::StrDraw(L"8階", 730, 10, 30, c);

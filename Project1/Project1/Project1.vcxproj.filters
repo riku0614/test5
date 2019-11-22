@@ -292,9 +292,6 @@
     <Filter Include="ソースファイル\主人公">
       <UniqueIdentifier>{d2cff600-e804-460b-a3a6-ce4fbff8a365}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\ゲームUI">
-      <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\ゲームオーバー・クリア画面">
       <UniqueIdentifier>{d596b6af-722a-4458-9c32-d582218515a6}</UniqueIdentifier>
     </Filter>
@@ -309,6 +306,9 @@
     </Filter>
     <Filter Include="ソースファイル\メイン">
       <UniqueIdentifier>{7c24e857-1928-4278-93f6-7256f72b6087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ゲームUI">
+      <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
