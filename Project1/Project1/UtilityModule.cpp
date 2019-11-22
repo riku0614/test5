@@ -1,6 +1,8 @@
 #include "GameHead.h"
 #include "UtilityModule.h"
 #include "GameL/UserData.h"
+
+
 //---UnitVec関数
 /*引数１ float* vx  ; ベクトルのX成分のポインタ
 　引数２ float* vy  ; ベクトルのY成分のポインタ
@@ -62,7 +64,8 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 {
 	
 	int size;
-	p[m-1] = Save::ExternalDataOpen(L"マップ2.csv", &size);
+	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"マップ2.csv", &size);
 	
 
 	int map[MAP_X][MAP_Y];
@@ -74,7 +77,7 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 		for (int j = 0; j < MAP_Y; j++)
 		{
 			int w = 0;
-			swscanf_s(&p[m - 1].get()[count], L"%d", &w);
+			swscanf_s(&p[m].get()[count], L"%d", &w);
 
 			map[i][j] = w;
 			count += 2;
@@ -84,12 +87,12 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 	
 }
-//MapChange関数
+//RoomMapChange関数
 /*
 引数１　int m     :map切り替え用変数
 引数２　int m_map :切り替えるマップデータをぶち込むメインマップ変数
 戻り値　無し
-切り替え用のマップをメインマップ変数にぶち込む関数
+切り替え用の教室マップをメイン教室マップ変数にぶち込む関数
 */
 
 void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
@@ -126,8 +129,11 @@ void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
 */
 float SpawnChanger(int m)
 {
-
-	if (m = 1)
+	if (m = 0)
+	{
+		return 0.0f;
+	}
+	else if (m = 1)
 	{
 		return 64.0 * 30;
 	}
@@ -155,4 +161,5 @@ float SpawnChanger(int m)
 	{
 		return 64.0;
 	}
+
 }
