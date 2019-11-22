@@ -58,11 +58,12 @@ void CObjMain::Action()
 		else if (back_stage==true&&stop_flg == true)
 		{
 		
-			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+            CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
-			hero->SetX(save_x[map_chg][1] - hero->GetVX());
-			hero->SetY(save_y[map_chg][1] - hero->GetVY());
+			hero->SetX(save_x[map_chg][1] );
+			hero->SetY(save_y[map_chg][1] );
 			main->SetScrollX(save_scroll_x[map_chg][1]);
 			main->SetScrollY(save_scroll_y[map_chg][1]);
 
@@ -74,7 +75,7 @@ void CObjMain::Action()
 
 		
 	}
-	else if (map_chg >= 1 && stop_flg == true)
+	else if (map_chg > 0 && stop_flg == true&&back_stage==false)
 	{
 		spawn_point[map_chg] = SpawnChanger(map_chg);
 
@@ -89,6 +90,7 @@ void CObjMain::Action()
 		stop_flg = false;
 	}
 	
+	back_stage = false;
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -824,7 +826,7 @@ void CObjMain::ItemHit(
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] == 5)
+				if (m_map[i][j] == 4)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
