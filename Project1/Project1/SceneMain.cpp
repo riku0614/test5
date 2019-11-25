@@ -81,7 +81,7 @@ void CSceneMain::InitScene()
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
 
-
+	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
