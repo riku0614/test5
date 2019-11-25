@@ -623,7 +623,7 @@ void CObjMain::Draw()
 
 		}
 	}
-	else
+	else 
 	{
 		for (int i = 0; i < ROOM_X; i++)
 		{
