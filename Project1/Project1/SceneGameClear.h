@@ -13,6 +13,9 @@ public:
 	~CSceneGameClear();
 	void InitScene();//ゲームメイン初期化メソッド
 	void Scene();//ゲームメイン実行中メソッド
-private:
 
+	bool Ending1() { return ED; }
+private:
+	int m_time;	//テロップ出現用（試作）
+	bool ED;	//ED1出現用
 };

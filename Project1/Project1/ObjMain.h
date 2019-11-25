@@ -10,9 +10,9 @@ using namespace GameL;
 //マクロ
 #define MAP_X  (75)
 #define MAP_Y  (75)
-#define ROOM_X (25)
-#define ROOM_Y (25)
-
+#define ROOM_X (30)
+#define ROOM_Y (30)
+#define MAP_NUMBER (8)
 
 //オブジェクト：メイン
 class CObjMain : public CObj
@@ -29,8 +29,8 @@ class CObjMain : public CObj
 		float GetScrollY() { return m_scroll_y; }
 		
 		
-		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X=１２個、Y=１０個）
-		int r_map[ROOM_X][ROOM_Y];
+		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
+		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
 
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
@@ -50,20 +50,28 @@ class CObjMain : public CObj
 		);
 	private:
 		
-		bool stop_flg;
-		bool room_in;
+		float save_x[MAP_NUMBER][2];//マップを行き来する用の主人公の位置を登録する配列
+		float save_y[MAP_NUMBER][2];
+		float save_scroll_x[MAP_NUMBER][2];//マップを行き来する用のスクロール情報を登録する配列
+		float save_scroll_y[MAP_NUMBER][2];
 
-		int map_chg;
+		bool stop_flg;   //マップ切り替えを一度だけしか
+		bool room_in;    //教室マップへの切り替えのフラグ
+		bool back_stage; //前のマップに戻るためのフラグ
 
-		float spawn_point[7];
+		int map_chg;     //マップ切り替えを管理するための変数
+
+		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;
 		int jy;
 		
-		unique_ptr<wchar_t> p[7];
-		unique_ptr<wchar_t> r[7];
+		unique_ptr<wchar_t> p[MAP_NUMBER]; //ユーザーデータのメインマップデータを保存するための変数
+		unique_ptr<wchar_t> r[MAP_NUMBER]; //ユーザーデータの教室マップデータを保存するための変数
+
 
 		float m_scroll_x;   //左右スクロール用
 		float m_scroll_y;   //上下スクロール用
+
 
 		float Dot(float ax, float ay, float bx, float by);
 		float Cross(float ax, float ay, float bx, float by);

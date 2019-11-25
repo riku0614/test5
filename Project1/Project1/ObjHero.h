@@ -92,4 +92,7 @@ private:
 
 	float px, py;//Œð“_
 
+	bool stey_flg1;
+	bool stey_flg2;
+	bool stey_flg3;
 };

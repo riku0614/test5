@@ -15,4 +15,6 @@ public:
 	void Action();	//アクション
 	void Draw();	//ドロー
 private:
+	int GO_time;	//GameOver用のタイム変数
+	bool Title_flag;	//キーを押したらTitleに戻る用のフラグ
 };
