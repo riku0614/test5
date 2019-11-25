@@ -94,6 +94,9 @@
     <ClCompile Include="SceneMain.cpp">
       <Filter>ソースファイル\メイン</Filter>
     </ClCompile>
+    <ClCompile Include="ObjGimmick.cpp">
+      <Filter>ソースファイル\ホラーギミック</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -275,6 +278,9 @@
     <ClInclude Include="SceneMain.h">
       <Filter>ソースファイル\メイン</Filter>
     </ClInclude>
+    <ClInclude Include="ObjGimmick.h">
+      <Filter>ソースファイル\ホラーギミック</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">
@@ -309,6 +315,9 @@
     </Filter>
     <Filter Include="ソースファイル\ゲームUI">
       <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ホラーギミック">
+      <UniqueIdentifier>{e062813a-56a8-4267-834e-173fc6f22495}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

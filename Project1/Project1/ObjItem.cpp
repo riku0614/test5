@@ -45,10 +45,10 @@ void CObjItem::Init()
 
 				
 				//メインの位置を取得
-				/*
+				
 				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 				float hx = main->GetScrollX();
-				float hy = main->GetScrollY();*/
+				float hy = main->GetScrollY();
 
 				ix = j * 64.0f;//アイテムの位置Xをとる
 				iy = i * 64.0f;//アイテムの位置Yをとる
@@ -69,13 +69,17 @@ void CObjItem::Action()
 {
 
 	
-
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
+	
+
+
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
 	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
 	if (hero->Getflag() == true)
 	{
@@ -83,9 +87,7 @@ void CObjItem::Action()
 		Hits::DeleteHitBox(this);
 	}
 
-	//HitBoxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+	
 }
 
 //ドロー
@@ -111,7 +113,7 @@ void CObjItem::Draw()
 	{
 		for (int j = 0; j < MAP_Y; j++)
 		{
-			if (m_map[i][j] == 5)
+			if (m_map[i][j] == 4)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f + hy;

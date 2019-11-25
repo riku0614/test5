@@ -124,7 +124,8 @@ void CObjHero::Action()
 
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
-
+	//ゲームメインにフラグをセットする
+	CObjMain* Main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	//1番目のアイテムをとる処理
 	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false ||
 		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false ||
@@ -133,6 +134,7 @@ void CObjHero::Action()
 	{
 		peperon_flag = true;
 		k_id = ITEM_KEY;
+		Main->SetDelete(true);
 	}
 	/*
 	//2番目のアイテムをとる処理
@@ -200,18 +202,17 @@ void CObjHero::Action()
 
 	if (pbb->GetScrollX() > 0)
 		pbb->SetScrollX(0);
-	if (pbb->GetScrollY() > 0)
-		pbb->SetScrollY(0);
+	
 	//移動方向にrayを飛ばす
 	float vx;
-	//float vy;
+	float vy;
 
 	if (m_vx > 0)
 		vx = 500-pbb->GetScrollX();
 	else
 		vx = 0 - pbb->GetScrollX();
 
-
+	
 	//ray判定
 	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
 
@@ -219,23 +220,26 @@ void CObjHero::Action()
 	{
 		//交点取得
 		px = pxx + pbb->GetScrollX();
-		py = pyy-pbb->GetScrollY();
+		py = pyy - pbb->GetScrollY();
 
 		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
 		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
 
-									  //主人公の幅分オフセット
+		
+	    //主人公の幅分オフセット
 		if (vx > 0)
 			px += -64;
 		else
 			px += 2;
 
+		
 		//AとBが逆を向いている（主人公が移動先の壁を越えている）
 		if (aa*bb < 0)
 		{
 			//移動ベクトルを（交点→主人公の位置）ベクトルにする
 			m_vx = px - m_px;
 		}
+		
 	}
 	else
 	{
