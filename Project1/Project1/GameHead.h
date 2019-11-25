@@ -16,7 +16,8 @@ enum OBJ_NAME
 	OBJ_GAME_UI,
 	OBJ_ITEM,
 	OBJ_MENU,
-	OBJ_JUNCTION,
+	OBJ_GIMMICK,
+
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -78,7 +79,7 @@ enum ITEM_ID
 //#include "ObjChar.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
-
+#include "ObjGimmick.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -88,7 +89,6 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
-#include"SceneMain3.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
