@@ -78,7 +78,7 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power =1.3f;
+		m_speed_power =1.1f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.0f;
