@@ -323,4 +323,13 @@
       <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="0タイトルBGM.wav" />
+    <Media Include="1廊下BGM.wav" />
+    <Media Include="2カーソルSE.wav" />
+    <Media Include="3死亡SE.wav" />
+    <Media Include="4教室扉SE.wav" />
+    <Media Include="5マップ切り替えSE.wav" />
+    <Media Include="6ダメージ音.wav" />
+  </ItemGroup>
 </Project>

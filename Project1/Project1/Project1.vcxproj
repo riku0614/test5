@@ -192,6 +192,15 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="UtilityModule.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="0タイトルBGM.wav" />
+    <Media Include="1廊下BGM.wav" />
+    <Media Include="2カーソルSE.wav" />
+    <Media Include="3死亡SE.wav" />
+    <Media Include="4教室扉SE.wav" />
+    <Media Include="5マップ切り替えSE.wav" />
+    <Media Include="6ダメージ音.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -7,6 +7,7 @@
 #include "GameHead.h"
 #include "ObjHero.h"
 #include "UtilityModule.h"
+#include "GameL/Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -279,6 +280,12 @@ void CObjHero::Action()
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
 	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(6);
+
 		m_hero_life-=1;
 
 		m_flg = true;
