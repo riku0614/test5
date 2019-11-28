@@ -60,10 +60,25 @@ void CObjGameUI::Action()
 void CObjGameUI::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-
 	RECT_F src;	//描画元切り取り位置
 	RECT_F dst;	//描画先表示位置
 
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1024.0f;
+	src.m_bottom = 680.0f;
+
+	//表示位置設定
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = dst.m_left + 800.0f;
+	dst.m_bottom = dst.m_top + 600.0f;
+	
+	//描画設定
+	
+	Draw::Draw(17, &src, &dst, c, 0.0f);
+	
 	//切り取り位置の設定
 	src.m_top = 19.0f;
 	src.m_left = 0.0f;
@@ -157,7 +172,16 @@ void CObjGameUI::Draw()
 
 		take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 	}*/
-
-	//階の表示
-	Font::StrDraw(L"8階", 730, 10, 30, c);
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (main->MapChangeData() == 0)
+	{
+		//階の表示
+		Font::StrDraw(L"8階", 730, 10, 30, c);
+	}
+	else if (main->MapChangeData() == 1)
+	{
+		//階の表示
+		Font::StrDraw(L"1階", 730, 10, 30, c);
+	}
+	
 }

@@ -372,6 +372,8 @@ void CObjMain::BlockHit(
 	//踏んでいるブロックの種類の初期化
 	*bt = 0;
 
+	CObjItem* item = (CObjItem*)Objs::GetObj(OBJ_ITEM);
+
 	//m=mapの全要素にアクセス
 	if (room_in == false)
 	{
@@ -458,9 +460,13 @@ void CObjMain::BlockHit(
 										room_in = true;
 										stop_flg = true;
 
+										item->SetFlag(true);
+								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 										CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+
 
 										save_x[map_chg][0] = hero->GetX();
 										save_y[map_chg][0] = hero->GetY();
@@ -1015,6 +1021,33 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(3, &src, &dst, c, 0.0f);
+					}
+					if(m_map[i][j]==10)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(18, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 11)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(19, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 12)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(20, &src, &dst, c, 0.0f);
 					}
 					//扉テクスチャ
 					if (m_map[i][j] == 6)

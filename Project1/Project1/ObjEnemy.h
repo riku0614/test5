@@ -32,7 +32,7 @@ using namespace GameL;
 class CObjEnemy : public CObj
 {
 public:
-	CObjEnemy(int map[MAP_X][MAP_Y]);
+	CObjEnemy(float x,float y);
 	~CObjEnemy() {};
 	CObjEnemy(int map[100][100]);
 	void Init();   //イニシャライズ

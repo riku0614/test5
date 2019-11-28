@@ -95,7 +95,7 @@
       <Filter>ソースファイル\メイン</Filter>
     </ClCompile>
     <ClCompile Include="ObjGimmick.cpp">
-      <Filter>ソースファイル\ホラーギミック</Filter>
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,7 +279,7 @@
       <Filter>ソースファイル\メイン</Filter>
     </ClInclude>
     <ClInclude Include="ObjGimmick.h">
-      <Filter>ソースファイル\ホラーギミック</Filter>
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +318,9 @@
     </Filter>
     <Filter Include="ソースファイル\ホラーギミック">
       <UniqueIdentifier>{e062813a-56a8-4267-834e-173fc6f22495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\NewFilter1">
+      <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

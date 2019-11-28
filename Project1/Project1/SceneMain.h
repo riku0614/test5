@@ -13,5 +13,6 @@ class CSceneMain : public CScene
 		~CSceneMain();
 		void InitScene();//ゲームメイン初期化メソッド
 		void Scene();//ゲームメイン実行中メソッド
+	
 	private:
 };
