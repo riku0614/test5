@@ -6,6 +6,7 @@
 #include "GameL/SceneObjManager.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
+#include "GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -33,6 +34,8 @@ void CSceneGameOver::InitScene()
 	//オブジェクトを登録
 	//CObjMain* p = new CObjMain();
 	//Objs::InsertObj(p, OBJ_MAIN, 1);
+
+	Draw::LoadImageW(L"無題.png", 0, TEX_SIZE_512);
 
 	//タイトルオブジェクト作成
 	CObjGameOver* objg = new CObjGameOver();		//ゲームオーバーオブジェクト作成

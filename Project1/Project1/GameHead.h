@@ -16,6 +16,8 @@ enum OBJ_NAME
 	OBJ_GAME_UI,
 	OBJ_ITEM,
 	OBJ_MENU,
+	OBJ_GIMMICK,
+
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -54,7 +56,7 @@ enum ITEM_ID
 {
 	ITEM_KEY,
 	CHAR_HERO,
-
+	CHAR_ENEMY,
 };
 
 
@@ -71,10 +73,12 @@ enum ITEM_ID
 #include "ObjMain.h"
 #include "ObjEnemy.h"
 #include "ObjGameUI.h"
-//#include "ObjChar.h"
+#include "ObjGameOver.h"
+#include "ObjGameClear.h"
+#include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
-
+#include "ObjGimmick.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -82,6 +86,7 @@ enum ITEM_ID
 #include "SceneMain.h"
 #include "SceneGameClear.h"
 #include "SceneGameOver.h"
+#include "SceneGameUI.h"
 #include "SceneMenu.h"
 //-----------------------------------------------
 

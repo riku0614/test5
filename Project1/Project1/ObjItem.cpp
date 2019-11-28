@@ -7,46 +7,115 @@
 #include "GameHead.h"
 #include "ObjItem.h"
 #include "GameL/HitBoxManager.h"
+#include "UtilityModule.h"
 
 
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[100][100])
+CObjItem::CObjItem(int map[MAP_X][MAP_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(100 * 100));
+	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y ));
 }
+
 
 //イニシャライズ
 void CObjItem::Init()
 {
 	//変数初期化
-	//ix = 0;
-	//iy = 0;
+	ix = 0;
+	iy = 0;
 
-	//メインの位置を取得
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	//m_px = 0.0f;
+	//m_py = 0.0f;
+	m_vx = 0.0f;
+	m_vy = 0.0f;
 
-	for (int i = 0; i < 100; i++)
+	//hit_flg = true;
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
 			if (m_map[i][j] == 4)
 			{
 
+
+				//メインの位置を取得
+
+				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+				float hx = main->GetScrollX();
+				float hy = main->GetScrollY();
+
+				ix = j * 64.0f;//アイテムの位置Xをとる
+				iy = i * 64.0f;//アイテムの位置Yをとる
+
 				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, j-main->GetScrollY(), i-main->GetScrollX(), 64, 64, ELEMENT_ITEM, OBJ_ITEM, 1);
+				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
+
+
 			}
 		}
 	}
+	//m_scroll_x = -2850.0f;
+	//m_scroll_y = -64.0f;
+
+	stop_flg = false;
+	
 
 }
 
 //アクション
 void CObjItem::Action()
 {
+	//メインの位置を取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	r_map[ROOM_X][ROOM_Y] = main->RoomMapData();
+	
+	if(main->RoomFlag() == true && stop_flg == true)
+	{
+		for (int i = 0; i < ROOM_X; i++)
+		{
+			for (int j = 0; j < ROOM_Y; j++)
+			{
+				if (r_map[i][j] == 4)
+				{
+
+
+					//メインの位置を取得
+
+					CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+					float hx = main->GetScrollX();
+					float hy = main->GetScrollY();
+
+					ix = j * 64.0f;//アイテムの位置Xをとる
+					iy = i * 64.0f;//アイテムの位置Yをとる
+
+					//当たり判定用hitboxを作成
+					Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
+
+
+				}
+			}
+		}
+	
+		stop_flg = false;
+	}
+
+	
 	
 
+
+	//主人公のアイテムと当たったフラグを持ってくる
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
+	if (hero->Getflag() == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	
 }
@@ -70,21 +139,20 @@ void CObjItem::Draw()
 	float hx = main->GetScrollX();
 	float hy = main->GetScrollY();
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < MAP_X; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < MAP_Y; j++)
 		{
 			if (m_map[i][j] == 4)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f + hy;
 				dst.m_left = j * 64.0f + hx;
-				dst.m_right = dst.m_left + 20.0;
-				dst.m_bottom = dst.m_top + 20.0;
+				dst.m_right = dst.m_left + 32.0f;
+				dst.m_bottom = dst.m_top + 32.0f;
 
 				Draw::Draw(8, &src, &dst, c, 0.0f);
 			}
 		}
 	}
-	
 }
