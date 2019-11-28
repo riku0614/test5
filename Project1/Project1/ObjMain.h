@@ -28,6 +28,7 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y•ûŒü‚Ö‚ÌƒXƒNƒ[ƒ‹
 		float GetScrollY() { return m_scroll_y; }
 		void SetDelete(bool b) { delete_flg = b; }
+		void SetStopFlag(bool b) { stop_flg2 = b; }
 		bool RoomFlag() { return room_in; }
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
