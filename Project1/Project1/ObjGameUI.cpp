@@ -42,6 +42,8 @@ void CObjGameUI::Action()
 		hero->SetFlug(false);
 		m_id = 0;
 	}
+
+	
 	/*
 	if (hero->SetItemflag_2() == true) //ƒAƒCƒeƒ€—“‚Ì2”Ô–Ú
 	{
