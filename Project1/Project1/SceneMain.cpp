@@ -13,6 +13,7 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
+#include "ObjRoom.h"
 
 //使用するネームスペース
 using namespace GameL;

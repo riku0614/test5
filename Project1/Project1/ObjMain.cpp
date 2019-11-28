@@ -8,6 +8,7 @@
 
 #include "GameHead.h"
 #include "ObjMain.h"
+#include "ObjRoom.h"
 
 
 //使用するネームスペース
@@ -558,7 +559,6 @@ void CObjMain::ItemHit(
 
 	}
 }
-
 
 
 	
