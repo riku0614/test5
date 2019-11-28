@@ -60,7 +60,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"窓.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
-	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"kaidan2.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);

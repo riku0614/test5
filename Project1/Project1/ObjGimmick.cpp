@@ -87,9 +87,7 @@ void CObjGimmick::Action()
 		
 	}
 	
-
 	
-
 	
 
 
