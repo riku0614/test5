@@ -13,6 +13,7 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
+#include "ObjRoom.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -45,14 +46,16 @@ void CSceneMain::InitScene()
 	{
 		for (int j = 0; j < MAP_Y; j++)
 		{
+			
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			count += 3;
 
 		}
 	}
+
 
 	Draw::LoadImageW(L"床.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"スタミナゲージ.png", 2, TEX_SIZE_512);
@@ -60,11 +63,16 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"窓.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
-	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"kaidan2.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);
 	Draw::LoadImageW(L"手形1.png", 15, TEX_SIZE_512);
+	Draw::LoadImageW(L"呪い.png", 16, TEX_SIZE_512);
+	Draw::LoadImageW(L"画面.png", 17, TEX_SIZE_1024);
+	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
@@ -81,9 +89,6 @@ void CSceneMain::InitScene()
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
 
-	//GIMMICKオブジェクト作成
-	CObjGimmick* objg = new CObjGimmick(map);
-	Objs::InsertObj(objg, OBJ_GIMMICK, 11);
 
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
@@ -92,6 +97,8 @@ void CSceneMain::InitScene()
 	//アイテムオブジェクト作成
 	CObjItem* obji = new CObjItem(map);
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
+
+	
 
 	//敵を出現
 	/*CObjEnemy* obje = new CObjEnemy(map);

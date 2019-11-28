@@ -35,6 +35,7 @@ void CObjMain::Init()
 	spawn_point[7] = NULL;
 	room_in = false;
 	back_stage = false;
+	stop_flg2 = true;
 	delete_flg = false;
 }
 
@@ -127,6 +128,29 @@ void CObjMain::Action()
 
 	}
 
+	if (stop_flg2 == true)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (m_map[i][j] == 7)
+				{
+
+					//アイテムオブジェクト作成
+					CObjGimmick* objg = new CObjGimmick((j - 1)*64.0f + m_scroll_x, (i-1)*64.0f + m_scroll_y);
+					Objs::InsertObj(objg, OBJ_GIMMICK, 14);
+
+					CObjGimmick* gim = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
+					gim->SetY(j);
+					gim->SetX(i);
+
+				}
+			}
+
+		}
+		stop_flg2 = false;
+	}
 
 
 	
@@ -372,6 +396,8 @@ void CObjMain::BlockHit(
 	//踏んでいるブロックの種類の初期化
 	*bt = 0;
 
+	CObjItem* item = (CObjItem*)Objs::GetObj(OBJ_ITEM);
+
 	//m=mapの全要素にアクセス
 	if (room_in == false)
 	{
@@ -381,7 +407,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (m_map[i][j] <= 9 && m_map[i][j] > 4&&m_map[i][j]!=7  || m_map[i][j]==3)
+				if (m_map[i][j] <= 99 && m_map[i][j] > 4&&m_map[i][j]!=7  || m_map[i][j]==3)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -458,9 +484,13 @@ void CObjMain::BlockHit(
 										room_in = true;
 										stop_flg = true;
 
+										item->SetFlag(true);
+								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 										CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+
 
 										save_x[map_chg][0] = hero->GetX();
 										save_y[map_chg][0] = hero->GetY();
@@ -984,7 +1014,6 @@ void CObjMain::ItemHit(
 }
 
 
-
 	
 
 
@@ -1044,6 +1073,33 @@ void CObjMain::Draw()
 
 						Draw::Draw(3, &src, &dst, c, 0.0f);
 					}
+					if(m_map[i][j]==10)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(18, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 11)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(19, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 12)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(20, &src, &dst, c, 0.0f);
+					}
 					//扉テクスチャ
 					if (m_map[i][j] == 6)
 					{
@@ -1095,6 +1151,33 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(3, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 10)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(18, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 11)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(19, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 12)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(20, &src, &dst, c, 0.0f);
 					}
 					//扉テクスチャ
 					if (r_map[i][j] == 6)

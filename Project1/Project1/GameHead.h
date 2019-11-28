@@ -76,7 +76,6 @@ enum ITEM_ID
 #include "ObjGameOver.h"
 #include "ObjGameClear.h"
 #include "ObjGameUI.h"
-//#include "ObjChar.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
 #include "ObjGimmick.h"

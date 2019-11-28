@@ -28,7 +28,10 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		void SetDelete(bool b) { delete_flg = b; }
-		
+		bool RoomFlag() { return room_in; }
+		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
+		int MapChangeData() { return map_chg; }
+
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
 
@@ -58,6 +61,7 @@ class CObjMain : public CObj
 		bool stop_flg;   //マップ切り替えを一度だけしか
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool back_stage; //前のマップに戻るためのフラグ
+		bool stop_flg2;  //
 		bool delete_flg;
 		
 		int map_chg;     //マップ切り替えを管理するための変数

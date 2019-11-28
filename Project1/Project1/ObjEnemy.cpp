@@ -12,9 +12,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjEnemy::CObjEnemy(int map[MAP_X][MAP_Y])
+CObjEnemy::CObjEnemy(float x,float y)
 {
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
+	m_ex = x;
+	m_ey = y;
 }
 //イニシャライズ
 void CObjEnemy::Init()
@@ -30,7 +31,6 @@ void CObjEnemy::Init()
 	m_id = CHAR_ENEMY;
 	k_id = 1;
 	
-	//m_move = true;
 	
 	//blockとの衝突確認用
 
@@ -165,7 +165,8 @@ void CObjEnemy::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d, &m_id, &k_id);
+		&d, &m_id,&k_id);
+
 
 	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	
@@ -203,6 +204,8 @@ void CObjEnemy::Draw()
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
+
+
 
 
 

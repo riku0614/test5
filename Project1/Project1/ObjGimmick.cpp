@@ -13,18 +13,19 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjGimmick::CObjGimmick(int map[MAP_X][MAP_Y])
+
+//コンストラクタ
+CObjGimmick::CObjGimmick(float x, float y)
 {
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
+	gx = x;
+	gy = y;
 }
 
 
 //イニシャライズ
 void CObjGimmick::Init()
 {
-	//変数初期化
-	ix = 0;
-	iy = 0;
+	
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
@@ -35,6 +36,8 @@ void CObjGimmick::Init()
 
 	pi = 0;
 	pj = 0;
+	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
 
 
 }
@@ -42,42 +45,19 @@ void CObjGimmick::Init()
 //アクション
 void CObjGimmick::Action()
 {
-	if (stop_flg == true)
-	{
-		for (int i = 0; i < MAP_X; i++)
-		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				if (m_map[i][j] == 7)
-				{
-					pi = i;
-					pj = j;
-
-					ix = j * 64.0f;//アイテムの位置Xをとる
-					iy = i * 64.0f;//アイテムの位置Yをとる
-
-					if (h_count == 0) 
-					{
-						//当たり判定用hitboxを作成
-						Hits::SetHitBox(this, ix, iy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
-						h_count += 1;
-					}
-
-					
-
-				}
-			}
-		}
-		stop_flg == false;
-	}
-
-
-	//メインの位置を取得
+	
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
+		
+	
+	
+	
+	
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(ix+main->GetScrollX(), iy+main->GetScrollY());
+	hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
+	
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
@@ -85,11 +65,10 @@ void CObjGimmick::Action()
 		gimmick_flg = true;
 
 		
+
 	}
 	
-
 	
-
 	
 
 
@@ -123,51 +102,49 @@ void CObjGimmick::Draw()
 			if (m_map[pi][pj] == 7&& m_map[pi-1][pj]==9)
 			{
 					//表示位置の設定
-					dst.m_top = pi-0.1f * 64.0f +hy;
+					dst.m_top = (pi-1) * 64.0f +hy;
 					dst.m_left = pj * 64.0f +hx ;
 					dst.m_right = dst.m_left + 64.0f;
 					dst.m_bottom = dst.m_top + 64.0f;
 
-					gimmick_flg == false;
+					
 
-				}
+			}
 				//下
-				else if (m_map[pi][pj] == 7 && m_map[pi + 1][pj] == 9)
-				{
+			else if (m_map[pi][pj] == 7 && m_map[pi + 1][pj] == 12)
+			{
 					//表示位置の設定
-					dst.m_top = pi+0.1f * 64.0f + hy;
+					dst.m_top = (pi+1) * 64.0f + hy;
 					dst.m_left = pj * 64.0f + hx;
 					dst.m_right = dst.m_left + 64.0f;
 					dst.m_bottom = dst.m_top + 64.0f;
 
-					gimmick_flg == false;
-				}
+					
+			}
 				//左
-				else if (m_map[pi][pj] == 7 && m_map[pi][pj-1] == 9)
-				{
+			else if (m_map[pi][pj] == 7 && m_map[pi][pj-1] == 11)
+			{
 					//表示位置の設定
 					dst.m_top = pi * 64.0f + hy;
-					dst.m_left = pj-0.1f * 64.0f + hx;
+					dst.m_left = (pj-1) * 64.0f + hx;
 					dst.m_right = dst.m_left + 64.0f;
 					dst.m_bottom = dst.m_top + 64.0f;
 
-					gimmick_flg == false;
-				}
+			
+			}
 				//右
-				else if (m_map[pi][pj] == 7 && m_map[pi][pj+1] == 9)
-				{
+			else if (m_map[pi][pj] == 7 && m_map[pi][pj+1] == 10)
+			{
 					//表示位置の設定
 					dst.m_top = pi * 64.0f + hy;
-					dst.m_left = pj+0.1f * 64.0f + hx;
+					dst.m_left = (pj+1) * 64.0f + hx;
 					dst.m_right = dst.m_left + 64.0f;
 					dst.m_bottom = dst.m_top + 64.0f;
 
-					gimmick_flg == false;
+					
 			}
 
-				
-
-			Draw::Draw(15, &src, &dst, c, 0.0f);
+				Draw::Draw(16, &src, &dst, c, 0.0f);
 		}
 
 }
