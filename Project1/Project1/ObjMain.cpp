@@ -10,6 +10,7 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "UtilityModule.h"
+#include "GameL/Audio.h"
 
 
 //使用するネームスペース
@@ -46,6 +47,12 @@ void CObjMain::Action()
 	{
 		if (room_in == true && stop_flg == true)
 		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(4);
+
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(25.0f*64.0f);
 			hero->SetY(4.0f*64.0f);
@@ -57,8 +64,12 @@ void CObjMain::Action()
 			stop_flg = false;
 		}
 		else if (back_stage==true&&stop_flg == true)
-		{
-		
+		{	
+			//音楽情報の読み込み
+			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(5);
 
             CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -78,6 +89,12 @@ void CObjMain::Action()
 	}
 	else if (map_chg > 0 && stop_flg == true&&back_stage==false)
 	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(5);
+
 		spawn_point[map_chg] = SpawnChanger(map_chg);
 
 		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -666,9 +683,9 @@ void CObjMain::BlockHit(
 
 									stop_flg = true;
 									back_stage = true;
-									
 
-									
+
+
 
 									map_chg--;
 								}
@@ -695,7 +712,35 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
+								/*//主人公の位置を持ってくる
+								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
+								//エネミー出現ライン
+								//主人公の位置+***を敵出現らいんにする
+								float line = hero->GetX() + (-m_scroll_x) + 500;
+
+								//敵出現ラインを要素番号化
+								int ex = ((int)line) / 64;
+
+								//敵出現ラインの例を検索
+								for (int i = 0; i < 10; i++)
+								{
+									//例の中から5を探す
+									if (m_map[i][ex] == 9)
+									{
+										//5があれば、敵を出現	
+									CObjEnemy* obje = new CObjEnemy(m_map);
+									Objs::InsertObj(obje, OBJ_ENEMY, 10);
+
+									//敵出現場所の値を０にする
+									m_map[i][ex] = 0;
+									}
+							}*/
+								
+
+								
+
+							
 
 							}
 						}
