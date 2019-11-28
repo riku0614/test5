@@ -60,18 +60,18 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"窓.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"敵(仮2).png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム欄(仮).png", 6, TEX_SIZE_512);
+	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
-	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);
-	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"kaidan.png", 7, TEX_SIZE_512);
-
 	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"手形1.png", 15, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"char3.png", 13, TEX_SIZE_512);
 	Draw::LoadImageW(L"char4.png", 14, TEX_SIZE_512);
+
+	
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -81,6 +81,9 @@ void CSceneMain::InitScene()
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
 
+	//GIMMICKオブジェクト作成
+	CObjGimmick* objg = new CObjGimmick(map);
+	Objs::InsertObj(objg, OBJ_GIMMICK, 11);
 
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
@@ -91,8 +94,8 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
 
 	//敵を出現
-	CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
+	/*CObjEnemy* obje = new CObjEnemy(map);
+	Objs::InsertObj(obje, OBJ_ENEMY, 10);*/
 	
 }
 
