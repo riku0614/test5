@@ -95,8 +95,8 @@ void CSceneMain::InitScene()
 
 	//敵を出現
 	/*CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);*/
-	
+	Objs::InsertObj(obje, OBJ_ENEMY, 10);
+	*/
 }
 
 //ゲームメイン実行中メソッド

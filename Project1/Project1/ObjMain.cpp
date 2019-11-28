@@ -588,7 +588,7 @@ void CObjMain::BlockHit(
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
-									
+
 									if (map_chg == 1)
 									{
 										Scene::SetScene(new CSceneGameClear);
@@ -609,9 +609,9 @@ void CObjMain::BlockHit(
 
 									stop_flg = true;
 									back_stage = true;
-									
 
-									
+
+
 
 									map_chg--;
 								}
@@ -638,7 +638,35 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
+								/*//主人公の位置を持ってくる
+								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
+								//エネミー出現ライン
+								//主人公の位置+***を敵出現らいんにする
+								float line = hero->GetX() + (-m_scroll_x) + 500;
+
+								//敵出現ラインを要素番号化
+								int ex = ((int)line) / 64;
+
+								//敵出現ラインの例を検索
+								for (int i = 0; i < 10; i++)
+								{
+									//例の中から5を探す
+									if (m_map[i][ex] == 9)
+									{
+										//5があれば、敵を出現	
+									CObjEnemy* obje = new CObjEnemy(m_map);
+									Objs::InsertObj(obje, OBJ_ENEMY, 10);
+
+									//敵出現場所の値を０にする
+									m_map[i][ex] = 0;
+									}
+							}*/
+								
+
+								
+
+							
 
 							}
 						}

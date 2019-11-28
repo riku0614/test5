@@ -55,8 +55,11 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
-	int m_id;
+	//ˆÚ“®‚ÌŒü‚«§ŒÀ—p
+//	bool m_move;
 	
+	int m_id;
+	int k_id;
 
 	float px, py;//Œğ“_
 };

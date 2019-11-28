@@ -59,7 +59,7 @@ class CObjMain : public CObj
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool back_stage; //前のマップに戻るためのフラグ
 		bool delete_flg;
-
+		
 		int map_chg;     //マップ切り替えを管理するための変数
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
