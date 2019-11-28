@@ -27,12 +27,12 @@ using namespace GameL;
 class CObjEnemy : public CObj
 {
 public:
-	CObjEnemy(int map[75][75]);
+	CObjEnemy(int map[100][100]);
 	~CObjEnemy() {};
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	int m_map[75][75];
+	int m_map[100][100];
 	int GetMap(int x, int y); //map情報の取得
 	void SetMap(int x, int y, int id);//マップにblockのID情報を入れる
 private:
@@ -57,11 +57,11 @@ private:
 	//4方向サーチ＆登録
 	void EveryDirectionSearchSet
 	(int set_x, int set_y,
-		int c_map[75][75], int km_map[75][75],
+		int c_map[100][100], int km_map[100][100],
 		XY buffer[], int* buffer_count);
 
 	//ダイクストラ法
-	int Dijkstras(int c_map[75][75], int km_map[75][75],
+	int Dijkstras(int c_map[100][100], int km_map[100][100],
 		int goal_x, int goal_y);
 
 	int m_flg;//追従移動の管理用フラグ

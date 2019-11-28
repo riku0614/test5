@@ -12,9 +12,9 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[75][75])
+CObjItem::CObjItem(int map[100][100])
 {
-	memcpy(m_map, map, sizeof(int)*(75 * 75));
+	memcpy(m_map, map, sizeof(int)*(100 * 100));
 }
 
 //イニシャライズ
@@ -27,9 +27,9 @@ void CObjItem::Init()
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			if (m_map[i][j] == 4)
 			{
@@ -70,9 +70,9 @@ void CObjItem::Draw()
 	float hx = main->GetScrollX();
 	float hy = main->GetScrollY();
 
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			if (m_map[i][j] == 4)
 			{

@@ -13,9 +13,9 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjMain::CObjMain(int map[75][75])
+CObjMain::CObjMain(int map[100][100])
 {
-	memcpy(m_map, map, sizeof(int)*(75 * 75));
+	memcpy(m_map, map, sizeof(int)*(100 * 100));
 }
 
 
@@ -23,8 +23,8 @@ CObjMain::CObjMain(int map[75][75])
 //イニシャライズ
 void CObjMain::Init()
 {
-	m_scroll_x = 0.0f;
-	m_scroll_y = 0.0f;
+	m_scroll_x = -2850.0f;
+	m_scroll_y = -64.0f;
 
 	
 }
@@ -193,9 +193,9 @@ bool CObjMain::HeroBlockCrossPoint(
 	};
 
 	//m_mapの全要素にアクセス
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			if (m_map[i][j] > 0 && m_map[i][j] != 4)
 			{
@@ -266,9 +266,9 @@ void CObjMain::BlockHit(
 	*bt = 0;
 
 	//m=mapの全要素にアクセス
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 		
 			if (m_map[i][j] == 9||m_map[i][j]==3)
@@ -375,9 +375,9 @@ void CObjMain::Draw()
 	
 	
 
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			if (m_map[i][j] > 0)
 			{

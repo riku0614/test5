@@ -35,13 +35,13 @@ void CSceneMain::InitScene()
 {
 	unique_ptr<wchar_t> p;
 	int size;
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"map.csv", &size);
 
-	int map[75][75];
+	int map[100][100];
 	int count = 1;
-	for (int i = 0; i < 75; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = 0; j < 75; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
