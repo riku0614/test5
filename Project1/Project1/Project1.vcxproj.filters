@@ -40,18 +40,6 @@
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMain.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMenu.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMenu.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjEnemy.cpp">
       <Filter>ソースファイル\敵情報</Filter>
     </ClCompile>
@@ -91,12 +79,23 @@
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
-    <ClCompile Include="SceneGameUI.cpp" />
-    <ClCompile Include="ObjRoom.cpp">
-      <Filter>ソースファイル\マップ%28部屋%29</Filter>
+    <ClCompile Include="SceneGameUI.cpp">
+      <Filter>ソースファイル\ゲームUI</Filter>
     </ClCompile>
-    <ClCompile Include="SceneRoom.cpp">
-      <Filter>ソースファイル\マップ%28部屋%29</Filter>
+    <ClCompile Include="ObjMenu.cpp">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMain.cpp">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,17 +224,8 @@
     <ClInclude Include="main.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMenu.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMenu.h">
-      <Filter>ソースファイル</Filter>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
     <ClInclude Include="GameL\SceneObjManager.h">
       <Filter>リソースファイル</Filter>
@@ -273,15 +263,23 @@
     <ClInclude Include="ObjItem.h">
       <Filter>ソースファイル\アイテム</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGameUI.h" />
-    <ClInclude Include="ObjRoom.h">
-      <Filter>ソースファイル\マップ%28部屋%29</Filter>
+    <ClInclude Include="SceneGameUI.h">
+      <Filter>ソースファイル\ゲームUI</Filter>
     </ClInclude>
-    <ClInclude Include="SceneRoom.h">
-      <Filter>ソースファイル\マップ%28部屋%29</Filter>
+    <ClInclude Include="ObjMenu.h">
+      <Filter>ソースファイル\メニュー画面</Filter>
     </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>ソースファイル\敵情報</Filter>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -300,20 +298,29 @@
     <Filter Include="ソースファイル\主人公">
       <UniqueIdentifier>{d2cff600-e804-460b-a3a6-ce4fbff8a365}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\タイトル">
-      <UniqueIdentifier>{189d7ae3-3426-4100-8e2b-da6bd5a5e2e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\ゲームUI">
-      <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\ゲームオーバー・クリア画面">
       <UniqueIdentifier>{d596b6af-722a-4458-9c32-d582218515a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソースファイル\アイテム">
       <UniqueIdentifier>{519e7d8c-5473-4f62-a6b4-64587cfe3b88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\マップ%28部屋%29">
-      <UniqueIdentifier>{58eb5209-2287-473d-84cc-f1290f5ad026}</UniqueIdentifier>
+    <Filter Include="ソースファイル\タイトル">
+      <UniqueIdentifier>{189d7ae3-3426-4100-8e2b-da6bd5a5e2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\メニュー画面">
+      <UniqueIdentifier>{0f0b5874-057d-4371-99b3-44dc7a2a733a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\メイン">
+      <UniqueIdentifier>{7c24e857-1928-4278-93f6-7256f72b6087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ゲームUI">
+      <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ホラーギミック">
+      <UniqueIdentifier>{e062813a-56a8-4267-834e-173fc6f22495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\NewFilter1">
+      <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

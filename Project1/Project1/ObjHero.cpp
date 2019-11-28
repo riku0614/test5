@@ -15,15 +15,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 0.0f; //位置
-	m_py = 0.0f;
+	m_px = 64.0f; //位置
+	m_py = 64.0f;
 	m_vx = 0.0f; //移動ベクトル
 	m_vy = 0.0f;
 
-	m_hero_life = 3;//主人公の体力用変数
+	m_hero_life = 30;//主人公の体力用変数
 
 	peperon_flag = false;
-
+	use_Item_flag = false;
 
 	//blockとの衝突確認用
 
@@ -41,8 +41,9 @@ void CObjHero::Init()
 
 
 
-	m_ani_time = 30;
-	m_flg == false;
+	m_ani_time = 6;
+	m_time = 30;
+	m_flg =false;
 
 	m_ani_frame = 1;//静止フレームを初期にする
 
@@ -54,6 +55,7 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
+	k_id = 0;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -71,22 +73,20 @@ void CObjHero::Action()
 
 
 	//Zキー入力で速度アップ
-	if (m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true || 
-		m_stamina_limid >= 0 && Input::GetVKey(VK_RSHIFT) == true )
+	if (m_stamina_limid >= 10 && Input::GetVKey(VK_LSHIFT) == true || 
+		m_stamina_limid >= 10 && Input::GetVKey(VK_RSHIFT) == true)
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power = 2.0f;
+		m_speed_power =1.1f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.0f;
 	}
-	else
+	else   
 	{
 		//通常速度
-		m_speed_power = 0.5f;
+		m_speed_power = 0.8f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
@@ -121,12 +121,62 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
-	//アイテムをとる処理
-	else if (Input::GetVKey('E') == true && mi_hit_left == true || Input::GetVKey('E') == true &&  mi_hit_right == true
-		|| Input::GetVKey('E') == true && mi_hit_down == true || Input::GetVKey('E') == true && mi_hit_up == true)
+
+	//主人公のアイテムと当たったフラグを持ってくる
+	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
+	//ゲームメインにフラグをセットする
+	CObjMain* Main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	//1番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false)
 	{
 		peperon_flag = true;
+		k_id = ITEM_KEY;
+		Main->SetDelete(true);
 	}
+	/*
+	//2番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true)
+	{
+		peperon_flag_2 = true;
+		k_id = ITEM_KEY;
+	}
+
+	//3番目のアイテムをとる処理
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true)
+	{
+		peperon_flag_3 = true;
+		k_id = ITEM_KEY;
+	}*/
+
+	//1番目のアイテムを使う処理
+	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
+	{
+		use_Item_flag = true;
+		UI->Settakeflag(false);
+	}
+	/*
+	//2番目のアイテムを使う処理
+	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
+	{
+		use_Item_flag_2 = true;
+		UI->Settakeflag_2(false);
+	}
+
+	//3番目のアイテムを使う処理
+	else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
+	{
+		use_Item_flag_3 = true;
+		UI->Settakeflag_3(false);
+	}*/
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
@@ -142,8 +192,8 @@ void CObjHero::Action()
 	}
 	
 	//摩擦
-	m_vx += -(m_vx*0.098);
-	m_vy += -(m_vy*0.098);
+	m_vx += -(m_vx*0.098f);
+	m_vy += -(m_vy*0.098f);
 
 	//高速移動によるblock判定
 	bool b;
@@ -152,8 +202,7 @@ void CObjHero::Action()
 
 	if (pbb->GetScrollX() > 0)
 		pbb->SetScrollX(0);
-	if (pbb->GetScrollY() > 0)
-		pbb->SetScrollY(0);
+	
 	//移動方向にrayを飛ばす
 	float vx;
 	float vy;
@@ -163,7 +212,7 @@ void CObjHero::Action()
 	else
 		vx = 0 - pbb->GetScrollX();
 
-
+	
 	//ray判定
 	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
 
@@ -171,23 +220,26 @@ void CObjHero::Action()
 	{
 		//交点取得
 		px = pxx + pbb->GetScrollX();
-		py = pyy-pbb->GetScrollY();
+		py = pyy - pbb->GetScrollY();
 
 		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
 		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
 
-									  //主人公の幅分オフセット
+		
+	    //主人公の幅分オフセット
 		if (vx > 0)
 			px += -64;
 		else
 			px += 2;
 
+		
 		//AとBが逆を向いている（主人公が移動先の壁を越えている）
 		if (aa*bb < 0)
 		{
 			//移動ベクトルを（交点→主人公の位置）ベクトルにする
 			m_vx = px - m_px;
 		}
+		
 	}
 	else
 	{
@@ -200,7 +252,7 @@ void CObjHero::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_px, &m_py, true,true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
+		&m_block_type,&m_id,&k_id
 	);
 
 	//自身のhitboxを持ってくる
@@ -225,33 +277,38 @@ void CObjHero::Action()
 	
 	
 	//主人公機オブジェクトと接触したら敵削除
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
 	{
-		//主人公のライフによる当たり判定の変化
+		m_hero_life-=1;
+
+		m_flg = true;
+
 		if (m_hero_life == 0)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
 
 			Scene::SetScene(new CSceneGameOver);
 		}
-		else
-		{
-			m_hero_life--;
-		}
+
 	}
 	
-	
+	if (m_flg == true && m_time > 0)
+	{
+		m_time--;
+	}
+	else
+	{
+		m_flg = false;
+	}
 	
 }
 
 void CObjHero::Draw()
 {
-	int AniData[3][6] =
+	int AniData[3][4] =
 	{
-		0,1,2,3,4,0,
-		0,1,2,3,4,5,
-		0,1,2,3,4,0,
+		0,1,2,1,
+		0,1,2,1,
+		0,1,2,1,
 	};
 
 	//描画カラー情報　R=RED　G=Green　B=Blue　A=Alpha（透過情報）
@@ -279,42 +336,121 @@ void CObjHero::Draw()
 	
 	//主人公のダッシュ時と通常時と静止時の描画
 	if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('W') == true &&m_stamina_limid>0|| 
-		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('A') == true&&m_stamina_limid > 0 ||
-		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
-		Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0)
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
-		src.m_top = 90.0f * 5;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_right = 90.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_bottom = 90.0f * 6;
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_bottom = 64.0f;
+
+		
+	}
+	else if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('A') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true && m_stamina_limid > 0)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_bottom = 64.0f;
+	}
+	else if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_bottom = 64.0f;
 
 	}
-	else if (Input::GetVKey('W') == true || Input::GetVKey('A') == true||
-		Input::GetVKey('S') == true || Input::GetVKey('D') == true)
+	else if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0 ||
+		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
-		src.m_top = 90.0f * 9;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_right = 90.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_bottom = 90.0f * 10;
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_bottom = 64.0f;
+	}
+	else if (Input::GetVKey('W') == true )
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_bottom = 64.0f;
+
+	}
+	else if (Input::GetVKey('A') == true)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_bottom = 64.0f;
+
+	}
+	else if (Input::GetVKey('S') == true)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_bottom = 64.0f;
+
+		
+
+		
+	}
+	else if (Input::GetVKey('D') == true)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_bottom = 64.0f;
+
+		
 	}
 	else
 	{
+
 		//切り取り位置設定
-		src.m_top = 720.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_right = 90.0f + AniData[m_ani_move][m_ani_frame] * 90;
-		src.m_bottom = 810.0f;
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_bottom = 64.0f;
 	}
 
+
+	
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (64.0f*m_posture) + m_px;
 	dst.m_right = (64 - 64.0f*m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
-	//1番目に登録したグラフィックをsrc.dst.cの情報を元に描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
+	if (Input::GetVKey('D') == true|| Input::GetVKey('A') == true||stey_flg1==true)
+	{
+		Draw::Draw(11, &src, &dst, c, 0.0f);
+		stey_flg1 = true;
+		stey_flg2 = false;
+		stey_flg3 = false;
+	}
+	if (Input::GetVKey('W') == true || stey_flg2 == true)
+	{
+		Draw::Draw(12, &src, &dst, c, 0.0f);
+		stey_flg1 = false;
+		stey_flg2 = true;
+		stey_flg3 = false;
+	}
+	if (Input::GetVKey('S') == true || stey_flg3 == true)
+	{
+		Draw::Draw(14, &src, &dst, c, 0.0f);
+		stey_flg1 = false;
+		stey_flg2 = false;
+		stey_flg3 = true;
+	}
 }

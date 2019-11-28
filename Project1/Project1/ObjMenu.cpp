@@ -31,7 +31,7 @@ void CObjMenu::Action()
 
 	else
 	{
-		m_enter_flag == false;
+		m_enter_flag = false;
 	}
 
 	if (Input::GetVKey('E') == true)

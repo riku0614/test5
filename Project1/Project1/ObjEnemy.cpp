@@ -12,12 +12,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-
-
-
-CObjEnemy::CObjEnemy(int map[100][100])
+CObjEnemy::CObjEnemy(float x,float y)
 {
-	memcpy(m_map, map, sizeof(int)*(100 * 100));
+	m_ex = x;
+	m_ey = y;
 }
 //イニシャライズ
 void CObjEnemy::Init()
@@ -29,6 +27,8 @@ void CObjEnemy::Init()
 	m_ey = 64*3.0f;
 
 	m_flg = 0;
+
+	m_id = CHAR_ENEMY;
 	
 	
 	//blockとの衝突確認用
@@ -37,6 +37,7 @@ void CObjEnemy::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	
 	
 	//当たり判定用HitBoxを作成
@@ -63,23 +64,27 @@ void CObjEnemy::Action()
 		m_vx = (hx + (-scrollx) - m_ex) ;
 		m_vy = (hy + (-scrolly) - m_ey) ;
 	}
+
+	
+
 	//衝突判定による移動フラグの切り替え
 	else if (m_hit_left==true)
 	{
-		m_flg++;
+		m_flg=1;
 	}
-	 else if (m_hit_down == true)
+	else if (m_hit_down == true)
 	{
-		m_flg++;
+		m_flg=2;
 	}
 	else if (m_hit_right == true)
-	{
-		m_flg++;
+	{ 
+		m_flg=3;
 	}
-	else if (m_hit_up == true)
+	else if (m_hit_up ==true)
 	{
-		m_flg==0;
+		m_flg = 0;
 	}
+	
 	//移動
 	else if (m_flg == 0)
 	{
@@ -159,15 +164,17 @@ void CObjEnemy::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d);
+		&d,&m_id);
 
 	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-    //自身のhitboxを持ってくる
+	
+	//自身のhitboxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
-
+	
 	//hitboxの位置の変更
 	hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
-
+	
+	
 	
 }
 
@@ -195,4 +202,6 @@ void CObjEnemy::Draw()
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
+
+
 
