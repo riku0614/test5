@@ -57,7 +57,6 @@ private:
 
 	int m_id;
 	int k_id;
-	
 
 	float px, py;//Œð“_
 };

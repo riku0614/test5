@@ -65,7 +65,7 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 	
 	int size;
 	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
-	p[1] = Save::ExternalDataOpen(L"マップ2.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	
 
 	int map[MAP_X][MAP_Y];
@@ -80,7 +80,7 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 			swscanf_s(&p[m].get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			count += 3;
 
 		}
 	}
