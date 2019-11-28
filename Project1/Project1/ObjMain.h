@@ -35,7 +35,7 @@ class CObjMain : public CObj
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
 			bool *up, bool *down, bool *left, bool *right,
-			float *vx, float *vy, int *bt, int *c_id
+			float *vx, float *vy, int *bt, int *c_id, int *k_id
 		);
 		
 		void ItemHit(

@@ -357,7 +357,7 @@ bool CObjMain::HeroBlockCrossPoint(
 void CObjMain::BlockHit(
 	float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 	bool *up, bool *down, bool *left, bool *right,
-	float *vx, float *vy, int *bt, int *c_id
+	float *vx, float *vy, int *bt, int *c_id, int *k_id
 )
 {
 	
@@ -419,7 +419,7 @@ void CObjMain::BlockHit(
 								//右
 								*right = true;//主人公から見て、左の部分が衝突している
 								*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									map_chg++;
@@ -470,7 +470,7 @@ void CObjMain::BlockHit(
 								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 								if (m_map[i][j] == 2)
 									*bt = m_map[i][j];
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									
@@ -519,7 +519,7 @@ void CObjMain::BlockHit(
 								//左
 								*left = true;//主人公から見て、右の部分が衝突している
 								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									
@@ -569,7 +569,7 @@ void CObjMain::BlockHit(
 								//下
 								*up = true;//主人公から見て、上の部分が衝突している
 								*y = by + 64.0f + (scroll_y);//ブロックの位置-主人公の
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									
