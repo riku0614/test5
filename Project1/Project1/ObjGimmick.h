@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjGimmick : public CObj
 {
 public:
-	CObjGimmick(int map[MAP_X][MAP_Y]);
+	CObjGimmick() {};
 	~CObjGimmick() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
@@ -21,8 +21,6 @@ private:
 	int ix;	//アイテムのX位置保管用
 	int iy; //アイテムのY位置保管用
 
-	float m_px;  //オブジェクトの位置X
-	float m_py;  //オブジェクトの位置Y
 	float m_vx; //オブジェクトの移動用ベクトルX
 	float m_vy; //オブジェクトの移動用ベクトルY
 

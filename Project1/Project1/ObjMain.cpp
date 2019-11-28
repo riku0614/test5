@@ -359,7 +359,7 @@ bool CObjMain::HeroBlockCrossPoint(
 void CObjMain::BlockHit(
 	float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 	bool *up, bool *down, bool *left, bool *right,
-	float *vx, float *vy, int *bt, int *c_id
+	float *vx, float *vy, int *bt, int *c_id, int *k_id
 )
 {
 	
@@ -371,6 +371,8 @@ void CObjMain::BlockHit(
 
 	//踏んでいるブロックの種類の初期化
 	*bt = 0;
+
+	CObjItem* item = (CObjItem*)Objs::GetObj(OBJ_ITEM);
 
 	//m=mapの全要素にアクセス
 	if (room_in == false)
@@ -421,7 +423,7 @@ void CObjMain::BlockHit(
 								//右
 								*right = true;//主人公から見て、左の部分が衝突している
 								*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									map_chg++;
@@ -458,9 +460,13 @@ void CObjMain::BlockHit(
 										room_in = true;
 										stop_flg = true;
 
+										item->SetFlag(true);
+								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 										CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+
 
 										save_x[map_chg][0] = hero->GetX();
 										save_y[map_chg][0] = hero->GetY();
@@ -478,7 +484,7 @@ void CObjMain::BlockHit(
 								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 								if (m_map[i][j] == 2)
 									*bt = m_map[i][j];
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									if (map_chg == 1)
 									{
@@ -531,7 +537,7 @@ void CObjMain::BlockHit(
 								//左
 								*left = true;//主人公から見て、右の部分が衝突している
 								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									
@@ -585,7 +591,7 @@ void CObjMain::BlockHit(
 								//下
 								*up = true;//主人公から見て、上の部分が衝突している
 								*y = by + 64.0f + (scroll_y);//ブロックの位置-主人公の
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
 									
@@ -1015,6 +1021,33 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(3, &src, &dst, c, 0.0f);
+					}
+					if(m_map[i][j]==10)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(18, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 11)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(19, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 12)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(20, &src, &dst, c, 0.0f);
 					}
 					//扉テクスチャ
 					if (m_map[i][j] == 6)

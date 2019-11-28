@@ -28,14 +28,18 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		void SetDelete(bool b) { delete_flg = b; }
-		
+		int MapData() { return m_map[MAP_X][MAP_Y]; }
+		bool RoomFlag() { return room_in; }
+		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
+		int MapChangeData() { return map_chg; }
+
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
 
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
 			bool *up, bool *down, bool *left, bool *right,
-			float *vx, float *vy, int *bt, int *c_id
+			float *vx, float *vy, int *bt, int *c_id, int *k_id
 		);
 		
 		void ItemHit(

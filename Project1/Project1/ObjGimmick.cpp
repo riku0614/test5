@@ -13,10 +13,9 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjGimmick::CObjGimmick(int map[MAP_X][MAP_Y])
-{
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
-}
+
+//コンストラクタ
+
 
 
 //イニシャライズ
@@ -33,51 +32,48 @@ void CObjGimmick::Init()
 	gimmick_flg = false;
 	stop_flg = true;
 
-	pi = 0;
-	pj = 0;
 
+	//敵出現ラインの列を検索
+	for (int i = 0; i < MAP_X; i++)
+	{
+		for (int j = 0; j < MAP_Y; j++)
+		{	//列の中から4を探す
+			if (m_map[i][j] == 7)
+			{
+
+				pi = i;
+				pj = j;
+
+				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+				float hx = main->GetScrollX();
+				float hy = main->GetScrollY();
+
+				ix = j * 64.0f;//アイテムの位置Xをとる
+				iy = i * 64.0f;//アイテムの位置Yをとる
+
+				Hits::SetHitBox(this, ix, iy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+
+			}
+		}
+	}
 
 }
 
 //アクション
 void CObjGimmick::Action()
 {
-	if (stop_flg == true)
-	{
-		for (int i = 0; i < MAP_X; i++)
-		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				if (m_map[i][j] == 7)
-				{
-					pi = i;
-					pj = j;
-
-					ix = j * 64.0f;//アイテムの位置Xをとる
-					iy = i * 64.0f;//アイテムの位置Yをとる
-
-					if (h_count == 0) 
-					{
-						//当たり判定用hitboxを作成
-						Hits::SetHitBox(this, ix, iy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
-						h_count += 1;
-					}
-
-					
-
-				}
-			}
-		}
-		stop_flg == false;
-	}
 
 
-	//メインの位置を取得
+	
+
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
+	
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(ix+main->GetScrollX(), iy+main->GetScrollY());
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+	
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
@@ -118,7 +114,7 @@ void CObjGimmick::Draw()
 		{
 				//上
 				
-			if (m_map[pi][pj] == 7&& m_map[pi-1][pj]==9)
+			if (m_map[pi][pj] == 7&& m_map[pi-1][pj]==10)
 			{
 					//表示位置の設定
 					dst.m_top = pi-0.1f * 64.0f +hy;
@@ -130,7 +126,7 @@ void CObjGimmick::Draw()
 
 				}
 				//下
-				else if (m_map[pi][pj] == 7 && m_map[pi + 1][pj] == 9)
+				else if (m_map[pi][pj] == 7 && m_map[pi + 1][pj] == 10)
 				{
 					//表示位置の設定
 					dst.m_top = pi+0.1f * 64.0f + hy;
@@ -141,7 +137,7 @@ void CObjGimmick::Draw()
 					gimmick_flg == false;
 				}
 				//左
-				else if (m_map[pi][pj] == 7 && m_map[pi][pj-1] == 9)
+				else if (m_map[pi][pj] == 7 && m_map[pi][pj-1] == 10)
 				{
 					//表示位置の設定
 					dst.m_top = pi * 64.0f + hy;
@@ -152,7 +148,7 @@ void CObjGimmick::Draw()
 					gimmick_flg == false;
 				}
 				//右
-				else if (m_map[pi][pj] == 7 && m_map[pi][pj+1] == 9)
+				else if (m_map[pi][pj] == 7 && m_map[pi][pj+1] == 10)
 				{
 					//表示位置の設定
 					dst.m_top = pi * 64.0f + hy;
