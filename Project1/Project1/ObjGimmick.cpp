@@ -3,6 +3,7 @@
 #include "GameL/DrawFont.h"
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
+#include "GameL/Audio.h"
 
 #include "GameHead.h"
 #include "ObjGimmick.h"
@@ -46,6 +47,7 @@ void CObjGimmick::Init()
 void CObjGimmick::Action()
 {
 	
+
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
@@ -61,6 +63,11 @@ void CObjGimmick::Action()
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(7);
 
 		gimmick_flg = true;
 
