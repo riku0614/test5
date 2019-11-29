@@ -169,7 +169,7 @@ void CObjMain::Action()
 		}
 		stop_flg2 = false;
 	}
-   if (stop_flg2 == true && room_in == true)
+   else if (stop_flg2 == true && room_in == true)
    {
 	   for (int i = 0; i < ROOM_X; i++)
 	   {
@@ -179,8 +179,8 @@ void CObjMain::Action()
 			   {
 
 				   //アイテムオブジェクト作成
-				   CObjGimmickRoom* objgr = new CObjGimmickRoom((j-1)*64.0f - m_scroll_x, (i - 1)*64.0f - m_scroll_y);
-				   Objs::InsertObj(objgr, OBJ_GIMMICK_ROOM, 15);
+				   CObjGimmickRoom* objgr = new CObjGimmickRoom(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
+				   Objs::InsertObj(objgr, OBJ_GIMMICK_ROOM, 14);
 
 				   CObjGimmickRoom* gimr = (CObjGimmickRoom*)Objs::GetObj(OBJ_GIMMICK_ROOM);
 				   gimr->SetY(j);
@@ -524,7 +524,7 @@ void CObjMain::BlockHit(
 									{
 										room_in = true;
 										stop_flg = true;
-
+										stop_flg2 = true;
 										
 								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。

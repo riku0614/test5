@@ -46,7 +46,12 @@ void CObjGimmick::Init()
 void CObjGimmick::Action()
 {
 	
-	
+	if (stop_flg == false)
+	{
+	   Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+	   stop_flg = true;
+	}
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	if (main->RoomFlag() == false)
 	{
@@ -86,12 +91,7 @@ void CObjGimmick::Action()
 		}
 
 	}
-	else if (stop_flg == false)
-	{
-		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
-
-		stop_flg = true;
-	}
+	
 	
 }
 

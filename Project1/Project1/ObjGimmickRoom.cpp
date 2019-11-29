@@ -47,9 +47,16 @@ void CObjGimmickRoom::Init()
 void CObjGimmickRoom::Action()
 {
 
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (stop_flg == false)
+	{
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK_ROOM, 1);
 
+		stop_flg = true;
+	}
 	if (main->RoomFlag() == true)
 	{
 
@@ -57,10 +64,8 @@ void CObjGimmickRoom::Action()
 
 
 
-		//HitBoxの位置の変更
-		CHitBox* hit = Hits::GetHitBox(this);
 		
-		hit->SetPos(gx - main->GetScrollX(), gy - main->GetScrollY());
+	
 
 
 		if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -72,7 +77,7 @@ void CObjGimmickRoom::Action()
 		}
 		else
 		{
-			gimmick_flg = true;
+			gimmick_flg = false;
 		}
 
 		if (main->RoomFlag() == false && stop_flg == true)
@@ -87,12 +92,9 @@ void CObjGimmickRoom::Action()
 		}
 
 	}
-	if (stop_flg == false)
-	{
-		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK_ROOM, 1);
+	
 
-		stop_flg = true;
-	}
+	hit->SetPos(gx + -(main->GetScrollX()), gy + -(main->GetScrollY()));
 
 }
 

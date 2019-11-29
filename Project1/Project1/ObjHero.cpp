@@ -56,7 +56,7 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
-	k_id = 0;
+	k_id = 99;
 
 	//“–‚½‚è”»’è—phitbox‚ğì¬
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
