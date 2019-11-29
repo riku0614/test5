@@ -7,7 +7,7 @@
 #include "GameHead.h"
 #include "ObjClickTitle.h"
 #include "SceneMain.h"
-
+#include "GameL/Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,6 +34,12 @@ void CObjClickTitle::Action()
 		//m_fがtrueの場合...
 		if (m_f == true)
 		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(2, L"2カーソルSE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(2);
+
 			//m_yjが0.0f(初期位置)だった場合の処理
 			if (m_yj <= 0.0f)
 			{
@@ -55,6 +61,12 @@ void CObjClickTitle::Action()
 		//m_fがtrueの場合...
 		if (m_f == true)
 		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(2, L"2カーソルSE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(2);
+
 			//m_yjが100.0f(最大値の位置)だった場合の処理
 			if (m_yj >= 100.0f)
 			{

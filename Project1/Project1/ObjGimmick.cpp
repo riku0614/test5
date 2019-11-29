@@ -32,7 +32,7 @@ void CObjGimmick::Init()
 
 	h_count = 0;
 	gimmick_flg = false;
-	stop_flg = true;
+	stop_flg=true ;
 
 	pi = 0;
 	pj = 0;
@@ -46,33 +46,53 @@ void CObjGimmick::Init()
 void CObjGimmick::Action()
 {
 	
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
-
-		
-	
-	
-	
-	
-	//HitBoxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
-	
-
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	if (stop_flg == false)
 	{
+	   Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
 
-		gimmick_flg = true;
+	   stop_flg = true;
+	}
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (main->RoomFlag() == false)
+	{
+		memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
-		
+
+
+		//HitBoxの位置の変更
+		CHitBox* hit = Hits::GetHitBox(this);
+		if (hit != nullptr)
+		{
+			hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
+
+
+			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+			{
+
+				gimmick_flg = true;
+
+
+			}
+			else
+			{
+				gimmick_flg = false;
+			}
+		}
+
+		if (main->RoomFlag() == true && stop_flg == true)
+		{
+
+			Hits::DeleteHitBox(this);
+
+			main->SetStopFlag(true);
+
+			stop_flg = false;
+
+		}
 
 	}
 	
 	
-	
-
-
-
 }
 
 //ドロー

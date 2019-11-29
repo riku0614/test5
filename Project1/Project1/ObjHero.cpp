@@ -7,6 +7,7 @@
 #include "GameHead.h"
 #include "ObjHero.h"
 #include "UtilityModule.h"
+#include "GameL/Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -55,7 +56,7 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
-	k_id = 0;
+	k_id = 99;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -279,6 +280,12 @@ void CObjHero::Action()
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
 	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(6);
+
 		m_hero_life-=1;
 
 		m_flg = true;
