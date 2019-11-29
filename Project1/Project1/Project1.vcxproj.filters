@@ -316,9 +316,6 @@
     <Filter Include="ソースファイル\ゲームUI">
       <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\ホラーギミック">
-      <UniqueIdentifier>{e062813a-56a8-4267-834e-173fc6f22495}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\NewFilter1">
       <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
