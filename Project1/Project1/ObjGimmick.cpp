@@ -13,30 +13,34 @@
 //使用するネームスペース
 using namespace GameL;
 
+CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 //コンストラクタ
+
+
 CObjGimmick::CObjGimmick(float x, float y)
 {
-	gx = x;
-	gy = y;
+		gx = x;
+		gy = y;
 }
 
 
 //イニシャライズ
 void CObjGimmick::Init()
 {
-	
+
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
 	h_count = 0;
-	gimmick_flg = false;
-	stop_flg=true ;
+	stop_flg = false;
+	stop_flg2 = false;
+	gimmick_chg = false;
 
 	pi = 0;
 	pj = 0;
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
 
 
 
@@ -45,17 +49,56 @@ void CObjGimmick::Init()
 //アクション
 void CObjGimmick::Action()
 {
-	
-	if (stop_flg == false)
-	{
-	   Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
-
-	   stop_flg = true;
-	}
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
+
+
+	if (main->RoomFlag() == true && stop_flg == true)
+	{
+
+		Hits::DeleteHitBox(this);
+
+		main->SetStopFlag(true);
+
+		stop_flg = false;
+
+
+	}
+	else if (main->MapChangeData() >= 1 && stop_flg2 == true)
+	{
+		Hits::DeleteHitBox(this);
+
+		main->SetStopFlag(true);
+
+		
+
+
+		stop_flg2 = false;
+
+	}
+
+	if (stop_flg == false && main->RoomFlag() == false)
+	{
+
+		gx=
+
+
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+		stop_flg = true;
+
+
+	}
+	else if (main->GetFlug() == true && main->MapChangeData() >= 1)
+	{
+
+
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+	}
 	if (main->RoomFlag() == false)
 	{
-		memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
+		
 
 
 
@@ -77,18 +120,10 @@ void CObjGimmick::Action()
 			{
 				gimmick_flg = false;
 			}
+			
 		}
 
-		if (main->RoomFlag() == true && stop_flg == true)
-		{
-
-			Hits::DeleteHitBox(this);
-
-			main->SetStopFlag(true);
-
-			stop_flg = false;
-
-		}
+	 
 
 	}
 	
