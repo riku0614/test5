@@ -145,7 +145,8 @@ void CObjMain::Action()
 
 	}
 
-	if (stop_flg2 == true)
+
+   if (stop_flg2 == true&&room_in==false)
 	{
 		for (int i = 0; i < MAP_X; i++)
 		{
@@ -168,7 +169,29 @@ void CObjMain::Action()
 		}
 		stop_flg2 = false;
 	}
+   else if (stop_flg2 == true && room_in == true)
+   {
+	   for (int i = 0; i < ROOM_X; i++)
+	   {
+		   for (int j = 0; j < ROOM_Y; j++)
+		   {
+			   if (r_map[i][j] == 7)
+			   {
 
+				   //アイテムオブジェクト作成
+				   CObjGimmickRoom* objgr = new CObjGimmickRoom(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
+				   Objs::InsertObj(objgr, OBJ_GIMMICK_ROOM, 14);
+
+				   CObjGimmickRoom* gimr = (CObjGimmickRoom*)Objs::GetObj(OBJ_GIMMICK_ROOM);
+				   gimr->SetY(j);
+				   gimr->SetX(i);
+
+			   }
+		   }
+
+	   }
+	   stop_flg2 = false;
+   }
 
 	
 	
@@ -469,6 +492,7 @@ void CObjMain::BlockHit(
 									stop_flg = true;
 									map_chg++;
 
+									
 
 									if (map_chg == 1)
 									{
@@ -500,8 +524,8 @@ void CObjMain::BlockHit(
 									{
 										room_in = true;
 										stop_flg = true;
-
-										item->SetFlag(true);
+										stop_flg2 = true;
+										
 								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -533,6 +557,7 @@ void CObjMain::BlockHit(
 									}
 
 									stop_flg = true;
+									
 								
 									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -557,7 +582,7 @@ void CObjMain::BlockHit(
 									if (room_in == false)
 									{
 										room_in = true;
-										stop_flg = true;
+										
 
 										
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -581,6 +606,7 @@ void CObjMain::BlockHit(
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
+									
 									
 									if (map_chg == 1)
 									{
@@ -612,7 +638,7 @@ void CObjMain::BlockHit(
 									if (room_in == false)
 									{
 										room_in = true;
-										stop_flg = true;
+										
 
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -635,7 +661,8 @@ void CObjMain::BlockHit(
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
-
+									
+									
 									if (map_chg == 1)
 									{
 										Scene::SetScene(new CSceneGameClear);
@@ -733,7 +760,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (r_map[i][j] <= 9 && r_map[i][j] >4 ||r_map[i][j]==3)
+				if (r_map[i][j] <= 99 && r_map[i][j] >4 && r_map[i][j] != 7 ||r_map[i][j]==3)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -1150,7 +1177,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 5)
+					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1169,7 +1196,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(3, &src, &dst, c, 0.0f);
 					}
-					if (m_map[i][j] == 10)
+					if (r_map[i][j] == 10)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1178,7 +1205,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(18, &src, &dst, c, 0.0f);
 					}
-					if (m_map[i][j] == 11)
+					if (r_map[i][j] == 11)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1187,7 +1214,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(19, &src, &dst, c, 0.0f);
 					}
-					if (m_map[i][j] == 12)
+					if (r_map[i][j] == 12)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

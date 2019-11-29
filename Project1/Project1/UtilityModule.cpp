@@ -114,7 +114,7 @@ void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
 			swscanf_s(&p[0].get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			count += 3;
 
 		}
 	}
