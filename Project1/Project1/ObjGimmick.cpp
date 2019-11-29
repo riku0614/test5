@@ -3,6 +3,7 @@
 #include "GameL/DrawFont.h"
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
+#include "GameL/Audio.h"
 
 #include "GameHead.h"
 #include "ObjGimmick.h"
@@ -109,6 +110,13 @@ void CObjGimmick::Action()
 			hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
 
 
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(7);
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 			{
 

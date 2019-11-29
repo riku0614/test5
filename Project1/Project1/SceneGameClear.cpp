@@ -31,6 +31,12 @@ CSceneGameClear::~CSceneGameClear()
 //ゲームメイン初期化メソッド
 void CSceneGameClear::InitScene()
 {
+	//音楽情報の読み込み
+	Audio::LoadAudio(8, L"8EDBGM.wav", SOUND_TYPE::EFFECT);
+
+	//音楽スタート
+	Audio::Start(8);
+
 	//オブジェクトを登録
 	//CObjMain* p = new CObjMain();
 	//Objs::InsertObj(p, OBJ_MAIN, 1);

@@ -200,6 +200,8 @@
     <Media Include="4教室扉SE.wav" />
     <Media Include="5マップ切り替えSE.wav" />
     <Media Include="6ダメージ音.wav" />
+    <Media Include="7ギミックSE.wav" />
+    <Media Include="8EDBGM.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
