@@ -7,6 +7,7 @@
 #include "GameL/DrawFont.h"
 #include "GameL/DrawTexture.h"
 #include "GameL/UserData.h"
+#include "GameL/Audio.h"
 
 //使用ヘッダー
 #include "SceneMain.h"
@@ -34,6 +35,12 @@ CSceneMain::~CSceneMain()
 //ゲームメイン初期化メソッド
 void CSceneMain::InitScene()
 {
+	//音楽情報の読み込み
+	Audio::LoadAudio(1, L"1廊下BGM.wav", SOUND_TYPE::BACK_MUSIC);
+
+	//音楽スタート
+	Audio::Start(1);
+
 	unique_ptr<wchar_t> p;
 	int size;
 	
