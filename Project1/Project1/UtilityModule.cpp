@@ -95,12 +95,13 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 切り替え用の教室マップをメイン教室マップ変数にぶち込む関数
 */
 
-void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
+void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p,int r)
 {
 
 	int size;
-	p[0] = Save::ExternalDataOpen(L"教室1段.csv", &size);
-
+	p[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
+	p[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
+	p[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
 	int map[ROOM_X][ROOM_Y];
 
@@ -111,10 +112,10 @@ void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
 		for (int j = 0; j < ROOM_Y; j++)
 		{
 			int w = 0;
-			swscanf_s(&p[0].get()[count], L"%d", &w);
+			swscanf_s(&p[r].get()[count], L"%d", &w);
 
 			map[i][j] = w;
-			count += 2;
+			count += 3;
 
 		}
 	}
@@ -129,11 +130,11 @@ void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p)
 */
 float SpawnChanger(int m)
 {
-	if (m = 0)
+	if (m == 0)
 	{
 		return 0.0f;
 	}
-	else if (m = 1)
+	else if (m == 1)
 	{
 		return 64.0 * 30;
 	}
