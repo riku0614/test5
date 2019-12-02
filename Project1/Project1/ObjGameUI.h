@@ -5,6 +5,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define Status (1)
+
 //オブジェクト：メイン
 class CObjGameUI : public CObj
 {

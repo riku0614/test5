@@ -80,6 +80,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);

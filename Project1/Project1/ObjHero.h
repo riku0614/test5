@@ -4,6 +4,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define Status (8)
+
 //オブジェクト：主人公
 class CObjHero : public CObj
 {
@@ -46,6 +48,8 @@ public:
 
 	int GetKeyID() { return m_id; }
 private:
+	float save[Status][2];
+
 	int k_id;//アイテム（鍵）のID
 	int m_id;//キャラクターID
 	float m_px; //位置
