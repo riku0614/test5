@@ -41,6 +41,7 @@ void CObjGimmick::Init()
 
 	pi = 0;
 	pj = 0;
+	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
 
 
 
@@ -66,12 +67,23 @@ void CObjGimmick::Action()
 
 
 	}
-	
+	else if (main->MapChangeData() >= 1 && stop_flg2 == true)
+	{
+		Hits::DeleteHitBox(this);
+
+		main->SetStopFlag(true);
+
+		
+
+
+		stop_flg2 = false;
+
+	}
 
 	if (stop_flg == false && main->RoomFlag() == false)
 	{
 
-
+		gx=
 
 
 		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
@@ -80,9 +92,17 @@ void CObjGimmick::Action()
 
 
 	}
-	
+	else if (main->GetFlug() == true && main->MapChangeData() >= 1)
+	{
+
+
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+	}
 	if (main->RoomFlag() == false)
 	{
+		
+
+
 
 		//HitBoxの位置の変更
 		CHitBox* hit = Hits::GetHitBox(this);
@@ -91,32 +111,32 @@ void CObjGimmick::Action()
 			hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
 
 
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(7);
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 			{
-				//音楽情報の読み込み
-				Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
 
-				//音楽スタート
-				Audio::Start(7);
-				if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-				{
+				gimmick_flg = true;
 
-					gimmick_flg = true;
-
-
-				}
-				else
-				{
-					gimmick_flg = false;
-				}
 
 			}
-
-
-
+			else
+			{
+				gimmick_flg = false;
+			}
+			
 		}
 
+	 
+
 	}
+	
+	
 }
 
 //ドロー

@@ -205,6 +205,7 @@ void CObjMain::Action()
 	
 	
 	
+	
 }
 
 /*内積関数
@@ -655,7 +656,7 @@ void CObjMain::BlockHit(
 									if (room_in == false)
 									{
 										room_in = true;
-										room_chg++;
+										stop_flg = true;
 
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);

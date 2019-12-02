@@ -316,11 +316,19 @@
     <Filter Include="ソースファイル\ゲームUI">
       <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソースファイル\ホラーギミック">
-      <UniqueIdentifier>{e062813a-56a8-4267-834e-173fc6f22495}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソースファイル\NewFilter1">
       <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="0タイトルBGM.wav" />
+    <Media Include="1廊下BGM.wav" />
+    <Media Include="2カーソルSE.wav" />
+    <Media Include="3死亡SE.wav" />
+    <Media Include="4教室扉SE.wav" />
+    <Media Include="5マップ切り替えSE.wav" />
+    <Media Include="6ダメージ音.wav" />
+    <Media Include="7ギミックSE.wav" />
+    <Media Include="8EDBGM.wav" />
   </ItemGroup>
 </Project>
