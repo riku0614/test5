@@ -111,27 +111,27 @@ void CObjGimmick::Action()
 			hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
 
 
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-	{
-		//音楽情報の読み込み
-		Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
-
-		//音楽スタート
-		Audio::Start(7);
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 			{
+				//音楽情報の読み込み
+				Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
 
-				gimmick_flg = true;
+				//音楽スタート
+				Audio::Start(7);
+				if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+				{
 
+					gimmick_flg = true;
+
+
+				}
+				else
+				{
+					gimmick_flg = false;
+				}
 
 			}
-			else
-			{
-				gimmick_flg = false;
-			}
-			
 		}
-
 	 
 
 	}
