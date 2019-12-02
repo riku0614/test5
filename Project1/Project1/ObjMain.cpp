@@ -668,34 +668,29 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
-								/*//主人公の位置を持ってくる
+								/*
+						///主人公の位置を持ってくる
 								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-								//エネミー出現ライン
-								//主人公の位置+***を敵出現らいんにする
-								float line = hero->GetX() + (-m_scroll_x) + 500;
+								///主人公の位置を持ってくる
+								CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
 
-								//敵出現ラインを要素番号化
-								int ex = ((int)line) / 64;
-
-								//敵出現ラインの例を検索
-								for (int i = 0; i < 10; i++)
-								{
-									//例の中から5を探す
-									if (m_map[i][ex] == 9)
-									{
-										//5があれば、敵を出現	
+								//敵出現ライン
+									//敵	
 									CObjEnemy* obje = new CObjEnemy(m_map);
 									Objs::InsertObj(obje, OBJ_ENEMY, 10);
 
-									//敵出現場所の値を０にする
-									m_map[i][ex] = 0;
+									//プレイヤーから範囲に入ったら敵が出てくるようにしたい
+									if (hero->GetX() + 64.0f >  || hero - 64.0f < m_ex)
+									{
+
 									}
-							}*/
-								
+									else if (hero->GetY()  > enemy->GetX() || hero->GetY() - 64.0f < )
+									{
 
-								
+									}*/
 
+			
 							
 
 							}
@@ -1054,7 +1049,7 @@ void CObjMain::Draw()
 						Draw::Draw(1, &src, &dst, c, 0.0f);
 					}
 					//階段テクスチャ
-					if (m_map[i][j] == 3||m_map[i][j]==5)
+					if (m_map[i][j] == 3/*||m_map[i][j]==5*/)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

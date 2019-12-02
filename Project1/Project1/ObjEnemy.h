@@ -34,11 +34,14 @@ class CObjEnemy : public CObj
 public:
 	CObjEnemy(float x,float y);
 	~CObjEnemy() {};
-	CObjEnemy(int map[100][100]);
+	CObjEnemy(int m_map[75][75]);
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
 	bool OverFlowCheck(int x, int y);
+
+	float GetX() { return m_ex; }
+	float GetY() { return m_ey; }
 	int m_map[MAP_X][MAP_Y];
 private:
 	float m_ex;  //オブジェクトの位置X
