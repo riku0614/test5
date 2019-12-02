@@ -138,27 +138,27 @@ float SpawnChanger(int m)
 	{
 		return 64.0 * 30;
 	}
-	else if (m = 2)
+	else if (m == 2)
 	{
 		return 64.0;
 	}
-	else if (m = 3)
+	else if (m == 3)
 	{
 		return 64.0;
 	}
-	else if (m = 4)
+	else if (m == 4)
 	{
 		return 64.0;
 	}
-	else if (m = 5)
+	else if (m == 5)
 	{
 		return 64.0;
 	}
-	else if (m = 6)
+	else if (m == 6)
 	{
 		return 64.0;
 	}
-	else if (m = 7)
+	else if (m == 7)
 	{
 		return 64.0;
 	}

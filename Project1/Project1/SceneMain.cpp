@@ -80,6 +80,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ï«Åiâ°Åj.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"ï«Åiâ°ÅjÇQ.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"ï«ÇQ.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"è∞åä.png", 21, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
@@ -108,10 +109,7 @@ void CSceneMain::InitScene()
 
 	
 
-	//ìGÇèoåª
-	/*
-	CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 11); */
+	
 	
 }
 

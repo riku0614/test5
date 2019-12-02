@@ -64,6 +64,7 @@ class CObjMain : public CObj
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool back_stage; //前のマップに戻るためのフラグ
 		bool stop_flg2;  //
+		bool stop_flg3;
 		bool delete_flg;
 		bool plane_chg_hole;
 
