@@ -22,6 +22,7 @@ void CObjGameUI::Init()
 	take_flag_3 = false;
 
 	m_id = 0;
+	h_id = 0;
 }
 
 //アクション
@@ -36,6 +37,8 @@ void CObjGameUI::Action()
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	
 	m_id = hero->GetKeyID();
+	h_id = hero->GatHealID();
+	
 	//アイテムを使ったらアイテムを消す処理
 	if (hero->SetItemflag() == true) //アイテム欄の1番目
 	{
@@ -44,13 +47,13 @@ void CObjGameUI::Action()
 	}
 
 	
-	/*
+	
 	if (hero->SetItemflag_2() == true) //アイテム欄の2番目
 	{
 		hero->SetFlug_2(false);
-		m_id = 0;
+		h_id = 0;
 	}
-
+	/*
 	if (hero->SetItemflag_3() == true) //アイテム欄の3番目
 	{
 		hero->SetFlug_3(false);
@@ -127,30 +130,29 @@ void CObjGameUI::Draw()
 	}
 
 	//2番のアイテム表示
-	/*
-	if (hero->Getflag_2() == true && take_flag == true)
+	if (hero->Getflag_2() == true)
 	{
 		RECT_F src3;	//描画元切り取り位置
 		RECT_F dst3;	//描画先表示位置
 
-		src3.m_top = 10.0f;
-		src3.m_left = 10.0f;
-		src3.m_right = 48.0f;
-		src3.m_bottom = 50.0f;
+		src3.m_top = 0.0f;
+		src3.m_left = 0.0f;
+		src3.m_right = 256.0f;
+		src3.m_bottom = 256.0f;
 
 
 		//表示位置設定
 		dst3.m_top = 559.0f;
 		dst3.m_left = 724.0f;
 		dst3.m_right = dst.m_left + 38.0f;
-		dst3.m_bottom = dst.m_top + 40.0f;
+		dst3.m_bottom = dst.m_top + 45.0f;
 
 		//描画設定
-		Draw::Draw(9, &src3, &dst3, c, 0.0f);
+		Draw::Draw(21, &src3, &dst3, c, 0.0f);
 
 		take_flag_2 = true; //2番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 	}
-
+	/*
 	//3番のアイテム表示
 	if (hero->Getflag_3() == true && take_flag == true && take_flag_2 == true)
 	{

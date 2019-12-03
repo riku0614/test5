@@ -37,6 +37,8 @@ void CObjMain::Init()
 	back_stage = false;
 	stop_flg2 = true;
 	delete_flg = false;
+	map_Item = false;
+	map_Item_2 = false;
 }
 
 //アクション
@@ -128,6 +130,7 @@ void CObjMain::Action()
 
 	}
 
+
 	if (stop_flg2 == true)
 	{
 		for (int i = 0; i < MAP_X; i++)
@@ -141,11 +144,13 @@ void CObjMain::Action()
 					CObjGimmick* objg = new CObjGimmick((j - 1)*64.0f + m_scroll_x, (i-1)*64.0f + m_scroll_y);
 					Objs::InsertObj(objg, OBJ_GIMMICK, 14);
 
+
 					CObjGimmick* gim = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
 					gim->SetY(j);
 					gim->SetX(i);
 
 				}
+
 			}
 
 		}
@@ -407,7 +412,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (m_map[i][j] <= 99 && m_map[i][j] > 4&&m_map[i][j]!=7  || m_map[i][j]==3)
+				if (m_map[i][j] != 21 && m_map[i][j] <= 99 && m_map[i][j] > 4 && m_map[i][j] != 7 || m_map[i][j] == 3)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -484,7 +489,7 @@ void CObjMain::BlockHit(
 										room_in = true;
 										stop_flg = true;
 
-										item->SetFlag(true);
+										//item->SetFlag(true);
 								
 										//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -878,7 +883,7 @@ void CObjMain::ItemHit(
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] == 4)
+				if (m_map[i][j] == 4 || m_map[i][j] == 21)
 				{
 					
 
@@ -926,7 +931,7 @@ void CObjMain::ItemHit(
 									m_map[i][j] = 1;
 									delete_flg = false;
 								}
-								*vx = -(*vx)*0.25f;//-VX*反発係数
+								*vx = -(*vx)*0.1f;//-VX*反発係数
 							}
 							if (r > 45 && r < 135)
 							{
@@ -969,6 +974,15 @@ void CObjMain::ItemHit(
 								
 
 							}
+
+							if (m_map[i][j] == 4)
+							{
+								map_Item = true;
+							}
+							if (m_map[i][j] == 21)
+							{
+								map_Item_2 = true;
+							}
 							
 							
 						}
@@ -982,7 +996,6 @@ void CObjMain::ItemHit(
 			}
 
 		}
-	
 }
 
 
@@ -1016,7 +1029,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (m_map[i][j] == 1||m_map[i][j]==4 ||m_map[i][j]==7)
+					if (m_map[i][j] == 1 || m_map[i][j] == 4 || m_map[i][j] == 7 || m_map[i][j] == 21)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

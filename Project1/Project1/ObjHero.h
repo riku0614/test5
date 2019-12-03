@@ -45,8 +45,10 @@ public:
 	bool SetItemflag_3() { return use_Item_flag_3; }
 
 	int GetKeyID() { return m_id; }
+	int GatHealID() { return h_id; }
 private:
 	int k_id;//アイテム（鍵）のID
+	int h_id;//回復アイテムのID
 	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;

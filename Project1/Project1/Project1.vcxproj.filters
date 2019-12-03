@@ -97,6 +97,9 @@
     <ClCompile Include="ObjGimmick.cpp">
       <Filter>ソースファイル\NewFilter1</Filter>
     </ClCompile>
+    <ClCompile Include="objheal.cpp">
+      <Filter>ソースファイル\アイテム</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="ObjGimmick.h">
       <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="objheal.h">
+      <Filter>ソースファイル\アイテム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

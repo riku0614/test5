@@ -17,6 +17,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_MENU,
 	OBJ_GIMMICK,
+	OBJ_HEAL,
 
 	//OBJ_CHAR,
 };
@@ -57,6 +58,7 @@ enum ITEM_ID
 	ITEM_KEY,
 	CHAR_HERO,
 	CHAR_ENEMY,
+	ITEM_HEAL,
 };
 
 
@@ -79,6 +81,7 @@ enum ITEM_ID
 #include "ObjItem.h"
 #include "ObjMenu.h"
 #include "ObjGimmick.h"
+#include "objheal.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
