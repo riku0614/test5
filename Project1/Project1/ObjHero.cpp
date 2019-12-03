@@ -126,9 +126,9 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
-
-
-
+	
+	//敵と当たったらフラグを持てる
+	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 	//ゲームメインにフラグをセットする
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 

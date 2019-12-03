@@ -22,6 +22,8 @@ void CObjGameUI::Init()
 	take_flag_2 = false;
 	take_flag_3 = false;
 
+	Conflict_flag = false;
+
 	m_id = 0;
 }
 

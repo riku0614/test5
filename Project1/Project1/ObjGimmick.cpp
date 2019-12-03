@@ -83,7 +83,7 @@ void CObjGimmick::Action()
 	if (stop_flg == false && main->RoomFlag() == false)
 	{
 
-		gx=
+		gx = 6;
 
 
 		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);

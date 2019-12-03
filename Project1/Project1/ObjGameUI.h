@@ -40,5 +40,7 @@ private:
 	bool take_flag_2;	//2”Ô
 	bool take_flag_3;	//3”Ô
 
+	bool Conflict_flag; //“G‚Æ“–‚½‚Á‚½‚©‚ğ”»’f‚·‚éƒtƒ‰ƒO
+
 	int m_id;	//key—p•Ï”
 };
