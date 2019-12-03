@@ -33,6 +33,11 @@ class CObjMain : public CObj
 		int MapChangeData() { return map_chg; }
 		bool GetFlug() { return stop_flg; }
 
+		void SetMapItem(bool mi) { map_Item; }
+		bool GetMapItem() { return map_Item; }
+		void SetMapItem_2(bool mi) { map_Item_2; }
+		bool GetMapItem_2() { return map_Item_2; }
+
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
 
@@ -78,6 +83,10 @@ class CObjMain : public CObj
 
 		float m_scroll_x;   //左右スクロール用
 		float m_scroll_y;   //上下スクロール用
+
+		bool map_Item;//マップ上のアイテム情報
+		bool map_Item_2;//マップ上のアイテム情報2!
+		bool map_Item_3;//マップ上のアイテム情報3!
 
 
 		float Dot(float ax, float ay, float bx, float by);

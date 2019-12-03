@@ -39,12 +39,18 @@ void CObjMain::Init()
 	room_in = true;
 	back_stage = false;
 	delete_flg = false;
+	map_Item = false;
+	map_Item_2 = false;
 	plane_chg_hole = false;
 }
 
 //アクション
 void CObjMain::Action()
 {
+	if (room_chg >= 4)
+	{
+		room_chg = 1;
+	}
 
 	if (map_chg == 0 )
 	{
@@ -192,6 +198,7 @@ void CObjMain::Action()
 
 
 				}
+
 			}
 
 		}
@@ -472,7 +479,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (m_map[i][j] <= 99 && m_map[i][j] > 4&&m_map[i][j]!=7  || m_map[i][j]==3)
+				if (m_map[i][j] != 21 && m_map[i][j] <= 99 && m_map[i][j] > 4 && m_map[i][j] != 7 || m_map[i][j] == 3)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -554,6 +561,8 @@ void CObjMain::BlockHit(
 									{
 										room_in = true;
 										stop_flg = true;
+
+										//item->SetFlag(true);
 										
 										room_chg++;
 								
@@ -744,7 +753,28 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
-							
+								/*
+						///主人公の位置を持ってくる
+								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+								///主人公の位置を持ってくる
+								CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+
+								//敵出現ライン
+									//敵	
+									CObjEnemy* obje = new CObjEnemy(m_map);
+									Objs::InsertObj(obje, OBJ_ENEMY, 10);
+
+									//プレイヤーから範囲に入ったら敵が出てくるようにしたい
+									if (hero->GetX() + 64.0f >  || hero - 64.0f < m_ex)
+									{
+
+									}
+									else if (hero->GetY()  > enemy->GetX() || hero->GetY() - 64.0f < )
+									{
+
+									}*/
+
 			
 							
 
@@ -956,7 +986,7 @@ void CObjMain::ItemHit(
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] == 4)
+				if (m_map[i][j] == 4 || m_map[i][j] == 21)
 				{
 					
 
@@ -1004,7 +1034,7 @@ void CObjMain::ItemHit(
 									m_map[i][j] = 1;
 									delete_flg = false;
 								}
-								*vx = -(*vx)*0.25f;//-VX*反発係数
+								*vx = -(*vx)*0.1f;//-VX*反発係数
 							}
 							if (r > 45 && r < 135)
 							{
@@ -1047,6 +1077,15 @@ void CObjMain::ItemHit(
 								
 
 							}
+
+							if (m_map[i][j] == 4)
+							{
+								map_Item = true;
+							}
+							if (m_map[i][j] == 21)
+							{
+								map_Item_2 = true;
+							}
 							
 							
 						}
@@ -1060,7 +1099,6 @@ void CObjMain::ItemHit(
 			}
 
 		}
-	
 }
 
 
@@ -1094,7 +1132,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (m_map[i][j] == 1||m_map[i][j]==4 ||m_map[i][j]==7||m_map[i][j]==13)
+					if (m_map[i][j] == 1 || m_map[i][j] == 4 || m_map[i][j] == 7 || m_map[i][j] == 13 || m_map[i][j] == 21)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

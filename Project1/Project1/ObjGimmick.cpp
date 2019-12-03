@@ -92,8 +92,12 @@ void CObjGimmick::Action()
 				{
 					gimmick_flg = false;
 				}
-
 			}
+
+			if (main->RoomFlag() == true && stop_flg == true)
+			{
+
+				Hits::DeleteHitBox(this);
 
 
 
@@ -116,6 +120,7 @@ void CObjGimmick::Action()
 		
 }
 
+	}
 
 //ÉhÉçÅ[
 void CObjGimmick::Draw()

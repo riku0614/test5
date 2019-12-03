@@ -6,16 +6,16 @@
 using namespace GameL;
 
 //オブジェクト：メイン
-class CObjItem : public CObj
+class CObjheal : public CObj
 {
 public:
-	CObjItem(int map[ROOM_X][ROOM_Y]);
-	~CObjItem() {};
+	CObjheal(int map[MAP_X][MAP_Y]);
+	~CObjheal() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー
 	//void SetFlag(bool b) { stop_flg = b; }
-	
+
 private:
 	int m_map[MAP_X][MAP_Y];//マップ情報
 	int ix;	//アイテムのX位置保管用
@@ -39,3 +39,4 @@ private:
 	//bool hit_flg;
 
 };
+

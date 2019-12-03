@@ -40,5 +40,8 @@ private:
 	bool take_flag_2;	//2番
 	bool take_flag_3;	//3番
 
+	bool Conflict_flag; //敵と当たったかを判断するフラグ
+
 	int m_id;	//key用変数
+	int h_id;	//Heal用変数
 };
