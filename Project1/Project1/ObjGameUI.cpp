@@ -101,7 +101,7 @@ void CObjGameUI::Draw()
 
 		//•`‰æİ’è
 
-		Draw::Draw(21, &src, &dst, c, 0.0f);
+		Draw::Draw(22, &src, &dst, c, 0.0f);
 	
 	
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è
@@ -118,7 +118,7 @@ void CObjGameUI::Draw()
 
 	//•`‰æİ’è
 
-	Draw::Draw(22, &src, &dst, c, 0.0f);
+	Draw::Draw(23, &src, &dst, c, 0.0f);
 	
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è
 	src.m_top = 19.0f;
