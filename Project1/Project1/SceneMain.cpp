@@ -117,7 +117,10 @@ void CSceneMain::InitScene()
 
 	
 
-	
+	//“G‚ğoŒ»
+	/*
+	CObjEnemy* obje = new CObjEnemy(map);
+	Objs::InsertObj(obje, OBJ_ENEMY, 11); */
 	
 }
 

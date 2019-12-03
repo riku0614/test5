@@ -728,7 +728,28 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
-							
+								/*
+						///主人公の位置を持ってくる
+								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+								///主人公の位置を持ってくる
+								CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+
+								//敵出現ライン
+									//敵	
+									CObjEnemy* obje = new CObjEnemy(m_map);
+									Objs::InsertObj(obje, OBJ_ENEMY, 10);
+
+									//プレイヤーから範囲に入ったら敵が出てくるようにしたい
+									if (hero->GetX() + 64.0f >  || hero - 64.0f < m_ex)
+									{
+
+									}
+									else if (hero->GetY()  > enemy->GetX() || hero->GetY() - 64.0f < )
+									{
+
+									}*/
+
 			
 							
 
