@@ -3,6 +3,7 @@
 #include "GameL/DrawFont.h"
 #include "GameL/WinInputs.h"
 #include "GameL/SceneManager.h"
+#include "GameL/Audio.h"
 
 #include "GameHead.h"
 #include "ObjGimmick.h"
@@ -14,29 +15,31 @@
 using namespace GameL;
 
 
-//コンストラクタ
+
 CObjGimmick::CObjGimmick(float x, float y)
 {
-	gx = x;
-	gy = y;
+		gx = x;
+		gy = y;
 }
 
 
 //イニシャライズ
 void CObjGimmick::Init()
 {
-	
+
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
 	h_count = 0;
-	gimmick_flg = false;
-	stop_flg = true;
+	stop_flg = false;
+	stop_flg2 = false;
+	gimmick_chg = false;
 
 	pi = 0;
 	pj = 0;
 	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
 
 
 
@@ -45,34 +48,77 @@ void CObjGimmick::Init()
 //アクション
 void CObjGimmick::Action()
 {
-	
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
-		
-	
-	
-	
-	
-	//HitBoxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
-	
 
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	
+	
+	if (stop_flg == false && main->RoomFlag() == false)
 	{
 
-		gimmick_flg = true;
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
 
-		
+		stop_flg = true;
+
 
 	}
-	
-	
-	
+
+	if (main->RoomFlag() == true && stop_flg == true)
+	{
+
+		Hits::DeleteHitBox(this);
+
+		main->SetStopFlag(true);
+
+		stop_flg = false;
 
 
+	}
 
+
+		//HitBoxの位置の変更
+		CHitBox* hit = Hits::GetHitBox(this);
+		if (hit != nullptr)
+		{
+			hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
+
+
+			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+			{
+				//音楽情報の読み込み
+				Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
+
+				//音楽スタート
+				Audio::Start(7);
+				if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+				{
+
+					gimmick_flg = true;
+
+
+				}
+				else
+				{
+					gimmick_flg = false;
+				}
+			}
+
+			if (main->RoomFlag() == true && stop_flg == true)
+			{
+
+				Hits::DeleteHitBox(this);
+
+				main->SetStopFlag(true);
+
+				stop_flg = false;
+
+			}
+
+		}
+
+	}
 }
 
 //ドロー

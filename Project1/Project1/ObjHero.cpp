@@ -7,6 +7,8 @@
 #include "GameHead.h"
 #include "ObjHero.h"
 #include "UtilityModule.h"
+#include "GameL/Audio.h"
+#include"ObjGameUI.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -21,6 +23,9 @@ void CObjHero::Init()
 	m_vy = 0.0f;
 
 	m_hero_life = 30;//主人公の体力用変数
+
+
+
 
 	peperon_flag = false;
 	use_Item_flag = false;
@@ -55,7 +60,7 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
-	k_id = 0;
+	k_id = 99;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -78,15 +83,15 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power =1.1f;
+		m_speed_power =1.0f;
 		m_ani_max_time = 4;
 
-		m_stamina_limid -= 0.0f;
+		m_stamina_limid -= 0.5f;
 	}
 	else   
 	{
 		//通常速度
-		m_speed_power = 0.8f;
+		m_speed_power = 0.5f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
@@ -121,6 +126,14 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
+
+
+
+	//ゲームメインにフラグをセットする
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+
+
 
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
@@ -279,6 +292,12 @@ void CObjHero::Action()
 	//主人公機オブジェクトと接触したら敵削除
 	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
 	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
+
+		//音楽スタート
+		Audio::Start(6);
+
 		m_hero_life-=1;
 
 		m_flg = true;

@@ -7,6 +7,7 @@
 #include "GameL/DrawFont.h"
 #include "GameL/DrawTexture.h"
 #include "GameL/UserData.h"
+#include "GameL/Audio.h"
 
 //使用ヘッダー
 #include "SceneMain.h"
@@ -34,6 +35,12 @@ CSceneMain::~CSceneMain()
 //ゲームメイン初期化メソッド
 void CSceneMain::InitScene()
 {
+	//音楽情報の読み込み
+	Audio::LoadAudio(1, L"1廊下BGM.wav", SOUND_TYPE::BACK_MUSIC);
+
+	//音楽スタート
+	Audio::Start(1);
+
 	unique_ptr<wchar_t> p;
 	int size;
 	
@@ -73,6 +80,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
+	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
