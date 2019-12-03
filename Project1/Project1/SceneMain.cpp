@@ -80,6 +80,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"char4.png", 14, TEX_SIZE_512);
 
 	
+
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -101,9 +102,10 @@ void CSceneMain::InitScene()
 	
 
 	//敵を出現
-	/*CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
-	*/
+	/*
+	CObjEnemy* obje = new CObjEnemy(map);
+	Objs::InsertObj(obje, OBJ_ENEMY, 11); */
+	
 }
 
 //ゲームメイン実行中メソッド
