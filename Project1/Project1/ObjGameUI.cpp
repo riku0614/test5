@@ -84,7 +84,7 @@ void CObjGameUI::Draw()
 
 	/*ダメージエフェクト*/
 	
-		//切り取り位置の設定
+		/*//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1024.0f;
@@ -98,11 +98,11 @@ void CObjGameUI::Draw()
 
 		//描画設定
 
-		Draw::Draw(21, &src, &dst, c, 0.0f);
+		Draw::Draw(21, &src, &dst, c, 0.0f);*/
 	
 	
 	//切り取り位置の設定
-	src.m_top = 0.0f;
+	/*src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1024.0f;
 	src.m_bottom = 680.0f;
@@ -115,7 +115,7 @@ void CObjGameUI::Draw()
 
 	//描画設定
 
-	Draw::Draw(22, &src, &dst, c, 0.0f);
+	Draw::Draw(22, &src, &dst, c, 0.0f);*/
 	
 	//切り取り位置の設定
 	src.m_top = 19.0f;

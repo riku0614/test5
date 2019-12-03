@@ -44,14 +44,14 @@ void CSceneMain::InitScene()
 	unique_ptr<wchar_t> p;
 	int size;
 	
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 
-	int map[MAP_X][MAP_Y];
+	int map[ROOM_X][ROOM_Y];
 	int count = 1;
 
-	for (int i = 0; i < MAP_X; i++)
+	for (int i = 0; i < ROOM_X; i++)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int j = 0; j < ROOM_Y; j++)
 		{
 			
 			int w = 0;
@@ -82,7 +82,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
-	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"床穴.png", 23, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);

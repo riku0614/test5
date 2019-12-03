@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjItem : public CObj
 {
 public:
-	CObjItem(int map[MAP_X][MAP_Y]);
+	CObjItem(int map[ROOM_X][ROOM_Y]);
 	~CObjItem() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
