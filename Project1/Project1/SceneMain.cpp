@@ -70,7 +70,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"手形1.png", 15, TEX_SIZE_512);
 	Draw::LoadImageW(L"呪い.png", 16, TEX_SIZE_512);
 	Draw::LoadImageW(L"画面.png", 17, TEX_SIZE_1024);
-	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_1024);
+	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
