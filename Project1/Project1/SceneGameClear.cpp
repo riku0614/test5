@@ -6,6 +6,7 @@
 #include "GameL/SceneObjManager.h"
 #include "GameL/DrawFont.h"
 #include "GameL/Audio.h"
+#include "GameL/DrawTexture.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -30,9 +31,23 @@ CSceneGameClear::~CSceneGameClear()
 //ゲームメイン初期化メソッド
 void CSceneGameClear::InitScene()
 {
+	//音楽情報の読み込み
+	Audio::LoadAudio(8, L"8EDBGM.wav", SOUND_TYPE::EFFECT);
+
+	//音楽スタート
+	Audio::Start(8);
+
 	//オブジェクトを登録
 	//CObjMain* p = new CObjMain();
 	//Objs::InsertObj(p, OBJ_MAIN, 1);
+
+	Draw::LoadImageW(L"ED画面 背景用.png", 0, TEX_SIZE_1024);
+
+	Draw::LoadImageW(L"ED画面1.png", 1, TEX_SIZE_1024);
+
+	Draw::LoadImageW(L"ED画面2.png", 2, TEX_SIZE_1024);
+
+	Draw::LoadImageW(L"ED画面3.png", 3, TEX_SIZE_1024);
 
 	//タイトルオブジェクト作成
 	CObjGameClear* objc = new CObjGameClear();		//ゲームクリアオブジェクト作成
@@ -43,5 +58,5 @@ void CSceneGameClear::InitScene()
 //ゲームメイン実行中メソッド
 void CSceneGameClear::Scene()
 {
-
+	
 }

@@ -22,14 +22,14 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6E1743E7-6DB8-432F-9FB0-0E3E283DA03F}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -116,6 +116,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjGimmick.cpp" />
+    <ClCompile Include="objheal.cpp" />
     <ClCompile Include="ObjRoom.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
@@ -159,6 +161,8 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjGimmick.h" />
+    <ClInclude Include="objheal.h" />
     <ClInclude Include="ObjRoom.h" />
     <ClInclude Include="SceneRoom.h" />
     <ClInclude Include="SceneGameUI.h" />
@@ -193,12 +197,23 @@
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="UtilityModule.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="0タイトルBGM.wav" />
+    <Media Include="1廊下BGM.wav" />
+    <Media Include="2カーソルSE.wav" />
+    <Media Include="3死亡SE.wav" />
+    <Media Include="4教室扉SE.wav" />
+    <Media Include="5マップ切り替えSE.wav" />
+    <Media Include="6ダメージ音.wav" />
+    <Media Include="7ギミックSE.wav" />
+    <Media Include="8EDBGM.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

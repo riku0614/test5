@@ -4,6 +4,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define Status (8)
+
 //オブジェクト：主人公
 class CObjHero : public CObj
 {
@@ -34,9 +36,23 @@ public:
 	void SetVX(float vx) { m_vx = vx; }
 
 	bool Getflag() { return peperon_flag;}
+	void SetFlug(bool f) { peperon_flag = f; }
+	bool Getflag_2() { return peperon_flag_2; }
+	void SetFlug_2(bool f) { peperon_flag_2 = f; }
+	bool Getflag_3() { return peperon_flag_3; }
+	void SetFlug_3(bool f) { peperon_flag_3 = f; }
 
+	bool SetItemflag() { return use_Item_flag; }
+	bool SetItemflag_2() { return use_Item_flag_2; }
+	bool SetItemflag_3() { return use_Item_flag_3; }
 
+	int GetKeyID() { return m_id; }
+	int GatHealID() { return h_id; }
 private:
+	float save[Status][2];
+
+	int k_id;//アイテム（鍵）のID
+	int h_id;//回復アイテムのID
 	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
@@ -72,7 +88,17 @@ private:
 	//踏んでいるブロックの種類確認用
 	int m_block_type;
 
-	bool peperon_flag; //アイテム消去フラグ用
+	bool peperon_flag; //アイテム1番消去フラグ用
+	bool peperon_flag_2; //アイテム2番消去フラグ用
+	bool peperon_flag_3; //アイテム3番消去フラグ用
+
+	bool use_Item_flag; //アイテム1番使用フラグ
+	bool use_Item_flag_2;//アイテム2番使用フラグ
+	bool use_Item_flag_3;//アイテム3番使用フラグ
+
 	float px, py;//交点
 
+	bool stey_flg1;
+	bool stey_flg2;
+	bool stey_flg3;
 };
