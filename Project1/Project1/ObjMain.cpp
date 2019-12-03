@@ -49,6 +49,10 @@ void CObjMain::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjMain::Action()
 {
+	if (room_chg >= 4)
+	{
+		room_chg = 1;
+	}
 
 	if (map_chg == 0 )
 	{
