@@ -43,4 +43,5 @@ private:
 	bool Conflict_flag; //敵と当たったかを判断するフラグ
 
 	int m_id;	//key用変数
+	int h_id;	//Heal用変数
 };

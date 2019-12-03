@@ -23,7 +23,7 @@ void CObjEnemy::Init()
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	m_ex = 64.0f; //ˆÊ’u
+	m_ex = 64.0f*10.0f; //ˆÊ’u
 	m_ey = 64*3.0f;
 	
 	

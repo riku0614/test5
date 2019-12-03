@@ -107,6 +107,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR szCmdLi
 	do
 	{
 
+
 		if( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
 		{
 			

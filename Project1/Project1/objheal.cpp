@@ -13,14 +13,14 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[MAP_X][MAP_Y])
+CObjheal::CObjheal(int map[MAP_X][MAP_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y ));
+	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 }
 
 
 //イニシャライズ
-void CObjItem::Init()
+void CObjheal::Init()
 {
 	//変数初期化
 	ix = 0;
@@ -36,10 +36,8 @@ void CObjItem::Init()
 	{
 		for (int j = 0; j < MAP_Y; j++)
 		{
-			if (m_map[i][j] == 4)
+			if (m_map[i][j] == 21)
 			{
-
-
 				//メインの位置を取得
 
 				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -50,8 +48,7 @@ void CObjItem::Init()
 				iy = i * 64.0f;//アイテムの位置Yをとる
 
 				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
-
+				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_WHITE, OBJ_HEAL, 1);
 
 			}
 		}
@@ -60,28 +57,27 @@ void CObjItem::Init()
 	//m_scroll_y = -64.0f;
 
 	stop_flg = false;
-	
+
 
 }
 
 //アクション
-void CObjItem::Action()
+void CObjheal::Action()
 {
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	/*
 	r_map[ROOM_X][ROOM_Y] = main->RoomMapData();
-	
-	if(main->RoomFlag() == true && stop_flg == true)
+
+	if (main->RoomFlag() == true && stop_flg == true)
 	{
 		for (int i = 0; i < ROOM_X; i++)
 		{
 			for (int j = 0; j < ROOM_Y; j++)
 			{
-				if (r_map[i][j] == 4)
+				
+				if (r_map[i][j] == 21)
 				{
-
-
 					//メインの位置を取得
 
 					CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -92,19 +88,13 @@ void CObjItem::Action()
 					iy = i * 64.0f;//アイテムの位置Yをとる
 
 					//当たり判定用hitboxを作成
-					Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
-
-
+					Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_WHITE, OBJ_HEAL, 1);
 				}
-				
 			}
 		}
-	
+
 		stop_flg = false;
 	}*/
-
-	
-	
 
 
 	//主人公のアイテムと当たったフラグを持ってくる
@@ -113,17 +103,17 @@ void CObjItem::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
 	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
-	if (hero->Getflag() == true)
+	if (hero->Getflag_2() == true)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
 
-	
+
 }
 
 //ドロー
-void CObjItem::Draw()
+void CObjheal::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -145,7 +135,8 @@ void CObjItem::Draw()
 	{
 		for (int j = 0; j < MAP_Y; j++)
 		{
-			if (m_map[i][j] == 4)
+			
+			if (m_map[i][j] == 21)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f + hy;
