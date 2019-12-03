@@ -1,4 +1,3 @@
-//STLデバッグ機能をオフに
 #define _SECURE_SCL (0)
 #define _HAS_ITERATER_DEBUGGING (0)
 
@@ -13,6 +12,8 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
+#include "ObjRoom.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -51,6 +52,9 @@ void CSceneMain::InitScene()
 			map[i][j] = w;
 			count += 2;
 
+			
+		
+			
 		}
 	}
 
@@ -80,7 +84,6 @@ void CSceneMain::InitScene()
 	//UIオブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
-	
 	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);

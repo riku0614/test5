@@ -17,6 +17,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_MENU,
 	OBJ_JUNCTION,
+	OBJ_ROOM,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -78,6 +79,7 @@ enum ITEM_ID
 //#include "ObjChar.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
+#include "ObjRoom.h"
 
 //------------------------------------------------
 
@@ -88,9 +90,11 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
+#include "SceneRoom.h"
+
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneTitle
+#define SET_GAME_START  CSceneRoom
 //-----------------------------------------------

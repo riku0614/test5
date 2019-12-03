@@ -7,30 +7,30 @@
 #include "GameL/HitBoxManager.h"
 
 #include "GameHead.h"
-#include "ObjMain.h"
+#include "ObjRoom.h"
 
 
 //使用するネームスペース
 using namespace GameL;
 
-CObjMain::CObjMain(int map[100][100])
+CObjRoom::CObjRoom(int room[25][25])
 {
-	memcpy(m_map, map, sizeof(int)*(100 * 100));
+	memcpy(m_room, room, sizeof(int)*(25 * 25));
 }
 
 
 
 //イニシャライズ
-void CObjMain::Init()
+void CObjRoom::Init()
 {
 	m_scroll_x = -2850.0f;
 	m_scroll_y = -64.0f;
 
-	
+
 }
 
 //アクション
-void CObjMain::Action()
+void CObjRoom::Action()
 {
 
 	//主人公の位置を取得
@@ -69,13 +69,13 @@ void CObjMain::Action()
 
 	}
 
-	
 
-	
 
-	
-	
-	
+
+
+
+
+
 }
 
 /*内積関数
@@ -83,7 +83,7 @@ void CObjMain::Action()
   引数3,4 float   bx  ,  by  :Bベクトル
   戻り値　float   ：射影
   内容　AベクトルとBベクトルて内積を行い射影を求める*/
-float CObjMain::Dot(float ax, float ay, float bx, float by)
+float CObjRoom::Dot(float ax, float ay, float bx, float by)
 {
 	float t = 0.0f;
 
@@ -97,7 +97,7 @@ float CObjMain::Dot(float ax, float ay, float bx, float by)
   引数3,4 float   bx  ,  by  :Bベクトル
   戻り値　float   ：射影
   内容　AベクトルとBベクトルて内積を行い射影を求める*/
-float CObjMain::Cross(float ax, float ay, float bx, float by)
+float CObjRoom::Cross(float ax, float ay, float bx, float by)
 {
 	float t = 0.0f;
 
@@ -117,7 +117,7 @@ float CObjMain::Cross(float ax, float ay, float bx, float by)
   引数　float 9, 10  out_px,out_py      :軸ベクトルAの始点
   戻り値　bool  :true=交点有り　false=交点無し
   内容：引数のA・Bベクトルの交点を見つけ、out_pxとout_pyの返す*/
-bool CObjMain::LineCrossPoint(
+bool CObjRoom::LineCrossPoint(
 	float a1x, float a1y, float a2x, float a2y,
 	float b1x, float b1y, float b2x, float b2y,
 	float* out_px, float* out_py
@@ -178,7 +178,7 @@ bool CObjMain::LineCrossPoint(
   引数7   float* out          :一から交点までの距離
   主人公の位置＋移動ベクトルと各ブロックの変で好転の判定を行い
   最も近い交点の位置と距離を返す*/
-bool CObjMain::HeroBlockCrossPoint(
+bool CObjRoom::HeroBlockCrossPoint(
 	float x, float y, float vx, float vy,
 	float *out_px, float *out_py, float *out_len
 )
@@ -197,11 +197,11 @@ bool CObjMain::HeroBlockCrossPoint(
 	};
 
 	//m_mapの全要素にアクセス
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 25; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 25; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 4)
+			if (m_room[i][j] > 0 && m_room[i][j] != 4)
 			{
 				//ブロックの４辺から交点を探す
 				for (int k = 0; k < 4; k++)
@@ -254,8 +254,8 @@ bool CObjMain::HeroBlockCrossPoint(
   判定を行うobjectとブロック64*64限定で、当たり判定と上下左右判定を行う
   その結果は引数４～１０に返す*/
 
-void CObjMain::BlockHit(
-	float *x, float *y, bool scroll_on_x,bool scroll_on_y,
+void CObjRoom::BlockHit(
+	float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
 )
@@ -270,17 +270,17 @@ void CObjMain::BlockHit(
 	*bt = 0;
 
 	//m=mapの全要素にアクセス
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 25; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 25; j++)
 		{
-			if (m_map[i][j] == 8)
+			if (m_room[i][j] == 8)
 			{
 				//当たり判定用hitboxを作成
 				Hits::SetHitBox(this, i*64.0f, j*64.0f, 64, 64, ELEMENT_BLUE, OBJ_JUNCTION, 2);
 			}
-		
-			if (m_map[i][j] == 9||m_map[i][j]==3)
+
+			if (m_room[i][j] == 9 || m_room[i][j] == 3)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -315,12 +315,12 @@ void CObjMain::BlockHit(
 					if (len < 88.0f)
 					{
 						//角度で左右を判定
-						if ((r < 45 && r>=0) || r > 315)
+						if ((r < 45 && r >= 0) || r > 315)
 						{
 							//右
 							*right = true;//主人公から見て、左の部分が衝突している
 							*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
-							if (m_map[i][j] == 3)
+							if (m_room[i][j] == 3)
 								Scene::SetScene(new CSceneGameClear);
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
@@ -329,19 +329,19 @@ void CObjMain::BlockHit(
 							//上
 							*down = true;//主人公から見て、下の部分が衝突している
 							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
-							if (m_map[i][j] == 2)
-								*bt = m_map[i][j];
-							if(m_map[i][j]==3)
+							if (m_room[i][j] == 2)
+								*bt = m_room[i][j];
+							if (m_room[i][j] == 3)
 								Scene::SetScene(new CSceneGameClear);
 							*vy = 0.0f;
-							
+
 						}
 						if (r > 135 && r < 225)
 						{
 							//左
 							*left = true;//主人公から見て、右の部分が衝突している
 							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-							if (m_map[i][j] == 3)
+							if (m_room[i][j] == 3)
 								Scene::SetScene(new CSceneGameClear);
 							*vx = -(*vx)*0.1f;//-VX*反発係数
 						}
@@ -361,7 +361,7 @@ void CObjMain::BlockHit(
 
 
 				}
-				
+
 
 			}
 			/*
@@ -440,7 +440,7 @@ void CObjMain::BlockHit(
 
 				}
 			}*/
-			
+
 		}
 	}
 
@@ -459,7 +459,7 @@ void CObjMain::BlockHit(
   判定を行うobjectとブロック64*64限定で、当たり判定と上下左右判定を行う
   その結果は引数４～１０に返す*/
 
-void CObjMain::ItemHit(
+void CObjRoom::ItemHit(
 	float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 	bool *up, bool *down, bool *left, bool *right,
 	float *vx, float *vy, int *bt
@@ -479,7 +479,7 @@ void CObjMain::ItemHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] == 5)
+			if (m_room[i][j] == 5)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
@@ -562,36 +562,36 @@ void CObjMain::ItemHit(
 
 
 
-	
+
 
 
 //ドロー
-void CObjMain::Draw()
+void CObjRoom::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
-	
-	
 
-	for (int i = 0; i < 100; i++)
+
+
+	for (int i = 0; i < 25; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < 25; j++)
 		{
-			if (m_map[i][j] > 0)
+			if (m_room[i][j] > 0)
 			{
-				
+
 
 				//表示位置の設定
-				dst.m_top = i * 64.0f+m_scroll_y;
-				dst.m_left = j * 64.0f+m_scroll_x;
+				dst.m_top = i * 64.0f + m_scroll_y;
+				dst.m_left = j * 64.0f + m_scroll_x;
 				dst.m_right = dst.m_left + 64.0;
 				dst.m_bottom = dst.m_top + 64.0;
 
-				
+
 				//床テクスチャ
-				if (m_map[i][j] == 1||m_map[i][j]==5||m_map[i][j]==7 || m_map[i][j] == 8 || m_map[i][j] == 6)
+				if (m_room[i][j] == 1 || m_room[i][j] == 5 || m_room[i][j] == 7 || m_room[i][j] == 8 || m_room[i][j] == 6|| m_room[i][j] == 3)
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;
@@ -600,25 +600,10 @@ void CObjMain::Draw()
 
 					Draw::Draw(1, &src, &dst, c, 0.0f);
 				}
-				//階段テクスチャ
-				if (m_map[i][j] == 3)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = src.m_left + 64.0f;
-					src.m_bottom = src.m_top + 64.0f;
-
-					Draw::Draw(7, &src, &dst, c, 0.0f);
-				}
-				if (m_map[i][j] == 4)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = src.m_left + 64.0f;
-					src.m_bottom = src.m_top + 64.0f;
-
-					Draw::Draw(3, &src, &dst, c, 0.0f);
-				}
+			
+				
+				
+				
 			}
 		}
 

@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjRoom.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -141,18 +142,25 @@
     <ClCompile Include="ObjItem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjMenu.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="SceneRoom.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjRoom.h" />
+    <ClInclude Include="SceneRoom.h" />
     <ClInclude Include="SceneGameUI.h" />
     <ClInclude Include="ObjClickTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -177,12 +185,16 @@
     <ClInclude Include="ObjItem.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjMain.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjMenu.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
-    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneMain.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="main.h" />
