@@ -10,8 +10,8 @@ using namespace GameL;
 //マクロ
 #define MAP_X  (75)
 #define MAP_Y  (75)
-#define ROOM_X (30)
-#define ROOM_Y (30)
+#define ROOM_X (25)
+#define ROOM_Y (25)
 #define MAP_NUMBER (8)
 
 //オブジェクト：メイン
@@ -32,6 +32,7 @@ class CObjMain : public CObj
 		bool RoomFlag() { return room_in; }
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
+		bool GetFlug() { return stop_flg; }
 
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
@@ -63,9 +64,12 @@ class CObjMain : public CObj
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool back_stage; //前のマップに戻るためのフラグ
 		bool stop_flg2;  //
+		bool stop_flg3;
 		bool delete_flg;
-		
+		bool plane_chg_hole;
+
 		int map_chg;     //マップ切り替えを管理するための変数
+		int room_chg;
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;

@@ -80,6 +80,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
+	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
@@ -87,6 +90,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"char4.png", 14, TEX_SIZE_512);
 
 	
+
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
@@ -107,10 +111,8 @@ void CSceneMain::InitScene()
 
 	
 
-	//敵を出現
-	/*CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 10);
-	*/
+	
+	
 }
 
 //ゲームメイン実行中メソッド

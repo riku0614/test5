@@ -23,9 +23,11 @@ void CObjEnemy::Init()
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	m_ex = 64.0f; //à íu
+	m_ex = 64.0f*10.0f; //à íu
 	m_ey = 64*3.0f;
-	//
+	
+	
+	
 	m_flg = 0;
 
 	m_id = CHAR_ENEMY;
@@ -39,7 +41,6 @@ void CObjEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	
 	
 	//ìñÇΩÇËîªíËópHitBoxÇçÏê¨
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
