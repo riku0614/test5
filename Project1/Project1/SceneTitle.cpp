@@ -31,6 +31,12 @@ CSceneTitle::~CSceneTitle()
 //ゲームメイン初期化メソッド
 void CSceneTitle::InitScene()
 {
+	//音楽情報の読み込み
+	Audio::LoadAudio(0, L"0タイトルBGM.wav", SOUND_TYPE::BACK_MUSIC);
+
+	//音楽スタート
+	Audio::Start(0);
+
 	//出力させる文字のグラフィック作成
 	Font::SetStrTex(L"怪穢");
 	Font::SetStrTex(L"～カイエ～");

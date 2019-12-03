@@ -23,13 +23,16 @@ void CObjEnemy::Init()
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	m_ex = 64.0f; //位置
+	m_ex = 64.0f*10.0f; //位置
 	m_ey = 64*3.0f;
-
+	
+	
+	
 	m_flg = 0;
 
 	m_id = CHAR_ENEMY;
 	k_id = 1;
+	
 	
 	//blockとの衝突確認用
 
@@ -38,7 +41,6 @@ void CObjEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
-	
 	
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -164,7 +166,8 @@ void CObjEnemy::Action()
 	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	pb->BlockHit(&m_ex, &m_ey, false, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&d,&m_id,&k_id);
+		&d, &m_id,&k_id);
+
 
 	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	
@@ -202,6 +205,8 @@ void CObjEnemy::Draw()
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 }
+
+
 
 
 

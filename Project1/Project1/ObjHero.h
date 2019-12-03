@@ -4,6 +4,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+#define Status (8)
+
 //オブジェクト：主人公
 class CObjHero : public CObj
 {
@@ -47,6 +49,8 @@ public:
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
 private:
+	float save[Status][2];
+
 	int k_id;//アイテム（鍵）のID
 	int h_id;//回復アイテムのID
 	int m_id;//キャラクターID
