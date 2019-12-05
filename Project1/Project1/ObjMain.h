@@ -66,10 +66,11 @@ class CObjMain : public CObj
 		float save_y[MAP_NUMBER][2];
 		float save_scroll_x[MAP_NUMBER][2];//マップを行き来する用のスクロール情報を登録する配列
 		float save_scroll_y[MAP_NUMBER][2];
-
+		int save_map[MAP_X][MAP_Y];
+		
 		bool stop_flg;   //マップ切り替えを一度だけしか
+		bool first_stop;
 		bool room_in;    //教室マップへの切り替えのフラグ
-		bool back_stage; //前のマップに戻るためのフラグ
 		bool delete_flg;
 		bool plane_chg_hole;
 

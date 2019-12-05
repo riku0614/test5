@@ -65,7 +65,8 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 	
 	int size;
 	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
-	p[1] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
+	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	
 
 	int map[MAP_X][MAP_Y];
@@ -184,6 +185,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 			{
 				if (map[i][j] == 7)
 				{
+					map[MAP_X][MAP_Y] = 1;
 
              		CObjGimmick* objg = new CObjGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 					Objs::InsertObj(objg, OBJ_GIMMICK, 11);
@@ -206,6 +208,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 			{
 				if (map[i][j] == 7)
 				{
+					map[MAP_X][MAP_Y] = 1;
 
 					CObjGimmick2* objg2 = new CObjGimmick2((j-1*30)*64.0f + -(main->GetScrollX()), i*64.0f + main->GetScrollY());
 					Objs::InsertObj(objg2, OBJ_GIMMICK2, 11);
@@ -214,7 +217,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk2->SetX(i);
 					gmk2->SetY(j);
 
-
+				
 				}
 			}
 
@@ -237,7 +240,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk3->SetX(i);
 					gmk3->SetY(j);
 
-
+					map[MAP_X][MAP_Y] = 1;
 				}
 			}
 
@@ -260,7 +263,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk4->SetX(i);
 					gmk4->SetY(j);
 
-
+					map[MAP_X][MAP_Y] = 1;
 				}
 			}
 
@@ -283,7 +286,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk5->SetX(i);
 					gmk5->SetY(j);
 
-
+					map[MAP_X][MAP_Y] = 1;
 				}
 			}
 
@@ -306,7 +309,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk2->SetX(i);
 					gmk2->SetY(j);
 
-
+					map[MAP_X][MAP_Y] = 1;
 				}
 			}
 
@@ -329,7 +332,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 					gmk7->SetX(i);
 					gmk7->SetY(j);
 
-
+					map[MAP_X][MAP_Y] = 1;
 				}
 			}
 
@@ -352,7 +355,7 @@ void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
 				gmk8->SetX(i);
 				gmk8->SetY(j);
 
-
+				
 			}
 		}
 

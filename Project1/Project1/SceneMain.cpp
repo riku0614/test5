@@ -86,11 +86,14 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
-	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
-
+	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（左）1.png", 28, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
