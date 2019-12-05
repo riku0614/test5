@@ -184,8 +184,8 @@ void CObjMain::Action()
 		stop_flg2 = false;
 	}
   
-   if (stop_flg3 == true)
-   {
+  
+
 	   for (int i = 0; i < MAP_X; i++)
 	   {
 		   for (int j = 0; j < MAP_Y; j++)
@@ -204,8 +204,27 @@ void CObjMain::Action()
 		   }
 
 	   }
-   }
-	
+	 
+	   if (hero->GetEnemyFlag() == true)
+	   {
+		   for (int i = 0; i < MAP_X; i++)
+		   {
+			   for (int j = 0; j < MAP_Y; j++)
+			   {
+				   if (m_map[i][j] == 25)
+				   {
+
+					   //アイテムオブジェクト作成
+					   CObjFastEnemy* objf = new CObjFastEnemy(hx + -(m_scroll_x),hy+(5*64.0f)+ -(m_scroll_y));
+					   Objs::InsertObj(objf, OBJ_FASTENEMY, 13);
+
+					   m_map[i][j] = 1;
+
+				   }
+			   }
+
+		   }
+	   }
 }
 
 /*内積関数
@@ -335,7 +354,7 @@ bool CObjMain::HeroBlockCrossPoint(
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] > 0 && m_map[i][j] != 5)
+				if (m_map[i][j] > 0 && m_map[i][j] != 5 && m_map[i][j] != 25)
 				{
 					//ブロックの４辺から交点を探す
 					for (int k = 0; k < 4; k++)
@@ -457,7 +476,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (m_map[i][j] != 21 && m_map[i][j] <= 99 && m_map[i][j] > 4 && m_map[i][j] != 7 || m_map[i][j] == 3)
+				if (m_map[i][j] != 21 && m_map[i][j] <= 99 && m_map[i][j] > 4 && m_map[i][j] != 7 && m_map[i][j] != 25 || m_map[i][j] == 3)
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -524,7 +543,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
+								else if (m_map[i][j] == 5 && m_map[i][j] == 25)
 								{
 									stop_flg = true;
 									back_stage = true;
@@ -586,7 +605,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
+								else if (m_map[i][j] == 5&&m_map[i][j] == 25)
 								{
 									
 									stop_flg = true;
@@ -643,7 +662,7 @@ void CObjMain::BlockHit(
 
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
+								else if (m_map[i][j] == 5&&m_map[i][j] == 25)
 								{
 									stop_flg = true;
 									back_stage = true;
@@ -697,7 +716,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
+								else if (m_map[i][j] == 5|| m_map[i][j] == 25)
 								{
 
 									stop_flg = true;
@@ -1112,7 +1131,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (m_map[i][j] == 1 || m_map[i][j] == 4 || m_map[i][j] == 7 || m_map[i][j] == 13 || m_map[i][j] == 21)
+					if (m_map[i][j] == 1 || m_map[i][j] == 4 || m_map[i][j] == 7 || m_map[i][j] == 13 || m_map[i][j] == 21||m_map[i][j]==25)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1219,7 +1238,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7)
+					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7||r_map[i][j]==25)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

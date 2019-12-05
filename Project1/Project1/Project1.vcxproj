@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjFastEnemy.cpp" />
     <ClCompile Include="ObjGimmick.cpp" />
     <ClCompile Include="objheal.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjFastEnemy.h" />
     <ClInclude Include="ObjGimmick.h" />
     <ClInclude Include="objheal.h" />
     <ClInclude Include="SceneGameUI.h" />

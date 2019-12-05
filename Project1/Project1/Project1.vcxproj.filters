@@ -100,6 +100,9 @@
     <ClCompile Include="objheal.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
+    <ClCompile Include="ObjFastEnemy.cpp">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="objheal.h">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFastEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

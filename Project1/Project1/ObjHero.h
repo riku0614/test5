@@ -48,6 +48,7 @@ public:
 
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
+	bool GetEnemyFlag() { return enemy_flg; }
 private:
 	float save[Status][2];
 
@@ -101,4 +102,6 @@ private:
 	bool stey_flg1;
 	bool stey_flg2;
 	bool stey_flg3;
+
+	bool enemy_flg;
 };

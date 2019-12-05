@@ -42,6 +42,8 @@ void CObjHero::Init()
 	mi_hit_left = false;
 	mi_hit_right = false;
 
+	enemy_flg = false;
+
 	m_block_type = 0;
 
 
@@ -150,6 +152,7 @@ void CObjHero::Action()
 		peperon_flag = true;
 		k_id = ITEM_KEY;
 		Main->SetDelete(true);
+		enemy_flg = true;
 		//Main->GetMapItem() = false;
 	}
 	
@@ -295,7 +298,8 @@ void CObjHero::Action()
 	
 	
 	//主人公機オブジェクトと接触したら敵削除
-	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false)
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false||
+		hit->CheckObjNameHit(OBJ_FASTENEMY) != nullptr&&m_flg == false)
 	{
 		//音楽情報の読み込み
 		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
