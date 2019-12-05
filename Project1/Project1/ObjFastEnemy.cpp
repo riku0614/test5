@@ -106,8 +106,8 @@ void CObjFastEnemy::Action()
 	//ˆÚ“®ƒxƒNƒgƒ‹‚Ì³‹K‰»
 	UnitVec(&m_vy, &m_vx);
 
-	m_ex += m_vx * 7.5f;
-	m_ey += m_vy * 7.5f;
+	m_ex += m_vx * 6.5f;
+	m_ey += m_vy * 6.5f;
 
 	//‚‘¬ˆÚ“®‚É‚æ‚éblock”»’è
 	bool b;
