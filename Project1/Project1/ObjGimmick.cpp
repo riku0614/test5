@@ -32,14 +32,12 @@ void CObjGimmick::Init()
 	m_vy = 0.0f;
 
 	h_count = 0;
-	stop_flg = false;
-	stop_flg2 = false;
+	stop_flg = true;
 	gimmick_chg = false;
 
 	pi = 0;
 	pj = 0;
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
-
+	
 
 
 
@@ -49,35 +47,26 @@ void CObjGimmick::Init()
 void CObjGimmick::Action()
 {
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
+	memcpy(r_map, main->r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 
-
-	
-	
-	if (stop_flg == false && main->RoomFlag() == false)
+	if (main->GetFlug() == true)
 	{
+		Hits::DeleteHitBox(this);
+	}
+	else
+	{
+		stop_flg == true;
+	}
 
+	if (stop_flg == true)
+	{
 		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
 
-		stop_flg = true;
-
-
-	}
-
-	if (main->RoomFlag() == true && stop_flg == true)
-	{
-
-		gx = 6;
-
-		main->SetStopFlag(true);
-
 		stop_flg = false;
-
-
 	}
 
-
+	
 		//HitBox�̈ʒu�̕ύX
 		CHitBox* hit = Hits::GetHitBox(this);
 		if (hit != nullptr)
@@ -110,13 +99,26 @@ void CObjGimmick::Action()
 
 				Hits::DeleteHitBox(this);
 
-				main->SetStopFlag(true);
 
-				stop_flg = false;
-
-			}
 
 		}
+		if (main->GetFlug() == true)
+		{
+			Hits::DeleteHitBox(this);
+		}
+		else
+		{
+			stop_flg == true;
+		}
+
+		if (stop_flg == true)
+		{
+			Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+			stop_flg = false;
+		}
+		
+}
 
 	}
 
