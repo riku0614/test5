@@ -307,9 +307,14 @@ void CObjHero::Action()
 
 		m_flg = true;
 
-		if (m_hero_life = 2)
+		if (m_hero_life == 20)
 		{
 			Conflict_flag = true;
+		}
+
+		if (m_hero_life == 10)
+		{
+			Conflict_flag2 = true;
 		}
 
 		if (m_hero_life == 0)

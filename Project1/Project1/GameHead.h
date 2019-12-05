@@ -115,5 +115,5 @@ enum ITEM_ID
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneRoom
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------

@@ -66,6 +66,8 @@ void CObjGameUI::Action()
 void CObjGameUI::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+
+
 	RECT_F src;	//描画元切り取り位置
 	RECT_F dst;	//描画先表示位置
 
@@ -106,22 +108,23 @@ void CObjGameUI::Draw()
 
 		Draw::Draw(22, &src, &dst, c, 0.0f);
 	}
-	
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1024.0f;
-	src.m_bottom = 680.0f;
+	if(HERO->action_flag2()==true){
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1024.0f;
+		src.m_bottom = 680.0f;
 
-	//表示位置設定
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = dst.m_left + 800.0f;
-	dst.m_bottom = dst.m_top + 600.0f;
+		//表示位置設定
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top + 600.0f;
 
-	//描画設定
+		//描画設定
 
-	Draw::Draw(23, &src, &dst, c, 0.0f);
+		Draw::Draw(23, &src, &dst, c, 0.0f);
+	}
 	
 	//切り取り位置の設定
 	src.m_top = 19.0f;

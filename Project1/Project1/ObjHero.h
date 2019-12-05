@@ -47,6 +47,7 @@ public:
 	bool SetItemflag_3() { return use_Item_flag_3; }
 
 	bool action_flag() { return Conflict_flag; }
+	bool action_flag2() { return Conflict_flag2; }
 
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
@@ -99,6 +100,7 @@ private:
 	bool use_Item_flag_3;//アイテム3番使用フラグ
 
 	bool Conflict_flag; //敵と当たったかを判断するフラグ
+	bool Conflict_flag2; 
 
 	float px, py;//交点
 
