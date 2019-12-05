@@ -19,7 +19,7 @@ using namespace GameL;
 class CObjMain : public CObj
 {
 	public:
-		CObjMain(int map[MAP_X][MAP_Y]);
+		CObjMain(int map[ROOM_X][ROOM_Y]);
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション
@@ -29,7 +29,6 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		void SetDelete(bool b) { delete_flg = b; }
-		void SetStopFlag(bool b) { stop_flg2 = b; }
 		bool RoomFlag() { return room_in; }
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
@@ -69,8 +68,6 @@ class CObjMain : public CObj
 		bool stop_flg;   //マップ切り替えを一度だけしか
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool back_stage; //前のマップに戻るためのフラグ
-		bool stop_flg2;  //
-		bool stop_flg3;
 		bool delete_flg;
 		bool plane_chg_hole;
 

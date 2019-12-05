@@ -44,14 +44,14 @@ void CSceneMain::InitScene()
 	unique_ptr<wchar_t> p;
 	int size;
 	
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 
-	int map[MAP_X][MAP_Y];
+	int map[ROOM_X][ROOM_Y];
 	int count = 1;
 
-	for (int i = 0; i < MAP_X; i++)
+	for (int i = 0; i < ROOM_X; i++)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int j = 0; j < ROOM_Y; j++)
 		{
 			
 			int w = 0;
