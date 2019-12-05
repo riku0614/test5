@@ -185,8 +185,17 @@ void CObjHero::Action()
 	//2番目のアイテムを使う処理
 	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
 	{
-		use_Item_flag_2 = true;
-		UI->Settakeflag_2(false);
+		if (m_hero_life <= 29)
+		{
+			use_Item_flag_2 = true;
+			m_hero_life = 30;
+			UI->Settakeflag_2(false);
+		}
+		else if (m_hero_life == 30)
+		{
+			;
+		}
+		
 	}
 	/*
 	//3番目のアイテムを使う処理

@@ -44,6 +44,7 @@ void CObjMain::Init()
 	map_Item_2 = false;
 	stop_flg3=true;
 	plane_chg_hole = false;
+	pepepe = false;
 }
 
 //アクション
@@ -205,7 +206,31 @@ void CObjMain::Action()
 
 	   }
    }
-	
+
+   if (pepepe == false)
+   {
+	   for (int i = 0; i < MAP_X; i++)
+	   {
+		   for (int j = 0; j < MAP_Y; j++)
+		   {
+			   if (m_map[i][j] == 4)
+			   {
+				  
+				   //アイテムオブジェクト作成
+				   CObjItem * obji = new CObjItem((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
+				   Objs::InsertObj(obji, OBJ_ITEM, 13);
+
+				   m_map[i][j] = 1;
+				   
+				  
+			   }
+		   }
+
+	   }
+		 pepepe = true;
+	}
+	  
+
 }
 
 /*内積関数

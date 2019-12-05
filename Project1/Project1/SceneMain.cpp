@@ -107,10 +107,7 @@ void CSceneMain::InitScene()
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-	//アイテムオブジェクト作成
-	CObjItem* obji = new CObjItem(map);
-	Objs::InsertObj(obji, OBJ_ITEM, 13);
-
+	
 	//回復アイテムオブジェクト作成
 	CObjheal* objh = new CObjheal(map);
 	Objs::InsertObj(objh, OBJ_HEAL, 14);

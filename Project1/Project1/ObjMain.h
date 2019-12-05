@@ -72,6 +72,7 @@ class CObjMain : public CObj
 		bool stop_flg3;
 		bool delete_flg;
 		bool plane_chg_hole;
+		bool pepepe;
 
 		int map_chg;     //ƒ}ƒbƒvØ‚è‘Ö‚¦‚ğŠÇ—‚·‚é‚½‚ß‚Ì•Ï”
 		int room_chg;

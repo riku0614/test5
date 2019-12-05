@@ -13,9 +13,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[MAP_X][MAP_Y])
+CObjItem::CObjItem(float x,float y)
 {
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y ));
+	ix = x;
+	iy = y;
 }
 
 
@@ -23,8 +24,7 @@ CObjItem::CObjItem(int map[MAP_X][MAP_Y])
 void CObjItem::Init()
 {
 	//変数初期化
-	ix = 0;
-	iy = 0;
+	
 
 	//m_px = 0.0f;
 	//m_py = 0.0f;
@@ -32,30 +32,13 @@ void CObjItem::Init()
 	m_vy = 0.0f;
 
 	//hit_flg = true;
-	for (int i = 0; i < MAP_X; i++)
-	{
-		for (int j = 0; j < MAP_Y; j++)
-		{
-			if (m_map[i][j] == 4)
-			{
+	
+
+			
+	//当たり判定用hitboxを作成
+	Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
 
 
-				//メインの位置を取得
-
-				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-				float hx = main->GetScrollX();
-				float hy = main->GetScrollY();
-
-				ix = j * 64.0f;//アイテムの位置Xをとる
-				iy = i * 64.0f;//アイテムの位置Yをとる
-
-				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
-
-
-			}
-		}
-	}
 	//m_scroll_x = -2850.0f;
 	//m_scroll_y = -64.0f;
 
@@ -69,43 +52,6 @@ void CObjItem::Action()
 {
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	/*
-	r_map[ROOM_X][ROOM_Y] = main->RoomMapData();
-	
-	if(main->RoomFlag() == true && stop_flg == true)
-	{
-		for (int i = 0; i < ROOM_X; i++)
-		{
-			for (int j = 0; j < ROOM_Y; j++)
-			{
-				if (r_map[i][j] == 4)
-				{
-
-
-					//メインの位置を取得
-
-					CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-					float hx = main->GetScrollX();
-					float hy = main->GetScrollY();
-
-					ix = j * 64.0f;//アイテムの位置Xをとる
-					iy = i * 64.0f;//アイテムの位置Yをとる
-
-					//当たり判定用hitboxを作成
-					Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
-
-
-				}
-				
-			}
-		}
-	
-		stop_flg = false;
-	}*/
-
-	
-	
-
 
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
