@@ -79,7 +79,6 @@
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
-    <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="SceneRoom.cpp">
       <Filter>ソースファイル\教室</Filter>
     </ClCompile>
@@ -106,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="objheal.cpp">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameUI.cpp">
+      <Filter>ソースファイル\ゲームUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@ public:
 	float GetVX() { return m_vx; }
 	int GetBT() { return m_block_type; }
 
-	float m_hero_life;
+	int m_hero_life;
 
 	void SetUp(bool b) { m_hit_up = b; }
 	void SetDown(bool b) { m_hit_down = b; }
@@ -45,6 +45,8 @@ public:
 	bool SetItemflag() { return use_Item_flag; }
 	bool SetItemflag_2() { return use_Item_flag_2; }
 	bool SetItemflag_3() { return use_Item_flag_3; }
+
+	bool action_flag() { return Conflict_flag; }
 
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
@@ -95,6 +97,8 @@ private:
 	bool use_Item_flag; //アイテム1番使用フラグ
 	bool use_Item_flag_2;//アイテム2番使用フラグ
 	bool use_Item_flag_3;//アイテム3番使用フラグ
+
+	bool Conflict_flag; //敵と当たったかを判断するフラグ
 
 	float px, py;//交点
 

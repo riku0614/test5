@@ -22,7 +22,6 @@ void CObjGameUI::Init()
 	take_flag_2 = false;
 	take_flag_3 = false;
 
-	Conflict_flag = false;
 
 	m_id = 0;
 	h_id = 0;
@@ -83,12 +82,15 @@ void CObjGameUI::Draw()
 	dst.m_bottom = dst.m_top + 600.0f;
 	
 	//描画設定
-	
 	Draw::Draw(17, &src, &dst, c, 0.0f);
 
+	//主人公のアイテムと当たったフラグを持ってくる
+	CObjHero* HERO = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
 	/*ダメージエフェクト*/
-	
-		/*//切り取り位置の設定
+	if (HERO->action_flag()== true)
+	{
+		//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1024.0f;
@@ -99,14 +101,14 @@ void CObjGameUI::Draw()
 		dst.m_left = 0.0f;
 		dst.m_right = dst.m_left + 800.0f;
 		dst.m_bottom = dst.m_top + 600.0f;
-
+		
 		//描画設定
 
 		Draw::Draw(22, &src, &dst, c, 0.0f);
-	
+	}
 	
 	//切り取り位置の設定
-	/*src.m_top = 0.0f;
+	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1024.0f;
 	src.m_bottom = 680.0f;
