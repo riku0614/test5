@@ -132,8 +132,9 @@ void CObjHero::Action()
 	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 	//ゲームメインにフラグをセットする
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	
 
-
+	
 
 
 	//主人公のアイテムと当たったフラグを持ってくる

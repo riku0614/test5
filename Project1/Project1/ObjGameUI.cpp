@@ -35,7 +35,6 @@ void CObjGameUI::Action()
 	item_flag_2 = true;
 	item_flag_3 = true;
 
-	
 		//主人公のアイテムを使ったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	

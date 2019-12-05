@@ -29,7 +29,7 @@ public:
 	void Settakeflag_2(bool i) { take_flag_2 = i; } //2番用
 	void Settakeflag_3(bool i) { take_flag_3 = i; } //3番用
 
-	
+	float m_hero_life;
 private:
 
 	bool item_flag;		//主人公にてアイテム1番を使用するためのトリガーフラグ
