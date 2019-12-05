@@ -19,6 +19,13 @@ enum OBJ_NAME
 	OBJ_JUNCTION,
 	OBJ_ROOM,
 	OBJ_GIMMICK,
+	OBJ_GIMMICK2,
+	OBJ_GIMMICK3,
+	OBJ_GIMMICK4,
+	OBJ_GIMMICK5,
+	OBJ_GIMMICK6,
+	OBJ_GIMMICK7,
+	OBJ_GIMMICK8,
 	OBJ_HEAL,
 
 	//OBJ_CHAR,
@@ -85,6 +92,13 @@ enum ITEM_ID
 
 
 #include "ObjGimmick.h"
+#include "ObjGimmick2.h"
+#include "ObjGimmick3.h"
+#include "ObjGimmick4.h"
+#include "ObjGimmick5.h"
+#include "ObjGimmick6.h"
+#include "ObjGimmick7.h"
+#include "ObjGimmick8.h"
 #include "objheal.h"
 //------------------------------------------------
 
