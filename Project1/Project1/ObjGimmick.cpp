@@ -68,7 +68,7 @@ void CObjGimmick::Action()
 	if (main->RoomFlag() == true && stop_flg == true)
 	{
 
-		gx=
+		gx = 6;
 
 		main->SetStopFlag(true);
 
