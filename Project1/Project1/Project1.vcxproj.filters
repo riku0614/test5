@@ -1,47 +1,132 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ObjGimmick.cpp" />
-    <ClCompile Include="ObjGimmick2.cpp" />
-    <ClCompile Include="ObjGimmick3.cpp" />
-    <ClCompile Include="ObjGimmick4.cpp" />
-    <ClCompile Include="ObjGimmick5.cpp" />
-    <ClCompile Include="ObjGimmick6.cpp" />
-    <ClCompile Include="ObjGimmick7.cpp" />
-    <ClCompile Include="ObjGimmick8.cpp" />
-    <ClCompile Include="objheal.cpp" />
-    <ClCompile Include="ObjRoom.cpp" />
-    <ClCompile Include="SceneGameUI.cpp" />
-    <ClCompile Include="ObjClickTitle.cpp" />
-    <ClCompile Include="GameL\Audio.cpp" />
-    <ClCompile Include="GameL\DirectXDevice.cpp" />
-    <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
-    <ClCompile Include="GameL\DrawFont.cpp" />
-    <ClCompile Include="GameL\DrawTexture.cpp" />
-    <ClCompile Include="GameL\GameL_Main.cpp" />
-    <ClCompile Include="GameL\HitBoxManager.cpp" />
-    <ClCompile Include="GameL\MultiThread.cpp" />
-    <ClCompile Include="GameL\SceneManager.cpp" />
-    <ClCompile Include="GameL\SceneObjManager.cpp" />
-    <ClCompile Include="GameL\SetWindow.cpp" />
-    <ClCompile Include="GameL\UserData.cpp" />
-    <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="ObjEnemy.cpp" />
-    <ClCompile Include="ObjGameClear.cpp" />
-    <ClCompile Include="ObjGameOver.cpp" />
-    <ClCompile Include="ObjGameUI.cpp" />
-    <ClCompile Include="ObjHero.cpp" />
-    <ClCompile Include="ObjItem.cpp" />
-    <ClCompile Include="ObjMain.cpp" />
-    <ClCompile Include="ObjMenu.cpp" />
-    <ClCompile Include="ObjTitle.cpp" />
-    <ClCompile Include="SceneGameClear.cpp" />
-    <ClCompile Include="SceneGameOver.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
-    <ClCompile Include="SceneMenu.cpp" />
-    <ClCompile Include="SceneTitle.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="UtilityModule.cpp" />
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DirectXDevice.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DrawFont.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DrawTexture.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\GameL_Main.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\HitBoxManager.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\MultiThread.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SetWindow.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\UserData.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\WinInputs.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjEnemy.cpp">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneObjManager.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソースファイル\主人公</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjClickTitle.cpp">
+      <Filter>ソースファイル\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソースファイル\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソースファイル\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameUI.cpp">
+      <Filter>ソースファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneManager.cpp">
+      <Filter>リソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjItem.cpp">
+      <Filter>ソースファイル\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRoom.cpp">
+      <Filter>ソースファイル\教室</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRoom.cpp">
+      <Filter>ソースファイル\教室</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameUI.cpp">
+      <Filter>ソースファイル\ゲームUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMenu.cpp">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMain.cpp">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="objheal.cpp">
+      <Filter>ソースファイル\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick2.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick3.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick4.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick5.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick6.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick7.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick8.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjGimmick.h" />
