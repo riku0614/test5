@@ -22,6 +22,8 @@ void CObjGameUI::Init()
 	take_flag_2 = false;
 	take_flag_3 = false;
 
+	Conflict_flag = false;
+
 	m_id = 0;
 	h_id = 0;
 }
@@ -33,7 +35,6 @@ void CObjGameUI::Action()
 	item_flag_2 = true;
 	item_flag_3 = true;
 
-	
 		//主人公のアイテムを使ったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	
@@ -87,7 +88,7 @@ void CObjGameUI::Draw()
 
 	/*ダメージエフェクト*/
 	
-		//切り取り位置の設定
+		/*//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1024.0f;
@@ -105,7 +106,7 @@ void CObjGameUI::Draw()
 	
 	
 	//切り取り位置の設定
-	src.m_top = 0.0f;
+	/*src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1024.0f;
 	src.m_bottom = 680.0f;
