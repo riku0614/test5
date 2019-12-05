@@ -15,4 +15,5 @@ class CSceneMain : public CScene
 		void Scene();//ゲームメイン実行中メソッド
 	
 	private:
-};
+		int m_time;
+		};

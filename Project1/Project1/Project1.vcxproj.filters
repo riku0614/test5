@@ -80,12 +80,6 @@
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameUI.cpp" />
-    <ClCompile Include="SceneRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
-    </ClCompile>
     <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソースファイル\ゲームUI</Filter>
     </ClCompile>
@@ -295,12 +289,6 @@
       <Filter>ソースファイル\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameUI.h" />
-    <ClInclude Include="ObjRoom.h">
-      <Filter>ソースファイル\教室</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneRoom.h">
-      <Filter>ソースファイル\教室</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">
@@ -352,9 +340,6 @@
     <Media Include="8EDBGM.wav" />
     <Filter Include="ソースファイル\アイテム">
       <UniqueIdentifier>{519e7d8c-5473-4f62-a6b4-64587cfe3b88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソースファイル\教室">
-      <UniqueIdentifier>{e2f5e64f-ee95-4924-bf3b-1e3e77338074}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

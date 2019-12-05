@@ -9,6 +9,7 @@
 #include "SceneMain.h"
 #include "UtilityModule.h"
 
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -23,8 +24,6 @@ void CObjEnemy::Init()
 
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	
-	
 	
 	
 	m_flg = 0;
@@ -68,7 +67,7 @@ void CObjEnemy::Action()
 
 	
 
-	//衝突判定による移動フラグの切り替え
+	/*//衝突判定による移動フラグの切り替え
 	else if (m_hit_left==true)
 	{
 		m_flg=1;
@@ -90,21 +89,23 @@ void CObjEnemy::Action()
 	else if (m_flg == 0)
 	{
 		m_ex += 3.0f;
-		
 	}
-    else if (m_flg == 1)
+   
+	else if (m_flg == 1)
 	{
-		m_ey += 3.0f;
+	m_ey += 3.0f;
 	}
-	else if (m_flg == 2)
+	
+   else if (m_flg == 2)
 	{
-		m_ex -= 3.0f;
+	m_ex -= 3.0f;
 	}
+
 	else if (m_flg == 3)
 	{
 		m_ey -= 3.0f;
 	}
-
+	*/
 	//移動ベクトルの正規化
 	UnitVec(&m_vy, &m_vx);
 

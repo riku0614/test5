@@ -13,7 +13,6 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
-#include "ObjRoom.h"
 
 
 //使用するネームスペース
@@ -35,6 +34,10 @@ CSceneMain::~CSceneMain()
 //ゲームメイン初期化メソッド
 void CSceneMain::InitScene()
 {
+	//時間
+	m_time=0;
+
+	
 	//音楽情報の読み込み
 	Audio::LoadAudio(1, L"1廊下BGM.wav", SOUND_TYPE::BACK_MUSIC);
 
@@ -115,20 +118,35 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obji, OBJ_ITEM, 13);
 
 	//回復アイテムオブジェクト作成
-	CObjheal* objh = new CObjheal(map);
+/*    CObjheal* objh = new CObjheal(map);
 	Objs::InsertObj(objh, OBJ_HEAL, 14);
-
+	*/
+	/*CObjEnemy* obje = new CObjEnemy();
+	Objs::InsertObj(obje, OBJ_ENEMY);
+	*/
 	
-
-	//敵を出現
-	/*
-	CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 11); */
 	
 }
 
 //ゲームメイン実行中メソッド
 void CSceneMain::Scene()
 {
+	m_time++;
+	//何秒ごとに敵が主人公の近くに来る
+	if (m_time > 100)
+	{
+		
 
+		//主人公の位置を取得
+		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+		float hx = hero->GetX();
+		float hy = hero->GetY();
+	
+		CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+		enemy->SetX(hx + 64.0f * 5);
+		enemy->SetY(hy + 64.0f * 5);
+
+	m_time = 0;
+	
+	}
 }
