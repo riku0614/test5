@@ -68,7 +68,7 @@ void CObjGimmick::Action()
 	if (main->RoomFlag() == true && stop_flg == true)
 	{
 
-		Hits::DeleteHitBox(this);
+		gx=
 
 		main->SetStopFlag(true);
 
