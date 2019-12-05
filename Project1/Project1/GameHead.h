@@ -90,7 +90,6 @@ enum ITEM_ID
 #include "ObjItem.h"
 #include "ObjMenu.h"
 #include "ObjRoom.h"
-
 #include "ObjGimmick.h"
 #include "ObjGimmick2.h"
 #include "ObjGimmick3.h"
@@ -109,11 +108,10 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
-#include "SceneRoom.h"
 
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneRoom
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------

@@ -162,7 +162,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="SceneMenu.cpp" />
-    <ClCompile Include="SceneRoom.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
@@ -178,7 +177,6 @@
     <ClInclude Include="ObjGimmick8.h" />
     <ClInclude Include="objheal.h" />
     <ClInclude Include="ObjRoom.h" />
-    <ClInclude Include="SceneRoom.h" />
     <ClInclude Include="SceneGameUI.h" />
     <ClInclude Include="ObjClickTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

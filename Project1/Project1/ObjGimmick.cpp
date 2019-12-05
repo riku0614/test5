@@ -39,7 +39,7 @@ void CObjGimmick::Init()
 	pj = 0;
 
 
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+	
 
 }
 
@@ -49,9 +49,25 @@ void CObjGimmick::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
+	if (main->GetFlug() == true)
+	{
+		Hits::DeleteHitBox(this);
+	}
 
-	
+	if (main->RoomFlag() == true&&stop_flg==false)
 
+	{
+		Hits::DeleteHitBox(this);
+		
+		stop_flg = true;
+	}
+
+	else if (main->RoomFlag() == false && stop_flg == true)
+	{
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+		stop_flg = false;
+	}
 
 	//HitBoxの位置の変更
 
@@ -81,10 +97,8 @@ void CObjGimmick::Action()
 		}
 
 	}
-	if (main->GetFlug() == true)
-	{
-		Hits::DeleteHitBox(this);
-	}
+
+	
 
 }
 
@@ -112,7 +126,7 @@ void CObjGimmick::Draw()
 	{
 		//上
 
-		if (m_map[pi][pj] == 7 && m_map[pi - 1][pj] == 9)
+		if (m_map[pi - 1][pj] == 9)
 		{
 			//表示位置の設定
 			dst.m_top = (pi - 1) * 64.0f + hy;
@@ -120,11 +134,16 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
+
+
+			m_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
+
+			
 
 		}
 		//下
-		else if (m_map[pi][pj] == 7 && m_map[pi + 1][pj] == 12)
+		else if (m_map[pi + 1][pj] == 12)
 		{
 			//表示位置の設定
 			dst.m_top = (pi + 1) * 64.0f + hy;
@@ -132,10 +151,14 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
+
+			m_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
+
+		
 		}
 		//左
-		else if (m_map[pi][pj] == 7 && m_map[pi][pj - 1] == 11)
+		else if (m_map[pi][pj - 1] == 11)
 		{
 			//表示位置の設定
 			dst.m_top = pi * 64.0f + hy;
@@ -143,10 +166,13 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
+			m_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
+
+			
 		}
 		//右
-		else if (m_map[pi][pj] == 7 && m_map[pi][pj + 1] == 10)
+		else if (m_map[pi][pj + 1] == 10)
 		{
 			//表示位置の設定
 			dst.m_top = pi * 64.0f + hy;
@@ -154,8 +180,13 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
+			
 			Hits::DeleteHitBox(this);
+
+			
 		}
+
+
 
 		Draw::Draw(16, &src, &dst, c, 0.0f);
 	}
