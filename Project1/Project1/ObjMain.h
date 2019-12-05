@@ -32,6 +32,8 @@ class CObjMain : public CObj
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
 		bool GetFlug() { return stop_flg; }
+		int GetHitboxCount1() { return g_count1; }
+		int GetHitboxCount2() { return g_count2; }
 
 		void SetMapItem(bool mi) { map_Item; }
 		bool GetMapItem() { return map_Item; }
@@ -70,6 +72,8 @@ class CObjMain : public CObj
 		bool delete_flg;
 		bool plane_chg_hole;
 
+		int g_count1;
+		int g_count2;
 		int map_chg;     //ƒ}ƒbƒvØ‚è‘Ö‚¦‚ğŠÇ—‚·‚é‚½‚ß‚Ì•Ï”
 		int room_chg;
 
@@ -98,4 +102,5 @@ class CObjMain : public CObj
 			float* out_px, float* out_py
 		);
 
+		
 };

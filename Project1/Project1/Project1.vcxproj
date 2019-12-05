@@ -117,6 +117,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ObjGimmick.cpp" />
+    <ClCompile Include="ObjGimmick2.cpp" />
+    <ClCompile Include="ObjGimmick3.cpp" />
+    <ClCompile Include="ObjGimmick4.cpp" />
+    <ClCompile Include="ObjGimmick5.cpp" />
+    <ClCompile Include="ObjGimmick6.cpp" />
+    <ClCompile Include="ObjGimmick7.cpp" />
+    <ClCompile Include="ObjGimmick8.cpp" />
     <ClCompile Include="objheal.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
@@ -156,6 +163,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjGimmick.h" />
+    <ClInclude Include="ObjGimmick2.h" />
+    <ClInclude Include="ObjGimmick3.h" />
+    <ClInclude Include="ObjGimmick4.h" />
+    <ClInclude Include="ObjGimmick5.h" />
+    <ClInclude Include="ObjGimmick6.h" />
+    <ClInclude Include="ObjGimmick7.h" />
+    <ClInclude Include="ObjGimmick8.h" />
     <ClInclude Include="objheal.h" />
     <ClInclude Include="SceneGameUI.h" />
     <ClInclude Include="ObjClickTitle.h">

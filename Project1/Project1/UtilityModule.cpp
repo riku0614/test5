@@ -164,3 +164,198 @@ float SpawnChanger(int m)
 	}
 
 }
+//HitBoxChanger関数
+/*
+引数　１　　　int m　               :マップ切り替え管理用変数
+引数　２　　　int map[MAP_X][MAP_Y  :マップ情報
+戻り値　無し
+マップ切り替え時にギミックのヒットボックスを変更する関数
+*/
+
+void HitBoxChanger(int m, int map[MAP_X][MAP_Y])
+{
+
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (m==0)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+             		CObjGimmick* objg = new CObjGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg, OBJ_GIMMICK, 11);
+
+					CObjGimmick* gmk = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
+					gmk->SetX(i);
+					gmk->SetY(j);
+
+					
+				}
+			}
+
+		}
+	}
+	else if (m == 1)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					CObjGimmick2* objg2 = new CObjGimmick2((j-1*30)*64.0f + -(main->GetScrollX()), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg2, OBJ_GIMMICK2, 11);
+
+					CObjGimmick2* gmk2 = (CObjGimmick2*)Objs::GetObj(OBJ_GIMMICK2);
+					gmk2->SetX(i);
+					gmk2->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 2)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					//敵オブジェクト作成
+					CObjGimmick3* objg3 = new CObjGimmick3(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg3, OBJ_GIMMICK3, 11);
+
+					CObjGimmick3* gmk3 = (CObjGimmick3*)Objs::GetObj(OBJ_GIMMICK3);
+					gmk3->SetX(i);
+					gmk3->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 3)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					//敵オブジェクト作成
+					CObjGimmick4* objg4 = new CObjGimmick4(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg4, OBJ_GIMMICK4, 11);
+
+					CObjGimmick4* gmk4 = (CObjGimmick4*)Objs::GetObj(OBJ_GIMMICK4);
+					gmk4->SetX(i);
+					gmk4->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 4)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					//敵オブジェクト作成
+					CObjGimmick5* objg5 = new CObjGimmick5(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg5, OBJ_GIMMICK5, 11);
+
+					CObjGimmick5* gmk5 = (CObjGimmick5*)Objs::GetObj(OBJ_GIMMICK5);
+					gmk5->SetX(i);
+					gmk5->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 5)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					//敵オブジェクト作成
+					CObjGimmick2* objg2 = new CObjGimmick2(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg2, OBJ_GIMMICK2, 11);
+
+					CObjGimmick2* gmk2 = (CObjGimmick2*)Objs::GetObj(OBJ_GIMMICK2);
+					gmk2->SetX(i);
+					gmk2->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 6)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (map[i][j] == 7)
+				{
+
+					//敵オブジェクト作成
+					CObjGimmick7* objg7 = new CObjGimmick7(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+					Objs::InsertObj(objg7, OBJ_GIMMICK7, 11);
+
+					CObjGimmick7* gmk7 = (CObjGimmick7*)Objs::GetObj(OBJ_GIMMICK7);
+					gmk7->SetX(i);
+					gmk7->SetY(j);
+
+
+				}
+			}
+
+		}
+	}
+	else if (m == 7)
+	{
+	 for (int i = 0; i < MAP_X; i++)
+	 {
+		for (int j = 0; j < MAP_Y; j++)
+		{
+			if (map[i][j] == 7)
+			{
+
+				//敵オブジェクト作成
+				CObjGimmick8* objg8 = new CObjGimmick8(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+				Objs::InsertObj(objg8, OBJ_GIMMICK8, 11);
+
+				CObjGimmick8* gmk8 = (CObjGimmick8*)Objs::GetObj(OBJ_GIMMICK8);
+				gmk8->SetX(i);
+				gmk8->SetY(j);
+
+
+			}
+		}
+
+	 }
+	}
+}

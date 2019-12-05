@@ -100,6 +100,27 @@
     <ClCompile Include="objheal.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
+    <ClCompile Include="ObjGimmick2.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick3.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick4.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick5.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick6.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick7.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGimmick8.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -286,6 +307,27 @@
     </ClInclude>
     <ClInclude Include="objheal.h">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick2.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick3.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick4.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick5.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick6.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick7.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick8.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
