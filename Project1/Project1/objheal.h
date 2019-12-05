@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjheal : public CObj
 {
 public:
-	CObjheal(int map[MAP_X][MAP_Y]);
+	CObjheal(int map[ROOM_X][ROOM_Y]);
 	~CObjheal() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション

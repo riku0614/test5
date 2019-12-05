@@ -13,9 +13,9 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjItem::CObjItem(int map[MAP_X][MAP_Y])
+CObjItem::CObjItem(int map[ROOM_X][ROOM_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y ));
+	memcpy(m_map, map, sizeof(int)*(ROOM_X * ROOM_Y ));
 }
 
 

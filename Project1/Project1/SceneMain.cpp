@@ -1,4 +1,3 @@
-//STLデバッグ機能をオフに
 #define _SECURE_SCL (0)
 #define _HAS_ITERATER_DEBUGGING (0)
 
@@ -15,6 +14,7 @@
 #include "ObjMain.h"
 #include "ObjItem.h"
 #include "ObjRoom.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -44,14 +44,14 @@ void CSceneMain::InitScene()
 	unique_ptr<wchar_t> p;
 	int size;
 	
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 
-	int map[MAP_X][MAP_Y];
+	int map[ROOM_X][ROOM_Y];
 	int count = 1;
 
-	for (int i = 0; i < MAP_X; i++)
+	for (int i = 0; i < ROOM_X; i++)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int j = 0; j < ROOM_Y; j++)
 		{
 			
 			int w = 0;
@@ -60,6 +60,9 @@ void CSceneMain::InitScene()
 			map[i][j] = w;
 			count += 3;
 
+			
+		
+			
 		}
 	}
 
@@ -102,8 +105,8 @@ void CSceneMain::InitScene()
 	//UIオブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
-
-
+	
+	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);

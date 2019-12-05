@@ -17,7 +17,16 @@ enum OBJ_NAME
 	OBJ_GAME_UI,
 	OBJ_ITEM,
 	OBJ_MENU,
+	OBJ_JUNCTION,
+	OBJ_ROOM,
 	OBJ_GIMMICK,
+	OBJ_GIMMICK2,
+	OBJ_GIMMICK3,
+	OBJ_GIMMICK4,
+	OBJ_GIMMICK5,
+	OBJ_GIMMICK6,
+	OBJ_GIMMICK7,
+	OBJ_GIMMICK8,
 	OBJ_HEAL,
 
 	//OBJ_CHAR,
@@ -83,7 +92,16 @@ enum ITEM_ID
 #include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
+#include "ObjRoom.h"
+
 #include "ObjGimmick.h"
+#include "ObjGimmick2.h"
+#include "ObjGimmick3.h"
+#include "ObjGimmick4.h"
+#include "ObjGimmick5.h"
+#include "ObjGimmick6.h"
+#include "ObjGimmick7.h"
+#include "ObjGimmick8.h"
 #include "objheal.h"
 #include "ObjFastEnemy.h"
 //------------------------------------------------
@@ -95,6 +113,8 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
+#include "SceneRoom.h"
+
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
