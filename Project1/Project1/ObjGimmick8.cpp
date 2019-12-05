@@ -6,7 +6,7 @@
 #include "GameL/Audio.h"
 
 #include "GameHead.h"
-#include "ObjGimmick.h"
+#include "ObjGimmick3.h"
 #include "GameL/HitBoxManager.h"
 #include "UtilityModule.h"
 
@@ -16,7 +16,7 @@ using namespace GameL;
 
 
 
-CObjGimmick::CObjGimmick(float x, float y)
+CObjGimmick8::CObjGimmick8(float x, float y)
 {
 	gx = x;
 	gy = y;
@@ -24,7 +24,7 @@ CObjGimmick::CObjGimmick(float x, float y)
 
 
 //イニシャライズ
-void CObjGimmick::Init()
+void CObjGimmick8::Init()
 {
 
 
@@ -39,19 +39,34 @@ void CObjGimmick::Init()
 	pj = 0;
 
 
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
 
 }
 
 //アクション
-void CObjGimmick::Action()
+void CObjGimmick8::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
-	
+	if (main->GetFlug() == true)
+	{
 
+		Hits::DeleteHitBox(this);
+
+		stop_flg == true;
+
+	}
+
+
+
+	if (stop_flg == true && main->MapChangeData() == 7)
+	{
+		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK8, 1);
+
+		stop_flg = false;
+	}
 
 	//HitBoxの位置の変更
 
@@ -81,15 +96,11 @@ void CObjGimmick::Action()
 		}
 
 	}
-	if (main->GetFlug() == true)
-	{
-		Hits::DeleteHitBox(this);
-	}
 
 }
 
 //ドロー
-void CObjGimmick::Draw()
+void CObjGimmick8::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 

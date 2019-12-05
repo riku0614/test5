@@ -15,7 +15,7 @@ using namespace GameL;
 
 CObjheal::CObjheal(int map[ROOM_X][ROOM_Y])
 {
-	memcpy(m_map, map, sizeof(int)*(ROOM_X * ROOM_Y));
+	memcpy(r_map, map, sizeof(int)*(ROOM_X * ROOM_Y));
 }
 
 
@@ -31,28 +31,14 @@ void CObjheal::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
-	//hit_flg = true;
-	for (int i = 0; i < MAP_X; i++)
-	{
-		for (int j = 0; j < MAP_Y; j++)
-		{
-			if (m_map[i][j] == 21)
-			{
-				//メインの位置を取得
+	
 
-				CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-				float hx = main->GetScrollX();
-				float hy = main->GetScrollY();
+			
 
-				ix = j * 64.0f;//アイテムの位置Xをとる
-				iy = i * 64.0f;//アイテムの位置Yをとる
+	//当たり判定用hitboxを作成
+	Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_WHITE, OBJ_HEAL, 1);
 
-				//当たり判定用hitboxを作成
-				Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_WHITE, OBJ_HEAL, 1);
-
-			}
-		}
-	}
+	
 	//m_scroll_x = -2850.0f;
 	//m_scroll_y = -64.0f;
 
@@ -131,12 +117,12 @@ void CObjheal::Draw()
 	float hx = main->GetScrollX();
 	float hy = main->GetScrollY();
 
-	for (int i = 0; i < MAP_X; i++)
+	for (int i = 0; i < ROOM_X; i++)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int j = 0; j < ROOM_Y; j++)
 		{
 			
-			if (m_map[i][j] == 21)
+			if (r_map[i][j] == 21)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f + hy;

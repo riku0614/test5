@@ -34,7 +34,7 @@ void CObjMain::Init()
 
 	map_chg = 0;
 	room_chg = 0;
-	stop_flg = true;
+	stop_flg = false;
 	spawn_point[7] = NULL;
 	room_in = true;
 	back_stage = false;
@@ -54,24 +54,22 @@ void CObjMain::Action()
 
 	if (map_chg == 0 )
 	{
-		/*if (room_in == true && stop_flg == true)*/
-		//{
-		//	//音楽情報の読み込み
-		//	Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
+		if (room_chg>=1&&room_in == true && stop_flg == true)
+		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
 
-		//	//音楽スタート
-		//	Audio::Start(4);
+			//音楽スタート
+			Audio::Start(4);
 
-		//	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		//	hero->SetX(20.0f*64.0f);
-		//	hero->SetY(4.0f*64.0f);
-		//	m_scroll_x = -15.0f*64.0f;
-		//	m_scroll_y = -5.0f*64.0f;
-
-		//	RoomMapChanger(r_map, r,room_chg);
-
+			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(20.0f*64.0f);
+			hero->SetY(4.0f*64.0f);
+			m_scroll_x = -15.0f*64.0f;
+			m_scroll_y = -5.0f*64.0f;
+			RoomMapChanger(r_map, r, room_chg);
 			
-		//}
+		}
 		if(room_in == false && stop_flg == true)
 		{
 			//音楽情報の読み込み
@@ -90,7 +88,7 @@ void CObjMain::Action()
 
 			MapChanger(map_chg, m_map, p);
 
-			stop_flg = false;
+			
 		}
 
 		
@@ -113,7 +111,6 @@ void CObjMain::Action()
 
 		MapChanger(map_chg,m_map,p);
 		
-		stop_flg = false;
 	}
 	
 	back_stage = false;
@@ -152,60 +149,12 @@ void CObjMain::Action()
 
 
 	}
-	if (room_in == true && stop_flg == true)
+	
+	if (stop_flg == true)
 	{
-		for (int i = 0; i < ROOM_X; i++)
-		{
-			for (int j = 0; j < ROOM_Y; j++)
-			{
-				if (r_map[i][j] == 7)
-				{
-
-
-					//ギミックオブジェクト作成
-					CObjGimmick* objg = new CObjGimmick((j)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
-					Objs::InsertObj(objg, OBJ_GIMMICK, 14);
-
-					CObjGimmick* gim = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
-					gim->SetY(j);
-					gim->SetX(i);
-
-
-				}
-			}
-
-		}
-
+		HitBoxChanger(map_chg, m_map);
+		stop_flg = false;
 	}
-	if (room_in== false && stop_flg == true)
-	{
-		for (int i = 0; i < MAP_X; i++)
-		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				if (m_map[i][j] == 7)
-				{
-					
-
-					//ギミックオブジェクト作成
-					CObjGimmick* objg = new CObjGimmick((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
-					Objs::InsertObj(objg, OBJ_GIMMICK, 14);
-
-					
-					CObjGimmick* gim = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
-					gim->SetY(j);
-					gim->SetX(i);
-
-
-				}
-
-			}
-
-		}
-	}
-
-   if (stop_flg==true)
-   {
 	   for (int i = 0; i < MAP_X; i++)
 	   {
 		   for (int j = 0; j < MAP_Y; j++)
@@ -213,7 +162,7 @@ void CObjMain::Action()
 			   if (m_map[i][j] == 5)
 			   {
 
-				   //アイテムオブジェクト作成
+				   //敵オブジェクト作成
 				   CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
 				   Objs::InsertObj(obje, OBJ_ENEMY, 11);
 
@@ -224,10 +173,10 @@ void CObjMain::Action()
 		   }
 
 	   }
-   }
+   
 	
 
-   stop_flg = false;
+  
 }
 
 /*内積関数
@@ -546,15 +495,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
-								{
-									stop_flg = true;
-									back_stage = true;
-								   
-
 								
-									map_chg--;
-								}
 								else if (m_map[i][j] == 6 && *c_id == CHAR_HERO)
 								{
 									if (room_in == false)
@@ -608,14 +549,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
-								{
-									
-									stop_flg = true;
-									back_stage = true;
-									map_chg--;
-									
-								}
+								
 								else if (m_map[i][j] == 6 && *c_id == CHAR_HERO)
 								{
 									if (room_in == false)
@@ -665,15 +599,7 @@ void CObjMain::BlockHit(
 
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
-								{
-									stop_flg = true;
-									back_stage = true;
-									
-
-									
-									map_chg--;
-								}
+								
 								else if (m_map[i][j] == 6 && *c_id == CHAR_HERO)
 								{
 									if (room_in == false)
@@ -718,17 +644,7 @@ void CObjMain::BlockHit(
 									save_scroll_y[map_chg][1] = main->GetScrollY();
 									map_chg++;
 								}
-								else if (m_map[i][j] == 5)
-								{
-
-									stop_flg = true;
-									back_stage = true;
-
-
-
-
-									map_chg--;
-								}
+								
 								else if (m_map[i][j] == 6 && *c_id == CHAR_HERO)
 								{
 									if (room_in == false)

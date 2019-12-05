@@ -6,7 +6,7 @@
 #include "GameL/Audio.h"
 
 #include "GameHead.h"
-#include "ObjGimmick.h"
+#include "ObjGimmick2.h"
 #include "GameL/HitBoxManager.h"
 #include "UtilityModule.h"
 
@@ -16,7 +16,7 @@ using namespace GameL;
 
 
 
-CObjGimmick::CObjGimmick(float x, float y)
+CObjGimmick2::CObjGimmick2(float x, float y)
 {
 	gx = x;
 	gy = y;
@@ -24,7 +24,7 @@ CObjGimmick::CObjGimmick(float x, float y)
 
 
 //イニシャライズ
-void CObjGimmick::Init()
+void CObjGimmick2::Init()
 {
 
 
@@ -39,25 +39,21 @@ void CObjGimmick::Init()
 	pj = 0;
 
 
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_GREEN, OBJ_GIMMICK2, 1);
 
 }
 
 //アクション
-void CObjGimmick::Action()
+void CObjGimmick2::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
 	
-
-
-	//HitBoxの位置の変更
-
 	if (hit != nullptr)
 	{
-
+		
 		hit->SetPos(gx + main->GetScrollX(), gy + main->GetScrollY());
 
 		if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -72,24 +68,23 @@ void CObjGimmick::Action()
 
 				gimmick_flg = true;
 
-
+				
 			}
 			else
 			{
 				gimmick_flg = false;
 			}
 		}
-
+	
 	}
 	if (main->GetFlug() == true)
 	{
 		Hits::DeleteHitBox(this);
 	}
-
 }
 
 //ドロー
-void CObjGimmick::Draw()
+void CObjGimmick2::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
