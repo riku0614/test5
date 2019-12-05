@@ -6,6 +6,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+//a
 
 //マクロ
 #define MAP_X  (75)
