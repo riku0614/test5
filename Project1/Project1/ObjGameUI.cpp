@@ -144,6 +144,7 @@ void CObjGameUI::Draw()
 	
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	
 
 	//アイテムの表示（1番）
 	if (hero->Getflag() == true)
