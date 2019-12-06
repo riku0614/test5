@@ -171,6 +171,7 @@ void CObjMain::Action()
 	{
 		HitBoxChanger(map_chg, m_map);
 		stop_flg = false;
+		stop_flg2 = false;
 	}
 	   for (int i = 0; i < MAP_X; i++)
 	   {
@@ -192,7 +193,7 @@ void CObjMain::Action()
 	   }
    
 	
-
+	   
   
 }
 
@@ -494,7 +495,7 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									map_chg++;
-
+									stop_flg2 = true;
 									
 
 									if (map_chg == 1)
@@ -556,7 +557,7 @@ void CObjMain::BlockHit(
 									}
 
 									stop_flg = true;
-									
+									stop_flg2 = true;
 								
 									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -600,7 +601,7 @@ void CObjMain::BlockHit(
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
-									
+									stop_flg2 = true;
 									
 									
 
@@ -651,7 +652,8 @@ void CObjMain::BlockHit(
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
 									stop_flg = true;
-									
+									stop_flg2 = true;
+
 									if (map_chg == 1)
 									{
 										Scene::SetScene(new CSceneGameClear);
