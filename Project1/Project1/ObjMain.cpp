@@ -39,6 +39,7 @@ void CObjMain::Init()
 	room_in = true;
 	delete_flg = false;
 	first_stop = true;
+	first_stop2 = true;
 	map_Item = false;
 	map_Item_2 = false;
 	plane_chg_hole = false;
@@ -88,8 +89,8 @@ void CObjMain::Action()
 
 			MapChanger(map_chg, m_map, p);
 
+		
 			first_stop = false;
-			
 		}
 		else if (room_in == false && stop_flg == true)
 		{
@@ -167,11 +168,13 @@ void CObjMain::Action()
 
 	}
 	
-	if (stop_flg == true)
+	if (stop_flg == true||first_stop2==true)
 	{
-		HitBoxChanger(map_chg, m_map);
+		HitBoxChanger(map_chg, m_map,room_in,room_chg,r_map);
+		first_stop2 = false;
 		stop_flg = false;
 		stop_flg2 = false;
+		
 	}
 	   for (int i = 0; i < MAP_X; i++)
 	   {
@@ -194,7 +197,7 @@ void CObjMain::Action()
 		   }
 
 	   }
-   }
+
    if (room_in == true && stop_flg == true)
    {
 	   for (int i = 0; i < ROOM_X; i++)
@@ -1237,7 +1240,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13)
+					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==2|| r_map[i][j] == 3|| r_map[i][j] == 13)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1245,6 +1248,24 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(1, &src, &dst, c, 0.0f);
+					}
+					if(r_map[i][j]==2)
+					{
+						src.m_top = 100.0f;
+						src.m_left = 350.0f;
+						src.m_right = src.m_left + 200.0f;
+						src.m_bottom = src.m_top + 200.0f;
+
+						Draw::Draw(30, &src, &dst, c, 0.0f);
+					}
+					if(r_map[i][j]==3)
+					{
+						src.m_top = 50.0f;
+						src.m_left = 320.0f;
+						src.m_right = src.m_left + 180.0f;
+						src.m_bottom = src.m_top + 180.0f;
+
+						Draw::Draw(31, &src, &dst, c, 0.0f);
 					}
 					//壁テクスチャ
 					if (r_map[i][j] == 9)

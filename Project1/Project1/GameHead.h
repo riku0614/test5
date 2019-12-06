@@ -26,6 +26,7 @@ enum OBJ_NAME
 	OBJ_GIMMICK6,
 	OBJ_GIMMICK7,
 	OBJ_GIMMICK8,
+	OBJ_ROOM_GIMMICK,
 	OBJ_HEAL,
 
 	//OBJ_CHAR,
@@ -99,6 +100,8 @@ enum ITEM_ID
 #include "ObjGimmick6.h"
 #include "ObjGimmick7.h"
 #include "ObjGimmick8.h"
+#include "ObjRoomGimmick.h"
+
 #include "objheal.h"
 //------------------------------------------------
 
