@@ -140,6 +140,44 @@
     <ClInclude Include="objheal.h" />
     <ClInclude Include="ObjRoom.h" />
     <ClInclude Include="SceneGameUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ヘッダーファイル">
+      <UniqueIdentifier>{1c6aaa29-356c-4c03-91cd-e83dd6b596b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{0462b895-2c1f-464c-be0e-aea38b797fe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソースファイル">
+      <UniqueIdentifier>{4c2ad96d-da63-48b0-a8a0-959d558a7c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\敵情報">
+      <UniqueIdentifier>{337ccea8-23d8-41a4-80ca-27dc7dc50c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\主人公">
+      <UniqueIdentifier>{d2cff600-e804-460b-a3a6-ce4fbff8a365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ゲームオーバー・クリア画面">
+      <UniqueIdentifier>{d596b6af-722a-4458-9c32-d582218515a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\アイテム">
+      <UniqueIdentifier>{519e7d8c-5473-4f62-a6b4-64587cfe3b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\タイトル">
+      <UniqueIdentifier>{189d7ae3-3426-4100-8e2b-da6bd5a5e2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\メニュー画面">
+      <UniqueIdentifier>{0f0b5874-057d-4371-99b3-44dc7a2a733a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\メイン">
+      <UniqueIdentifier>{7c24e857-1928-4278-93f6-7256f72b6087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ゲームUI">
+      <UniqueIdentifier>{5908fdc7-8fd6-4306-b00c-df60170a976d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\NewFilter1">
+      <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
+    </Filter>
     <ClInclude Include="ObjClickTitle.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
@@ -180,5 +218,11 @@
     <Media Include="6ダメージ音.wav" />
     <Media Include="7ギミックSE.wav" />
     <Media Include="8EDBGM.wav" />
+    <Filter Include="ソースファイル\アイテム">
+      <UniqueIdentifier>{519e7d8c-5473-4f62-a6b4-64587cfe3b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\教室">
+      <UniqueIdentifier>{e2f5e64f-ee95-4924-bf3b-1e3e77338074}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

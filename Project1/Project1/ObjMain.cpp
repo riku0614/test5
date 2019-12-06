@@ -184,17 +184,44 @@ void CObjMain::Action()
 				   CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
 				   Objs::InsertObj(obje, OBJ_ENEMY, 11);
 
-
+				   CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+				   enemy->SetX(m_scroll_x);
+				   enemy->SetY(m_scroll_y);
+				   
 				   m_map[i][j] = 1;
 
 			   }
 		   }
 
 	   }
-   
-	
-	   
-  
+   }
+   if (room_in == true && stop_flg == true)
+   {
+	   for (int i = 0; i < ROOM_X; i++)
+	   {
+		   for (int j = 0; j < ROOM_Y; j++)
+		   {
+			   if (r_map[i][j] == 5)
+			   {
+
+				   //敵オブジェクト作成
+				   CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
+				   Objs::InsertObj(obje, OBJ_ENEMY, 11);
+
+
+
+				   CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+				   enemy->SetX(m_scroll_x);
+				   enemy->SetY(m_scroll_y);
+
+				   r_map[i][j] = 1;
+				   
+			   }
+		   }
+
+	   }
+   }
+   stop_flg = false;
 }
 
 /*内積関数
