@@ -193,7 +193,7 @@ void CObjMain::Action()
 		   }
 
 	   }
-   }
+
    if (room_in == true && stop_flg == true)
    {
 	   for (int i = 0; i < ROOM_X; i++)
