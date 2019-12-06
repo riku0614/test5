@@ -91,7 +91,7 @@ enum ITEM_ID
 #include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
-#include "ObjRoom.h"
+
 
 #include "ObjGimmick.h"
 #include "ObjGimmick2.h"
@@ -112,7 +112,6 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
-#include "SceneRoom.h"
 
 //-----------------------------------------------
 

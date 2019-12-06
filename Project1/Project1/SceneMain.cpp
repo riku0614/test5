@@ -13,7 +13,6 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
-#include "ObjRoom.h"
 
 
 //使用するネームスペース
@@ -35,6 +34,10 @@ CSceneMain::~CSceneMain()
 //ゲームメイン初期化メソッド
 void CSceneMain::InitScene()
 {
+	//時間
+	m_time=0;
+
+	
 	//音楽情報の読み込み
 	Audio::LoadAudio(1, L"1廊下BGM.wav", SOUND_TYPE::BACK_MUSIC);
 
@@ -83,12 +86,17 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
 
+	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（左）1.png", 28, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
@@ -111,17 +119,37 @@ void CSceneMain::InitScene()
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-	
+	//アイテムオブジェクト作成
+	CObjItem* obji = new CObjItem(map);
+	Objs::InsertObj(obji, OBJ_ITEM, 13);
 
-	//敵を出現
-	/*
-	CObjEnemy* obje = new CObjEnemy(map);
-	Objs::InsertObj(obje, OBJ_ENEMY, 11); */
+	//回復アイテムオブジェクト作成
+	CObjheal* objh = new CObjheal(map);
+	Objs::InsertObj(objh, OBJ_HEAL, 14);
+
+	
 	
 }
 
 //ゲームメイン実行中メソッド
 void CSceneMain::Scene()
 {
+	m_time++;
+	//何秒ごとに敵が主人公の近くに来る
+	if (m_time > 100)
+	{
+		
 
+		//主人公の位置を取得
+		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+		float hx = hero->GetX();
+		float hy = hero->GetY();
+	
+		CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+		enemy->SetX(hx + 64.0f * 5);
+		enemy->SetY(hy + 64.0f * 5);
+
+	m_time = 0;
+	
+	}
 }

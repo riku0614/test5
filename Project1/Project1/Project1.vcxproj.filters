@@ -34,9 +34,6 @@
     <ClCompile Include="GameL\UserData.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>リソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソースファイル</Filter>
     </ClCompile>
@@ -78,13 +75,6 @@
     </ClCompile>
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソースファイル\アイテム</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameUI.cpp" />
-    <ClCompile Include="SceneRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソースファイル\ゲームUI</Filter>
@@ -194,81 +184,24 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
-      <Filter>ソース ファイル\関数ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameOver.cpp">
-      <Filter>ソース ファイル\ゲームオーバー</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameOver.cpp">
-      <Filter>ソース ファイル\ゲームオーバー</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameClear.cpp">
-      <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjItem.cpp">
-      <Filter>ソース ファイル\アイテム</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameClear.cpp">
-      <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameClear.cpp">
-      <Filter>ソース ファイル\ゲームクリア</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameUI.cpp">
-      <Filter>ソース ファイル\ゲームUI</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjEnemy.cpp">
-      <Filter>ソース ファイル\敵キャラ</Filter>
+      <Filter>ソースファイル\敵情報</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameL\Audio.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\UserData.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソースファイル</Filter>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル\メイン</Filter>
     </ClInclude>
     <ClInclude Include="GameHead.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemy.h">
-      <Filter>ソースファイル\敵情報</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjHero.h">
       <Filter>ソースファイル\主人公</Filter>
     </ClInclude>
-    <ClInclude Include="ObjClickTitle.h">
-      <Filter>ソースファイル\タイトル</Filter>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClInclude>
+    <ClInclude Include="objheal.h">
+      <Filter>ソースファイル\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>ソースファイル\タイトル</Filter>
@@ -276,8 +209,26 @@
     <ClInclude Include="SceneTitle.h">
       <Filter>ソースファイル\タイトル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjGameUI.h">
+    <ClInclude Include="SceneMenu.h">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameUI.h">
       <Filter>ソースファイル\ゲームUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMain.h">
+      <Filter>ソースファイル\メイン</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMenu.h">
+      <Filter>ソースファイル\メニュー画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjItem.h">
+      <Filter>ソースファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
@@ -285,38 +236,17 @@
     <ClInclude Include="ObjGameOver.h">
       <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGameClear.h">
-      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameOver.h">
-      <Filter>ソースファイル\ゲームオーバー・クリア画面</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソースファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjItem.h">
-      <Filter>ソースファイル\アイテム</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameUI.h">
+    <ClInclude Include="ObjGameUI.h">
       <Filter>ソースファイル\ゲームUI</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMenu.h">
-      <Filter>ソースファイル\メニュー画面</Filter>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMenu.h">
-      <Filter>ソースファイル\メニュー画面</Filter>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMain.h">
-      <Filter>ソースファイル\メイン</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソースファイル\メイン</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGimmick.h">
-      <Filter>ソースファイル\NewFilter1</Filter>
-    </ClInclude>
-    <ClInclude Include="objheal.h">
-      <Filter>ソースファイル\アイテム</Filter>
+    <ClInclude Include="ObjClickTitle.h">
+      <Filter>ソースファイル\タイトル</Filter>
     </ClInclude>
     <ClInclude Include="ObjGimmick2.h">
       <Filter>ソースファイル\NewFilter1</Filter>
@@ -339,12 +269,41 @@
     <ClInclude Include="ObjGimmick8.h">
       <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGameUI.h" />
-    <ClInclude Include="ObjRoom.h">
-      <Filter>ソースファイル\教室</Filter>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
-    <ClInclude Include="SceneRoom.h">
-      <Filter>ソースファイル\教室</Filter>
+    <ClInclude Include="GameL\Audio.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DirectXDevice.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawFont.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SetWindow.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneObjManager.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\HitBoxManager.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\UserData.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneManager.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\WinInputs.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawTexture.h">
+      <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\MultiThread.h">
+      <Filter>リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="Objbar.h">
       <Filter>ソースファイル\アイテム</Filter>

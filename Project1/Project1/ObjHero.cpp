@@ -29,6 +29,8 @@ void CObjHero::Init()
 
 	peperon_flag = false;
 	use_Item_flag = false;
+	
+	Conflict_flag = false;
 
 	//blockとの衝突確認用
 
@@ -129,14 +131,6 @@ void CObjHero::Action()
 		m_ani_time += 1;
 	}
 	
-	//敵と当たったらフラグを持てる
-	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
-	//ゲームメインにフラグをセットする
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	
-
-	
-
 
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
@@ -305,6 +299,11 @@ void CObjHero::Action()
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	//敵と当たったらフラグを持てる
+	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
+	//ゲームメインにフラグをセットする
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
 	
 	
 	//主人公機オブジェクトと接触したら敵削除
@@ -319,6 +318,16 @@ void CObjHero::Action()
 		m_hero_life-=1;
 
 		m_flg = true;
+
+		if (m_hero_life == 20)
+		{
+			Conflict_flag = true;
+		}
+
+		if (m_hero_life == 10)
+		{
+			Conflict_flag2 = true;
+		}
 
 		if (m_hero_life == 0)
 		{
