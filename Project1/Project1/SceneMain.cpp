@@ -97,6 +97,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（左）1.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"本棚.png", 29, TEX_SIZE_512);
+	Draw::LoadImageW(L"机まとめ.png", 30, TEX_SIZE_1024);
+	Draw::LoadImageW(L"椅子まとめ.png", 31, TEX_SIZE_1024);
+
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
@@ -134,22 +138,22 @@ void CSceneMain::InitScene()
 //ゲームメイン実行中メソッド
 void CSceneMain::Scene()
 {
-	m_time++;
-	//何秒ごとに敵が主人公の近くに来る
-	if (m_time > 100)
-	{
-		
+	//m_time++;
+	////何秒ごとに敵が主人公の近くに来る
+	//if (m_time > 100)
+	//{
+	//	
 
-		//主人公の位置を取得
-		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		float hx = hero->GetX();
-		float hy = hero->GetY();
-	
-		CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-		enemy->SetX(hx + 64.0f * 5);
-		enemy->SetY(hy + 64.0f * 5);
+	//	//主人公の位置を取得
+	//	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//	float hx = hero->GetX();
+	//	float hy = hero->GetY();
+	//
+	//	CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	//	enemy->SetX(hx + 64.0f * 5);
+	//	enemy->SetY(hy + 64.0f * 5);
 
-	m_time = 0;
-	
-	}
+	//m_time = 0;
+	//
+	//}
 }

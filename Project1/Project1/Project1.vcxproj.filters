@@ -186,6 +186,9 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>ソースファイル\敵情報</Filter>
     </ClCompile>
+    <ClCompile Include="ObjRoomGimmick.cpp">
+      <Filter>ソースファイル\NewFilter1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMain.h">
@@ -304,6 +307,19 @@
     </ClInclude>
     <ClInclude Include="GameL\MultiThread.h">
       <Filter>リソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGimmick.h" />
+    <ClInclude Include="ObjGimmick2.h" />
+    <ClInclude Include="ObjGimmick3.h" />
+    <ClInclude Include="ObjGimmick4.h" />
+    <ClInclude Include="ObjGimmick5.h" />
+    <ClInclude Include="ObjGimmick6.h" />
+    <ClInclude Include="ObjGimmick7.h" />
+    <ClInclude Include="ObjGimmick8.h" />
+    <ClInclude Include="objheal.h" />
+    <ClInclude Include="SceneGameUI.h" />
+    <ClInclude Include="ObjRoomGimmick.h">
+      <Filter>ソースファイル\NewFilter1</Filter>
     </ClInclude>
     <ClInclude Include="Objbar.h">
       <Filter>ソースファイル\アイテム</Filter>

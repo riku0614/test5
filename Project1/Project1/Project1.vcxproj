@@ -126,6 +126,7 @@
     <ClCompile Include="ObjGimmick7.cpp" />
     <ClCompile Include="ObjGimmick8.cpp" />
     <ClCompile Include="objheal.cpp" />
+    <ClCompile Include="ObjRoomGimmick.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -177,6 +178,7 @@
     <ClInclude Include="ObjGimmick7.h" />
     <ClInclude Include="ObjGimmick8.h" />
     <ClInclude Include="objheal.h" />
+    <ClInclude Include="ObjRoomGimmick.h" />
     <ClInclude Include="SceneGameUI.h" />
     <ClInclude Include="ObjClickTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
