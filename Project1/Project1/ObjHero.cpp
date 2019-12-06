@@ -62,6 +62,7 @@ void CObjHero::Init()
 	m_id = CHAR_HERO;
 	k_id = 0;
 	h_id = 0;
+	b_id = 0;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -165,16 +166,18 @@ void CObjHero::Action()
 		Main->SetDelete(true);
 		//Main->GetMapItem_2() = false;
 	}
-	/*
-	//3番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true)
+	
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true)
 	{
 		peperon_flag_3 = true;
-		k_id = ITEM_KEY;
-	}*/
+		b_id = ITEM_BAR;
+		Main->SetDelete(true);
+		//Main->GetMapItem_2() = false;
+	}
+	
 
 	//1番目のアイテムを使う処理
 	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
@@ -198,13 +201,13 @@ void CObjHero::Action()
 		}
 		
 	}
-	/*
+	
 	//3番目のアイテムを使う処理
 	else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
 	{
 		use_Item_flag_3 = true;
 		UI->Settakeflag_3(false);
-	}*/
+	}
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)

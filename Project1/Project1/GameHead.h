@@ -27,6 +27,7 @@ enum OBJ_NAME
 	OBJ_GIMMICK7,
 	OBJ_GIMMICK8,
 	OBJ_HEAL,
+	OBJ_BAR,
 
 	//OBJ_CHAR,
 };
@@ -68,6 +69,7 @@ enum ITEM_ID
 	CHAR_HERO,
 	CHAR_ENEMY,
 	ITEM_HEAL,
+	ITEM_BAR,
 };
 
 
@@ -100,6 +102,7 @@ enum ITEM_ID
 #include "ObjGimmick7.h"
 #include "ObjGimmick8.h"
 #include "objheal.h"
+#include "Objbar.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -115,5 +118,5 @@ enum ITEM_ID
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneRoom
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------

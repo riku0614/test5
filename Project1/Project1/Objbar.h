@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：メイン
-class CObjheal : public CObj
+class CObjbar : public CObj
 {
 public:
-	CObjheal(float x,float y);
-	~CObjheal() {};
+	CObjbar(float x, float y);
+	~CObjbar() {};
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー
@@ -39,4 +39,3 @@ private:
 	//bool hit_flg;
 
 };
-

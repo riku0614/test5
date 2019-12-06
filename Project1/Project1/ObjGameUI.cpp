@@ -88,7 +88,7 @@ void CObjGameUI::Draw()
 
 	/*ダメージエフェクト*/
 	
-		/*//切り取り位置の設定
+		//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1024.0f;
@@ -106,7 +106,7 @@ void CObjGameUI::Draw()
 	
 	
 	//切り取り位置の設定
-	/*src.m_top = 0.0f;
+	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1024.0f;
 	src.m_bottom = 680.0f;
@@ -189,30 +189,31 @@ void CObjGameUI::Draw()
 
 		take_flag_2 = true; //2番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 	}
-	/*
+	
 	//3番のアイテム表示
-	if (hero->Getflag_3() == true && take_flag == true && take_flag_2 == true)
+	if (hero->Getflag_3() == true)
 	{
-		RECT_F src4;	//描画元切り取り位置
-		RECT_F dst4;	//描画先表示位置
+		RECT_F src;	//描画元切り取り位置
+		RECT_F dst;	//描画先表示位置
 
-		src4.m_top = 10.0f;
-		src4.m_left = 10.0f;
-		src4.m_right = 48.0f;
-		src4.m_bottom = 50.0f;
+		src.m_top = 0.0f;
+		src.m_left = 100.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 512.0f;
 
 
 		//表示位置設定
-		dst4.m_top = 559.0f;
-		dst4.m_left = 762.0f;
-		dst4.m_right = dst.m_left + 38.0f;
-		dst4.m_bottom = dst.m_top + 40.0f;
+		dst.m_top = 559.0f;
+		dst.m_left = 762.0f;
+		dst.m_right = dst.m_left + 38.0f;
+		dst.m_bottom = dst.m_top + 45.0f;
 
 		//描画設定
-		Draw::Draw(9, &src4, &dst4, c, 0.0f);
+		Draw::Draw(26, &src, &dst, c, 0.0f);
 
 		take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
-	}*/
+		
+	}
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	if (main->MapChangeData() == 0)
 	{

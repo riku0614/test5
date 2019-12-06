@@ -87,6 +87,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
 
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
@@ -109,11 +110,6 @@ void CSceneMain::InitScene()
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
-
-	
-	//回復アイテムオブジェクト作成
-	CObjheal* objh = new CObjheal(map);
-	Objs::InsertObj(objh, OBJ_HEAL, 14);
 
 	
 

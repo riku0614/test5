@@ -36,7 +36,7 @@ void CObjItem::Init()
 
 			
 	//当たり判定用hitboxを作成
-	Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
+	//Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_ITEM, OBJ_ITEM, 1);
 
 
 	//m_scroll_x = -2850.0f;
@@ -53,16 +53,20 @@ void CObjItem::Action()
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
+	//マップのデータをコピーして、アイテムを表示させる
+	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
+	memcpy(r_map, main->r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+	/*hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());*/
 	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
 	if (hero->Getflag() == true)
 	{
 		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		/*Hits::DeleteHitBox(this);*/
 	}
 
 	
@@ -87,20 +91,44 @@ void CObjItem::Draw()
 	float hx = main->GetScrollX();
 	float hy = main->GetScrollY();
 
-	for (int i = 0; i < MAP_X; i++)
+	if (main->RoomFlag() == true)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int i = 0; i < ROOM_X; i++)
 		{
-			if (m_map[i][j] == 4)
+			for (int j = 0; j < ROOM_Y; j++)
 			{
-				//表示位置の設定
-				dst.m_top = i * 64.0f + hy;
-				dst.m_left = j * 64.0f + hx;
-				dst.m_right = dst.m_left + 32.0f;
-				dst.m_bottom = dst.m_top + 32.0f;
+				if (r_map[i][j] == 4)
+				{
+					//表示位置の設定
+					dst.m_top = i * 64.0f + hy;
+					dst.m_left = j * 64.0f + hx;
+					dst.m_right = dst.m_left + 32.0f;
+					dst.m_bottom = dst.m_top + 32.0f;
 
-				Draw::Draw(8, &src, &dst, c, 0.0f);
+					Draw::Draw(8, &src, &dst, c, 0.0f);
+				}
 			}
 		}
 	}
+
+	if(main->RoomFlag()==false)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (m_map[i][j] == 4)
+				{
+					//表示位置の設定
+					dst.m_top = i * 64.0f + hy;
+					dst.m_left = j * 64.0f + hx;
+					dst.m_right = dst.m_left + 32.0f;
+					dst.m_bottom = dst.m_top + 32.0f;
+
+					Draw::Draw(8, &src, &dst, c, 0.0f);
+				}
+			}
+		}
+	}
+	
 }
