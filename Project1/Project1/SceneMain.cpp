@@ -123,13 +123,13 @@ void CSceneMain::InitScene()
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-	//アイテムオブジェクト作成
-	CObjItem* obji = new CObjItem(map);
-	Objs::InsertObj(obji, OBJ_ITEM, 13);
+	////アイテムオブジェクト作成
+	//CObjItem* obji = new CObjItem(map);
+	//Objs::InsertObj(obji, OBJ_ITEM, 13);
 
-	//回復アイテムオブジェクト作成
-	CObjheal* objh = new CObjheal(map);
-	Objs::InsertObj(objh, OBJ_HEAL, 14);
+	////回復アイテムオブジェクト作成
+	//CObjheal* objh = new CObjheal(map);
+	//Objs::InsertObj(objh, OBJ_HEAL, 14);
 
 	
 	
@@ -138,22 +138,5 @@ void CSceneMain::InitScene()
 //ゲームメイン実行中メソッド
 void CSceneMain::Scene()
 {
-	//m_time++;
-	////何秒ごとに敵が主人公の近くに来る
-	//if (m_time > 100)
-	//{
-	//	
 
-	//	//主人公の位置を取得
-	//	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	//	float hx = hero->GetX();
-	//	float hy = hero->GetY();
-	//
-	//	CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	//	enemy->SetX(hx + 64.0f * 5);
-	//	enemy->SetY(hy + 64.0f * 5);
-
-	//m_time = 0;
-	//
-	//}
 }

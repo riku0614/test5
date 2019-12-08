@@ -52,11 +52,11 @@ void CObjRoomGimmick::Action()
 	
 	if (main->RoomFlag() == false && main->GetFlug() == true)
 	{
-		Hits::DeleteHitBox(this);
+		this->SetStatus(false);
 	}
 	if (main->RoomFlag() == true && main->GetFlug() == true)
 	{
-		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_ROOM_GIMMICK, 1);
+		this->SetStatus(true);
 	}
 	//HitBox�̈ʒu�̕ύX
 

@@ -51,6 +51,7 @@ void CObjGimmick::Action()
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 	if (main->GetFlug() == true&&main->GetFlug2()==true)
 	{
+	    this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
 
@@ -59,7 +60,7 @@ void CObjGimmick::Action()
 		Hits::DeleteHitBox(this);
 	}
 
-	else if (main->GetFlug() == true && main->RoomFlag() == false)
+	if (main->GetFlug() == true && main->RoomFlag() == false)
 	{
 		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
 	}
