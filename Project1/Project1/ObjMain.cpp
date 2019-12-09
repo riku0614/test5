@@ -34,7 +34,7 @@ void CObjMain::Init()
 
 	map_chg = 0;
 	room_chg = 0;
-	stop_flg =false;
+	stop_flg =true;
 	spawn_point[7] = NULL;
 	room_in = true;
 	delete_flg = false;
@@ -45,6 +45,17 @@ void CObjMain::Init()
 	plane_chg_hole = false;
 	pepepe = false;
 	pepepe_2 = false;
+	room_chg_stop = false;
+
+	r[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
+	r[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
+	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
+
+	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
+	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
+
+
 }
 
 //アクション
@@ -53,6 +64,7 @@ void CObjMain::Action()
 	if (room_chg >= 8)
 	{
 		room_chg = 1;
+		room_chg_stop = true;
 	}
 
 	if (map_chg == 0)
@@ -70,8 +82,15 @@ void CObjMain::Action()
 			hero->SetY(4.0f*64.0f);
 			m_scroll_x = -15.0f*64.0f;
 			m_scroll_y = -5.0f*64.0f;
-			RoomMapChanger(r_map, r, room_chg);
 
+			if (room_chg_stop == false)
+			{
+				RoomMapChanger(r_map, r, room_chg);
+			}
+			else
+			{
+				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
+			}
 		}
 		if(room_in == false && stop_flg == true&&first_stop==true)
 		{
@@ -190,10 +209,6 @@ void CObjMain::Action()
 					CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
 					Objs::InsertObj(obje, OBJ_ENEMY, 11);
 
-					/*CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-					enemy->SetX(m_scroll_x);
-					enemy->SetY(m_scroll_y);*/
-
 
 
 				}
@@ -201,37 +216,13 @@ void CObjMain::Action()
 
 		}
 	}
- //  if (room_in == true && stop_flg == true)
- //  {
-	//   for (int i = 0; i < ROOM_X; i++)
-	//   {
-	//	   for (int j = 0; j < ROOM_Y; j++)
-	//	   {
-	//		   if (r_map[i][j] == 5)
-	//		   {
 
-	//			   //敵オブジェクト作成
-	//			   CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
-	//			   Objs::InsertObj(obje, OBJ_ENEMY, 11);
-
-	//			   CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	//			   enemy->SetX(m_scroll_x);
-	//			   enemy->SetY(m_scroll_y);
-
-	//			  
-	//			   
-	//		   }
-	//	   }
-
-	//	}
-	//	
-	//}
 	//アイテム「鍵」の表示処理：教室用
-	if (stop_flg == true && room_in == true)
+	if (stop_flg == true && room_in == false)
 	{
-		for (int i = 0; i < ROOM_X; i++)
+		for (int i = 0; i < MAP_X; i++)
 		{
-			for (int j = 0; j < ROOM_Y; j++)
+			for (int j = 0; j < MAP_Y; j++)
 			{
 				if (m_map[i][j] == 4)
 				{
@@ -248,6 +239,50 @@ void CObjMain::Action()
 
 		}
 
+	}
+	if (stop_flg == true && room_in == true)
+	{
+		for (int i = 0; i < ROOM_X; i++)
+		{
+			for (int j = 0; j < ROOM_Y; j++)
+			{
+				if (r_map[i][j] == 4)
+				{
+
+					//アイテムオブジェクト作成
+					CObjItem * obji = new CObjItem(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
+					Objs::InsertObj(obji, OBJ_ITEM, 16);
+
+
+
+
+				}
+			}
+
+		}
+
+	}
+	//アイテム「鍵」の表示処理：廊下用
+	if (stop_flg == true && room_in == false)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				if (m_map[i][j] == 4)
+				{
+
+					//アイテムオブジェクト作成
+					CObjItem * objir = new CObjItem(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
+					Objs::InsertObj(objir, OBJ_ITEM, 16);
+
+
+
+
+				}
+			}
+
+		}
 	}
 	//アイテム「薬」の表示処理：廊下用
 	if (room_in == false && stop_flg == true)
@@ -272,43 +307,10 @@ void CObjMain::Action()
 		}
 
 	}
-	//アイテム「薬」の表示処理：教室用
-	if (room_in == true && stop_flg == true)
-	{
-		for (int i = 0; i < ROOM_X; i++)
-		{
-			for (int j = 0; j < ROOM_Y; j++)
-			{
-				if (r_map[i][j] == 21)
-				{
-					HitBoxChanger(map_chg, m_map);
-					stop_flg = false;
-				}
-			}
-		}
-	}
+	
+		
 
-		for (int i = 0; i < MAP_X; i++)
-		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				if (m_map[i][j] == 5)
-				{
-				 
-					//敵オブジェクト作成
-					CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
-					Objs::InsertObj(obje, OBJ_ENEMY, 11);
-				 
-					CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-					enemy->SetX(m_scroll_x);
-					enemy->SetY(m_scroll_y);
-
-					m_map[i][j] = 1;
-					 
-				}
-			}
-			 
-		}
+	
 	
    if (room_in == true && stop_flg == false) 
    {
@@ -981,6 +983,8 @@ void CObjMain::BlockHit(
 										hero->SetY(save_y[map_chg][0] + hero->GetVY());
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
+
+										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 									}
 
 								}
@@ -1010,6 +1014,7 @@ void CObjMain::BlockHit(
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
 
+										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 									}
 
 								}
@@ -1035,6 +1040,8 @@ void CObjMain::BlockHit(
 										hero->SetY(save_y[map_chg][0] + hero->GetVY());
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
+
+										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 									}
 
 								}
@@ -1060,6 +1067,8 @@ void CObjMain::BlockHit(
 										hero->SetY(save_y[map_chg][0] + hero->GetVY());
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
+
+										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 									}
 
 								}
@@ -1254,7 +1263,7 @@ void CObjMain::ItemHit(
 
 		}
 	}
-	else
+	if(room_in==true)
 	{
 	//m=mapの全要素にアクセス
 	for (int i = 0; i < ROOM_X; i++)
@@ -1565,7 +1574,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13)
+					if (r_map[i][j] >= 1&&r_map[i][j]<= 8|| r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1666,6 +1675,26 @@ void CObjMain::Draw()
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
 					}
+						
+					
+					if (r_map[i][j] == 4)
+					{
+
+							//描画切り取り位置
+							src.m_top = 17.0f;
+							src.m_left = 20.0f;
+							src.m_right = src.m_left + 25.0f;
+							src.m_bottom = src.m_top + 30.0f;
+							
+							//表示位置の設定
+							dst.m_top = i * 64.0f + m_scroll_y;
+							dst.m_left = j * 64.0f + m_scroll_x;
+							dst.m_right = dst.m_left + 32.0;
+							dst.m_bottom = dst.m_top + 32.0;
+
+							Draw::Draw(8, &src, &dst, c, 0.0f);
+					}
+					
 				}
 			}
 		}
