@@ -144,27 +144,28 @@ void CObjGameUI::Draw()
 	
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	
 
 	//アイテムの表示（1番）
 	if (hero->Getflag() == true)
 	{
-		RECT_F src2;	//描画元切り取り位置
-		RECT_F dst2;	//描画先表示位置
+		RECT_F src;	//描画元切り取り位置
+		RECT_F dst;	//描画先表示位置
 
-		src2.m_top = 10.0f;
-		src2.m_left = 10.0f;
-		src2.m_right = 40.0f;
-		src2.m_bottom = 40.0f;
+		src.m_top = 10.0f;
+		src.m_left = 10.0f;
+		src.m_right = 40.0f;
+		src.m_bottom = 40.0f;
 
 	
 		//表示位置設定
-		dst2.m_top = 562.0f;
-		dst2.m_left = 686.0f;
-		dst2.m_right = dst.m_left + 40.0f;
-		dst2.m_bottom = dst.m_top + 45.0f;
+		dst.m_top = 562.0f;
+		dst.m_left = 686.0f;
+		dst.m_right = dst.m_left + 40.0f;
+		dst.m_bottom = dst.m_top + 45.0f;
 		
 		//描画設定
-		Draw::Draw(9, &src2, &dst2, c, 0.0f);
+		Draw::Draw(9, &src, &dst, c, 0.0f);
 
 		take_flag = true; //1番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 
@@ -174,50 +175,51 @@ void CObjGameUI::Draw()
 	//2番のアイテム表示
 	if (hero->Getflag_2() == true)
 	{
-		RECT_F src3;	//描画元切り取り位置
-		RECT_F dst3;	//描画先表示位置
+		RECT_F src;	//描画元切り取り位置
+		RECT_F dst;	//描画先表示位置
 
-		src3.m_top = 0.0f;
-		src3.m_left = 0.0f;
-		src3.m_right = 256.0f;
-		src3.m_bottom = 256.0f;
+		src.m_top = 32.0f;
+		src.m_left = 32.0f;
+		src.m_right = 224.0f;
+		src.m_bottom = 224.0f;
 
 
 		//表示位置設定
-		dst3.m_top = 559.0f;
-		dst3.m_left = 724.0f;
-		dst3.m_right = dst.m_left + 38.0f;
-		dst3.m_bottom = dst.m_top + 45.0f;
+		dst.m_top = 559.0f;
+		dst.m_left = 725.0f;
+		dst.m_right = dst.m_left + 38.0f;
+		dst.m_bottom = dst.m_top + 45.0f;
 
 		//描画設定
-		Draw::Draw(21, &src3, &dst3, c, 0.0f);
+		Draw::Draw(21, &src, &dst, c, 0.0f);
 
 		take_flag_2 = true; //2番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 	}
-	/*
+	
 	//3番のアイテム表示
-	if (hero->Getflag_3() == true && take_flag == true && take_flag_2 == true)
+	if (hero->Getflag_3() == true)
 	{
-		RECT_F src4;	//描画元切り取り位置
-		RECT_F dst4;	//描画先表示位置
+		RECT_F src;	//描画元切り取り位置
+		RECT_F dst;	//描画先表示位置
 
-		src4.m_top = 10.0f;
-		src4.m_left = 10.0f;
-		src4.m_right = 48.0f;
-		src4.m_bottom = 50.0f;
+		src.m_top = 0.0f;
+		src.m_left = 100.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 512.0f;
 
 
 		//表示位置設定
-		dst4.m_top = 559.0f;
-		dst4.m_left = 762.0f;
-		dst4.m_right = dst.m_left + 38.0f;
-		dst4.m_bottom = dst.m_top + 40.0f;
+		dst.m_top = 559.0f;
+		dst.m_left = 762.0f;
+		dst.m_right = dst.m_left + 38.0f;
+		dst.m_bottom = dst.m_top + 45.0f;
 
 		//描画設定
-		Draw::Draw(9, &src4, &dst4, c, 0.0f);
+		Draw::Draw(26, &src, &dst, c, 0.0f);
 
 		take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
-	}*/
+		
+	}
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	if (main->MapChangeData() == 0)
 	{

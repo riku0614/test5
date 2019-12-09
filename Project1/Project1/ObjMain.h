@@ -33,6 +33,7 @@ class CObjMain : public CObj
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
 		bool GetFlug() { return stop_flg; }
+		bool GetFlug2() { return stop_flg2; }
 		int GetHitboxCount1() { return g_count1; }
 		int GetHitboxCount2() { return g_count2; }
 
@@ -40,6 +41,8 @@ class CObjMain : public CObj
 		bool GetMapItem() { return map_Item; }
 		void SetMapItem_2(bool mi) { map_Item_2; }
 		bool GetMapItem_2() { return map_Item_2; }
+		void SetMapItem_3(bool mi) { map_Item_3; }
+		bool GetMapItem_3() { return map_Item_3; }
 
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
@@ -68,16 +71,22 @@ class CObjMain : public CObj
 		float save_scroll_y[MAP_NUMBER][2];
 		int save_map[MAP_X][MAP_Y];
 		
-		bool stop_flg;   //マップ切り替えを一度だけしか
+		bool stop_flg;//マップ切り替えを一度だけしか
+		bool stop_flg2;
 		bool first_stop;
+		bool first_stop2;
 		bool room_in;    //教室マップへの切り替えのフラグ
 		bool delete_flg;
 		bool plane_chg_hole;
+		bool pepepe;
+		bool pepepe_2;
 
 		int g_count1;
 		int g_count2;
 		int map_chg;     //マップ切り替えを管理するための変数
 		int room_chg;
+		int ix;
+		int iy;
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;

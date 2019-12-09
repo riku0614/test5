@@ -30,7 +30,9 @@ void CObjEnemy::Init()
 
 	m_id = CHAR_ENEMY;
 	k_id = 1;
-	
+	m_time = 0;
+
+
 	
 	//blockとの衝突確認用
 
@@ -57,55 +59,40 @@ void CObjEnemy::Action()
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	float scrollx = main->GetScrollX();
 	float scrolly = main->GetScrollY();
+	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
-	if (m_ex<(WINDOW_MAX_X - scrollx) && m_ex>(WINDOW_MIN_X - scrollx) &&
-		m_ey<(WINDOW_MAX_Y - scrolly) && m_ey>(WINDOW_MIN_Y - scrolly))
-	{
-		m_vx = (hx + (-scrollx) - m_ex) ;
-		m_vy = (hy + (-scrolly) - m_ey) ;
-	}
 
-	
+	if (m_ex<(WINDOW_MAX_X + -(scrollx)) && m_ex>(WINDOW_MIN_X + -(scrollx)) &&
+		    m_ey<(WINDOW_MAX_Y + -(scrolly)) && m_ey>(WINDOW_MIN_Y + -(scrolly)))
+	{
+		m_vx = (hx + -(scrollx) - m_ex) ;
+		m_vy = (hy + -(scrolly) - m_ey) ;
+	}
+	else
+	{
+		m_time++;
 
-	/*//衝突判定による移動フラグの切り替え
-	else if (m_hit_left==true)
-	{
-		m_flg=1;
-	}
-	else if (m_hit_down == true)
-	{
-		m_flg=2;
-	}
-	else if (m_hit_right == true)
-	{ 
-		m_flg=3;
-	}
-	else if (m_hit_up ==true)
-	{
-		m_flg = 0;
-	}
-	
-	//移動
-	else if (m_flg == 0)
-	{
-		m_ex += 3.0f;
-	}
-   
-	else if (m_flg == 1)
-	{
-	m_ey += 3.0f;
-	}
-	
-   else if (m_flg == 2)
-	{
-	m_ex -= 3.0f;
-	}
+		m_vx = (hx + -(scrollx)-m_ex);
+		m_vy = (hy + -(scrolly)-m_ey);
 
-	else if (m_flg == 3)
-	{
-		m_ey -= 3.0f;
+		//何秒ごとに敵が主人公の近くに来る
+		if (m_time > 300)
+		{
+			
+			CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+			enemy->SetX(hx + -(scrollx)+(64.0f * 3));
+			enemy->SetY(hy + -(scrolly)-(64.0f * 3));
+			m_time = 0;
+			
+			zx = m_ex / 64;
+			zy = m_ey / 64;
+
+			if (m_map[zy][zx] == 0)
+			{
+				;
+			}
+		}
 	}
-	*/
 	//移動ベクトルの正規化
 	UnitVec(&m_vy, &m_vx);
 
@@ -177,7 +164,11 @@ void CObjEnemy::Action()
 	//hitboxの位置の変更
 	hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
 	
-	
+	if (main->GetFlug() == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 	
 }
 

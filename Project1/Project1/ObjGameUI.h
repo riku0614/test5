@@ -44,4 +44,5 @@ private:
 
 	int m_id;	//key—p•Ï”
 	int h_id;	//Heal—p•Ï”
+	int b_id;	//bar—p•Ï”
 };
