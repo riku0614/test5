@@ -20,6 +20,7 @@ public:
 	void SetGimmickChange(bool b) { stop_flg2 = b; }
 
 private:
+
 	int m_map[MAP_X][MAP_Y];
 	int gx;	//アイテムのX位置保管用
 	int gy; //アイテムのY位置保管用

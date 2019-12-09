@@ -63,12 +63,7 @@ float GetAtan2Angle(float w, float h)
 void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 {
 	
-	int size;
-	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
-	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
-	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	
-
 	int map[MAP_X][MAP_Y];
 
 	int count = 1;
@@ -98,11 +93,6 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 
 void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p,int r)
 {
-
-	int size;
-	p[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
-	p[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
-	p[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
 	int map[ROOM_X][ROOM_Y];
 
