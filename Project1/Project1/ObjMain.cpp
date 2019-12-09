@@ -61,7 +61,7 @@ void CObjMain::Init()
 //アクション
 void CObjMain::Action()
 {
-	if (room_chg >= 4)
+	if (room_chg >= 8)
 	{
 		room_chg = 1;
 		room_chg_stop = true;
@@ -209,10 +209,6 @@ void CObjMain::Action()
 					CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
 					Objs::InsertObj(obje, OBJ_ENEMY, 11);
 
-					/*CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-					enemy->SetX(m_scroll_x);
-					enemy->SetY(m_scroll_y);*/
-
 
 
 				}
@@ -220,31 +216,7 @@ void CObjMain::Action()
 
 		}
 	}
- //  if (room_in == true && stop_flg == true)
- //  {
-	//   for (int i = 0; i < ROOM_X; i++)
-	//   {
-	//	   for (int j = 0; j < ROOM_Y; j++)
-	//	   {
-	//		   if (r_map[i][j] == 5)
-	//		   {
 
-	//			   //敵オブジェクト作成
-	//			   CObjEnemy* obje = new CObjEnemy((j - 1)*64.0f + m_scroll_x, (i - 1)*64.0f + m_scroll_y);
-	//			   Objs::InsertObj(obje, OBJ_ENEMY, 11);
-
-	//			   CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	//			   enemy->SetX(m_scroll_x);
-	//			   enemy->SetY(m_scroll_y);
-
-	//			  
-	//			   
-	//		   }
-	//	   }
-
-	//	}
-	//	
-	//}
 	//アイテム「鍵」の表示処理：教室用
 	if (stop_flg == true && room_in == false)
 	{
@@ -273,6 +245,29 @@ void CObjMain::Action()
 		for (int i = 0; i < ROOM_X; i++)
 		{
 			for (int j = 0; j < ROOM_Y; j++)
+			{
+				if (r_map[i][j] == 4)
+				{
+
+					//アイテムオブジェクト作成
+					CObjItem * obji = new CObjItem(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
+					Objs::InsertObj(obji, OBJ_ITEM, 16);
+
+
+
+
+				}
+			}
+
+		}
+
+	}
+	//アイテム「鍵」の表示処理：廊下用
+	if (stop_flg == true && room_in == false)
+	{
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
 			{
 				if (m_map[i][j] == 4)
 				{
@@ -312,15 +307,20 @@ void CObjMain::Action()
 		}
 
 	}
-	//アイテム「薬」の表示処理：教室用
-	if (room_in == true && stop_flg == true)
-	{
-		for (int i = 0; i < ROOM_X; i++)
-		{
-			for (int j = 0; j < ROOM_Y; j++)
-			{
-				if (r_map[i][j] == 21)
-				{
+	
+		
+
+	
+	
+   if (room_in == true && stop_flg == false) 
+   {
+	  
+	   for (int i = 0; i < ROOM_X; i++)
+	   {
+		   for (int j = 0; j < ROOM_Y; j++)
+		   {
+			   if (r_map[i][j] == 5)
+			   {
 
 					//アイテムオブジェクト作成
 					CObjheal * objh = new CObjheal(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
@@ -1574,7 +1574,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 4 || r_map[i][j] == 5 || r_map[i][j] == 7 || r_map[i][j] == 8 || r_map[i][j] == 13)
+					if (r_map[i][j] >= 1&&r_map[i][j]<= 8|| r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
