@@ -1072,6 +1072,11 @@ void CObjMain::BlockHit(
 									}
 
 								}
+								if (r_map[i][j] == 19 && Input::GetVKey(VK_RETURN)==true)
+								{
+
+									*k_id = ITEM_KEY;
+								}
 								if (*vy < 0)
 								{
 									*vy = 0.0f;
@@ -1602,7 +1607,7 @@ void CObjMain::Draw()
 						Draw::Draw(31, &src, &dst, c, 0.0f);
 					}
 					//壁テクスチャ
-					if (r_map[i][j] == 9)
+					if (r_map[i][j] == 9||r_map[i][j]==19)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1731,6 +1736,15 @@ void CObjMain::Draw()
 							Draw::Draw(8, &src, &dst, c, 0.0f);
 					}
 					
+					if (r_map[i][j] == 19)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 50.0f;
+						src.m_bottom = src.m_top + 50.0f;
+						
+						Draw::Draw(29, &src, &dst, c, 0.0f);
+					}
 				}
 			}
 		}

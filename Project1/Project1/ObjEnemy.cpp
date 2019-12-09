@@ -82,18 +82,12 @@ void CObjEnemy::Action()
 			CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
 			m_time = 0;
 			
-			zx = m_ex / 64;
-			zy = m_ey / 64;
 
-			if (m_map[zx][zy] ==0)
-			{
-				;
-			}
-			else
-			{
-				enemy->SetX(hx + -(scrollx)+(64.0f * 2));
-				enemy->SetY(hy + -(scrolly)-(64.0f * 2));
-			}
+			
+			
+			m_ex = hx + -(scrollx)+(64.0f * 2);
+			m_ey = hy + -(scrolly)+(64.0f * 2);
+			
 		}
 	}
 	//ˆÚ“®ƒxƒNƒgƒ‹‚Ì³‹K‰»
