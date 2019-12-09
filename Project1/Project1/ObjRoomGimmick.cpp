@@ -16,7 +16,7 @@ using namespace GameL;
 
 
 
-CObjGimmick::CObjGimmick(float x, float y)
+CObjRoomGimmick::CObjRoomGimmick(float x, float y)
 {
 	gx = x;
 	gy = y;
@@ -24,7 +24,7 @@ CObjGimmick::CObjGimmick(float x, float y)
 
 
 //イニシャライズ
-void CObjGimmick::Init()
+void CObjRoomGimmick::Init()
 {
 
 
@@ -38,31 +38,25 @@ void CObjGimmick::Init()
 	pi = 0;
 	pj = 0;
 
-	
-	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+
+	Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_ROOM_GIMMICK, 1);
 
 }
 
 //アクション
-void CObjGimmick::Action()
+void CObjRoomGimmick::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
-	if (main->GetFlug() == true&&main->GetFlug2()==true)
+	memcpy(r_map, main->r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+	
+	if (main->RoomFlag() == false && main->GetFlug() == true)
 	{
-	    this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		this->SetStatus(false);
 	}
-
-	if (main->GetFlug() == true && main->RoomFlag() == true)
+	if (main->RoomFlag() == true && main->GetFlug() == true)
 	{
-		Hits::DeleteHitBox(this);
-	}
-
-	if (main->GetFlug() == true && main->RoomFlag() == false)
-	{
-		Hits::SetHitBox(this, gx, gy, 64, 64, ELEMENT_BLUE, OBJ_GIMMICK, 1);
+		this->SetStatus(true);
 	}
 	//HitBoxの位置の変更
 
@@ -93,12 +87,12 @@ void CObjGimmick::Action()
 
 	}
 
-	
+
 
 }
 
 //ドロー
-void CObjGimmick::Draw()
+void CObjRoomGimmick::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -121,7 +115,7 @@ void CObjGimmick::Draw()
 	{
 		//上
 
-		if (m_map[pi - 1][pj] == 9)
+		if (r_map[pi - 1][pj] == 9)
 		{
 			//表示位置の設定
 			dst.m_top = (pi - 1) * 64.0f + hy;
@@ -131,14 +125,14 @@ void CObjGimmick::Draw()
 
 
 
-			m_map[pi][pj] = 1;
+			r_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
 
-			
+
 
 		}
 		//下
-		else if (m_map[pi + 1][pj] == 12)
+		else if (r_map[pi + 1][pj] == 12)
 		{
 			//表示位置の設定
 			dst.m_top = (pi + 1) * 64.0f + hy;
@@ -147,13 +141,13 @@ void CObjGimmick::Draw()
 			dst.m_bottom = dst.m_top + 64.0f;
 
 
-			m_map[pi][pj] = 1;
+			r_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
 
-		
+
 		}
 		//左
-		else if (m_map[pi][pj - 1] == 11)
+		else if (r_map[pi][pj - 1] == 11)
 		{
 			//表示位置の設定
 			dst.m_top = pi * 64.0f + hy;
@@ -161,13 +155,13 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
-			m_map[pi][pj] = 1;
+			r_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
 
-			
+
 		}
 		//右
-		else if (m_map[pi][pj + 1] == 10)
+		else if (r_map[pi][pj + 1] == 10)
 		{
 			//表示位置の設定
 			dst.m_top = pi * 64.0f + hy;
@@ -175,10 +169,10 @@ void CObjGimmick::Draw()
 			dst.m_right = dst.m_left + 64.0f;
 			dst.m_bottom = dst.m_top + 64.0f;
 
-			
+
 			Hits::DeleteHitBox(this);
 
-			
+
 		}
 
 

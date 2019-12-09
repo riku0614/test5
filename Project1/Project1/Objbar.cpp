@@ -5,7 +5,7 @@
 #include "GameL/SceneManager.h"
 
 #include "GameHead.h"
-#include "Objheal.h"
+#include "Objbar.h"
 #include "GameL/HitBoxManager.h"
 #include "UtilityModule.h"
 
@@ -13,7 +13,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjheal::CObjheal(float x, float y)
+CObjbar::CObjbar(float x, float y)
 {
 	ix = x;
 	iy = y;
@@ -21,7 +21,7 @@ CObjheal::CObjheal(float x, float y)
 
 
 //イニシャライズ
-void CObjheal::Init()
+void CObjbar::Init()
 {
 	//変数初期化
 
@@ -35,7 +35,8 @@ void CObjheal::Init()
 
 
 
-
+	//当たり判定用hitboxを作成
+	Hits::SetHitBox(this, ix, iy, 32, 32, ELEMENT_BLACK, OBJ_BAR, 1);
 
 
 	//m_scroll_x = -2850.0f;
@@ -47,7 +48,7 @@ void CObjheal::Init()
 }
 
 //アクション
-void CObjheal::Action()
+void CObjbar::Action()
 {
 	//メインの位置を取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -59,10 +60,11 @@ void CObjheal::Action()
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//HitBoxの位置の変更
-	CHitBox* hit = Hits::GetHitBox(this);/*
-	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());*/
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());
+
 	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
-	if (hero->Getflag_2() == true)
+	if (hero->Getflag_3() == true)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
@@ -72,7 +74,7 @@ void CObjheal::Action()
 }
 
 //ドロー
-void CObjheal::Draw()
+void CObjbar::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -96,7 +98,7 @@ void CObjheal::Draw()
 		{
 			for (int j = 0; j < ROOM_Y; j++)
 			{
-				if (r_map[i][j] == 21)
+				if (r_map[i][j] == 26)
 				{
 					//表示位置の設定
 					dst.m_top = i * 64.0f + hy;
@@ -115,7 +117,7 @@ void CObjheal::Draw()
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] == 21)
+				if (m_map[i][j] == 26)
 				{
 					//表示位置の設定
 					dst.m_top = i * 64.0f + hy;
@@ -128,5 +130,4 @@ void CObjheal::Draw()
 			}
 		}
 	}
-
 }

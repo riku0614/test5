@@ -52,11 +52,13 @@ public:
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
 	bool GetEnemyFlag() { return enemy_flg; }
+	int GetBarID() { return b_id; }
 private:
 	float save[Status][2];
 
 	int k_id;//アイテム（鍵）のID
 	int h_id;//回復アイテムのID
+	int b_id;
 	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;

@@ -27,7 +27,9 @@ enum OBJ_NAME
 	OBJ_GIMMICK6,
 	OBJ_GIMMICK7,
 	OBJ_GIMMICK8,
+	OBJ_ROOM_GIMMICK,
 	OBJ_HEAL,
+	OBJ_BAR,
 
 	//OBJ_CHAR,
 };
@@ -70,6 +72,7 @@ enum ITEM_ID
 	CHAR_HERO,
 	CHAR_ENEMY,
 	ITEM_HEAL,
+	ITEM_BAR,
 	CHAR_FASTENEMY,
 };
 
@@ -92,7 +95,7 @@ enum ITEM_ID
 #include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
-#include "ObjRoom.h"
+
 
 #include "ObjGimmick.h"
 #include "ObjGimmick2.h"
@@ -102,8 +105,11 @@ enum ITEM_ID
 #include "ObjGimmick6.h"
 #include "ObjGimmick7.h"
 #include "ObjGimmick8.h"
+#include "ObjRoomGimmick.h"
+
 #include "objheal.h"
 #include "ObjFastEnemy.h"
+#include "Objbar.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -113,7 +119,6 @@ enum ITEM_ID
 #include "SceneGameOver.h"
 #include "SceneGameUI.h"
 #include "SceneMenu.h"
-#include "SceneRoom.h"
 
 //-----------------------------------------------
 
