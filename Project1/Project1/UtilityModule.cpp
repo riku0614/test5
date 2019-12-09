@@ -100,9 +100,13 @@ void RoomMapChanger(int r_map[ROOM_X][ROOM_Y], unique_ptr<wchar_t>* p,int r)
 {
 
 	int size;
-	p[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
-	p[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
-	p[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"教室１右サクラ.csv", &size);
+	p[2] = Save::ExternalDataOpen(L"教室２右サクラ.csv", &size);
+	p[3] = Save::ExternalDataOpen(L"教室３右サクラ.csv", &size);
+	p[4] = Save::ExternalDataOpen(L"教室４右サクラ.csv", &size);
+	p[5] = Save::ExternalDataOpen(L"教室５右サクラ.csv", &size);
+	p[6] = Save::ExternalDataOpen(L"教室６右サクラ.csv", &size);
+
 
 	int map[ROOM_X][ROOM_Y];
 

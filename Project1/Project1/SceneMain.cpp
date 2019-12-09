@@ -100,6 +100,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"本棚.png", 29, TEX_SIZE_512);
 	Draw::LoadImageW(L"机まとめ.png", 30, TEX_SIZE_1024);
 	Draw::LoadImageW(L"椅子まとめ.png", 31, TEX_SIZE_1024);
+	Draw::LoadImageW(L"壁左上.png", 34, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁右上.png", 35, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁右下.png", 36, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁左下.png", 37, TEX_SIZE_512);
 
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);

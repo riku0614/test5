@@ -37,6 +37,7 @@ class CObjMain : public CObj
 		int GetHitboxCount1() { return g_count1; }
 		int GetHitboxCount2() { return g_count2; }
 
+
 		void SetMapItem(bool mi) { map_Item; }
 		bool GetMapItem() { return map_Item; }
 		void SetMapItem_2(bool mi) { map_Item_2; }
