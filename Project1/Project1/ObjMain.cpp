@@ -281,8 +281,12 @@ void CObjMain::Action()
 			{
 				if (r_map[i][j] == 21)
 				{
-		HitBoxChanger(map_chg, m_map);
-		stop_flg = false;
+					HitBoxChanger(map_chg, m_map);
+					stop_flg = false;
+				}
+			}
+		}
+	}
 
 		for (int i = 0; i < MAP_X; i++)
 		{
@@ -305,7 +309,7 @@ void CObjMain::Action()
 			}
 			 
 		}
-	}
+	
    if (room_in == true && stop_flg == false) 
    {
 	  
