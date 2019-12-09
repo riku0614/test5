@@ -44,7 +44,6 @@ void CObjItem::Init()
 
 	stop_flg = false;
 	
-
 }
 
 //アクション
@@ -63,13 +62,7 @@ void CObjItem::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	/*hit->SetPos(ix + main->GetScrollX(), iy + main->GetScrollY());*/
 	//アイテムに当たって、なおかつ'E'を押したときにアイテムが消える処理
-	if (hero->Getflag() == true)
-	{
-		this->SetStatus(false);
-		/*Hits::DeleteHitBox(this);*/
-	}
 
-	
 }
 
 //ドロー
@@ -111,7 +104,7 @@ void CObjItem::Draw()
 		}
 	}
 
-	if(main->RoomFlag()==false)
+	if (main->RoomFlag() == false)
 	{
 		for (int i = 0; i < MAP_X; i++)
 		{
@@ -130,5 +123,4 @@ void CObjItem::Draw()
 			}
 		}
 	}
-	
 }

@@ -108,7 +108,8 @@ void CObjGameUI::Draw()
 
 		Draw::Draw(22, &src, &dst, c, 0.0f);
 	}
-	if(HERO->action_flag2()==true){
+	if(HERO->action_flag2()==true)
+	{
 		//Ø‚èæ‚èˆÊ’u‚Ìİ’è
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

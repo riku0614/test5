@@ -71,7 +71,8 @@ class CObjMain : public CObj
 		float save_scroll_x[MAP_NUMBER][2];//マップを行き来する用のスクロール情報を登録する配列
 		float save_scroll_y[MAP_NUMBER][2];
 		int save_map[MAP_X][MAP_Y];
-		
+		int save_room_map[ROOM_X][ROOM_Y][7];
+
 		bool stop_flg;//マップ切り替えを一度だけしか
 		bool stop_flg2;
 		bool first_stop;
@@ -81,6 +82,8 @@ class CObjMain : public CObj
 		bool plane_chg_hole;
 		bool pepepe;
 		bool pepepe_2;
+		bool room_chg_stop;
+
 
 		int g_count1;
 		int g_count2;
@@ -88,6 +91,7 @@ class CObjMain : public CObj
 		int room_chg;
 		int ix;
 		int iy;
+		int size;
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;
