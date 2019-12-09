@@ -79,12 +79,6 @@
     <ClCompile Include="ObjItem.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
-    <ClCompile Include="SceneRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjRoom.cpp">
-      <Filter>ソースファイル\教室</Filter>
-    </ClCompile>
     <ClCompile Include="SceneGameUI.cpp">
       <Filter>ソースファイル\ゲームUI</Filter>
     </ClCompile>
@@ -138,8 +132,10 @@
     <ClInclude Include="ObjGimmick7.h" />
     <ClInclude Include="ObjGimmick8.h" />
     <ClInclude Include="objheal.h" />
-    <ClInclude Include="ObjRoom.h" />
     <ClInclude Include="SceneGameUI.h" />
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">
@@ -191,7 +187,6 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
-    <ClInclude Include="ObjEnemy.h" />
     <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGameUI.h" />
