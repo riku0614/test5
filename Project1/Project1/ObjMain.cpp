@@ -63,7 +63,7 @@ void CObjMain::Init()
 //アクション
 void CObjMain::Action()
 {
-	if (room_chg >= 8)
+	if (room_chg >= 7)
 	{
 		room_chg = 1;
 		room_chg_stop = true;
@@ -115,7 +115,12 @@ void CObjMain::Action()
 		
 			first_stop = false;
 		}
-		else if (room_in == false && stop_flg == true)
+	
+		
+	}
+	if (map_chg >= 1)
+	{
+		if (map_chg > 0 && stop_flg == true)
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
@@ -123,37 +128,45 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
+			spawn_point[map_chg] = SpawnChanger(map_chg);
+
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(spawn_point[map_chg]);
+			hero->SetY(0.0f);
+			m_scroll_x = spawn_point[map_chg] * -1.0f;
+			m_scroll_y = 0.0f;
 
-			hero->SetX(save_x[map_chg][0]);
-			hero->SetY(save_y[map_chg][0]);
-			m_scroll_x = save_scroll_x[map_chg][0];
-			m_scroll_y = save_scroll_y[map_chg][0];
+			MapChanger(map_chg, m_map, p);
 
-			memcpy(m_map, save_map, sizeof(int)*(MAP_X * MAP_Y));
+			first_stop = false;
+
+
+
 		}
-		
+		if (room_chg >= 1 && room_in == true && stop_flg == true)
+		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(4);
+
+			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(20.0f*64.0f);
+			hero->SetY(4.0f*64.0f);
+			m_scroll_x = -15.0f*64.0f;
+			m_scroll_y = -5.0f*64.0f;
+
+			if (room_chg_stop == false)
+			{
+				RoomMapChanger(r_map, r, room_chg);
+			}
+			else
+			{
+				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
+			}
+		}
 	}
-	else if (map_chg > 0 && stop_flg == true)
-	{
-		//音楽情報の読み込み
-		Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
-
-		//音楽スタート
-		Audio::Start(5);
-
-		spawn_point[map_chg] = SpawnChanger(map_chg);
-
-		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		hero->SetX(spawn_point[map_chg]);
-		hero->SetY(0.0f);
-		m_scroll_x = spawn_point[map_chg] * -1.0f;
-		m_scroll_y = 0.0f;
-
-		MapChanger(map_chg, m_map, p);
-
-	}
-
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -663,7 +676,7 @@ void CObjMain::BlockHit(
 						float r = atan2(rvy, rvx);
 						r = r * 180.0f / 3.14f;
 
-						if (r <= 0.0f)
+						if(r <= 0.0f)
 							r = abs(r);
 						else
 							r = 360.0f - abs(r);
@@ -793,7 +806,7 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									stop_flg2 = true;
-									
+									first_stop = true;
 									
 
 									if (map_chg == 1)
@@ -1073,6 +1086,17 @@ void CObjMain::BlockHit(
 										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
 									}
 
+								}
+								if (r_map[i][j] == 19 && Input::GetVKey(VK_RETURN)==true)
+								{
+
+									*k_id = ITEM_KEY;
+								}
+								if (r_map[i][j] == 30 &&Input::GetVKey(VK_RETURN)==true)
+								{
+									//UIオブジェクト作成
+									CObjText* objtx = new CObjText();
+									Objs::InsertObj(objtx, OBJ_TEXT, 12);
 								}
 								if (*vy < 0)
 								{
@@ -1605,7 +1629,7 @@ void CObjMain::Draw()
 						Draw::Draw(31, &src, &dst, c, 0.0f);
 					}
 					//壁テクスチャ
-					if (r_map[i][j] == 9)
+					if (r_map[i][j] == 9||r_map[i][j]==19)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1621,7 +1645,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 64.0f;
 						src.m_bottom = src.m_top + 64.0f;
 
-						Draw::Draw(18, &src, &dst, c, 0.0f);
+						Draw::Draw(19, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 11)
 					{
@@ -1630,7 +1654,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 64.0f;
 						src.m_bottom = src.m_top + 64.0f;
 
-						Draw::Draw(19, &src, &dst, c, 0.0f);
+						Draw::Draw(18, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 12)
 					{
@@ -1649,7 +1673,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 50.0f;
 						src.m_bottom = src.m_top + 50.0f;
 
-						Draw::Draw(25, &src, &dst, c, 0.0f);
+						Draw::Draw(26, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 16)
 					{
@@ -1658,7 +1682,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 50.0f;
 						src.m_bottom = src.m_top + 50.0f;
 
-						Draw::Draw(26, &src, &dst, c, 0.0f);
+						Draw::Draw(25, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 17)
 					{
@@ -1677,6 +1701,42 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 27)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(34, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 28)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(35, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 29)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(36, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(37, &src, &dst, c, 0.0f);
 					}
 						
 					
@@ -1698,6 +1758,24 @@ void CObjMain::Draw()
 							Draw::Draw(8, &src, &dst, c, 0.0f);
 					}
 					
+					if (r_map[i][j] == 19)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 50.0f;
+						src.m_bottom = src.m_top + 50.0f;
+						
+						Draw::Draw(29, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(33, &src, &dst, c, 0.0f);
+					}
 				}
 			}
 		}
