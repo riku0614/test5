@@ -113,7 +113,12 @@ void CObjMain::Action()
 		
 			first_stop = false;
 		}
-		else if (room_in == false && stop_flg == true)
+	
+		
+	}
+	if (map_chg >= 1)
+	{
+		if (map_chg > 0 && stop_flg == true)
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
@@ -121,37 +126,45 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
+			spawn_point[map_chg] = SpawnChanger(map_chg);
+
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(spawn_point[map_chg]);
+			hero->SetY(0.0f);
+			m_scroll_x = spawn_point[map_chg] * -1.0f;
+			m_scroll_y = 0.0f;
 
-			hero->SetX(save_x[map_chg][0]);
-			hero->SetY(save_y[map_chg][0]);
-			m_scroll_x = save_scroll_x[map_chg][0];
-			m_scroll_y = save_scroll_y[map_chg][0];
+			MapChanger(map_chg, m_map, p);
 
-			memcpy(m_map, save_map, sizeof(int)*(MAP_X * MAP_Y));
+			first_stop = false;
+
+
+
 		}
-		
+		if (room_chg >= 1 && room_in == true && stop_flg == true)
+		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
+
+			//音楽スタート
+			Audio::Start(4);
+
+			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(20.0f*64.0f);
+			hero->SetY(4.0f*64.0f);
+			m_scroll_x = -15.0f*64.0f;
+			m_scroll_y = -5.0f*64.0f;
+
+			if (room_chg_stop == false)
+			{
+				RoomMapChanger(r_map, r, room_chg);
+			}
+			else
+			{
+				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
+			}
+		}
 	}
-	else if (map_chg > 0 && stop_flg == true)
-	{
-		//音楽情報の読み込み
-		Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
-
-		//音楽スタート
-		Audio::Start(5);
-
-		spawn_point[map_chg] = SpawnChanger(map_chg);
-
-		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		hero->SetX(spawn_point[map_chg]);
-		hero->SetY(0.0f);
-		m_scroll_x = spawn_point[map_chg] * -1.0f;
-		m_scroll_y = 0.0f;
-
-		MapChanger(map_chg, m_map, p);
-
-	}
-
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -791,7 +804,7 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									stop_flg2 = true;
-									
+									first_stop = true;
 									
 
 									if (map_chg == 1)
