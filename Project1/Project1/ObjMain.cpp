@@ -46,16 +46,18 @@ void CObjMain::Init()
 	pepepe = false;
 	pepepe_2 = false;
 	room_chg_stop = false;
-
+	//教室マップ
 	r[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 	r[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
 	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
+	//廊下マップ
 	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
-
-
+	p[3] = Save::ExternalDataOpen(L"チーム開発マップ案3.csv", &size);
+    p[4] = Save::ExternalDataOpen(L"チーム開発マップ案４.csv", &size);
+	p[5] = Save::ExternalDataOpen(L"チーム開発マップ案5.csv", &size);
 }
 
 //アクション
@@ -1303,6 +1305,7 @@ void CObjMain::ItemHit(
 						r = abs(r);
 					else
 						r = 360.0f - abs(r);
+
 
 					//lenがある一定の長さのより短い場合判定に入る
 					if (len < 88.0f)
