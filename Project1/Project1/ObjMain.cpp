@@ -61,7 +61,7 @@ void CObjMain::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjMain::Action()
 {
-	if (room_chg >= 8)
+	if (room_chg >= 7)
 	{
 		room_chg = 1;
 		room_chg_stop = true;
@@ -674,7 +674,7 @@ void CObjMain::BlockHit(
 						float r = atan2(rvy, rvx);
 						r = r * 180.0f / 3.14f;
 
-						if (r <= 0.0f)
+						if(r <= 0.0f)
 							r = abs(r);
 						else
 							r = 360.0f - abs(r);
@@ -1636,7 +1636,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 64.0f;
 						src.m_bottom = src.m_top + 64.0f;
 
-						Draw::Draw(18, &src, &dst, c, 0.0f);
+						Draw::Draw(19, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 11)
 					{
@@ -1645,7 +1645,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 64.0f;
 						src.m_bottom = src.m_top + 64.0f;
 
-						Draw::Draw(19, &src, &dst, c, 0.0f);
+						Draw::Draw(18, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 12)
 					{
@@ -1664,7 +1664,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 50.0f;
 						src.m_bottom = src.m_top + 50.0f;
 
-						Draw::Draw(25, &src, &dst, c, 0.0f);
+						Draw::Draw(26, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 16)
 					{
@@ -1673,7 +1673,7 @@ void CObjMain::Draw()
 						src.m_right = src.m_left + 50.0f;
 						src.m_bottom = src.m_top + 50.0f;
 
-						Draw::Draw(26, &src, &dst, c, 0.0f);
+						Draw::Draw(25, &src, &dst, c, 0.0f);
 					}
 					if (r_map[i][j] == 17)
 					{
@@ -1692,6 +1692,42 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 27)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(34, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 28)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(35, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 29)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(36, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(37, &src, &dst, c, 0.0f);
 					}
 						
 					
