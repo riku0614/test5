@@ -22,7 +22,7 @@ public:
 	float GetVX() { return m_vx; }
 	int GetBT() { return m_block_type; }
 
-	float m_hero_life;
+	int m_hero_life;
 
 	void SetUp(bool b) { m_hit_up = b; }
 	void SetDown(bool b) { m_hit_down = b; }
@@ -46,11 +46,18 @@ public:
 	bool SetItemflag_2() { return use_Item_flag_2; }
 	bool SetItemflag_3() { return use_Item_flag_3; }
 
+	bool action_flag() { return Conflict_flag; }
+	bool action_flag2() { return Conflict_flag2; }
+
 	int GetKeyID() { return m_id; }
+	int GatHealID() { return h_id; }
+	int GetBarID() { return b_id; }
 private:
 	float save[Status][2];
 
 	int k_id;//アイテム（鍵）のID
+	int h_id;//回復アイテムのID
+	int b_id;
 	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
@@ -93,6 +100,9 @@ private:
 	bool use_Item_flag; //アイテム1番使用フラグ
 	bool use_Item_flag_2;//アイテム2番使用フラグ
 	bool use_Item_flag_3;//アイテム3番使用フラグ
+
+	bool Conflict_flag; //敵と当たったかを判断するフラグ
+	bool Conflict_flag2; 
 
 	float px, py;//交点
 

@@ -29,6 +29,8 @@ void CObjHero::Init()
 
 	peperon_flag = false;
 	use_Item_flag = false;
+	
+	Conflict_flag = false;
 
 	//blockとの衝突確認用
 
@@ -60,7 +62,9 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
-	k_id = 99;
+	k_id = 0;
+	h_id = 0;
+	b_id = 0;
 
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -83,7 +87,7 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power =1.0f;
+		m_speed_power =2.0f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.5f;
@@ -91,12 +95,12 @@ void CObjHero::Action()
 	else   
 	{
 		//通常速度
-		m_speed_power = 0.5f;
+		m_speed_power = 1.5f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
 		{
-			m_stamina_limid += 0.3f;
+			m_stamina_limid += 0.5f;
 		}
 
 	}
@@ -126,49 +130,48 @@ void CObjHero::Action()
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
-
-
-
-	//ゲームメインにフラグをセットする
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-
-
-
+	
 
 	//主人公のアイテムと当たったフラグを持ってくる
 	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 	//ゲームメインにフラグをセットする
 	CObjMain* Main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
 	//1番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false)
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false && Main->GetMapItem() == true||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false && Main->GetMapItem() == true)
 	{
 		peperon_flag = true;
 		k_id = ITEM_KEY;
 		Main->SetDelete(true);
+		//Main->GetMapItem() = false;
 	}
-	/*
+	
 	//2番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true)
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true)
 	{
 		peperon_flag_2 = true;
-		k_id = ITEM_KEY;
+		h_id = ITEM_HEAL;
+		Main->SetDelete(true);
+		//Main->GetMapItem_2() = false;
 	}
-
-	//3番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == true && UI->takeItemflag_2() == true)
+	
+	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true)
 	{
 		peperon_flag_3 = true;
-		k_id = ITEM_KEY;
-	}*/
+		b_id = ITEM_BAR;
+		Main->SetDelete(true);
+		//Main->GetMapItem_2() = false;
+	}
+	
 
 	//1番目のアイテムを使う処理
 	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
@@ -176,20 +179,29 @@ void CObjHero::Action()
 		use_Item_flag = true;
 		UI->Settakeflag(false);
 	}
-	/*
+
 	//2番目のアイテムを使う処理
 	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
 	{
-		use_Item_flag_2 = true;
-		UI->Settakeflag_2(false);
+		if (m_hero_life <= 29)
+		{
+			use_Item_flag_2 = true;
+			m_hero_life = 30;
+			UI->Settakeflag_2(false);
+		}
+		else if (m_hero_life == 30)
+		{
+			;
+		}
+		
 	}
-
+	
 	//3番目のアイテムを使う処理
 	else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
 	{
 		use_Item_flag_3 = true;
 		UI->Settakeflag_3(false);
-	}*/
+	}
 
 	//アニメーションのリセット
 	if (m_ani_time > m_ani_max_time)
@@ -287,6 +299,11 @@ void CObjHero::Action()
 	//hitboxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	//敵と当たったらフラグを持てる
+	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
+	//ゲームメインにフラグをセットする
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
 	
 	
 	//主人公機オブジェクトと接触したら敵削除
@@ -301,6 +318,16 @@ void CObjHero::Action()
 		m_hero_life-=1;
 
 		m_flg = true;
+
+		if (m_hero_life == 20)
+		{
+			Conflict_flag = true;
+		}
+
+		if (m_hero_life == 10)
+		{
+			Conflict_flag2 = true;
+		}
 
 		if (m_hero_life == 0)
 		{

@@ -1,4 +1,3 @@
-//STLデバッグ機能をオフに
 #define _SECURE_SCL (0)
 #define _HAS_ITERATER_DEBUGGING (0)
 
@@ -14,7 +13,7 @@
 #include "GameHead.h"
 #include "ObjMain.h"
 #include "ObjItem.h"
-#include "ObjRoom.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -35,6 +34,10 @@ CSceneMain::~CSceneMain()
 //ゲームメイン初期化メソッド
 void CSceneMain::InitScene()
 {
+	//時間
+	m_time=0;
+
+	
 	//音楽情報の読み込み
 	Audio::LoadAudio(1, L"1廊下BGM.wav", SOUND_TYPE::BACK_MUSIC);
 
@@ -44,14 +47,14 @@ void CSceneMain::InitScene()
 	unique_ptr<wchar_t> p;
 	int size;
 	
-	p = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 
-	int map[MAP_X][MAP_Y];
+	int map[ROOM_X][ROOM_Y];
 	int count = 1;
 
-	for (int i = 0; i < MAP_X; i++)
+	for (int i = 0; i < ROOM_X; i++)
 	{
-		for (int j = 0; j < MAP_Y; j++)
+		for (int j = 0; j < ROOM_Y; j++)
 		{
 			
 			int w = 0;
@@ -60,6 +63,9 @@ void CSceneMain::InitScene()
 			map[i][j] = w;
 			count += 3;
 
+			
+		
+			
 		}
 	}
 
@@ -80,6 +86,25 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁（横）.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁（横）２.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁２.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"ダメージエフェクト1.png", 22, TEX_SIZE_1024);
+	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
+	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
+
+	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
+	Draw::LoadImageW(L"扉（左）1.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"本棚.png", 29, TEX_SIZE_512);
+	Draw::LoadImageW(L"机まとめ.png", 30, TEX_SIZE_1024);
+	Draw::LoadImageW(L"椅子まとめ.png", 31, TEX_SIZE_1024);
+	Draw::LoadImageW(L"壁左上.png", 34, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁右上.png", 35, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁右下.png", 36, TEX_SIZE_512);
+	Draw::LoadImageW(L"壁左下.png", 37, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
@@ -102,17 +127,19 @@ void CSceneMain::InitScene()
 	//UIオブジェクト作成
 	CObjGameUI* objui = new CObjGameUI();
 	Objs::InsertObj(objui, OBJ_GAME_UI, 12);
-
-
+	
+	
 	//ブロックオブジェクト作成
 	CObjMain* objm = new CObjMain(map);
 	Objs::InsertObj(objm, OBJ_MAIN, 8);
 
-	//アイテムオブジェクト作成
-	CObjItem* obji = new CObjItem(map);
-	Objs::InsertObj(obji, OBJ_ITEM, 13);
+	////アイテムオブジェクト作成
+	//CObjItem* obji = new CObjItem(map);
+	//Objs::InsertObj(obji, OBJ_ITEM, 13);
 
-	
+	////回復アイテムオブジェクト作成
+	//CObjheal* objh = new CObjheal(map);
+	//Objs::InsertObj(objh, OBJ_HEAL, 14);
 
 	
 	

@@ -6,6 +6,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+//a
 
 //マクロ
 #define MAP_X  (75)
@@ -18,7 +19,7 @@ using namespace GameL;
 class CObjMain : public CObj
 {
 	public:
-		CObjMain(int map[MAP_X][MAP_Y]);
+		CObjMain(int map[ROOM_X][ROOM_Y]);
 		~CObjMain() {};
 		void Init();	//イニシャライズ
 		void Action();	//アクション
@@ -28,11 +29,21 @@ class CObjMain : public CObj
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
 		void SetDelete(bool b) { delete_flg = b; }
-		void SetStopFlag(bool b) { stop_flg2 = b; }
 		bool RoomFlag() { return room_in; }
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
 		int MapChangeData() { return map_chg; }
 		bool GetFlug() { return stop_flg; }
+		bool GetFlug2() { return stop_flg2; }
+		int GetHitboxCount1() { return g_count1; }
+		int GetHitboxCount2() { return g_count2; }
+
+
+		void SetMapItem(bool mi) { map_Item; }
+		bool GetMapItem() { return map_Item; }
+		void SetMapItem_2(bool mi) { map_Item_2; }
+		bool GetMapItem_2() { return map_Item_2; }
+		void SetMapItem_3(bool mi) { map_Item_3; }
+		bool GetMapItem_3() { return map_Item_3; }
 
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
 		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
@@ -59,17 +70,28 @@ class CObjMain : public CObj
 		float save_y[MAP_NUMBER][2];
 		float save_scroll_x[MAP_NUMBER][2];//マップを行き来する用のスクロール情報を登録する配列
 		float save_scroll_y[MAP_NUMBER][2];
+		int save_map[MAP_X][MAP_Y];
+		int save_room_map[ROOM_X][ROOM_Y][7];
 
-		bool stop_flg;   //マップ切り替えを一度だけしか
+		bool stop_flg;//マップ切り替えを一度だけしか
+		bool stop_flg2;
+		bool first_stop;
+		bool first_stop2;
 		bool room_in;    //教室マップへの切り替えのフラグ
-		bool back_stage; //前のマップに戻るためのフラグ
-		bool stop_flg2;  //
-		bool stop_flg3;
 		bool delete_flg;
 		bool plane_chg_hole;
+		bool pepepe;
+		bool pepepe_2;
+		bool room_chg_stop;
 
+
+		int g_count1;
+		int g_count2;
 		int map_chg;     //マップ切り替えを管理するための変数
 		int room_chg;
+		int ix;
+		int iy;
+		int size;
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;
@@ -82,6 +104,10 @@ class CObjMain : public CObj
 		float m_scroll_x;   //左右スクロール用
 		float m_scroll_y;   //上下スクロール用
 
+		bool map_Item;//マップ上のアイテム情報
+		bool map_Item_2;//マップ上のアイテム情報2!
+		bool map_Item_3;//マップ上のアイテム情報3!
+
 
 		float Dot(float ax, float ay, float bx, float by);
 		float Cross(float ax, float ay, float bx, float by);
@@ -92,4 +118,5 @@ class CObjMain : public CObj
 			float* out_px, float* out_py
 		);
 
+		
 };

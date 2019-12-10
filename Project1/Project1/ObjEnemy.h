@@ -42,7 +42,12 @@ public:
 
 	float GetX() { return m_ex; }
 	float GetY() { return m_ey; }
-	int m_map[MAP_X][MAP_Y];
+	void SetX(float x) { m_ex = x; }
+	void SetY(float y) { m_ey = y; }
+
+	float scrollY() { return escrolly; }
+	float scrollX() { return escrollx; }
+	
 private:
 	float m_ex;  //オブジェクトの位置X
 	float m_ey;  //オブジェクトの位置Y
@@ -50,7 +55,15 @@ private:
 	float m_vy; //オブジェクトの移動用ベクトルY
 	float m_posture; //姿勢
 
+	int m_map[MAP_X][MAP_Y];
 	int m_flg;//追従移動の管理用フラグ
+
+	int m_time;
+	int zx;
+	int zy;
+
+	float escrolly;
+	float escrollx;
 
 		//blockとの衝突状態確認用
 	bool m_hit_up;

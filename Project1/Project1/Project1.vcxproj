@@ -116,8 +116,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Objbar.cpp" />
     <ClCompile Include="ObjText.cpp" />
     <ClCompile Include="ObjGimmick.cpp" />
+    <ClCompile Include="ObjGimmick2.cpp" />
+    <ClCompile Include="ObjGimmick3.cpp" />
+    <ClCompile Include="ObjGimmick4.cpp" />
+    <ClCompile Include="ObjGimmick5.cpp" />
+    <ClCompile Include="ObjGimmick6.cpp" />
+    <ClCompile Include="ObjGimmick7.cpp" />
+    <ClCompile Include="ObjGimmick8.cpp" />
+    <ClCompile Include="objheal.cpp" />
+    <ClCompile Include="ObjRoomGimmick.cpp" />
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -143,20 +153,34 @@
     <ClCompile Include="ObjItem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjMain.cpp" />
+    <ClCompile Include="ObjMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjMenu.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Objbar.h" />
     <ClInclude Include="ObjText.h" />
     <ClInclude Include="ObjGimmick.h" />
+    <ClInclude Include="ObjGimmick2.h" />
+    <ClInclude Include="ObjGimmick3.h" />
+    <ClInclude Include="ObjGimmick4.h" />
+    <ClInclude Include="ObjGimmick5.h" />
+    <ClInclude Include="ObjGimmick6.h" />
+    <ClInclude Include="ObjGimmick7.h" />
+    <ClInclude Include="ObjGimmick8.h" />
+    <ClInclude Include="objheal.h" />
+    <ClInclude Include="ObjRoomGimmick.h" />
     <ClInclude Include="SceneGameUI.h" />
     <ClInclude Include="ObjClickTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -181,7 +205,9 @@
     <ClInclude Include="ObjItem.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjMain.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjMenu.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />

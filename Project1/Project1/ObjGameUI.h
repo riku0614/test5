@@ -40,5 +40,9 @@ private:
 	bool take_flag_2;	//2”Ô
 	bool take_flag_3;	//3”Ô
 
+	
+
 	int m_id;	//key—p•Ï”
+	int h_id;	//Heal—p•Ï”
+	int b_id;	//bar—p•Ï”
 };
