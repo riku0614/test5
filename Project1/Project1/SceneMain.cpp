@@ -83,6 +83,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"ドット絵　本.png", 33, TEX_SIZE_512);
+
+
 
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);

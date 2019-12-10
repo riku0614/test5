@@ -882,6 +882,12 @@ void CObjMain::BlockHit(
 									}
 
 								}
+								if (r_map[i][j] == 30 &&Input::GetVKey(VK_RETURN)==true)
+								{
+									//UIオブジェクト作成
+									CObjText* objtx = new CObjText();
+									Objs::InsertObj(objtx, OBJ_TEXT, 12);
+								}
 								if (*vy < 0)
 								{
 									*vy = 0.0f;
@@ -1236,6 +1242,15 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 
 						Draw::Draw(10, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(33, &src, &dst, c, 0.0f);
 					}
 				}
 			}

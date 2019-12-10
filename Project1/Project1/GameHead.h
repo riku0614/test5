@@ -17,6 +17,7 @@ enum OBJ_NAME
 	OBJ_ITEM,
 	OBJ_MENU,
 	OBJ_GIMMICK,
+	OBJ_TEXT,
 	//OBJ_CHAR,
 };
 //------------------------------------------------
@@ -78,6 +79,7 @@ enum ITEM_ID
 #include "ObjItem.h"
 #include "ObjMenu.h"
 #include "ObjGimmick.h"
+#include "ObjText.h"
 
 
 //------------------------------------------------

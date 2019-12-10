@@ -118,7 +118,7 @@ void CObjGimmick::Action()
 
 		}
 
-	}
+	
 }
 
 //ƒhƒ[
