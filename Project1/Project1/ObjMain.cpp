@@ -1286,135 +1286,138 @@ void CObjMain::ItemHit(
 
 		}
 	}
-	if(room_in==true)
+	if (room_in == true)
 	{
-	//m=mapの全要素にアクセス
-	for (int i = 0; i < ROOM_X; i++)
-	{
-		for (int j = 0; j < ROOM_Y; j++)
+		//m=mapの全要素にアクセス
+		for (int i = 0; i < ROOM_X; i++)
 		{
-			if (r_map[i][j] == 4 || r_map[i][j] == 21 || r_map[i][j] == 26)
+			for (int j = 0; j < ROOM_Y; j++)
 			{
-
-
-
-				//要素番号を座標に変更
-				float bx = j * 64.0f;
-				float by = i * 64.0f;
-
-				//スクロールの影響
-				float scroll_x = scroll_on_x ? m_scroll_x : 0;
-				float scroll_y = scroll_on_y ? m_scroll_y : 0;
-				//主人公とブロックの当たり判定
-				if ((*x + (-scroll_x) + 64.0f > bx) && (*x + (-scroll_x) < bx + 32.0f) && (*y + (-scroll_y) + 64.0f > by) && (*y + (-scroll_y) < by + 32.0f))
+				if (r_map[i][j] == 4 || r_map[i][j] == 21 || r_map[i][j] == 26)
 				{
-					//上下左右判定
-
-					//vectorの作成
-					float rvx = (*x + (-scroll_x)) - bx;
-					float rvy = (*y + (-scroll_y)) - by;
-
-					//長さを求める
-					float len = sqrt(rvx*rvx + rvy * rvy);
 
 
-					//角度を求める
-					float r = atan2(rvy, rvx);
-					r = r * 180.0f / 3.14f;
 
-					if (r <= 0.0f)
-						r = abs(r);
-					else
-						r = 360.0f - abs(r);
+					//要素番号を座標に変更
+					float bx = j * 64.0f;
+					float by = i * 64.0f;
 
-
-					//lenがある一定の長さのより短い場合判定に入る
-					if (len < 88.0f)
+					//スクロールの影響
+					float scroll_x = scroll_on_x ? m_scroll_x : 0;
+					float scroll_y = scroll_on_y ? m_scroll_y : 0;
+					//主人公とブロックの当たり判定
+					if ((*x + (-scroll_x) + 64.0f > bx) && (*x + (-scroll_x) < bx + 32.0f) && (*y + (-scroll_y) + 64.0f > by) && (*y + (-scroll_y) < by + 32.0f))
 					{
-						//角度で左右を判定
-						if ((r < 45 && r>0) || r > 315)
+						//上下左右判定
+
+						//vectorの作成
+						float rvx = (*x + (-scroll_x)) - bx;
+						float rvy = (*y + (-scroll_y)) - by;
+
+						//長さを求める
+						float len = sqrt(rvx*rvx + rvy * rvy);
+
+
+						//角度を求める
+						float r = atan2(rvy, rvx);
+						r = r * 180.0f / 3.14f;
+
+						if (r <= 0.0f)
+							r = abs(r);
+						else
+							r = 360.0f - abs(r);
+
+
+						//lenがある一定の長さのより短い場合判定に入る
+						if (len < 88.0f)
 						{
-							//右
-							*right = true;//主人公から見て、左の部分が衝突している
-							*x = bx + 32.0f + (scroll_x);//ブロックの位置-主人公の
-							ix = bx / 64;
-							iy = by / 64;
-
-							if (delete_flg == true)
+							//角度で左右を判定
+							if ((r < 45 && r>0) || r > 315)
 							{
-								r_map[iy][ix] = 1;
+								//右
+								*right = true;//主人公から見て、左の部分が衝突している
+								*x = bx + 32.0f + (scroll_x);//ブロックの位置-主人公の
+								ix = bx / 64;
+								iy = by / 64;
 
-								delete_flg = false;
+								if (delete_flg == true)
+								{
+									r_map[iy][ix] = 1;
+
+									delete_flg = false;
+								}
+								*vx = -(*vx)*0.1f;//-VX*反発係数
+
 							}
-							*vx = -(*vx)*0.1f;//-VX*反発係数
-
-						}
-						if (r > 45 && r < 135)
-						{
-							//上
-							*down = true;//主人公から見て、下の部分が衝突している
-							*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
-							ix = bx / 64;
-							iy = by / 64;
-
-							if (delete_flg == true)
+							if (r > 45 && r < 135)
 							{
-								r_map[iy][ix] = 1;
+								//上
+								*down = true;//主人公から見て、下の部分が衝突している
+								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
+								ix = bx / 64;
+								iy = by / 64;
 
-								delete_flg = false;
-							}
-					
-							*vy = 0.0f;
-						}
-						if (r > 135 && r < 225)
-						{
-							//左
-							*left = true;//主人公から見て、右の部分が衝突している
-							*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-							ix = bx / 64.0f;
-							iy = by / 64.0f;
+								if (delete_flg == true)
+								{
+									r_map[iy][ix] = 1;
 
-							if (delete_flg == true)
-							{
-								r_map[iy][ix] = 1;
+									delete_flg = false;
+								}
 
-								delete_flg = false;
-							}
-							*vx = -(*vx)*0.1f;//-VX*反発係数
-						}
-						if (r > 225 && r < 315)
-						{
-							//下
-							*up = true;//主人公から見て、上の部分が衝突している
-							*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
-							ix = bx / 64;
-							iy = by / 64;
-
-							if (delete_flg == true)
-							{
-								r_map[iy][ix] = 1;
-
-								delete_flg = false;
-							}
-							if (*vy < 0)
-							{
 								*vy = 0.0f;
 							}
+							if (r > 135 && r < 225)
+							{
+								//左
+								*left = true;//主人公から見て、右の部分が衝突している
+								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+								ix = bx / 64.0f;
+								iy = by / 64.0f;
+
+								if (delete_flg == true)
+								{
+									r_map[iy][ix] = 1;
+
+									delete_flg = false;
+								}
+								*vx = -(*vx)*0.1f;//-VX*反発係数
+							}
+							if (r > 225 && r < 315)
+							{
+								//下
+								*up = true;//主人公から見て、上の部分が衝突している
+								*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
+								ix = bx / 64;
+								iy = by / 64;
+
+								if (delete_flg == true)
+								{
+									r_map[iy][ix] = 1;
+
+									delete_flg = false;
+								}
+								if (*vy < 0)
+								{
+									*vy = 0.0f;
+								}
 
 
-						}
+							}
 
-						if (r_map[i][j] == 4)
-						{
-							map_Item = true;
-						}
-						if (r_map[i][j] == 21)
-						{
-							map_Item_2 = true;
-						}
-						if (r_map[i][j] == 26)
-						{
-							map_Item_3 = true;
+							if (r_map[i][j] == 4)
+							{
+								map_Item = true;
+							}
+							if (r_map[i][j] == 21)
+							{
+								map_Item_2 = true;
+							}
+							if (r_map[i][j] == 26)
+							{
+								map_Item_3 = true;
+							}
+
+
 						}
 
 
@@ -1423,13 +1426,10 @@ void CObjMain::ItemHit(
 
 				}
 
-
 			}
 
 		}
-
 	}
-	 }
 	
 }
 
