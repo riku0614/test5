@@ -53,12 +53,16 @@ void CObjMain::Init()
 	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
 	//廊下マップ
-	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案6.csv", &size);
 	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	p[3] = Save::ExternalDataOpen(L"チーム開発マップ案3.csv", &size);
     p[4] = Save::ExternalDataOpen(L"チーム開発マップ案４.csv", &size);
 	p[5] = Save::ExternalDataOpen(L"チーム開発マップ案5.csv", &size);
+    p[6] = Save::ExternalDataOpen(L"チーム開発マップ案6.csv", &size);
+	p[7] = Save::ExternalDataOpen(L"チーム開発マップ案7.csv", &size);
+	
+	
 }
 
 //アクション
@@ -1521,7 +1525,7 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(18, &src, &dst, c, 0.0f);
-					}
+					}	
 					if (m_map[i][j] == 11)
 					{
 						src.m_top = 0.0f;
@@ -1539,7 +1543,8 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(20, &src, &dst, c, 0.0f);
-					}
+					}//壁テクスチャ４つ↑
+
 					//扉テクスチャ４つ
 					if (m_map[i][j] == 15)
 					{
@@ -1576,7 +1581,46 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
+					}//扉テクスチャ４つ↑
+					 //壁角4つ
+					if (m_map[i][j] == 27)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(34, &src, &dst, c, 0.0f);
 					}
+					if (m_map[i][j] == 28)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(35, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 29)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(36, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 63.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(37, &src, &dst, c, 0.0f);
+					}//角壁4つ↑
+
+					
 				}
 			}
 
@@ -1665,7 +1709,8 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(20, &src, &dst, c, 0.0f);
-					}
+					}//壁テクスチャ４つ↑
+
 					//扉テクスチャ4つ
 					if (r_map[i][j] == 15)
 					{
@@ -1702,8 +1747,9 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
-					}
-					//壁角4つ
+					}//扉４つ↑
+					
+					 //壁角4つ
 					if (r_map[i][j] == 27)
 					{
 						src.m_top = 0.0f;
@@ -1739,7 +1785,7 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(37, &src, &dst, c, 0.0f);
-					}
+					}//角壁4つ↑
 						
 					//アイテム（仮）
 					if (r_map[i][j] == 4)
