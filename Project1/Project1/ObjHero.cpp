@@ -49,7 +49,7 @@ void CObjHero::Init()
 
 
 	m_ani_time = 6;
-	m_time = 30;
+	m_time = 10;
 	m_flg =false;
 
 	m_ani_frame = 1;//静止フレームを初期にする
@@ -66,6 +66,8 @@ void CObjHero::Init()
 	h_id = 99;
 	b_id = 99;
 
+	hit_flag_x = false;
+	hit_flag_y = false;
 	//当たり判定用hitboxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
 }
@@ -87,7 +89,7 @@ void CObjHero::Action()
 	{
 		
 		//ダッシュ時の速度
-		m_speed_power =2.0f;
+		m_speed_power =1.5f;
 		m_ani_max_time = 4;
 
 		m_stamina_limid -= 0.5f;
@@ -95,7 +97,7 @@ void CObjHero::Action()
 	else   
 	{
 		//通常速度
-		m_speed_power = 1.5f;
+		m_speed_power = 1.0f;
 		m_ani_max_time = 4;
 
 		if (m_stamina_limid < 90.0f)
@@ -315,6 +317,24 @@ void CObjHero::Action()
 		//音楽スタート
 		Audio::Start(6);
 
+		/*
+		if (hit_flag_x == true)
+		{
+			m_vx = 50.0f;
+		}
+		if (hit_flag_x == false)
+		{
+			m_vx = -50.0f;
+		}
+		if (hit_flag_y == true)
+		{
+			m_vx = 50.0f;
+		}
+		if (hit_flag_y == false)
+		{
+			m_vx = -50.0f;
+		}*/
+
 		m_hero_life-=1;
 
 		m_flg = true;
@@ -341,9 +361,10 @@ void CObjHero::Action()
 	{
 		m_time--;
 	}
-	else
+	else if(m_time == 0)
 	{
 		m_flg = false;
+		m_time = 10;
 	}
 	
 }

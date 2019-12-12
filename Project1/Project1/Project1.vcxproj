@@ -120,6 +120,8 @@
     <ClCompile Include="Objbar.cpp">
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
+    <ClCompile Include="Objbar.cpp" />
+    <ClCompile Include="ObjText.cpp" />
     <ClCompile Include="ObjGimmick.cpp" />
     <ClCompile Include="ObjGimmick2.cpp" />
     <ClCompile Include="ObjGimmick3.cpp" />
@@ -129,7 +131,9 @@
     <ClCompile Include="ObjGimmick7.cpp" />
     <ClCompile Include="ObjGimmick8.cpp" />
     <ClCompile Include="objheal.cpp" />
-    <ClCompile Include="ObjRoomGimmick.cpp" />
+    <ClCompile Include="ObjRoomGimmick.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneGameUI.cpp" />
     <ClCompile Include="ObjClickTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -149,7 +153,9 @@
       <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="ObjEnemy.cpp" />
+    <ClCompile Include="ObjEnemy.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGameUI.cpp" />
@@ -174,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objbar.h" />
+    <ClInclude Include="ObjText.h" />
     <ClInclude Include="ObjGimmick.h" />
     <ClInclude Include="ObjGimmick2.h" />
     <ClInclude Include="ObjGimmick3.h" />

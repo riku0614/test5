@@ -74,6 +74,8 @@ private:
 	int m_id;
 	int k_id;
 	
+	float damage_time;//ダメージブースト用時間変数
+	bool boost_flag;//ダメージブーストを一回しか発動させないためのフラグ
 
 	float px, py;//交点
 };

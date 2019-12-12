@@ -29,6 +29,7 @@ enum OBJ_NAME
 	OBJ_ROOM_GIMMICK,
 	OBJ_HEAL,
 	OBJ_BAR,
+	OBJ_TEXT,
 
 	//OBJ_CHAR,
 };
@@ -92,6 +93,7 @@ enum ITEM_ID
 #include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
+#include "ObjText.h"
 
 
 #include "ObjGimmick.h"
