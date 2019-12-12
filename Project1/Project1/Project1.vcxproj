@@ -117,6 +117,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Objbar.cpp" />
+    <ClCompile Include="ObjText.cpp" />
     <ClCompile Include="ObjGimmick.cpp" />
     <ClCompile Include="ObjGimmick2.cpp" />
     <ClCompile Include="ObjGimmick3.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objbar.h" />
+    <ClInclude Include="ObjText.h" />
     <ClInclude Include="ObjGimmick.h" />
     <ClInclude Include="ObjGimmick2.h" />
     <ClInclude Include="ObjGimmick3.h" />

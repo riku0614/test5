@@ -10,6 +10,7 @@
 
 #include "GameHead.h"
 #include "ObjMain.h"
+#include "ObjText.h"
 #include "UtilityModule.h"
 
 
@@ -46,16 +47,18 @@ void CObjMain::Init()
 	pepepe = false;
 	pepepe_2 = false;
 	room_chg_stop = false;
-
+	//教室マップ
 	r[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 	r[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
 	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
+	//廊下マップ
 	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
-
-
+	p[3] = Save::ExternalDataOpen(L"チーム開発マップ案3.csv", &size);
+    p[4] = Save::ExternalDataOpen(L"チーム開発マップ案４.csv", &size);
+	p[5] = Save::ExternalDataOpen(L"チーム開発マップ案5.csv", &size);
 }
 
 //アクション
@@ -143,8 +146,8 @@ void CObjMain::Action()
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
 
-			//音楽スタート
-			Audio::Start(5);
+		//音楽スタート
+		Audio::Start(5);
 
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
@@ -1086,6 +1089,12 @@ void CObjMain::BlockHit(
 
 									*k_id = ITEM_KEY;
 								}
+								if (r_map[i][j] == 30 &&Input::GetVKey(VK_RETURN)==true)
+								{
+									//UIオブジェクト作成
+									CObjText* objtx = new CObjText();
+									Objs::InsertObj(objtx, OBJ_TEXT, 12);
+								}
 								if (*vy < 0)
 								{
 									*vy = 0.0f;
@@ -1317,6 +1326,7 @@ void CObjMain::ItemHit(
 						r = abs(r);
 					else
 						r = 360.0f - abs(r);
+
 
 					//lenがある一定の長さのより短い場合判定に入る
 					if (len < 88.0f)
@@ -1758,6 +1768,15 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 50.0f;
 						
 						Draw::Draw(29, &src, &dst, c, 0.0f);
+					}
+					if (r_map[i][j] == 30)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(33, &src, &dst, c, 0.0f);
 					}
 				}
 			}
