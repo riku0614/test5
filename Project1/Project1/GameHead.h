@@ -93,6 +93,7 @@ enum ITEM_ID
 #include "ObjGameUI.h"
 #include "ObjItem.h"
 #include "ObjMenu.h"
+#include "ObjText.h"
 
 
 #include "ObjGimmick.h"

@@ -95,12 +95,12 @@ void CObjGimmick::Action()
 
 	
 
-
+}
 
 		
 
 	
-}
+
 
 //ÉhÉçÅ[
 void CObjGimmick::Draw()

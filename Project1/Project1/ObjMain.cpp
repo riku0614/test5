@@ -10,7 +10,7 @@
 
 #include "GameHead.h"
 #include "ObjMain.h"
-#include"ObjText.h"
+#include "ObjText.h"
 #include "UtilityModule.h"
 
 
