@@ -12,13 +12,13 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjFastEnemy::CObjFastEnemy(float x, float y)
+CObjSpwanEnemy::CObjSpwanEnemy(float x, float y)
 {
 	m_ex = x;
 	m_ey = y;
 }
 //イニシャライズ
-void CObjFastEnemy::Init()
+void CObjSpwanEnemy::Init()
 {
 
 	m_vx = 0.0f;
@@ -46,7 +46,7 @@ void CObjFastEnemy::Init()
 }
 
 //アクション
-void CObjFastEnemy::Action()
+void CObjSpwanEnemy::Action()
 {
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -106,8 +106,8 @@ void CObjFastEnemy::Action()
 	//移動ベクトルの正規化
 	UnitVec(&m_vy, &m_vx);
 
-	m_ex += m_vx * 6.5f;
-	m_ey += m_vy * 6.5f;
+	m_ex += m_vx * 3.5f;
+	m_ey += m_vy * 3.5f;
 
 	//高速移動によるblock判定
 	bool b;
@@ -179,7 +179,7 @@ void CObjFastEnemy::Action()
 }
 
 //ドロー
-void CObjFastEnemy::Draw()
+void CObjSpwanEnemy::Draw()
 {
 	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -200,6 +200,6 @@ void CObjFastEnemy::Draw()
 	dst.m_bottom = 64.0f + m_ey + scroll->GetScrollY();
 
 	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
-	Draw::Draw(32, &src, &dst, c, 0.0f);
+	Draw::Draw(33, &src, &dst, c, 0.0f);
 
 }

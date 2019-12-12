@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_HERO,
 	OBJ_ENEMY,
 	OBJ_FASTENEMY,
+	OBJ_SPWANENEMY,
 	OBJ_MAIN,
 	OBJ_GAMEOVER,
 	OBJ_GAMECLEAR,
@@ -109,6 +110,7 @@ enum ITEM_ID
 
 #include "objheal.h"
 #include "ObjFastEnemy.h"
+#include "ObjSpawnEnemy.h"
 #include "Objbar.h"
 //------------------------------------------------
 

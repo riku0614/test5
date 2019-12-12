@@ -124,6 +124,9 @@
     <ClCompile Include="Objbar.cpp">
       <Filter>ソースファイル\アイテム</Filter>
     </ClCompile>
+    <ClCompile Include="ObjSpawnEnemy.cpp">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -328,6 +331,9 @@
       <Filter>ソースファイル\アイテム</Filter>
     </ClInclude>
     <ClInclude Include="ObjFastEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSpawnEnemy.h">
       <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
   </ItemGroup>
