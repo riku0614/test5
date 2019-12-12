@@ -117,7 +117,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"char3.png", 13, TEX_SIZE_512);
 	Draw::LoadImageW(L"char4.png", 14, TEX_SIZE_512);
 
-	
+	//出力させる文字のグラフィック作成
+	Font::SetStrTex(L"鍵を入手した...");
 
 	//主人公オブジェクト作成
 	CObjHero* obj = new CObjHero();
