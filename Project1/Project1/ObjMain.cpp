@@ -69,9 +69,10 @@ void CObjMain::Action()
 		room_chg = 1;
 		room_chg_stop = true;
 	}
-
-	if (map_chg == 0)
+	//廊下マップ１の時
+	if (map_chg < 8)
 	{
+		//廊下マップから教室マップへの切り替え処理
 		if (room_chg >= 1 && room_in == true && stop_flg == true)
 		{
 			//音楽情報の読み込み
@@ -95,7 +96,8 @@ void CObjMain::Action()
 				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
 			}
 		}
-		if(room_in == false && stop_flg == true&&first_stop==true)
+		//初期の教室マップから廊下マップへの切り替え変数（1度しか回さない）
+		if(room_in == false && stop_flg == true&&first_stop==true&&map_chg==0)
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
@@ -116,12 +118,7 @@ void CObjMain::Action()
 		
 			first_stop = false;
 		}
-	
-		
-	}
-	if (map_chg >= 1)
-	{
-		if (map_chg > 0 && stop_flg == true)
+		else if (room_in == false && stop_flg == true && first_stop == true)
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
@@ -129,45 +126,42 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
-			spawn_point[map_chg] = SpawnChanger(map_chg);
+
 
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(spawn_point[map_chg]);
-			hero->SetY(0.0f);
-			m_scroll_x = spawn_point[map_chg] * -1.0f;
-			m_scroll_y = 0.0f;
+			hero->SetY(64.0f);
+			m_scroll_x = -(spawn_point[map_chg]);
+			m_scroll_y = -(64.0f);
 
 			MapChanger(map_chg, m_map, p);
 
+
 			first_stop = false;
 
-
-
 		}
-		if (room_chg >= 1 && room_in == true && stop_flg == true)
+		//教室マップから廊下マップへの切り替え処理
+		else if (room_in == false && stop_flg == true)
 		{
 			//音楽情報の読み込み
-			Audio::LoadAudio(4, L"4教室扉SE.wav", SOUND_TYPE::EFFECT);
+			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
 
-			//音楽スタート
-			Audio::Start(4);
+		//音楽スタート
+		Audio::Start(5);
 
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			hero->SetX(20.0f*64.0f);
-			hero->SetY(4.0f*64.0f);
-			m_scroll_x = -15.0f*64.0f;
-			m_scroll_y = -5.0f*64.0f;
 
-			if (room_chg_stop == false)
-			{
-				RoomMapChanger(r_map, r, room_chg);
-			}
-			else
-			{
-				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
-			}
+			hero->SetX(save_x[map_chg][0]);
+			hero->SetY(save_y[map_chg][0]);
+			m_scroll_x = save_scroll_x[map_chg][0];
+			m_scroll_y = save_scroll_y[map_chg][0];
+
+			memcpy(m_map, save_map, sizeof(int)*(MAP_X * MAP_Y));
 		}
+		
 	}
+	
+
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -204,6 +198,7 @@ void CObjMain::Action()
 
 	}
 	
+	//ギミックのヒットボックス生成オブジェクトの変更
 	if (stop_flg == true)
 	{
 		HitBoxChanger(map_chg, m_map,room_in,room_chg,r_map);
@@ -211,7 +206,7 @@ void CObjMain::Action()
 		stop_flg2 = false;
 		
 	}
-
+	//敵キャラクターのオブジェクト作成処理
 	if (stop_flg == true)
 	{
 		for (int i = 0; i < MAP_X; i++)
@@ -256,6 +251,7 @@ void CObjMain::Action()
 		}
 
 	}
+	//アイテム「教室用」の表示処理：廊下用
 	if (stop_flg == true && room_in == true)
 	{
 		for (int i = 0; i < ROOM_X; i++)
@@ -327,7 +323,7 @@ void CObjMain::Action()
 		
 
 	
-	
+	//アイテム「薬」の表示処理：教室用
    if (room_in == true && stop_flg == false) 
    {
 	  
@@ -807,8 +803,8 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									stop_flg2 = true;
-									first_stop = true;
 									
+									first_stop = true;
 
 									if (map_chg == 1)
 									{
@@ -1477,6 +1473,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(1, &src, &dst, c, 0.0f);
 					}
+					//13がなければ　床
 					if (m_map[i][j] == 13 && plane_chg_hole == false)
 					{
 						src.m_top = 0.0f;
@@ -1486,6 +1483,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(1, &src, &dst, c, 0.0f);
 					}
+					//薬
 					else if (m_map[i][j] == 13 && plane_chg_hole == true)
 					{
 						src.m_top = 0.0f;
@@ -1505,7 +1503,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(7, &src, &dst, c, 0.0f);
 					}
-					//壁テクスチャ
+					//壁テクスチャ４つ
 					if (m_map[i][j] == 9)
 					{
 						src.m_top = 0.0f;
@@ -1542,7 +1540,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(20, &src, &dst, c, 0.0f);
 					}
-					//扉テクスチャ
+					//扉テクスチャ４つ
 					if (m_map[i][j] == 15)
 					{
 						src.m_top = 0.0f;
@@ -1611,6 +1609,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(1, &src, &dst, c, 0.0f);
 					}
+					//机まとめ
 					if(r_map[i][j]==2)
 					{
 						src.m_top = 100.0f;
@@ -1620,6 +1619,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(30, &src, &dst, c, 0.0f);
 					}
+					//椅子まとめ
 					if(r_map[i][j]==3)
 					{
 						src.m_top = 50.0f;
@@ -1629,7 +1629,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(31, &src, &dst, c, 0.0f);
 					}
-					//壁テクスチャ
+					//壁テクスチャ4つ
 					if (r_map[i][j] == 9||r_map[i][j]==19)
 					{
 						src.m_top = 0.0f;
@@ -1666,7 +1666,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(20, &src, &dst, c, 0.0f);
 					}
-					//扉テクスチャ
+					//扉テクスチャ4つ
 					if (r_map[i][j] == 15)
 					{
 						src.m_top = 0.0f;
@@ -1703,6 +1703,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(27, &src, &dst, c, 0.0f);
 					}
+					//壁角4つ
 					if (r_map[i][j] == 27)
 					{
 						src.m_top = 0.0f;
@@ -1740,7 +1741,7 @@ void CObjMain::Draw()
 						Draw::Draw(37, &src, &dst, c, 0.0f);
 					}
 						
-					
+					//アイテム（仮）
 					if (r_map[i][j] == 4)
 					{
 
@@ -1758,7 +1759,7 @@ void CObjMain::Draw()
 
 							Draw::Draw(8, &src, &dst, c, 0.0f);
 					}
-					
+					//本棚
 					if (r_map[i][j] == 19)
 					{
 						src.m_top = 0.0f;
