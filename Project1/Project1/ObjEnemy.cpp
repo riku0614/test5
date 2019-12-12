@@ -61,13 +61,14 @@ void CObjEnemy::Action()
 	float scrolly = main->GetScrollY();
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
 
-
+	//画面内に入ると主人公を追従する
 	if (m_ex<(WINDOW_MAX_X + -(scrollx)) && m_ex>(WINDOW_MIN_X + -(scrollx)) &&
 		    m_ey<(WINDOW_MAX_Y + -(scrolly)) && m_ey>(WINDOW_MIN_Y + -(scrolly)))
 	{
 		m_vx = (hx + -(scrollx) - m_ex) ;
 		m_vy = (hy + -(scrolly) - m_ey) ;
 	}
+	//画面外に数秒いると主人公の近くにワープする
 	else
 	{
 		m_time++;
@@ -75,15 +76,12 @@ void CObjEnemy::Action()
 		m_vx = (hx + -(scrollx)-m_ex);
 		m_vy = (hy + -(scrolly)-m_ey);
 
-		//何秒ごとに敵が主人公の近くに来る
+	
 		if (m_time > 300)
 		{
 			
 			CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
 			m_time = 0;
-			
-
-			
 			
 			m_ex = hx + -(scrollx)+(64.0f * 2);
 			m_ey = hy + -(scrolly)+(64.0f * 2);

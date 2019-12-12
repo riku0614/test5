@@ -47,26 +47,35 @@ void CObjMain::Init()
 	pepepe_2 = false;
 	room_chg_stop = false;
 
-	r[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
-	r[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
-	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
+	font_flg = false;
+	
+	m_time = 0;
+
+
 
 	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 
-
+	r[1] = Save::ExternalDataOpen(L"教室１右サクラ.csv", &size);
+	r[2] = Save::ExternalDataOpen(L"教室２右サクラ.csv", &size);
+	r[3] = Save::ExternalDataOpen(L"教室３右サクラ.csv", &size);
+	r[4] = Save::ExternalDataOpen(L"教室４右サクラ.csv", &size);
+	r[5] = Save::ExternalDataOpen(L"教室５右サクラ.csv", &size);
+	r[6] = Save::ExternalDataOpen(L"教室６右サクラ.csv", &size);
 }
 
 //アクション
 void CObjMain::Action()
 {
+	
+	//教室マップを６回回したらセーブしたマップへのロードに切り替える
 	if (room_chg >= 7)
 	{
 		room_chg = 1;
 		room_chg_stop = true;
 	}
-
+	//８階のマップの処理
 	if (map_chg == 0)
 	{
 		if (room_chg >= 1 && room_in == true && stop_flg == true)
@@ -77,21 +86,32 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(4);
 
+			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(20.0f*64.0f);
 			hero->SetY(4.0f*64.0f);
 			m_scroll_x = -15.0f*64.0f;
 			m_scroll_y = -5.0f*64.0f;
 
+			//新規にマップをロードするする処理とセーブしたマップをロードする処理の切り替え
 			if (room_chg_stop == false)
 			{
 				RoomMapChanger(r_map, r, room_chg);
 			}
 			else
 			{
-				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
+				for (int i = 0; i < ROOM_X; i++)
+				{
+					for (int j = 0; j < ROOM_Y; j++)
+					{
+						r_map[i][j] = save_room_map[i][j][room_chg];
+
+					}
+				}
+
 			}
 		}
+		//初期の教室から廊下へのマップ切り替え（１度しか回さない）
 		if(room_in == false && stop_flg == true&&first_stop==true)
 		{
 			//音楽情報の読み込み
@@ -101,13 +121,14 @@ void CObjMain::Action()
 			Audio::Start(5);
 
 
-
+			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(0.0f);
 			hero->SetY(64.0f*3);
 			m_scroll_x = 0.0f;
 			m_scroll_y = 0.0f;
 
+			//マップ切り替え関数を呼び出す
 			MapChanger(map_chg, m_map, p);
 
 		
@@ -116,6 +137,7 @@ void CObjMain::Action()
 	
 		
 	}
+	//７階以降のマップの処理
 	if (map_chg >= 1)
 	{
 		if (map_chg > 0 && stop_flg == true)
@@ -126,14 +148,16 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
+			//主人公の初期位置の値を関数で指定する
 			spawn_point[map_chg] = SpawnChanger(map_chg);
 
+			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(spawn_point[map_chg]);
 			hero->SetY(0.0f);
 			m_scroll_x = spawn_point[map_chg] * -1.0f;
 			m_scroll_y = 0.0f;
-
+			//マップ切り替え関数を呼び出す
 			MapChanger(map_chg, m_map, p);
 
 			first_stop = false;
@@ -149,19 +173,28 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(4);
 
+			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			hero->SetX(20.0f*64.0f);
 			hero->SetY(4.0f*64.0f);
 			m_scroll_x = -15.0f*64.0f;
 			m_scroll_y = -5.0f*64.0f;
 
+			//新規にマップをロードするする処理とセーブしたマップをロードする処理の切り替え
 			if (room_chg_stop == false)
 			{
 				RoomMapChanger(r_map, r, room_chg);
 			}
 			else
 			{
-				memcpy(r_map, save_room_map[room_chg], sizeof(int)*(ROOM_X * ROOM_Y));
+				for (int i = 0; i < ROOM_X; i++)
+				{
+					for (int j = 0; j < ROOM_Y; j++)
+					{
+						r_map[i][j] = save_room_map[i][j][room_chg];
+
+					}
+				}
 			}
 		}
 	}
@@ -201,6 +234,7 @@ void CObjMain::Action()
 
 	}
 	
+	//ギミックのヒットボックスをマップごとに変更する処理
 	if (stop_flg == true)
 	{
 		HitBoxChanger(map_chg, m_map,room_in,room_chg,r_map);
@@ -209,6 +243,7 @@ void CObjMain::Action()
 		
 	}
 
+	//敵キャラの生成（廊下用）
 	if (stop_flg == true)
 	{
 		for (int i = 0; i < MAP_X; i++)
@@ -230,29 +265,8 @@ void CObjMain::Action()
 		}
 	}
 
+	
 	//アイテム「鍵」の表示処理：教室用
-	if (stop_flg == true && room_in == false)
-	{
-		for (int i = 0; i < MAP_X; i++)
-		{
-			for (int j = 0; j < MAP_Y; j++)
-			{
-				if (m_map[i][j] == 4)
-				{
-
-					//アイテムオブジェクト作成
-					CObjItem * obji = new CObjItem(j*64.0f - m_scroll_x, i*64.0f - m_scroll_y);
-					Objs::InsertObj(obji, OBJ_ITEM, 16);
-
-
-
-
-				}
-			}
-
-		}
-
-	}
 	if (stop_flg == true && room_in == true)
 	{
 		for (int i = 0; i < ROOM_X; i++)
@@ -324,7 +338,7 @@ void CObjMain::Action()
 		
 
 	
-	
+	//アイテム「薬」の表示処理：教室用
    if (room_in == true && stop_flg == false) 
    {
 	  
@@ -395,6 +409,10 @@ void CObjMain::Action()
 	}
 
 	stop_flg = false;
+
+	
+	
+	
 }
 
 
@@ -640,6 +658,7 @@ void CObjMain::BlockHit(
 	CObjItem* item = (CObjItem*)Objs::GetObj(OBJ_ITEM);
 	CObjGimmick* gmk = (CObjGimmick*)Objs::GetObj(OBJ_GIMMICK);
 	//m=mapの全要素にアクセス
+	//廊下用
 	if (room_in == false)
 	{
 		for (int i = 0; i < MAP_X; i++)
@@ -699,14 +718,17 @@ void CObjMain::BlockHit(
 									map_chg++;
 									stop_flg2 = true;
 									
+									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+									*k_id = 99;
 
-									if (map_chg == 1)
+									hero->SetFlug(false);
+									if (map_chg == 7)
 									{
 										Scene::SetScene(new CSceneGameClear);
 									}
 
+
 									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
-									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 									save_x[map_chg][1] = hero->GetX();
@@ -753,15 +775,19 @@ void CObjMain::BlockHit(
 									*bt = m_map[i][j];
 								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
 								{
-									if (map_chg == 1)
+									if (map_chg == 7)
 									{
 										Scene::SetScene(new CSceneGameClear);
 									}
 
+									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+									*k_id = 99;
+
+									hero->SetFlug(false);
+
 									stop_flg = true;
 									stop_flg2 = true;
-								
-									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+						
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
@@ -800,19 +826,21 @@ void CObjMain::BlockHit(
 								//左
 								*left = true;//主人公から見て、右の部分が衝突している
 								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY)
+								if (m_map[i][j] == 3 && *c_id == CHAR_HERO && *k_id == ITEM_KEY&&Input::GetVKey('E')==true)
 								{
 									stop_flg = true;
 									stop_flg2 = true;
 									first_stop = true;
-									
+									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+									*k_id = 99;
 
-									if (map_chg == 1)
+									hero->SetFlug(false);
+
+									if (map_chg == 7)
 									{
 										Scene::SetScene(new CSceneGameClear);
 									}
 
-									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
@@ -855,14 +883,16 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									stop_flg2 = true;
+									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+									*k_id = 99;
 
-									if (map_chg == 1)
+									hero->SetFlug(false);
+									if (map_chg == 7)
 									{
 										Scene::SetScene(new CSceneGameClear);
 									}
 
-									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
-									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 									save_x[map_chg][1] = hero->GetX();
@@ -898,41 +928,16 @@ void CObjMain::BlockHit(
 								{
 									*vy = 0.0f;
 								}
-								/*
-						///主人公の位置を持ってくる
-								CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
-								///主人公の位置を持ってくる
-								CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-
-								//敵出現ライン
-									//敵	
-									CObjEnemy* obje = new CObjEnemy(m_map);
-									Objs::InsertObj(obje, OBJ_ENEMY, 10);
-
-									//プレイヤーから範囲に入ったら敵が出てくるようにしたい
-									if (hero->GetX() + 64.0f >  || hero - 64.0f < m_ex)
-									{
-
-									}
-									else if (hero->GetY()  > enemy->GetX() || hero->GetY() - 64.0f < )
-									{
-
-									}*/
-
-			
-							
 
 							}
 						}
-
-
 					}
 
 				}
 			}
 		}
 	}
+	//教室用
 	else
 	{
 		for (int i = 0; i < ROOM_X; i++)
@@ -980,7 +985,8 @@ void CObjMain::BlockHit(
 							{
 								//右
 								*right = true;//主人公から見て、左の部分が衝突している
-								*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅]
+								*x = bx + 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+								//通常の時
 								if (r_map[i][j] == 17 && *c_id == CHAR_HERO)
 								{
 									if (room_in == true)
@@ -996,8 +1002,16 @@ void CObjMain::BlockHit(
 										hero->SetY(save_y[map_chg][0] + hero->GetVY());
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
-
-										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+										if (room_chg >= 1)
+										{
+											for (int i = 0; i < ROOM_X; i++)
+											{
+												for (int j = 0; j < ROOM_Y; j++)
+												{
+													save_room_map[i][j][room_chg] = r_map[i][j];
+												}
+											}
+										}
 									}
 
 								}
@@ -1010,7 +1024,7 @@ void CObjMain::BlockHit(
 								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
 								if (r_map[i][j] == 2)
 									*bt = m_map[i][j];
-							
+								//通常の時
 								if (r_map[i][j] == 16 && *c_id == CHAR_HERO)
 								{
 									if (room_in == true)
@@ -1027,7 +1041,16 @@ void CObjMain::BlockHit(
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
 
-										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+										if (room_chg >= 1)
+										{
+											for (int i = 0; i < ROOM_X; i++)
+											{
+												for (int j = 0; j < ROOM_Y; j++)
+												{
+													save_room_map[i][j][room_chg] = r_map[i][j];
+												}
+											}
+										}
 									}
 
 								}
@@ -1038,6 +1061,7 @@ void CObjMain::BlockHit(
 								//左
 								*left = true;//主人公から見て、右の部分が衝突している
 								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
+								//通常の時
 								if (r_map[i][j] == 18 && *c_id == CHAR_HERO)
 								{
 									if (room_in == true)
@@ -1054,7 +1078,16 @@ void CObjMain::BlockHit(
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
 
-										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+										if (room_chg >= 1)
+										{
+											for (int i = 0; i < ROOM_X; i++)
+											{
+												for (int j = 0; j < ROOM_Y; j++)
+												{
+													save_room_map[i][j][room_chg] = r_map[i][j];
+												}
+											}
+										}
 									}
 
 								}
@@ -1064,7 +1097,8 @@ void CObjMain::BlockHit(
 							{
 								//下
 								*up = true;//主人公から見て、上の部分が衝突している
-								*y = by + 64.0f + (scroll_y);//ブロックの位置-主人公の
+								*y = by + 64.0f + (scroll_y);//ブロックの位置-主人公の幅
+								//通常の時
 								if (r_map[i][j] == 15 && *c_id == CHAR_HERO)
 								{
 									if (room_in == true)
@@ -1081,14 +1115,29 @@ void CObjMain::BlockHit(
 										main->SetScrollX(save_scroll_x[map_chg][0]);
 										main->SetScrollY(save_scroll_y[map_chg][0]);
 
-										memcpy(save_room_map[room_chg], r_map, sizeof(int)*(ROOM_X * ROOM_Y));
+										if (room_chg >= 1)
+										{
+											for (int i = 0; i < ROOM_X; i++)
+											{
+												for (int j = 0; j < ROOM_Y; j++)
+												{
+													save_room_map[i][j][room_chg] = r_map[i][j];
+												}
+											}
+										}
 									}
 
 								}
+								//本棚から鍵を取る処理
 								if (r_map[i][j] == 19 && Input::GetVKey(VK_RETURN)==true)
 								{
 
+									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									*k_id = ITEM_KEY;
+
+									hero->SetFlug(true);
+
+									font_flg = true;
 								}
 								if (*vy < 0)
 								{
@@ -1192,6 +1241,7 @@ void CObjMain::ItemHit(
 								ix = bx / 64;
 								iy = by / 64;
 
+								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
 								{
 									m_map[iy][ix] = 1;
@@ -1209,6 +1259,7 @@ void CObjMain::ItemHit(
 								ix = bx / 64;
 								iy = by / 64;
 
+								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
 								{
 									m_map[iy][ix] = 1;
@@ -1225,6 +1276,7 @@ void CObjMain::ItemHit(
 								ix = bx / 64;
 								iy = by / 64;
 
+								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
 								{
 									m_map[iy][ix] = 1;
@@ -1240,7 +1292,7 @@ void CObjMain::ItemHit(
 								*y = by + 32.0f + (scroll_y);//ブロックの位置-主人公の幅
 								ix = bx / 64;
 								iy = by / 64;
-
+								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
 								{
 									m_map[iy][ix] = 1;
@@ -1254,15 +1306,17 @@ void CObjMain::ItemHit(
 
 
 							}
-
+							//鍵
 							if (m_map[i][j] == 4)
 							{
 								map_Item = true;
 							}
+							//薬
 							if (m_map[i][j] == 21)
 							{
 								map_Item_2 = true;
 							}
+							//バール
 							if (m_map[i][j] == 26)
 							{
 								map_Item_3 = true;
@@ -1281,6 +1335,7 @@ void CObjMain::ItemHit(
 
 		}
 	}
+	//教室用
 	if(room_in==true)
 	{
 	//m=mapの全要素にアクセス
@@ -1397,15 +1452,17 @@ void CObjMain::ItemHit(
 
 
 						}
-
+						//鍵
 						if (r_map[i][j] == 4)
 						{
 							map_Item = true;
 						}
+						//薬
 						if (r_map[i][j] == 21)
 						{
 							map_Item_2 = true;
 						}
+						//バールのようなもの
 						if (r_map[i][j] == 26)
 						{
 							map_Item_3 = true;
@@ -1486,7 +1543,7 @@ void CObjMain::Draw()
 						Draw::Draw(21, &src, &dst, c, 0.0f);
 					}
 					//階段テクスチャ
-					if (m_map[i][j] == 3/*||m_map[i][j]==5*/)
+					if (m_map[i][j] == 3)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
@@ -1762,6 +1819,20 @@ void CObjMain::Draw()
 			}
 		}
 
+	}
+	if (font_flg == true && m_time <= 300)
+	{
+		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+		Font::StrDraw(L"鍵を入手した...", 350.0f,530.0f, 25, c);
+
+		m_time++;
+	}
+	else
+	{
+		font_flg = false;
+
+		m_time = 0;
 	}
 }
 	

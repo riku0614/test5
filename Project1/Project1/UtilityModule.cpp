@@ -2,7 +2,6 @@
 #include "UtilityModule.h"
 #include "GameL/UserData.h"
 
-
 //---UnitVec関数
 /*引数１ float* vx  ; ベクトルのX成分のポインタ
 　引数２ float* vy  ; ベクトルのY成分のポインタ
