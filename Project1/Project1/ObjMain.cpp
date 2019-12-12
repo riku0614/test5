@@ -47,13 +47,14 @@ void CObjMain::Init()
 	pepepe = false;
 	pepepe_2 = false;
 	room_chg_stop = false;
+
 	//教室マップ
 	r[1] = Save::ExternalDataOpen(L"教室1サクラ.csv", &size);
 	r[2] = Save::ExternalDataOpen(L"教室2サクラ.csv", &size);
 	r[3] = Save::ExternalDataOpen(L"教室4サクラ.csv", &size);
 
 	//廊下マップ
-	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案6.csv", &size);
+	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
 	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	p[3] = Save::ExternalDataOpen(L"チーム開発マップ案3.csv", &size);
