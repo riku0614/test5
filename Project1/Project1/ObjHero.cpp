@@ -136,7 +136,11 @@ void CObjHero::Action()
 			m_posture = 1.0f;
 			m_ani_time += 1;
 		}
-
+	}
+	else if (Input::GetVKey(VK_RETURN) == true)
+	{
+		Main->SetStoryFlag(false);
+	}
 
 		//主人公のアイテムと当たったフラグを持ってくる
 		CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
@@ -317,24 +321,6 @@ void CObjHero::Action()
 			//音楽スタート
 			Audio::Start(6);
 
-			/*
-			if (hit_flag_x == true)
-			{
-				m_vx = 50.0f;
-			}
-			if (hit_flag_x == false)
-			{
-				m_vx = -50.0f;
-			}
-			if (hit_flag_y == true)
-			{
-				m_vx = 50.0f;
-			}
-			if (hit_flag_y == false)
-			{
-				m_vx = -50.0f;
-			}*/
-
 			m_hero_life -= 1;
 
 			m_flg = true;
@@ -366,11 +352,7 @@ void CObjHero::Action()
 			m_flg = false;
 			m_time = 10;
 		}
-	}
-	else if (Input::GetVKey(VK_RETURN) == true)
-	{
-	   Main->SetStoryFlag(false);
-	}
+	
 }
 
 void CObjHero::Draw()
