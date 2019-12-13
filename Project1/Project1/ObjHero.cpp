@@ -281,32 +281,32 @@ void CObjHero::Action()
 			py = 0.0f;
 		}
 
-		Main->BlockHit(&m_px, &m_py, true, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, &m_id, &k_id
-		);
+	Main->BlockHit(&m_px, &m_py, true, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type, &m_id, &k_id
+	);
 
 		//自身のhitboxを持ってくる
 		CHitBox* hit = Hits::GetHitBox(this);
 
 		//アイテムの当たり判定実行
-		Main->ItemHit(&m_px, &m_py, true, true,
-			&mi_hit_up, &mi_hit_down, &mi_hit_left, &mi_hit_right, &m_vx, &m_vy,
-			&m_block_type
-		);
+	Main->ItemHit(&m_px, &m_py, true, true,
+		&mi_hit_up, &mi_hit_down, &mi_hit_left, &mi_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 
-		//位置の更新
-		m_px += m_vx;
-		m_py += m_vy;
-
-
+	//位置の更新
+	m_px += m_vx;
+	m_py += m_vy;
 
 
-		//hitboxの位置の変更
-		hit->SetPos(m_px, m_py);
 
-		//敵と当たったらフラグを持てる
-		CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
+
+	//hitboxの位置の変更
+	hit->SetPos(m_px, m_py);
+
+	//敵と当たったらフラグを持てる
+	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 
 	
 	
