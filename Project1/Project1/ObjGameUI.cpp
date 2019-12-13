@@ -217,7 +217,7 @@ void CObjGameUI::Draw()
 		dst.m_bottom = dst.m_top + 45.0f;
 
 		//描画設定
-		Draw::Draw(38, &src, &dst, c, 0.0f);
+		Draw::Draw(44, &src, &dst, c, 0.0f);
 
 		take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 		
