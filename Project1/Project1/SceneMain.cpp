@@ -90,8 +90,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
-	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
-	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
+	Draw::LoadImageW(L"バールのようなもの.png", 38, TEX_SIZE_1024);
 
 	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
@@ -104,10 +103,6 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁右上.png", 35, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁右下.png", 36, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁左下.png", 37, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
-	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
-	Draw::LoadImageW(L"床穴.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"ドット絵　本.png", 33, TEX_SIZE_512);
 
 

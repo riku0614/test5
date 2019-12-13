@@ -14,6 +14,11 @@ using namespace GameL;
 #define ROOM_X (25)
 #define ROOM_Y (25)
 #define MAP_NUMBER (8)
+#define BAR (26)
+#define BLOCK_SIZE_X (64.0f)
+#define BLOCK_SIZE_Y (64.0f)
+#define ITEM_SIZE_X (32.0f)
+#define ITEM_SIZE_Y (32.0f)
 
 //オブジェクト：メイン
 class CObjMain : public CObj
