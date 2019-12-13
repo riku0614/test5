@@ -16,24 +16,30 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 
-	float GetX() { return m_px; }
+	float GetX() { return m_px; }    //主人公の位置を渡す
 	float GetY() { return m_py; }
-	float GetVY() { return m_vy; }
+
+	float GetVY() { return m_vy; }   //主人公のベクトルを渡す
 	float GetVX() { return m_vx; }
-	int GetBT() { return m_block_type; }
 
-	int m_hero_life;
+	int GetLife() { return m_hero_life; }
 
-	void SetUp(bool b) { m_hit_up = b; }
+	int GetBT() { return m_block_type; }//当たっているブロックの種類を渡す
+
+
+
+	void SetUp(bool b) { m_hit_up = b; }      //上下左右のブロックの当たり判定のフラグ 
 	void SetDown(bool b) { m_hit_down = b; }
 	void SetLeft(bool b) { m_hit_left = b; }
 	void SetRight(bool b) { m_hit_right = b; }
-	void SetBT(int t) { m_block_type = t; }
 
-	void SetX(float x) { m_px = x; }
+	void SetBT(int t) { m_block_type = t; }   //当たっているブロックの種類を設定する
+
+	void SetX(float x) { m_px = x; }       //主人公の位置を設定
 	void SetY(float y) { m_py = y; }
-	void SetVY(float vy) { m_vy = vy; }
+	void SetVY(float vy) { m_vy = vy; }    //主人公のベクトルを設定
 	void SetVX(float vx) { m_vx = vx; }
+
 
 	bool Getflag() { return peperon_flag;}
 	void SetFlug(bool f) { peperon_flag = f; }
@@ -69,7 +75,7 @@ private:
 	float m_posture; //姿勢
 	float m_stamina_limid;//スタミナの限界値
 
-
+	int m_hero_life;//主人公の体力
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
 

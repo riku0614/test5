@@ -29,12 +29,21 @@ class CObjMain : public CObj
 		float GetScrollX() { return m_scroll_x; }
 		void SetScrollY(float r) { m_scroll_y = r; }//Y方向へのスクロール
 		float GetScrollY() { return m_scroll_y; }
-		void SetDelete(bool b) { delete_flg = b; }
-		bool RoomFlag() { return room_in; }
-		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }
-		int MapChangeData() { return map_chg; }
-		bool GetFlug() { return stop_flg; }
-		bool GetFlug2() { return stop_flg2; }
+
+		void SetDelete(bool b) { delete_flg = b; }//アイテムの消去用
+
+		bool RoomFlag() { return room_in; }//教室内外判定
+
+		bool GetStoryFlag() { return font_story_flg; }
+		void SetStoryFlag(bool f) { font_story_flg = f; }
+		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }//現在の教室マップデータ
+
+		int MapChangeData() { return map_chg; }//現在のステージデータ
+
+		bool GetFlug() { return stop_flg; }//マップ切り替えやギミックや敵キャラ、アイテムを配置する処理用
+
+		bool GetFlug2() { return stop_flg2; }//↑のギミック用
+
 		int GetHitboxCount1() { return g_count1; }
 		int GetHitboxCount2() { return g_count2; }
 
@@ -47,19 +56,23 @@ class CObjMain : public CObj
 		bool GetMapItem_3() { return map_Item_3; }
 
 		int m_map[MAP_X][MAP_Y];//マップ情報ブロック数（X＝７５個、Y=７５個）
-		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝30個、Y=30個）
+		int r_map[ROOM_X][ROOM_Y];//マップ情報ブロック数（X＝25個、Y=25個）
 
+
+		//BlockHit関数の宣言
 		void BlockHit(
 			float *x, float *y, bool scroll_on_x,bool scroll_on_y,
 			bool *up, bool *down, bool *left, bool *right,
 			float *vx, float *vy, int *bt, int *c_id, int *k_id
 		);
-		
+
+		//ItemHit関数の宣言
 		void ItemHit(
 			float *x, float *y, bool scroll_on_x, bool scroll_on_y,
 			bool *up, bool *down, bool *left, bool *right,
 			float *vx, float *vy, int *bt
 		);
+
 		//主人公と壁の交差判定
 		bool HeroBlockCrossPoint(
 			float x, float y, float vx, float vy,
@@ -74,27 +87,31 @@ class CObjMain : public CObj
 		int save_map[MAP_X][MAP_Y];
 		int save_room_map[ROOM_X][ROOM_Y][ROOM_NUMBER];
 
-		bool stop_flg;//マップ切り替えを一度だけしか
-		bool stop_flg2;
-		bool first_stop;
-		bool first_stop2;
-		bool room_in;    //教室マップへの切り替えのフラグ
-		bool delete_flg;
-		bool plane_chg_hole;
+		bool stop_flg;    //マップ切り替えやギミックや敵キャラ、アイテムを配置する処理を一度だけ回す用のフラグ
+		bool stop_flg2;   //↑のギミック切り替え用
+		bool first_stop;  //廊下マップデータを変数に移す処理を一度だけ回す用のフラグ
+		bool room_in;     //教室マップへの切り替えのフラグ
+		bool delete_flg;  //アイテム消去用フラグ
 		bool pepepe;
 		bool pepepe_2;
-		bool room_chg_stop;
+		bool room_chg_stop;//教室マップデータを変数へ書き写す処理の停止フラグ
 
-		bool font_flg;
+		//テキスト表示用関数
+		bool font_key_flg;
+		bool font_story_flg;
+
 
 		int g_count1;
 		int g_count2;
-		int map_chg;     //マップ切り替えを管理するための変数
-		int room_chg;
-		int ix;
-		int iy;
-		int size;
-		int m_time;
+		int map_chg;     //廊下マップ切り替えを管理するための変数
+		int room_chg;    //↑の教室マップ用
+
+		//アイテムの当たり判定に当たったときにその場所の要素番号を保存する変数
+		int ix;         
+		int iy;       
+
+		int size;        
+		int m_time;      //フォントを表示する秒数
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;
@@ -111,9 +128,11 @@ class CObjMain : public CObj
 		bool map_Item_2;//マップ上のアイテム情報2!
 		bool map_Item_3;//マップ上のアイテム情報3!
 
-
+		//内積
 		float Dot(float ax, float ay, float bx, float by);
+		//外積
 		float Cross(float ax, float ay, float bx, float by);
+
 		//線と線の交差判定
 		bool LineCrossPoint(
 			float a1x, float a1y, float a2x, float a2y,
