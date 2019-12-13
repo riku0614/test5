@@ -103,7 +103,6 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"床青.png", 39, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
-	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
 	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（左）1.png", 28, TEX_SIZE_512);
