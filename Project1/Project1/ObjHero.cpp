@@ -67,7 +67,6 @@ void CObjHero::Init()
 	k_id = 99;
 	h_id = 99;
 	b_id = 99;
-
 	hit_flag_x = false;
 	hit_flag_y = false;
 	//“–‚½‚è”»’è—phitbox‚ğì¬
