@@ -64,8 +64,8 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 {
 	
 	int size;
-	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
-	p[1] = Save::ExternalDataOpen(L"マップ３.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p[0] = Save::ExternalDataOpen(L"マップ３.csv", &size);
 	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	
 	int map[MAP_X][MAP_Y];
