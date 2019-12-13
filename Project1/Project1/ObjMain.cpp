@@ -1804,7 +1804,43 @@ void CObjMain::Draw()
 						Draw::Draw(37, &src, &dst, c, 0.0f);
 					}//äpï«4Ç¬Å™
 
-					
+					 //ï«äpÇQÅE4Ç¬
+					if (m_map[i][j] == 31)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(38, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 32)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(39, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 33)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(40, &src, &dst, c, 0.0f);
+					}
+					if (m_map[i][j] == 34)
+					{
+						src.m_top = 0.0f;
+						src.m_left = 0.0f;
+						src.m_right = src.m_left + 64.0f;
+						src.m_bottom = src.m_top + 64.0f;
+
+						Draw::Draw(41, &src, &dst, c, 0.0f);
+					}//äpï«ÇQÅE4Ç¬Å™
 				}
 			}
 
@@ -2011,7 +2047,7 @@ void CObjMain::Draw()
 						
 						Draw::Draw(29, &src, &dst, c, 0.0f);
 					}
-					if (r_map[i][j] == 30)
+					if (r_map[i][j] == 31)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;
