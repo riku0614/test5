@@ -10,6 +10,8 @@ enum OBJ_NAME
 	OBJ_CLICK_TITLE,
 	OBJ_HERO,
 	OBJ_ENEMY,
+	OBJ_FASTENEMY,
+	OBJ_SPWANENEMY,
 	OBJ_MAIN,
 	OBJ_GAMEOVER,
 	OBJ_GAMECLEAR,
@@ -51,6 +53,7 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
+	ELEMENT_FASTENEMY,
 };
 //------------------------------------------------
 
@@ -72,6 +75,7 @@ enum ITEM_ID
 	CHAR_ENEMY,
 	ITEM_HEAL,
 	ITEM_BAR,
+	CHAR_FASTENEMY,
 };
 
 
@@ -107,6 +111,8 @@ enum ITEM_ID
 #include "ObjRoomGimmick.h"
 
 #include "objheal.h"
+#include "ObjFastEnemy.h"
+#include "ObjSpawnEnemy.h"
 #include "Objbar.h"
 //------------------------------------------------
 
