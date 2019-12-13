@@ -180,6 +180,12 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
+			//主人公の初期位置を変更
+			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			hero->SetX(20.0f*64.0f);
+			hero->SetY(4.0f*64.0f);
+			m_scroll_x = -15.0f*64.0f;
+			m_scroll_y = -5.0f*64.0f;
 			//新規にマップをロードするする処理とセーブしたマップをロードする処理の切り替え
 			if (room_chg_stop == false)
 			{
@@ -196,11 +202,14 @@ void CObjMain::Action()
 					}
 				}
 			}
+	}
+	
 
-			//主人公の位置を取得
-			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			float hx = hero->GetX();
-			float hy = hero->GetY();//知らないです
+	}
+	//主人公の位置を取得
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
 
 
 
@@ -276,9 +285,9 @@ void CObjMain::Action()
 						if ((j*64.0f) + 64.0f >= hero->GetX() && (j * 64.0f) - 64.0f <= hero->GetX())
 						{
 
-							//アイテムオブジェクト作成
-							CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
-							Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
+					//フラグを踏んだら敵が出現するオブジェクト作成
+					CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
+					Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
 
 							m_map[i][j] = 1;
 						}
@@ -294,9 +303,9 @@ void CObjMain::Action()
 						if ((j*64.0f) + 64.0f >= hero->GetX() && (j * 64.0f) - 64.0f <= hero->GetX())
 						{
 
-							//アイテムオブジェクト作成
-							CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
-							Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
+					//フラグを踏んだら敵が出現するオブジェクト作成
+					CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
+					Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
 
 							r_map[i][j] = 1;
 						}
@@ -312,9 +321,9 @@ void CObjMain::Action()
 						if ((i*64.0f) + 64.0f >= hero->GetY() && (i * 64.0f) - 64.0f <= hero->GetY())
 						{
 
-							//敵作成
-							CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
-							Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
+					//フラグを踏んだら敵が出現するオブジェクト作成
+					CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
+					Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
 
 							m_map[i][j] = 1;
 						}
@@ -330,9 +339,9 @@ void CObjMain::Action()
 						if ((i*64.0f) + 64.0f >= hero->GetY() && (i * 64.0f) - 64.0f <= hero->GetY())
 						{
 
-							//敵作成
-							CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
-							Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
+					//フラグを踏んだら敵が出現するオブジェクト作成
+					CObjSpwanEnemy* objf = new CObjSpwanEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
+					Objs::InsertObj(objf, OBJ_SPWANENEMY, 38);
 
 							r_map[i][j] = 1;
 						}
@@ -367,9 +376,9 @@ void CObjMain::Action()
 						if (m_map[i][j] == 25)
 						{
 
-							//アイテムオブジェクト作成
-							CObjFastEnemy* objf = new CObjFastEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
-							Objs::InsertObj(objf, OBJ_FASTENEMY, 13);
+					//鍵をとったら出現する敵オブジェクト作成
+					CObjFastEnemy* objf = new CObjFastEnemy(hx + -(m_scroll_x), hy + (5 * 64.0f) + -(m_scroll_y));
+					Objs::InsertObj(objf, OBJ_FASTENEMY, 13);
 
 							m_map[i][j] = 1;
 
@@ -2014,8 +2023,6 @@ void CObjMain::Draw()
 
 						Draw::Draw(43, &src, &dst, c, 0.0f);
 					}
-					//壁テクスチャ
-					if (r_map[i][j] == 9)
 					//壁テクスチャ4つ
 					if (r_map[i][j] == 9||r_map[i][j]==19)
 					{
@@ -2128,7 +2135,7 @@ void CObjMain::Draw()
 						src.m_bottom = src.m_top + 64.0f;
 
 						Draw::Draw(37, &src, &dst, c, 0.0f);
-					}//角壁4つ↑
+					}//角壁4つ↑2
 						
 					//アイテム（仮）
 					if (r_map[i][j] == 4)
@@ -2167,6 +2174,7 @@ void CObjMain::Draw()
 
 						Draw::Draw(33, &src, &dst, c, 0.0f);
 					}
+					//本
 					if (r_map[i][j] == 30)
 					{
 						src.m_top = 0.0f;

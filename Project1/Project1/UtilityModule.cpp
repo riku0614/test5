@@ -44,6 +44,8 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 	
 	int size;
 
+
+
 	int map[MAP_X][MAP_Y];
 
 	int count = 1;
