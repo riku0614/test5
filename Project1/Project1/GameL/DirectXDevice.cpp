@@ -392,6 +392,3 @@ void CDirectXDeviec:: ShutDown()
 }
 
 			
-	
-				
-						

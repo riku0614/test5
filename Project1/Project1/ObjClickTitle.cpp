@@ -8,6 +8,7 @@
 #include "ObjClickTitle.h"
 #include "SceneMain.h"
 #include "GameL/Audio.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -17,11 +18,15 @@ void CObjClickTitle::Init()
 {
 	m_yj = 0.0f;
 	m_f = true;
+
 }
 //アクション
 void CObjClickTitle::Action()
 {
-	
+	if (Input::GetVKey('M'))
+	{
+		;
+	}
 	//Enterを押したときの処理
 	if (m_yj == 0.0f && Input::GetVKey(VK_RETURN))
 	{
