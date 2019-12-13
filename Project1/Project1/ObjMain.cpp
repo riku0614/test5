@@ -205,6 +205,7 @@ void CObjMain::Action()
 				}
 			}
 		}
+
 		//ålŒö‚ÌˆÊ’u‚ğæ“¾
 		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 		float hx = hero->GetX();
