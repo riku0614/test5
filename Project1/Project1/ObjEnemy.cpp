@@ -54,12 +54,19 @@ void CObjEnemy::Init()
 //アクション
 void CObjEnemy::Action()
 {
+
+	//マップ情報の取得
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (main->RoomFlag() == false && main->GetFlug() == true)
+	{
+		//当たり判定用HitBoxを作成
+		Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	}
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
-	//マップ情報の取得
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 	float scrollx = main->GetScrollX();
 	float scrolly = main->GetScrollY();
 	memcpy(m_map, main->m_map, sizeof(int)*(MAP_X * MAP_Y));
@@ -158,13 +165,14 @@ void CObjEnemy::Action()
 	
 	//自身のhitboxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
-	
-	//hitboxの位置の変更
-	hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
-	
-	if (main->GetFlug() == true)
+	if (hit != nullptr)
 	{
-		this->SetStatus(false);
+		//hitboxの位置の変更
+		hit->SetPos(m_ex + scroll->GetScrollX(), m_ey + scroll->GetScrollY());
+	}
+
+	if (main->RoomFlag()==true)
+	{
 		Hits::DeleteHitBox(this);
 	}
 
@@ -173,26 +181,30 @@ void CObjEnemy::Action()
 //ドロー
 void CObjEnemy::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+	if (main->RoomFlag() == false)
+	{
+		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src; //描画元切り取り位置
-	RECT_F dst; //描画先表示位置
+		RECT_F src; //描画元切り取り位置
+		RECT_F dst; //描画先表示位置
 
-				//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+					//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-	CObjMain* scroll = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	//表示位置の設定
-	dst.m_top = 0.0f + m_ey+scroll->GetScrollY();
-	dst.m_left = (64.0) + m_ex+scroll->GetScrollX();
-	dst.m_right = (64 - 64.0f)+m_ex+scroll->GetScrollX();
-	dst.m_bottom = 64.0f + m_ey+scroll->GetScrollY();
 
-	//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
-	Draw::Draw(5, &src, &dst, c, 0.0f);
+		//表示位置の設定
+		dst.m_top = 0.0f + m_ey + main->GetScrollY();
+		dst.m_left = (64.0) + m_ex + main->GetScrollX();
+		dst.m_right = (64 - 64.0f) + m_ex + main->GetScrollX();
+		dst.m_bottom = 64.0f + m_ey + main->GetScrollY();
+
+		//3番目に登録したグラフィックをsrc.dst.cの情報を元に描画
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	}
 }
 
 

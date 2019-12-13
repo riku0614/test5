@@ -40,6 +40,7 @@ public:
 	void SetVY(float vy) { m_vy = vy; }    //主人公のベクトルを設定
 	void SetVX(float vx) { m_vx = vx; }
 
+	void SetHeroStop(bool f) { m_hero_stop = f; }
 
 	bool Getflag() { return peperon_flag;}
 	void SetFlug(bool f) { peperon_flag = f; }
@@ -79,6 +80,8 @@ private:
 	int m_hero_life;//主人公の体力
 	int m_ani_time;  //アニメーションフレーム動作間隔
 	int m_ani_frame; //描画フレーム
+
+	bool m_hero_stop;
 
 	float m_speed_power;        //スピードパワー
 	float m_ani_max_time;   //アニメーション動作間隔最大値

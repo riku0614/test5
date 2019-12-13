@@ -39,8 +39,15 @@ class CObjMain : public CObj
 
 		bool RoomFlag() { return room_in; }//教室内外判定
 
+		//フォント表示フラグ切り替え用
 		bool GetStoryFlag() { return font_story_flg; }
 		void SetStoryFlag(bool f) { font_story_flg = f; }
+		void SetStoryFlag2(bool f) { font_story_flg2 = f; }
+		void SetBarFlag(bool f) { font_bar_flg = f; }
+		void SetHealFlag(bool f) { font_heal_flg = f; }
+		void SetKeyFlag(bool f) { font_key_flg2 = f; }
+
+
 		int RoomMapData() { return r_map[ROOM_X][ROOM_Y]; }//現在の教室マップデータ
 
 		int MapChangeData() { return map_chg; }//現在のステージデータ
@@ -50,7 +57,7 @@ class CObjMain : public CObj
 		bool GetFlug2() { return stop_flg2; }//↑のギミック用
 
 		int GetHitboxCount1() { return g_count1; }
-		int GetHitboxCount2() { return g_count2; }
+        int GetHitboxCount2() { return g_count2; }
 
 
 		void SetMapItem(bool mi) { map_Item; }
@@ -103,20 +110,31 @@ class CObjMain : public CObj
 
 		//テキスト表示用関数
 		bool font_key_flg;
+		bool font_key_flg2;
 		bool font_story_flg;
+		bool font_story_flg2;
+		bool font_bar_flg;
+		bool font_heal_flg;
+		bool font_open_flg;
+		bool font_close_flg;
+		bool font_open_flg2;
+		bool font_nothing_flg;
 
+
+		bool open_flg;//鍵やバールで開ける処理用のフラグ
+		bool nothing_flg;//本棚などからアイテムを1度しか入手できない処理用フラグ
 
 		int g_count1;
 		int g_count2;
-		int map_chg;     //廊下マップ切り替えを管理するための変数
-		int room_chg;    //↑の教室マップ用
+		unsigned int map_chg;     //廊下マップ切り替えを管理するための変数
+		unsigned int room_chg;    //↑の教室マップ用
 
 		//アイテムの当たり判定に当たったときにその場所の要素番号を保存する変数
-		int ix;         
-		int iy;       
+		unsigned int ix;
+		unsigned int iy;
 
 		int size;        
-		int m_time;      //フォントを表示する秒数
+		unsigned int m_time;      //フォントを表示する秒数
 
 		float spawn_point[MAP_NUMBER]; //map毎の初期値を関数から入れる用の変数
 		int jx;

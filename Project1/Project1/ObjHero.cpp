@@ -44,6 +44,8 @@ void CObjHero::Init()
 	mi_hit_left = false;
 	mi_hit_right = false;
 
+	m_hero_stop = false;
+
 	enemy_flg = false;
 
 	m_block_type = 0;
@@ -78,7 +80,8 @@ void CObjHero::Action()
 {
 	//ゲームメインにフラグをセットする
 	CObjMain* Main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	if (Main->GetStoryFlag() == false)
+
+	if (m_hero_stop == false)
 	{
 		//メニューキー
 		if (Input::GetVKey('M') == true)
@@ -137,9 +140,12 @@ void CObjHero::Action()
 			m_ani_time += 1;
 		}
 	}
-	else if (Input::GetVKey(VK_RETURN) == true)
+	else if (m_hero_stop==true&&Input::GetVKey(VK_RETURN) == true)
 	{
+
 		Main->SetStoryFlag(false);
+		Main->SetStoryFlag2(true);
+		m_hero_stop = false;
 	}
 
 		//主人公のアイテムと当たったフラグを持ってくる
@@ -152,9 +158,11 @@ void CObjHero::Action()
 			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
 			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false && Main->GetMapItem() == true)
 		{
+			Main->SetKeyFlag(true);
 			peperon_flag = true;
 			k_id = ITEM_KEY;
 			Main->SetDelete(true);
+			
 			//Main->GetMapItem() = false;
 		}
 
@@ -164,9 +172,11 @@ void CObjHero::Action()
 			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
 			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true)
 		{
+			Main->SetHealFlag(true);
 			peperon_flag_2 = true;
 			h_id = ITEM_HEAL;
 			Main->SetDelete(true);
+			
 			//Main->GetMapItem_2() = false;
 		}
 
@@ -175,9 +185,11 @@ void CObjHero::Action()
 			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
 			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true)
 		{
+			Main->SetBarFlag(true);
 			peperon_flag_3 = true;
 			b_id = ITEM_BAR;
 			Main->SetDelete(true);
+			
 			//Main->GetMapItem_2() = false;
 		}
 
