@@ -71,7 +71,7 @@ void CObjMain::Init()
 //アクション
 void CObjMain::Action()
 {
-	
+
 	//教室マップを６回回したらセーブしたマップへのロードに切り替える
 	if (room_chg >= 7)
 	{
@@ -116,7 +116,7 @@ void CObjMain::Action()
 			}
 		}
 		//初期の教室から廊下へのマップ切り替え（１度しか回さない）
-		if(room_in == false && stop_flg == true&&first_stop==true)
+		if (room_in == false && stop_flg == true && first_stop == true)
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
@@ -138,8 +138,8 @@ void CObjMain::Action()
 
 			first_stop = false;
 		}
-	
-		
+
+
 	}
 	//７階以降のマップの処理
 	if (map_chg >= 1)
@@ -168,23 +168,14 @@ void CObjMain::Action()
 			memcpy(m_map, save_map, sizeof(int)*(MAP_X * MAP_Y));
 
 		}
+		//教室マップから廊下マップへの切り替え処理
+		else if (room_in == false && stop_flg == true)
+		{
+			//音楽情報の読み込み
+			Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
 
-	}
-	else if (map_chg > 0 && stop_flg == true)
-	{
-		//音楽情報の読み込み
-		Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
-		first_stop = false;
-
-	}
-	//教室マップから廊下マップへの切り替え処理
-	else if (room_in == false && stop_flg == true)
-	{
-		//音楽情報の読み込み
-		Audio::LoadAudio(5, L"5マップ切り替えSE.wav", SOUND_TYPE::EFFECT);
-
-		//音楽スタート
-		Audio::Start(5);
+			//音楽スタート
+			Audio::Start(5);
 
 			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -205,8 +196,11 @@ void CObjMain::Action()
 					}
 				}
 			}
+
 		}
 	}
+	
+	
 	//主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
@@ -242,7 +236,7 @@ void CObjMain::Action()
 
 
 	}
-	
+
 	//ギミックのヒットボックスをマップごとに変更する処理
 	if (stop_flg == true)
 	{
@@ -532,10 +526,10 @@ void CObjMain::Action()
 
 	stop_flg = false;
 
-	
-	
-	
 }
+	
+	
+
 
 
 /*内積関数
@@ -1863,7 +1857,6 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] == 1 || r_map[i][j] == 5||r_map[i][j]==7||r_map[i][j]==25)
 					if (r_map[i][j] >= 1&&r_map[i][j]<= 8|| r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13)
 					{
 						src.m_top = 0.0f;

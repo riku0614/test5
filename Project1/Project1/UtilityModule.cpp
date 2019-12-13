@@ -357,29 +357,29 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 			}
 		}
 	}
-	else 
+	else
 	{
-	  if (r == 1||r == 0)
-	  {
-		  for (int i = 0; i < ROOM_X; i++)
-		  {
-			  for (int j = 0; j < ROOM_Y; j++)
-			  {
-				  if (r_map[i][j] == 7)
-				  {
+		if (r == 1 || r == 0)
+		{
+			for (int i = 0; i < ROOM_X; i++)
+			{
+				for (int j = 0; j < ROOM_Y; j++)
+				{
+					if (r_map[i][j] == 7)
+					{
 
-					  //敵オブジェクト作成
-					  CObjRoomGimmick* objrg = new CObjRoomGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
-					  Objs::InsertObj(objrg, OBJ_ROOM_GIMMICK, 11);
+						//敵オブジェクト作成
+						CObjRoomGimmick* objrg = new CObjRoomGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
+						Objs::InsertObj(objrg, OBJ_ROOM_GIMMICK, 11);
 
-					  CObjRoomGimmick* rgmk = (CObjRoomGimmick*)Objs::GetObj(OBJ_ROOM_GIMMICK);
-					  rgmk->SetX(i);
-					  rgmk->SetY(j);
+						CObjRoomGimmick* rgmk = (CObjRoomGimmick*)Objs::GetObj(OBJ_ROOM_GIMMICK);
+						rgmk->SetX(i);
+						rgmk->SetY(j);
 
 
-				  }
-			  }
-		  }
-	  }
- }
+					}
+				}
+			}
+		}
+	}
 }
