@@ -28,7 +28,7 @@ public:
 	void Settakeflag(bool i) { take_flag = i; }		//主人公に渡す、アイテムを持っているかどうかのフラグ（1番用）、中身いじります
 	void Settakeflag_2(bool i) { take_flag_2 = i; } //2番用
 	void Settakeflag_3(bool i) { take_flag_3 = i; } //3番用
-
+	void SetID(int id) { b_id = id; }
 	
 private:
 
@@ -40,7 +40,6 @@ private:
 	bool take_flag_2;	//2番
 	bool take_flag_3;	//3番
 
-	
 
 	int m_id;	//key用変数
 	int h_id;	//Heal用変数

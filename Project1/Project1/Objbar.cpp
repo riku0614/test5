@@ -98,7 +98,7 @@ void CObjbar::Draw()
 		{
 			for (int j = 0; j < ROOM_Y; j++)
 			{
-				if (r_map[i][j] == 26)
+				if (r_map[i][j] == BAR)
 				{
 					//表示位置の設定
 					dst.m_top = i * 64.0f + hy;
@@ -117,7 +117,7 @@ void CObjbar::Draw()
 		{
 			for (int j = 0; j < MAP_Y; j++)
 			{
-				if (m_map[i][j] == 26)
+				if (m_map[i][j] == BAR)
 				{
 					//表示位置の設定
 					dst.m_top = i * 64.0f + hy;
