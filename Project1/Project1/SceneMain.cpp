@@ -79,11 +79,13 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"kaidan2.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"アイテム(仮).png", 8, TEX_SIZE_512);
 	Draw::LoadImageW(L"鍵.png", 9, TEX_SIZE_512);
-	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);          //10
+	Draw::LoadImageW(L"扉.png", 10, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"char1.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"char2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"char3.png", 13, TEX_SIZE_512);
 	Draw::LoadImageW(L"char4.png", 14, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"手形1.png", 15, TEX_SIZE_512);
 	Draw::LoadImageW(L"呪い.png", 16, TEX_SIZE_512);
 	Draw::LoadImageW(L"画面.png", 17, TEX_SIZE_1024);
@@ -96,6 +98,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"敵黄色(仮).png", 32, TEX_SIZE_512);
 
+	
+
 	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（右）1.png", 27, TEX_SIZE_512);
@@ -103,11 +107,14 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"本棚.png", 29, TEX_SIZE_512);
 	Draw::LoadImageW(L"机まとめ.png", 30, TEX_SIZE_1024);                             //30
 	Draw::LoadImageW(L"椅子まとめ.png", 31, TEX_SIZE_1024);
+	Draw::LoadImageW(L"敵黄色(仮).png", 32, TEX_SIZE_512);
 	Draw::LoadImageW(L"ドット絵　本.png", 33, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁左上.png", 34, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁右上.png", 35, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁右下.png", 36, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁左下.png", 37, TEX_SIZE_512);
+	Draw::LoadImageW(L"敵赤色(仮).png", 38, TEX_SIZE_512);
+	Draw::LoadImageW(L"床青.png", 39, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁角２右下.png", 38, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁角２左下.png", 39, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁角２左上.png", 40, TEX_SIZE_512);                       //40
@@ -116,11 +123,12 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"床青.png", 43, TEX_SIZE_512);
 	Draw::LoadImageW(L"バールのようなもの.png", 44, TEX_SIZE_1024);
 
-
 	
 
 	
-	Draw::LoadImageW(L"教卓.png", 45, TEX_SIZE_512);
+	Draw::LoadImageW(L"教卓.png", 40, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"black.png", 40, TEX_SIZE_1024);
 
 
 

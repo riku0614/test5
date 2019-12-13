@@ -32,26 +32,6 @@ bool UnitVec(float* vx, float* vy)
 
 	return true;
 }
-
-//GetAtan2Angle関数
-/*引数１　float w   :幅
-　引数２　float h   :高さ
-  戻り値　float     :角度（０°～360°）
-  内容
-  高さと幅から直角三角形があると仮定しその角度を求める*/
-float GetAtan2Angle(float w, float h)
-{
-	//atan2で角度を求める
-	float r = atan2(h, w)*180.0f / 3.14f;
-
-	//-180°～0°を180°～360°に変換
-	if (r < 0)
-	{
-		r = 360 - abs(r);
-	}
-
-	return r;
-}
 //MapChange関数
 /*
 引数１　int m     :map切り替え用変数
@@ -182,6 +162,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					{
 						m_map[MAP_X][MAP_Y] = 1;
 
+						//gimmickオブジェクト作成
 						CObjGimmick* objg = new CObjGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg, OBJ_GIMMICK, 11);
 
@@ -205,6 +186,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					{
 						m_map[MAP_X][MAP_Y] = 1;
 
+						//gimmickオブジェクト作成
 						CObjGimmick2* objg2 = new CObjGimmick2((j - 1 * 30)*64.0f + -(main->GetScrollX()), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg2, OBJ_GIMMICK2, 11);
 
@@ -227,7 +209,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick3* objg3 = new CObjGimmick3(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg3, OBJ_GIMMICK3, 11);
 
@@ -250,7 +232,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick4* objg4 = new CObjGimmick4(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg4, OBJ_GIMMICK4, 11);
 
@@ -273,7 +255,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick5* objg5 = new CObjGimmick5(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg5, OBJ_GIMMICK5, 11);
 
@@ -296,7 +278,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick2* objg2 = new CObjGimmick2(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg2, OBJ_GIMMICK2, 11);
 
@@ -319,7 +301,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick7* objg7 = new CObjGimmick7(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg7, OBJ_GIMMICK7, 11);
 
@@ -342,7 +324,7 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 					if (m_map[i][j] == 7)
 					{
 
-						//敵オブジェクト作成
+						//gimmickオブジェクト作成
 						CObjGimmick8* objg8 = new CObjGimmick8(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 						Objs::InsertObj(objg8, OBJ_GIMMICK8, 11);
 
@@ -357,29 +339,29 @@ void HitBoxChanger(int m, int m_map[MAP_X][MAP_Y], bool room_in, int r, int r_ma
 			}
 		}
 	}
-	else 
+	else
 	{
-	  if (r == 1||r == 0)
-	  {
-		  for (int i = 0; i < ROOM_X; i++)
-		  {
-			  for (int j = 0; j < ROOM_Y; j++)
-			  {
-				  if (r_map[i][j] == 7)
-				  {
+		if (r == 1 || r == 0)
+		{
+			for (int i = 0; i < ROOM_X; i++)
+			{
+				for (int j = 0; j < ROOM_Y; j++)
+				{
+					if (r_map[i][j] == 7)
+					{
 
-					  //敵オブジェクト作成
+					  //gimmickオブジェクト作成
 					  CObjRoomGimmick* objrg = new CObjRoomGimmick(j*64.0f + main->GetScrollX(), i*64.0f + main->GetScrollY());
 					  Objs::InsertObj(objrg, OBJ_ROOM_GIMMICK, 11);
 
-					  CObjRoomGimmick* rgmk = (CObjRoomGimmick*)Objs::GetObj(OBJ_ROOM_GIMMICK);
-					  rgmk->SetX(i);
-					  rgmk->SetY(j);
+						CObjRoomGimmick* rgmk = (CObjRoomGimmick*)Objs::GetObj(OBJ_ROOM_GIMMICK);
+						rgmk->SetX(i);
+						rgmk->SetY(j);
 
 
-				  }
-			  }
-		  }
-	  }
- }
+					}
+				}
+			}
+		}
+	}
 }
