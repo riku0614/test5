@@ -55,6 +55,10 @@ void CObjMain::Init()
 	r[4] = Save::ExternalDataOpen(L"教室４右サクラ.csv", &size);
 	r[5] = Save::ExternalDataOpen(L"教室５右サクラ.csv", &size);
 	r[6] = Save::ExternalDataOpen(L"教室６右サクラ.csv", &size);
+
+	p[0] = Save::ExternalDataOpen(L"チーム開発マップ案1.csv", &size);
+	p[1] = Save::ExternalDataOpen(L"マップ３csv", &size);
+	p[2] = Save::ExternalDataOpen(L"チーム開発マップ案2.csv", &size);
 	p[3] = Save::ExternalDataOpen(L"チーム開発マップ案3.csv", &size);
     p[4] = Save::ExternalDataOpen(L"チーム開発マップ案４.csv", &size);
 	p[5] = Save::ExternalDataOpen(L"チーム開発マップ案5.csv", &size);
