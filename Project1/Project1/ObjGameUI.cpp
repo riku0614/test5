@@ -25,6 +25,7 @@ void CObjGameUI::Init()
 
 	m_id = 0;
 	h_id = 0;
+	b_id = 0;
 }
 
 //アクション
@@ -39,6 +40,7 @@ void CObjGameUI::Action()
 	
 	m_id = hero->GetKeyID();
 	h_id = hero->GatHealID();
+	b_id = hero->GetBarID();
 	
 	//アイテムを使ったらアイテムを消す処理
 	if (hero->SetItemflag() == true) //アイテム欄の1番目
@@ -47,19 +49,18 @@ void CObjGameUI::Action()
 		m_id = 0;
 	}
 
-	
-	
+
 	if (hero->SetItemflag_2() == true) //アイテム欄の2番目
 	{
 		hero->SetFlug_2(false);
 		h_id = 0;
 	}
-	/*
+	
 	if (hero->SetItemflag_3() == true) //アイテム欄の3番目
 	{
 		hero->SetFlug_3(false);
-		m_id = 0;
-	}*/
+		b_id = 0;
+	}
 }
 
 //ドロー
@@ -249,8 +250,8 @@ void CObjGameUI::Draw()
 			dst.m_right = dst.m_left + 38.0f;
 			dst.m_bottom = dst.m_top + 45.0f;
 
-			//描画設定
-			Draw::Draw(26, &src, &dst, c, 0.0f);
+		//描画設定
+		Draw::Draw(38, &src, &dst, c, 0.0f);
 
 			take_flag_3 = true; //3番目のアイテムを持っているかどうかのフラグをtrueにする→主人公にてアイテムを使用できるかどうかの判定
 

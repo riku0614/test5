@@ -135,11 +135,27 @@ void CObjGimmick::Draw()
 			dst.m_bottom = dst.m_top + 64.0f;
 
 
-
+			                                                           
 			m_map[pi][pj] = 1;
 			Hits::DeleteHitBox(this);
 
 			
+
+		}
+		else if(m_map[pi - 2][pj] == 9)
+		{
+		//表示位置の設定
+		dst.m_top = (pi - 2) * 64.0f + hy;
+		dst.m_left = pj * 64.0f + hx;
+		dst.m_right = dst.m_left + 64.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+
+
+		m_map[pi][pj] = 1;
+		Hits::DeleteHitBox(this);
+
+
 
 		}
 		//下
@@ -171,6 +187,18 @@ void CObjGimmick::Draw()
 
 			
 		}
+
+		else if (m_map[pi][pj - 2] == 11)
+		{
+			//表示位置の設定
+			dst.m_top = pi * 64.0f + hy;
+			dst.m_left = (pj - 2) * 64.0f + hx;
+			dst.m_right = dst.m_left + 64.0f;
+			dst.m_bottom = dst.m_top + 64.0f;
+
+			m_map[pi][pj] = 1;
+			Hits::DeleteHitBox(this);
+		}
 		//右
 		else if (m_map[pi][pj + 1] == 10)
 		{
@@ -181,9 +209,18 @@ void CObjGimmick::Draw()
 			dst.m_bottom = dst.m_top + 64.0f;
 
 			
-			Hits::DeleteHitBox(this);
+			Hits::DeleteHitBox(this);	
+		}
+		else if (m_map[pi][pj + 2] == 10)
+		{
+			//表示位置の設定
+			dst.m_top = pi * 64.0f + hy;
+			dst.m_left = (pj + 2) * 64.0f + hx;
+			dst.m_right = dst.m_left + 64.0f;
+			dst.m_bottom = dst.m_top + 64.0f;
 
-			
+			m_map[pi][pj] = 1;
+			Hits::DeleteHitBox(this);
 		}
 
 

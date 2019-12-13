@@ -118,8 +118,14 @@
     <ClCompile Include="ObjGimmick8.cpp">
       <Filter>ソースファイル\NewFilter1</Filter>
     </ClCompile>
+    <ClCompile Include="ObjFastEnemy.cpp">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClCompile>
     <ClCompile Include="Objbar.cpp">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjSpawnEnemy.cpp">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClCompile>
     <ClCompile Include="ObjText.cpp" />
   </ItemGroup>
@@ -324,6 +330,12 @@
     </ClInclude>
     <ClInclude Include="Objbar.h">
       <Filter>ソースファイル\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFastEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSpawnEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
     <ClInclude Include="ObjEnemy.h">
       <Filter>ソースファイル\敵情報</Filter>

@@ -57,6 +57,7 @@ public:
 
 	int GetKeyID() { return m_id; }
 	int GatHealID() { return h_id; }
+	bool GetEnemyFlag() { return enemy_flg; }
 	int GetBarID() { return b_id; }
 
 	void SetHitFlagX(bool h) { hit_flag_x = h; }
@@ -118,6 +119,8 @@ private:
 	bool stey_flg1;
 	bool stey_flg2;
 	bool stey_flg3;
+
+	bool enemy_flg;
 
 	bool hit_flag_x;
 

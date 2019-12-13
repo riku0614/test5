@@ -44,6 +44,8 @@ void CObjHero::Init()
 	mi_hit_left = false;
 	mi_hit_right = false;
 
+	enemy_flg = false;
+
 	m_block_type = 0;
 
 
@@ -65,7 +67,6 @@ void CObjHero::Init()
 	k_id = 99;
 	h_id = 99;
 	b_id = 99;
-
 	hit_flag_x = false;
 	hit_flag_y = false;
 	//当たり判定用hitboxを作成
@@ -303,13 +304,15 @@ void CObjHero::Action()
 		//敵と当たったらフラグを持てる
 		CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 
-
-
-		//主人公機オブジェクトと接触したら敵削除
-		if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg == false)
-		{
-			//音楽情報の読み込み
-			Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
+	
+	
+	//主人公機オブジェクトと接触したら敵削除
+	if (hit->CheckObjNameHit(OBJ_ENEMY) != nullptr&&m_flg==false||
+		hit->CheckObjNameHit(OBJ_FASTENEMY) != nullptr&&m_flg == false|| 
+		hit->CheckObjNameHit(OBJ_SPWANENEMY) != nullptr&&m_flg == false)
+	{
+		//音楽情報の読み込み
+		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
 
 			//音楽スタート
 			Audio::Start(6);
