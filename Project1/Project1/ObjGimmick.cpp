@@ -97,6 +97,11 @@ void CObjGimmick::Action()
 
 }
 
+		
+
+	
+
+
 //ÉhÉçÅ[
 void CObjGimmick::Draw()
 {
@@ -117,7 +122,7 @@ void CObjGimmick::Draw()
 	float hy = main->GetScrollY();
 
 
-	if (gimmick_flg == true)
+	if (gimmick_flg == true&&main->RoomFlag()==false)
 	{
 		//è„
 

@@ -53,12 +53,15 @@ public:
 	int GatHealID() { return h_id; }
 	bool GetEnemyFlag() { return enemy_flg; }
 	int GetBarID() { return b_id; }
+
+	void SetHitFlagX(bool h) { hit_flag_x = h; }
+	void SetHitFlagY(bool h) { hit_flag_y = h; }
 private:
 	float save[Status][2];
 
 	int k_id;//アイテム（鍵）のID
 	int h_id;//回復アイテムのID
-	int b_id;
+	int b_id;//バールのID
 	int m_id;//キャラクターID
 	float m_px; //位置
 	float m_py;
@@ -112,4 +115,8 @@ private:
 	bool stey_flg3;
 
 	bool enemy_flg;
+
+	bool hit_flag_x;
+
+	bool hit_flag_y;
 };

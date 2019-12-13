@@ -31,6 +31,9 @@ void CObjEnemy::Init()
 	m_id = CHAR_ENEMY;
 	k_id = 1;
 	m_time = 0;
+	damage_time = 0.0f;
+
+	boost_flag = false;
 
 
 	
@@ -80,17 +83,14 @@ void CObjEnemy::Action()
 		{
 			
 			CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-			enemy->SetX(hx + -(scrollx)+(64.0f * 3));
-			enemy->SetY(hy + -(scrolly)-(64.0f * 3));
 			m_time = 0;
 			
-			zx = m_ex / 64;
-			zy = m_ey / 64;
 
-			if (m_map[zy][zx] == 0)
-			{
-				;
-			}
+			
+			
+			m_ex = hx + -(scrollx)+(64.0f * 2);
+			m_ey = hy + -(scrolly)+(64.0f * 2);
+			
 		}
 	}
 	//移動ベクトルの正規化
@@ -169,7 +169,44 @@ void CObjEnemy::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
+	/*
+	//ダメージブースト
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && boost_flag == false)
+	{
+		if (hero->GetX() + 64.0f - scroll->GetScrollX() < m_ex )
+		{
+			hero->SetHitFlagX(true);
+			boost_flag = true;
+		}
+		else if (hero->GetX()+64.0f - scroll->GetScrollX() > m_ex)
+		{
+			hero->SetHitFlagX(false);
+			boost_flag = true;
+		}
+		else if (hero->GetY() + 64.0f - scroll->GetScrollY() > m_ey )
+		{
+			hero->SetHitFlagY(true);
+			boost_flag = true;
+		}
+		else if (hero->GetY() + 64.0f - scroll->GetScrollY() < m_ey)
+		{
+			hero->SetHitFlagY(false);
+			boost_flag = true;
+		}
 	
+		if (boost_flag == true)
+		{
+			damage_time++;
+
+			if (damage_time == 30)
+			{
+				boost_flag = false;
+				damage_time = 0.0f;
+			}
+		}
+	
+	}*/
+
 }
 
 //ドロー

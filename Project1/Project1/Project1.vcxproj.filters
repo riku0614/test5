@@ -127,6 +127,7 @@
     <ClCompile Include="ObjSpawnEnemy.cpp">
       <Filter>ソースファイル\敵情報</Filter>
     </ClCompile>
+    <ClCompile Include="ObjText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -336,6 +337,10 @@
     <ClInclude Include="ObjSpawnEnemy.h">
       <Filter>ソースファイル\敵情報</Filter>
     </ClInclude>
+    <ClInclude Include="ObjEnemy.h">
+      <Filter>ソースファイル\敵情報</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjText.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダーファイル">
@@ -374,6 +379,34 @@
     <Filter Include="ソースファイル\NewFilter1">
       <UniqueIdentifier>{c861dc31-577f-488f-addc-d3e919d6d1c2}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="ObjClickTitle.h" />
+    <ClInclude Include="GameHead.h" />
+    <ClInclude Include="GameL\Audio.h" />
+    <ClInclude Include="GameL\DirectXDevice.h" />
+    <ClInclude Include="GameL\DrawFont.h" />
+    <ClInclude Include="GameL\DrawTexture.h" />
+    <ClInclude Include="GameL\HitBoxManager.h" />
+    <ClInclude Include="GameL\MultiThread.h" />
+    <ClInclude Include="GameL\SceneManager.h" />
+    <ClInclude Include="GameL\SceneObjManager.h" />
+    <ClInclude Include="GameL\SetWindow.h" />
+    <ClInclude Include="GameL\UserData.h" />
+    <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="ObjGameClear.h" />
+    <ClInclude Include="ObjGameOver.h" />
+    <ClInclude Include="ObjGameUI.h" />
+    <ClInclude Include="ObjHero.h" />
+    <ClInclude Include="ObjItem.h" />
+    <ClInclude Include="ObjMain.h" />
+    <ClInclude Include="ObjMenu.h" />
+    <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneGameClear.h" />
+    <ClInclude Include="SceneGameOver.h" />
+    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneMenu.h" />
+    <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="UtilityModule.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="0タイトルBGM.wav" />
