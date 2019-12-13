@@ -79,7 +79,7 @@ void CObjGimmick8::Action()
 		{
 			//音楽情報の読み込み
 			Audio::LoadAudio(7, L"7ギミックSE.wav", SOUND_TYPE::EFFECT);
-
+			
 			//音楽スタート
 			Audio::Start(7);
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)

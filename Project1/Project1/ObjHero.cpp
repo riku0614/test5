@@ -64,9 +64,10 @@ void CObjHero::Init()
 	m_stamina_limid = 90.0f;
 
 	m_id = CHAR_HERO;
-	k_id = 0;
-	h_id = 0;
-	b_id = 0;
+	k_id = 99;
+	h_id = 99;
+	b_id = 99;
+
 	hit_flag_x = false;
 	hit_flag_y = false;
 	//“–‚½‚è”»’è—phitbox‚ğì¬

@@ -1,7 +1,8 @@
 #pragma once
-#include <crtdbg.h>
-#include <Windows.h>
-
+#include <windows.h>
+#include <stdio.h>
+#include <string.h>
+#include <mmsystem.h>
 namespace GameL
 {
 	//ウィンドウ作成

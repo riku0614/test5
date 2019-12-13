@@ -9,12 +9,14 @@
 #include "SceneMain.h"
 #include "GameL/Audio.h"
 
+
 //使用するネームスペース
 using namespace GameL;
 
 //イニシャライズ
 void CObjTitle::Init()
 {
+
 	//Mouseの位置取得用変数初期化
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
