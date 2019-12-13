@@ -90,8 +90,10 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 22, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 23, TEX_SIZE_1024);
 	Draw::LoadImageW(L"床穴.png", 24, TEX_SIZE_512);
-	Draw::LoadImageW(L"薬.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"バールのようなもの.png", 26, TEX_SIZE_1024);
+	Draw::LoadImageW(L"敵黄色(仮).png", 32, TEX_SIZE_512);
+	Draw::LoadImageW(L"敵赤色(仮).png", 38, TEX_SIZE_512);
+	Draw::LoadImageW(L"床青.png", 39, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"扉1.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"扉（下）1.png", 26, TEX_SIZE_512);
@@ -104,6 +106,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"壁右上.png", 35, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁右下.png", 36, TEX_SIZE_512);
 	Draw::LoadImageW(L"壁左下.png", 37, TEX_SIZE_512);
+	Draw::LoadImageW(L"教卓.png", 40, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
 	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
@@ -137,10 +140,6 @@ void CSceneMain::InitScene()
 	////アイテムオブジェクト作成
 	//CObjItem* obji = new CObjItem(map);
 	//Objs::InsertObj(obji, OBJ_ITEM, 13);
-
-	////回復アイテムオブジェクト作成
-	//CObjheal* objh = new CObjheal(map);
-	//Objs::InsertObj(objh, OBJ_HEAL, 14);
 
 	
 	
