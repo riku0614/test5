@@ -209,7 +209,7 @@ void CObjMain::Action()
 		//主人公の位置を取得
 		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 		float hx = hero->GetX();
-		float hy = hero->GetY();//知らないです
+		float hy = hero->GetY(); 
 
 	
 
@@ -1379,7 +1379,7 @@ void CObjMain::BlockHit(
 								}
 
 
-						}
+						
 					
 
 
@@ -1472,8 +1472,8 @@ void CObjMain::ItemHit(
 								//右
 								*right = true;//主人公から見て、左の部分が衝突している
 								*x = bx + ITEM_SIZE_X + (scroll_x);//ブロックの位置-主人公の幅
-								ix = bx / 64;
-								iy = by / 64;
+								ix = bx / 64.0f;
+								iy = by / 64.0f;
 
 								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
@@ -1490,8 +1490,8 @@ void CObjMain::ItemHit(
 								//上
 								*down = true;//主人公から見て、下の部分が衝突している
 								*y = by - 64.0f + (scroll_y);//ブロックの位置-主人公の幅
-								ix = bx / 64;
-								iy = by / 64;
+								ix = bx / 64.0f;
+								iy = by / 64.0f;
 
 								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
@@ -1507,8 +1507,8 @@ void CObjMain::ItemHit(
 								//左
 								*left = true;//主人公から見て、右の部分が衝突している
 								*x = bx - 64.0f + (scroll_x);//ブロックの位置-主人公の幅
-								ix = bx / 64;
-								iy = by / 64;
+								ix = bx / 64.0f;
+								iy = by / 64.0f;
 
 								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
@@ -1524,8 +1524,8 @@ void CObjMain::ItemHit(
 								//下
 								*up = true;//主人公から見て、上の部分が衝突している
 								*y = by + ITEM_SIZE_Y + (scroll_y);//ブロックの位置-主人公の幅
-								ix = bx / 64;
-								iy = by / 64;
+								ix = bx / 64.0f;
+								iy = by / 64.0f;
 								//アイテムを取得した際にアイテムを消す処理
 								if (delete_flg == true)
 								{
@@ -1671,8 +1671,8 @@ void CObjMain::ItemHit(
 							//下
 							*up = true;//主人公から見て、上の部分が衝突している
 							*y = by + ITEM_SIZE_Y + (scroll_y);//ブロックの位置-主人公の幅
-							ix = bx / 64;
-							iy = by / 64;
+							ix = bx / 64.0f;
+							iy = by / 64.0f;
 
 								if (delete_flg == true)
 								{
@@ -1745,8 +1745,8 @@ void CObjMain::Draw()
 					//表示位置の設定
 					dst.m_top = i * 64.0f + m_scroll_y;
 					dst.m_left = j * 64.0f + m_scroll_x;
-					dst.m_right = dst.m_left + 64.0;
-					dst.m_bottom = dst.m_top + 64.0;
+					dst.m_right = dst.m_left + 64.0f;
+					dst.m_bottom = dst.m_top + 64.0f;
 
 
 					//床テクスチャ
@@ -1965,8 +1965,8 @@ void CObjMain::Draw()
 					//表示位置の設定
 					dst.m_top = i * 64.0f + m_scroll_y;
 					dst.m_left = j * 64.0f + m_scroll_x;
-					dst.m_right = dst.m_left + 64.0;
-					dst.m_bottom = dst.m_top + 64.0;
+					dst.m_right = dst.m_left + 64.0f;
+					dst.m_bottom = dst.m_top + 64.0f;
 
 
 					//床テクスチャ

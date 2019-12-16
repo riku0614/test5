@@ -195,7 +195,7 @@ void CObjSpwanEnemy::Draw()
 
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
 	dst.m_top = 0.0f + m_ey + scroll->GetScrollY();
-	dst.m_left = (64.0) + m_ex + scroll->GetScrollX();
+	dst.m_left = (64.0f) + m_ex + scroll->GetScrollX();
 	dst.m_right = (64 - 64.0f) + m_ex + scroll->GetScrollX();
 	dst.m_bottom = 64.0f + m_ey + scroll->GetScrollY();
 

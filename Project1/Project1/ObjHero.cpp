@@ -452,8 +452,8 @@ void CObjHero::Draw()
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
 
 	}
@@ -461,8 +461,8 @@ void CObjHero::Draw()
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
 
 	}
@@ -470,8 +470,8 @@ void CObjHero::Draw()
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
 
 		
@@ -482,8 +482,8 @@ void CObjHero::Draw()
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
 
 		
@@ -493,8 +493,8 @@ void CObjHero::Draw()
 
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
 	}
 
