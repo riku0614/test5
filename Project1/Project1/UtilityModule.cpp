@@ -1,6 +1,8 @@
 #include "GameHead.h"
 #include "UtilityModule.h"
 #include "GameL/UserData.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 //---UnitVec関数
 /*引数１ float* vx  ; ベクトルのX成分のポインタ
@@ -65,26 +67,25 @@ void MapChanger(int m ,int m_map[MAP_X][MAP_Y], unique_ptr<wchar_t>* p)
 	
 	int size;
 
-
-
 	int map[MAP_X][MAP_Y];
 
 	int count = 1;
 
-	for (int i = 0; i < MAP_X; i++)
-	{
-		for (int j = 0; j < MAP_Y; j++)
-		{
-			int w = 0;
-			swscanf_s(&p[m].get()[count], L"%d", &w);
-
-			map[i][j] = w;
-			count += 3;
-
-		}
-	}
-	memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 	
+	
+		for (int i = 0; i < MAP_X; i++)
+		{
+			for (int j = 0; j < MAP_Y; j++)
+			{
+				int w = 0;
+				swscanf_s(&p[m].get()[count], L"%d", &w);
+
+				map[i][j] = w;
+				count += 3;
+
+			}
+		}
+		memcpy(m_map, map, sizeof(int)*(MAP_X * MAP_Y));
 }
 //RoomMapChange関数
 /*

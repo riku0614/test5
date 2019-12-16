@@ -57,7 +57,13 @@ void CObjEnemy::Action()
 
 	//マップ情報の取得
 	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
 	if (main->RoomFlag() == false && main->GetFlug() == true)
+	{
+		//当たり判定用HitBoxを作成
+		Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	}
+	if (main->GetFlug() == true&&main->FirstFlag()==true)
 	{
 		//当たり判定用HitBoxを作成
 		Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_ENEMY, 1);
@@ -175,7 +181,11 @@ void CObjEnemy::Action()
 	{
 		Hits::DeleteHitBox(this);
 	}
-
+	if (main->GetFlug2() == true)
+	{
+		this->SetStatus(false);    //自身に削除命令を出す
+		Hits::DeleteHitBox(this);
+	}
 }
 
 //ドロー

@@ -115,28 +115,29 @@ void CObjHero::Action()
 		}
 
 		//キーの入力方向
-		if (Input::GetVKey('D') == true)
-		{
-			m_vx += m_speed_power;
-			m_posture = 0.0f;
-			m_ani_time += 1;
-		}
-		else if (Input::GetVKey('A') == true)
+		
+		if (Input::GetVKey('A') == true&&Input::GetVKey('D')!=true)
 		{
 			m_vx -= m_speed_power;
 			m_posture = 1.0f;
 			m_ani_time += 1;
 		}
-		else if (Input::GetVKey('W') == true)
+		else if (Input::GetVKey('W') == true&&Input::GetVKey('S') != true)
 		{
 			m_vy -= m_speed_power;
 			m_posture = 1.0f;
 			m_ani_time += 1;
 		}
-		else if (Input::GetVKey('S') == true)
+		else if (Input::GetVKey('S') == true&&Input::GetVKey('W') != true)
 		{
 			m_vy += m_speed_power;
 			m_posture = 1.0f;
+			m_ani_time += 1;
+		}
+		else if (Input::GetVKey('D') == true && Input::GetVKey('A') != true)
+		{
+			m_vx += m_speed_power;
+			m_posture = 0.0f;
 			m_ani_time += 1;
 		}
 	}
@@ -369,13 +370,11 @@ void CObjHero::Action()
 
 void CObjHero::Draw()
 {
-	int AniData[3][4] =
+	int AniData[4] =
 	{
 		0,1,2,1,
-		0,1,2,1,
-		0,1,2,1,
-	};
 
+	};
 	//描画カラー情報　R=RED　G=Green　B=Blue　A=Alpha（透過情報）
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -404,10 +403,10 @@ void CObjHero::Draw()
 		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('W') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_top = 192.0f;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0f;
+		src.m_bottom = 256.0f;
 
 		
 	}
@@ -415,107 +414,96 @@ void CObjHero::Draw()
 		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('A') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_top = 64.0f;
+		src.m_left = 0.0f + +AniData[m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + +AniData[m_ani_frame] * 64.0f;
+		src.m_bottom = 128.0f;
+		
 	}
 	else if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0 ||
 		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('S') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_top = 128.0f;
+		src.m_left = 0.0f + +AniData[m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0f;
+		src.m_bottom = 192.0f;
 
+	
 	}
 	else if (Input::GetVKey(VK_LSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0 ||
 		Input::GetVKey(VK_RSHIFT) == true && Input::GetVKey('D') == true && m_stamina_limid > 0)
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0f;
+		src.m_left = 0.0f + +AniData[m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0f;
 		src.m_bottom = 64.0f;
+		
+
+
 	}
 	else if (Input::GetVKey('W') == true )
 	{
 		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_bottom = 64.0f;
+		src.m_top = 192.0f;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0;
+		src.m_bottom = 256.0f;
+
+		
+
 
 	}
 	else if (Input::GetVKey('A') == true)
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0;
 		src.m_bottom = 64.0f;
+
+		
+
+	
 
 	}
 	else if (Input::GetVKey('S') == true)
 	{
 		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_bottom = 64.0f;
+		src.m_top = 128.0f;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0f;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0f;
+		src.m_bottom = 192.0f;
 
 		
 
-		
+
 	}
 	else if (Input::GetVKey('D') == true)
 	{
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0;
 		src.m_bottom = 64.0f;
 
-		
 	}
 	else
 	{
-
 		//切り取り位置設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
-		src.m_right = 64.0f + AniData[m_ani_move][m_ani_frame] * 64.0;
+		src.m_left = 0.0f + AniData[m_ani_frame] * 64.0;
+		src.m_right = 64.0f + AniData[m_ani_frame] * 64.0;
 		src.m_bottom = 64.0f;
 	}
 
 
-	
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (64.0f*m_posture) + m_px;
 	dst.m_right = (64 - 64.0f*m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
-	if (Input::GetVKey('D') == true|| Input::GetVKey('A') == true||stey_flg1==true)
-	{
-		Draw::Draw(11, &src, &dst, c, 0.0f);
-		stey_flg1 = true;
-		stey_flg2 = false;
-		stey_flg3 = false;
-	}
-	if (Input::GetVKey('W') == true || stey_flg2 == true)
-	{
-		Draw::Draw(12, &src, &dst, c, 0.0f);
-		stey_flg1 = false;
-		stey_flg2 = true;
-		stey_flg3 = false;
-	}
-	if (Input::GetVKey('S') == true || stey_flg3 == true)
-	{
-		Draw::Draw(14, &src, &dst, c, 0.0f);
-		stey_flg1 = false;
-		stey_flg2 = false;
-		stey_flg3 = true;
-	}
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 }
