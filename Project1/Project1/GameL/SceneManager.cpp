@@ -79,11 +79,11 @@ void CSceneManager::SceneDraw()
 {
 	//シーンの中にいる描画オブジェクト情報
 	CSceneObjManager::ObjDraw();
-	//当たり判定表示
-	if (HIT_DRAW)
-	{
-		CHitBoxManager::DrawHitBox();
-	}
+	////当たり判定表示
+	//if (HIT_DRAW)
+	//{
+	//	CHitBoxManager::DrawHitBox();
+	//}
 }
 
 //初期化

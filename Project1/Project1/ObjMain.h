@@ -39,6 +39,8 @@ class CObjMain : public CObj
 
 		bool RoomFlag() { return room_in; }//教室内外判定
 
+		bool FirstFlag() { return first_stop; }
+
 		//フォント表示フラグ切り替え用
 		bool GetStoryFlag() { return font_story_flg; }
 		void SetStoryFlag(bool f) { font_story_flg = f; }
@@ -98,6 +100,8 @@ class CObjMain : public CObj
 		float save_scroll_y[MAP_NUMBER][2];
 		int save_map[MAP_X][MAP_Y];
 		int save_room_map[ROOM_X][ROOM_Y][ROOM_NUMBER];
+
+		unsigned int rand_map;
 
 		bool stop_flg;    //マップ切り替えやギミックや敵キャラ、アイテムを配置する処理を一度だけ回す用のフラグ
 		bool stop_flg2;   //↑のギミック切り替え用

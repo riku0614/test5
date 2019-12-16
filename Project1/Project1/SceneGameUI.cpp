@@ -30,8 +30,7 @@ CSceneGameUI::~CSceneGameUI()
 //ゲームUI初期化メソッド
 void CSceneGameUI::InitScene()
 {
-	Draw::LoadImageW(L"ダメージエフェクト1.png", 21, TEX_SIZE_1024);
-	Draw::LoadImageW(L"ダメージエフェクト2.png", 22, TEX_SIZE_1024);
+
 
 	Draw::LoadImage(L"アイテム欄.png",0,TEX_SIZE_512);
 
