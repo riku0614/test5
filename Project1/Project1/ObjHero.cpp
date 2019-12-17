@@ -44,6 +44,8 @@ void CObjHero::Init()
 	mi_hit_left = false;
 	mi_hit_right = false;
 
+	m_hero_stop = false;
+
 	enemy_flg = false;
 
 	m_block_type = 0;
@@ -76,226 +78,235 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	
-	//メニューキー
-	if (Input::GetVKey('M') == true)
-	{
-		Scene::SetScene(new CSceneMenu);
-	}
-
-
-	//Zキー入力で速度アップ
-	if (m_stamina_limid >= 10 && Input::GetVKey(VK_LSHIFT) == true || 
-		m_stamina_limid >= 10 && Input::GetVKey(VK_RSHIFT) == true)
-	{
-		
-		//ダッシュ時の速度
-		m_speed_power =1.5f;
-		m_ani_max_time = 4;
-
-		m_stamina_limid -= 0.5f;
-	}
-	else   
-	{
-		//通常速度
-		m_speed_power = 1.0f;
-		m_ani_max_time = 4;
-
-		if (m_stamina_limid < 90.0f)
-		{
-			m_stamina_limid += 0.5f;
-		}
-
-	}
-
-	//キーの入力方向
-	if (Input::GetVKey('D') == true)
-	{
-		m_vx += m_speed_power;
-		m_posture = 0.0f;
-		m_ani_time += 1;
-	}
-	else if (Input::GetVKey('A') == true)
-	{
-		m_vx -= m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-	}
-	else if (Input::GetVKey('W') == true)
-	{
-		m_vy -= m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-	}
-	else if (Input::GetVKey('S') == true)
-	{
-		m_vy += m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-	}
-	
-
-	//主人公のアイテムと当たったフラグを持ってくる
-	CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 	//ゲームメインにフラグをセットする
 	CObjMain* Main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
-	//1番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false && Main->GetMapItem() == true||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false && Main->GetMapItem() == true)
+	if (m_hero_stop == false)
 	{
-		peperon_flag = true;
-		k_id = ITEM_KEY;
-		Main->SetDelete(true);
-		enemy_flg = true;
-		//Main->GetMapItem() = false;
-	}
-	
-	//2番目のアイテムをとる処理
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true)
-	{
-		peperon_flag_2 = true;
-		h_id = ITEM_HEAL;
-		Main->SetDelete(true);
-		//Main->GetMapItem_2() = false;
-	}
-	
-	if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
-		Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
-		Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
-		Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true)
-	{
-		peperon_flag_3 = true;
-		b_id = ITEM_BAR;
-		Main->SetDelete(true);
-		//Main->GetMapItem_2() = false;
-	}
-	
-
-	//1番目のアイテムを使う処理
-	if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
-	{
-		use_Item_flag = true;
-		UI->Settakeflag(false);
-	}
-
-	//2番目のアイテムを使う処理
-	else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
-	{
-		if (m_hero_life <= 29)
+		//メニューキー
+		if (Input::GetVKey('M') == true)
 		{
-			use_Item_flag_2 = true;
-			m_hero_life = 30;
-			UI->Settakeflag_2(false);
+			Scene::SetScene(new CSceneMenu);
 		}
-		else if (m_hero_life == 30)
+
+
+		//Zキー入力で速度アップ
+		if (m_stamina_limid >= 10 && Input::GetVKey(VK_LSHIFT) == true ||
+			m_stamina_limid >= 10 && Input::GetVKey(VK_RSHIFT) == true)
 		{
-			;
+
+			//ダッシュ時の速度
+			m_speed_power = 1.5f;
+			m_ani_max_time = 4;
+
+			m_stamina_limid -= 0.5f;
 		}
-		
-	}
-	
-	//3番目のアイテムを使う処理
-	else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
-	{
-		use_Item_flag_3 = true;
-		UI->Settakeflag_3(false);
-	}
-	
-	//フラグを踏むと敵が出現
-
-
-	//アニメーションのリセット
-	if (m_ani_time > m_ani_max_time)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
-	}
-
-	//アニメーションフレームのリセット
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-	}
-	
-	//摩擦
-	m_vx += -(m_vx*0.098f);
-	m_vy += -(m_vy*0.098f);
-
-	//高速移動によるblock判定
-	bool b;
-	float pxx, pyy, r;
-	CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-
-	if (pbb->GetScrollX() > 0)
-		pbb->SetScrollX(0);
-	
-	//移動方向にrayを飛ばす
-	float vx;
-	float vy;
-
-	if (m_vx > 0)
-		vx = 500-pbb->GetScrollX();
-	else
-		vx = 0 - pbb->GetScrollX();
-
-	
-	//ray判定
-	b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py -pbb->GetScrollY()+ 32, vx, 0.0f, &pxx, &pyy, &r);
-
-	if (b == true)
-	{
-		//交点取得
-		px = pxx + pbb->GetScrollX();
-		py = pyy - pbb->GetScrollY();
-
-		float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
-		float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
-
-		
-	    //主人公の幅分オフセット
-		if (vx > 0)
-			px += -64;
 		else
-			px += 2;
-
-		
-		//AとBが逆を向いている（主人公が移動先の壁を越えている）
-		if (aa*bb < 0)
 		{
-			//移動ベクトルを（交点→主人公の位置）ベクトルにする
-			m_vx = px - m_px;
+			//通常速度
+			m_speed_power = 1.0f;
+			m_ani_max_time = 4;
+
+			if (m_stamina_limid < 90.0f)
+			{
+				m_stamina_limid += 0.5f;
+			}
+
 		}
-		
+
+		//キーの入力方向
+		if (Input::GetVKey('D') == true)
+		{
+			m_vx += m_speed_power;
+			m_posture = 0.0f;
+			m_ani_time += 1;
+		}
+		else if (Input::GetVKey('A') == true)
+		{
+			m_vx -= m_speed_power;
+			m_posture = 1.0f;
+			m_ani_time += 1;
+		}
+		else if (Input::GetVKey('W') == true)
+		{
+			m_vy -= m_speed_power;
+			m_posture = 1.0f;
+			m_ani_time += 1;
+		}
+		else if (Input::GetVKey('S') == true)
+		{
+			m_vy += m_speed_power;
+			m_posture = 1.0f;
+			m_ani_time += 1;
+		}
 	}
-	else
+	else if (m_hero_stop==true&&Input::GetVKey(VK_RETURN) == true)
 	{
-		px = 0.0f;
-		py = 0.0f;
+
+		Main->SetStoryFlag(false);
+		Main->SetStoryFlag2(true);
+		m_hero_stop = false;
 	}
 
+		//主人公のアイテムと当たったフラグを持ってくる
+		CObjGameUI* UI = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
 
-	//ブロックの当たり判定実行
-	CObjMain* pb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
-	pb->BlockHit(&m_px, &m_py, true,true,
+
+		//1番目のアイテムをとる処理
+		if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
+			Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
+			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag() == false && Main->GetMapItem() == true ||
+			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag() == false && Main->GetMapItem() == true)
+		{
+			Main->SetKeyFlag(true);
+			peperon_flag = true;
+			k_id = ITEM_KEY;
+			Main->SetDelete(true);
+			
+			//Main->GetMapItem() = false;
+		}
+
+		//2番目のアイテムをとる処理
+		if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+			Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true ||
+			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_2() == false && Main->GetMapItem_2() == true)
+		{
+			Main->SetHealFlag(true);
+			peperon_flag_2 = true;
+			h_id = ITEM_HEAL;
+			Main->SetDelete(true);
+			
+			//Main->GetMapItem_2() = false;
+		}
+
+		if (Input::GetVKey('E') == true && mi_hit_left == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+			Input::GetVKey('E') == true && mi_hit_right == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+			Input::GetVKey('E') == true && mi_hit_down == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true ||
+			Input::GetVKey('E') == true && mi_hit_up == true && UI->takeItemflag_3() == false && Main->GetMapItem_3() == true)
+		{
+			Main->SetBarFlag(true);
+			peperon_flag_3 = true;
+			b_id = ITEM_BAR;
+			Main->SetDelete(true);
+			
+			//Main->GetMapItem_2() = false;
+		}
+
+
+		//1番目のアイテムを使う処理
+		if (Input::GetVKey('1') == true && UI->GetItemflag() == true)
+		{
+			use_Item_flag = true;
+			UI->Settakeflag(false);
+		}
+
+		//2番目のアイテムを使う処理
+		else if (Input::GetVKey('2') == true && UI->GetItemflag_2() == true)
+		{
+			if (m_hero_life <= 29)
+			{
+				use_Item_flag_2 = true;
+				m_hero_life = 30;
+				UI->Settakeflag_2(false);
+			}
+			else if (m_hero_life == 30)
+			{
+				;
+			}
+
+		}
+
+		//3番目のアイテムを使う処理
+		else if (Input::GetVKey('3') == true && UI->GetItemflag_3() == true)
+		{
+			use_Item_flag_3 = true;
+			UI->Settakeflag_3(false);
+		}
+
+		//アニメーションのリセット
+		if (m_ani_time > m_ani_max_time)
+		{
+			m_ani_frame += 1;
+			m_ani_time = 0;
+		}
+
+		//アニメーションフレームのリセット
+		if (m_ani_frame == 4)
+		{
+			m_ani_frame = 0;
+		}
+
+		//摩擦
+		m_vx += -(m_vx*0.098f);
+		m_vy += -(m_vy*0.098f);
+
+		//高速移動によるblock判定
+		bool b;
+		float pxx, pyy, r;
+		CObjMain* pbb = (CObjMain*)Objs::GetObj(OBJ_MAIN);
+
+		if (pbb->GetScrollX() > 0)
+			pbb->SetScrollX(0);
+
+		//移動方向にrayを飛ばす
+		float vx;
+		float vy;
+
+		if (m_vx > 0)
+			vx = 500 - pbb->GetScrollX();
+		else
+			vx = 0 - pbb->GetScrollX();
+
+
+		//ray判定
+		b = pbb->HeroBlockCrossPoint(m_px - pbb->GetScrollX() + 32, m_py - pbb->GetScrollY() + 32, vx, 0.0f, &pxx, &pyy, &r);
+
+		if (b == true)
+		{
+			//交点取得
+			px = pxx + pbb->GetScrollX();
+			py = pyy - pbb->GetScrollY();
+
+			float aa = (m_px)-px;//A（交点→主人公の位置）ベクトル
+			float bb = (m_px + m_vx) - px;//B（交点→主人公の移動先位置）ベクトル
+
+
+			//主人公の幅分オフセット
+			if (vx > 0)
+				px += -64;
+			else
+				px += 2;
+
+
+			//AとBが逆を向いている（主人公が移動先の壁を越えている）
+			if (aa*bb < 0)
+			{
+				//移動ベクトルを（交点→主人公の位置）ベクトルにする
+				m_vx = px - m_px;
+			}
+
+		}
+		else
+		{
+			px = 0.0f;
+			py = 0.0f;
+		}
+
+	Main->BlockHit(&m_px, &m_py, true, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,&m_id,&k_id
+		&m_block_type, &m_id, &k_id
 	);
 
-	//自身のhitboxを持ってくる
-	CHitBox* hit = Hits::GetHitBox(this);
+		//自身のhitboxを持ってくる
+		CHitBox* hit = Hits::GetHitBox(this);
 
-	//アイテムの当たり判定実行
-	pb->ItemHit(&m_px, &m_py, true, true,
+		//アイテムの当たり判定実行
+	Main->ItemHit(&m_px, &m_py, true, true,
 		&mi_hit_up, &mi_hit_down, &mi_hit_left, &mi_hit_right, &m_vx, &m_vy,
 		&m_block_type
 	);
-	
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -308,8 +319,6 @@ void CObjHero::Action()
 
 	//敵と当たったらフラグを持てる
 	CObjGameUI*ui = (CObjGameUI*)Objs::GetObj(OBJ_GAME_UI);
-	//ゲームメインにフラグをセットする
-	CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 	
 	
@@ -321,58 +330,40 @@ void CObjHero::Action()
 		//音楽情報の読み込み
 		Audio::LoadAudio(6, L"6ダメージ音.wav", SOUND_TYPE::EFFECT);
 
-		//音楽スタート
-		Audio::Start(6);
+			//音楽スタート
+			Audio::Start(6);
 
-		/*
-		if (hit_flag_x == true)
-		{
-			m_vx = 50.0f;
-		}
-		if (hit_flag_x == false)
-		{
-			m_vx = -50.0f;
-		}
-		if (hit_flag_y == true)
-		{
-			m_vx = 50.0f;
-		}
-		if (hit_flag_y == false)
-		{
-			m_vx = -50.0f;
-		}*/
+			m_hero_life -= 1;
 
-		m_hero_life-=1;
+			m_flg = true;
 
-		m_flg = true;
+			if (m_hero_life == 20)
+			{
+				Conflict_flag = true;
+			}
 
-		if (m_hero_life == 20)
-		{
-			Conflict_flag = true;
+			if (m_hero_life == 10)
+			{
+				Conflict_flag2 = true;
+			}
+
+			if (m_hero_life == 0)
+			{
+
+				Scene::SetScene(new CSceneGameOver);
+			}
+
 		}
 
-		if (m_hero_life == 10)
+		if (m_flg == true && m_time > 0)
 		{
-			Conflict_flag2 = true;
+			m_time--;
 		}
-
-		if (m_hero_life == 0)
+		else if (m_time == 0)
 		{
-
-			Scene::SetScene(new CSceneGameOver);
+			m_flg = false;
+			m_time = 10;
 		}
-
-	}
-	
-	if (m_flg == true && m_time > 0)
-	{
-		m_time--;
-	}
-	else if(m_time == 0)
-	{
-		m_flg = false;
-		m_time = 10;
-	}
 	
 }
 
