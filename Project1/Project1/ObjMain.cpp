@@ -35,7 +35,7 @@ void CObjMain::Init()
 
 	map_chg = 0;
 	room_chg = 0;
-	stop_flg =true;
+	stop_flg = true;
 	spawn_point[7] = NULL;
 	room_in = true;
 	delete_flg = false;
@@ -129,6 +129,8 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
+			//マップ切り替え関数を呼び出す
+			MapChanger(map_chg, m_map, p);
 
 			//主人公の初期位置を変更
 			CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -137,8 +139,7 @@ void CObjMain::Action()
 			m_scroll_x = 0.0f;
 			m_scroll_y = 0.0f;
 
-			//マップ切り替え関数を呼び出す
-			MapChanger(map_chg, m_map, p);
+			
 
 
 			first_stop = false;
@@ -151,7 +152,7 @@ void CObjMain::Action()
 			//音楽スタート
 			Audio::Start(5);
 
-			memcpy(m_map, save_map, sizeof(int)*(MAP_X*MAP_Y));
+			
 		}
 
 	}
@@ -165,7 +166,16 @@ void CObjMain::Action()
 
 			//音楽スタート
 			Audio::Start(5);
-
+			if (stop_flg2 == true)
+			{
+				//マップ切り替え関数を呼び出す
+				MapChanger(map_chg, m_map, p);
+				stop_flg = false;
+			}
+			else
+			{
+				memcpy(m_map, save_map, sizeof(int)*(MAP_X*MAP_Y));
+			}
 			//主人公の初期位置の値を関数で指定する
 			spawn_point[map_chg] = SpawnChanger(map_chg);
 
@@ -175,11 +185,10 @@ void CObjMain::Action()
 			hero->SetY(0.0f);
 			m_scroll_x = spawn_point[map_chg] * 1.0f;
 			m_scroll_y = 0.0f;
-			//マップ切り替え関数を呼び出す
-			MapChanger(map_chg, m_map, p);
+			
+		
 
-
-			memcpy(m_map, save_map, sizeof(int)*(MAP_X * MAP_Y));
+			
 
 		}
 		//廊下マップからマップへの切り替え処理
@@ -844,7 +853,7 @@ void CObjMain::BlockHit(
 									stop_flg = true;
 									map_chg++;
 									stop_flg2 = true;
-									
+									first_stop = true;
 									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									*k_id = 99;
 
@@ -913,7 +922,7 @@ void CObjMain::BlockHit(
 
 									stop_flg = true;
 									stop_flg2 = true;
-						
+									first_stop = true;
 									CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
 
 									//主人公が階段に当たった瞬間に位置とスクロール情報を保存する。
@@ -929,7 +938,7 @@ void CObjMain::BlockHit(
 									{
 										room_in = true;
 										room_chg++;
-
+								;
 										
 										CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 										CObjMain* main = (CObjMain*)Objs::GetObj(OBJ_MAIN);
@@ -1013,6 +1022,7 @@ void CObjMain::BlockHit(
 								{
 									stop_flg = true;
 									stop_flg2 = true;
+									first_stop = true;
 									CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 									*k_id = 99;
 
@@ -1073,7 +1083,7 @@ void CObjMain::BlockHit(
 			{
 
 
-				if (r_map[i][j] <= 99 && r_map[i][j] > 3 && r_map[i][j] != 7 && r_map[i][j] != 26 && r_map[i][j] != 34 && r_map[i][j] != 35 )
+				if (r_map[i][j] <= 99 && r_map[i][j] > 1 && r_map[i][j] != 7 && r_map[i][j] != 26 && r_map[i][j] != 34 && r_map[i][j] != 35 )
 				{
 					//要素番号を座標に変更
 					float bx = j * 64.0f;
@@ -1968,7 +1978,7 @@ void CObjMain::Draw()
 
 
 					//床テクスチャ
-					if (r_map[i][j] >= 1&&r_map[i][j]<= 8|| r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13||r_map[i][j]==31)
+					if (r_map[i][j] >= 1&&r_map[i][j]<= 8|| r_map[i][j] == 5||r_map[i][j]==7|| r_map[i][j] == 8|| r_map[i][j] == 13||r_map[i][j]==31||r_map[i][j]==26)
 					{
 						src.m_top = 0.0f;
 						src.m_left = 0.0f;

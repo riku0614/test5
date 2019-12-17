@@ -43,11 +43,8 @@ void CSceneTitle::InitScene()
 	Font::SetStrTex(L"最初から");
 
 	//矢印追加
-	Draw::LoadImage(L"カーソル.png", 0, TEX_SIZE_512);
-
-	//タイトルオブジェクト作成
-	CObjTitle* obj = new CObjTitle();		//タイトルオブジェクト作成
-	Objs::InsertObj(obj, OBJ_TITLE, 10);	//タイトルオブジェクト登録
+	Draw::LoadImageW(L"カーソル.png", 0, TEX_SIZE_512);
+	Draw::LoadImageW(L"タイトル画面.png", 1, TEX_SIZE_1024);
 
 	//クリックタイトルオブジェクト作成
 	CObjClickTitle* objb = new CObjClickTitle();	//クリックタイトルオブジェクト作成

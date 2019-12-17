@@ -91,7 +91,7 @@ void CObjGameUI::Draw()
 		dst.m_bottom = dst.m_top + 600.0f;
 
 		//•`‰æÝ’è
-		Draw::Draw(40, &src, &dst, c, 0.0f);
+		Draw::Draw(46, &src, &dst, c, 0.0f);
 
 		Font::StrDraw(L"‚à‚µ‚±‚ê‚ðŒ©‚Ä‚¢‚é‚È‚çA‘‚­‚±‚ÌŠwZ‚©‚ç“¦‚°‚ëB", 10, 20, 20, c);
 		Font::StrDraw(L"‚½‚¾‚ÌŠwZ‚È‚ç‚È‚ñ‚Ä‚±‚Æ–³‚¢‚ñ‚¾B‚½‚¾‚ÌŠwZ‚¶‚á‚È‚¢‚©‚ç‚±‚ñ‚È‚à‚Ì‚ðŽc‚µ‚½‚ñ‚¾B", 10,60 , 20, c);
@@ -141,7 +141,7 @@ void CObjGameUI::Draw()
 
 			//•`‰æÝ’è
 
-			Draw::Draw(22, &src, &dst, c, 0.0f);
+			Draw::Draw(47, &src, &dst, c, 0.0f);
 		}
 		if (hero->action_flag2() == true && hero->GetLife() <= 10)
 		{
@@ -159,7 +159,7 @@ void CObjGameUI::Draw()
 
 			//•`‰æÝ’è
 
-			Draw::Draw(23, &src, &dst, c, 0.0f);
+			Draw::Draw(48, &src, &dst, c, 0.0f);
 		}
 
 		//Ø‚èŽæ‚èˆÊ’u‚ÌÝ’è
